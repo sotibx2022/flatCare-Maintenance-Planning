@@ -16,8 +16,7 @@ let steps = [
 const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
-    firstName: '',
-    lastName: '',
+    fullName:'',
     userName: '',
     imageUrl: '',
     email: '',
@@ -29,11 +28,10 @@ const Page: React.FC = () => {
     phoneNumber: ''
   });
 
-  const handlePersonalDetailsSubmit = (firstName: string, lastName: string, phoneNumber: string, imageUrl: string, nextStep: number) => {
+  const handlePersonalDetailsSubmit = (fullName:string, phoneNumber: string, imageUrl: string, nextStep: number) => {
     setCustomerDatas(prevData => ({
       ...prevData,
-      firstName,
-      lastName,
+      fullName,
       phoneNumber,
       imageUrl
     }));

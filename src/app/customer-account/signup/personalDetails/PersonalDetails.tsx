@@ -1,55 +1,37 @@
 "use client";
 import React, { useState } from 'react';
-
-interface CustomerData {
-  firstName: string;
-  lastName: string;
-  userName: string;
-  imageUrl: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  buildingNumber: string;
-  floorNumber: string;
-  roomNumber: string;
-  phoneNumber: number;
-}
+import { CustomerData } from '../../types';
 
 interface PersonalDetailsProps {
-  personalDetailsValue: (currentFirstName: string, currentLastName: string, currentImageUrl: string, currentPhoneNumber: number, next: number) => void;
+  personalDetailsValue: (currentFullName: string,  currentImageUrl: string, currentPhoneNumber: string, next: number) => void;
   customerDatas: CustomerData;
 }
 
 const PersonalDetails: React.FC<PersonalDetailsProps> = ({ personalDetailsValue, customerDatas }) => {
-  const { firstName, lastName, phoneNumber, imageUrl } = customerDatas;
+  const { fullName, phoneNumber, imageUrl } = customerDatas;
 
   // Initialize state with empty strings or numbers
-  const [currentFirstName, setCurrentFirstName] = useState<string>(firstName || "");
-  const [currentLastName, setCurrentLastName] = useState<string>(lastName || "");
-  const [currentPhoneNumber, setCurrentPhoneNumber] = useState<number | "">(phoneNumber || "");
+  const [currentFullName, setCurrentFirstName] = useState<string>(fullName || "");
+ 
+  const [currentPhoneNumber, setCurrentPhoneNumber] = useState<string>(phoneNumber || ""); // Initialize with empty string
   const [currentImageUrl, setCurrentImageUrl] = useState<string>(imageUrl || "");
 
   const handleNext = () => {
     let next: number = 2; // Next step value for SoftwareAccessDetails
-    personalDetailsValue(currentFirstName, currentLastName, currentImageUrl, Number(currentPhoneNumber), next); // Ensure phoneNumber is converted to number
+    personalDetailsValue(currentFullName,  currentImageUrl, currentPhoneNumber, next); // phoneNumber is now treated as string
   };
 
   return (
     <div>
       <input
         type="text"
-        placeholder="First Name"
-        value={currentFirstName}
+        placeholder="Full Name"
+        value={currentFullName}
         onChange={(e) => setCurrentFirstName(e.target.value)}
       />
+     
       <input
-        type="text"
-        placeholder="Last Name"
-        value={currentLastName}
-        onChange={(e) => setCurrentLastName(e.target.value)}
-      />
-      <input
-        type="number"
+        type="text" // Change input type to text
         placeholder="Phone Number"
         value={currentPhoneNumber}
         onChange={(e) => setCurrentPhoneNumber(e.target.value)}
