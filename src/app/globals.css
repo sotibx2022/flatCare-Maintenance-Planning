@@ -121,4 +121,7 @@ ul li{
   flex-direction: column;
   width: 100%;
 }
+.active_step{
+  background-color: red;
+}
 

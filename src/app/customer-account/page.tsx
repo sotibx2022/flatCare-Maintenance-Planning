@@ -5,7 +5,11 @@ import SoftwareAccessDetails from './signup/softwareaccessDetails/SoftwareAccess
 import LocationDetails from './signup/locationDetails/LocationDetails';
 import { CustomerData } from './types';
 
-// "use client"; // Move this if necessary, but it seems unnecessary here
+let steps =[
+  { step: 1, title: 'Customer Details' },
+  { step: 2, title: 'Software Access Details' },
+  { step: 3, title: 'Location Details' }
+]
 
 const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1); // Renamed 'next' to 'currentStep' for clarity
@@ -45,7 +49,7 @@ const Page: React.FC = () => {
   };
 
   const handleLocationDetailsSubmit = (buildingNumber: string, floorNumber: string, roomNumber: string, nextStep: number) => {
-    console.log(nextStep)
+
     setCustomerDatas(prevData => ({
       ...prevData,
       buildingNumber,
@@ -57,8 +61,17 @@ const Page: React.FC = () => {
 
   return (
     <div>
+      <div>
+        <div>
+         {steps.map(item => (
+            <h1 key={item.step} className={currentStep === item.step ? "active_step" : ""}>
+              {item.title}
+            </h1>
+          ))}
+        </div>
+      </div>
       {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
-      {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas}/>}
+      {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
       {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
     </div>
   );
