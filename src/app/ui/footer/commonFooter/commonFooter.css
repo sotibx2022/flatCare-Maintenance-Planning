@@ -1,0 +1,10 @@
+.categoreis_wrapper{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.category_wrapper{
+    border: 1px solid var(--primary);
+    padding: 0 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
