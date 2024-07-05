@@ -8,9 +8,7 @@ interface CustomerDataProps {
   
 const PreviewandSubmit:React.FC<CustomerDataProps> = ({customerDatas,previewDetailsValue})=>{
     const {
-        firstName,
-        lastName,
-        userName,
+        fullName,
         imageUrl,
         email,
         password,
@@ -27,21 +25,21 @@ const PreviewandSubmit:React.FC<CustomerDataProps> = ({customerDatas,previewDeta
             previewDetailsValue(3)
         }
   return (
-    <div>
-  
+    <div className='container'>
+  <div className='stepInputs_Wrapper'>
     <h2>Preview and Submit</h2>
-    <div>
-        <p><strong>First Name:</strong> {firstName}</p>
-        <p><strong>Last Name:</strong> {lastName}</p>
-        <p><strong>User Name:</strong> {userName}</p>
+    
+
+        <p><strong>Full Name:</strong> {fullName}</p>
         <p><strong>Email:</strong> {email}</p>
         <p><strong>Phone Number:</strong> {phoneNumber}</p>
         <p><strong>Address:</strong> {buildingNumber}, {floorNumber}, {roomNumber}</p>
         <p><strong>Profile Image:</strong></p>
         <img src={imageUrl} alt="Profile" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-      </div>
+      
   <button onClick={handlePrev}>Prev</button>
   <button>Submit</button>
+    </div>
     </div>
   )
 }

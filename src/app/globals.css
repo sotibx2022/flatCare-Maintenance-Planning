@@ -113,15 +113,92 @@ font-size: 2rem;
   gap:1rem;
   
 }
-ul li{
-  list-style: none;
-}
-.login_container{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.active_step{
-  background-color: red;
+
+
+/* Container for each form item */
+.form_item {
+  margin-bottom: 20px;
 }
 
+/* Label styling */
+.form_item label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Input field styling */
+.form_item input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Error message styling */
+.error_message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Image preview container */
+.image_preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Image preview styling */
+.image_preview img {
+  max-width: 200px; /* Adjust the size as needed */
+  height: auto;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Button styling */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.stepInputs_Wrapper {
+  display: flex;
+  flex-direction: column;
+ 
+  width: 100%;
+  max-width: 600px; /* Adjust the width as needed */
+  padding: 20px;
+  margin: 0 auto; /* Center the box horizontally */
+  border: 2px solid #ccc; /* Border color and thickness */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+  background-color: #fff; /* Background color */
+}
+.steps{
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  align-items: center;
+}
+.steps h1{
+  
+  font-size: 1rem;
+  padding: 1rem;
+}
+.active_step{
+  background-color:var(--primary);
+}
+.normal_step{
+  background-color: var(--secondary);
+}
