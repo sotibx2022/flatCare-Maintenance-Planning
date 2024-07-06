@@ -67,7 +67,7 @@ export async function POST(request: NextRequest,response:NextResponse) {
         success: true,
         data: result,
       });
-      const token = jwt.sign({ userId: newCustomer._id }, 'flatCare-maintenance-planning', {
+      const token = jwt.sign({ userId: newCustomer._id }, process.env.SECRET_KEY!, {
         expiresIn: '1d',
       });
       // Setting the cookie properly
