@@ -1,5 +1,6 @@
 import React from 'react';
 import "./../commonFooter/commonFooter.css";
+import Link from 'next/link';
 const maintenanceCategories = [
     {
         categoryTitle: "Plumbing",
@@ -60,10 +61,10 @@ const CommonFooter = () => {
     return (
         <div className='categoreis_wrapper flex_items container'>
             {maintenanceCategories.map((category, index) => {
-                return <div className='category_wrapper flex_items' key={index}>
+                return <Link href={`/${category.categoryTitle.toLocaleLowerCase().replace(/ /g,'-')}`} className='category_wrapper flex_items' key={index}>
                     <p>{category.categoryTitle}</p>
                     <span>{category.categoryIcon}</span>
-                </div>
+                </Link>
             })}
         </div>
     )

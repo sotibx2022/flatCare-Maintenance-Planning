@@ -22,7 +22,7 @@ const Login = () => {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await axios.post("/api/customeraccount/login", { currentEmail, currentPassword });
+            const response = await axios.post("/api/customer/login", { currentEmail, currentPassword });
             const result = response.data;
             if (result) {
                 console.log(result)
@@ -30,7 +30,7 @@ const Login = () => {
             } if (result.success) {
                 console.log(result.success)
                 
-                router.push("/customer-account")
+                router.push("/customer/dashboard")
             }
         } catch (error) {
             if (error instanceof Error) {

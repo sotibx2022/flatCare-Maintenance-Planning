@@ -6,7 +6,7 @@ import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-const CustomerHeader: React.FC = () => {
+const  Header: React.FC = () => {
   const [token, setToken] = useState<string | null>(null); // Initialize token with null
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
@@ -14,7 +14,7 @@ const CustomerHeader: React.FC = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const response = await axios.get("/api/customeraccount/findToken");
+        const response = await axios.get("/api/customer/findToken");
         const result = response.data;
         if (result.success) {
           setToken(result.token);
@@ -29,12 +29,12 @@ const CustomerHeader: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post("/api/customeraccount/logout");
+      const response = await axios.post("/api/customer/logout");
       const result = response.data;
       alert(result.message);
       if (result.success) {
         setToken(null); // Clear token state immediately
-        router.push("/customer-account/login"); // Redirect to login page after logout
+        router.push("/customer/login"); // Redirect to login page after logout
       }
     } catch (error) {
       console.error('Error logging out:', error);
@@ -42,7 +42,7 @@ const CustomerHeader: React.FC = () => {
   };
 
   return (
-    <div className='container flex_items customerHeader_wrapper'>
+    <div className='container flex_items  Header_wrapper'>
       <div className='logo_area'>
         <Image src={logo} className='logo' alt='Logo' priority={true} />
       </div>
@@ -53,12 +53,12 @@ const CustomerHeader: React.FC = () => {
           <li className='menu_item'><Link href="/pricing">How it works</Link></li>
           <li className='menu_item'><Link href="/about">About Us</Link></li>
           <li className='menu_item'><Link href="/contact">Contact</Link></li>
-          {pathname === "/customer-account" ? (
+          {pathname === "/customer" ? (
             <li className='menu_item' onClick={handleLogout}>Logout</li>
           ) : (
             <>
-              <li className='menu_item'><Link href="/login">Login</Link></li>
-              <li className='menu_item'><Link href="/signup">Sign Up</Link></li>
+              <li className='menu_item'><Link href="/customer/login">Login</Link></li>
+              <li className='menu_item'><Link href="/customer/signup">Sign Up</Link></li>
             </>
           )}
         </ul>
@@ -67,4 +67,4 @@ const CustomerHeader: React.FC = () => {
   );
 };
 
-export default CustomerHeader;
+export default  Header;

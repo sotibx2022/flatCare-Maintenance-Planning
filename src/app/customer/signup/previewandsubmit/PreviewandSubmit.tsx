@@ -32,7 +32,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     try {
       setLoading(true);
       const {confirmPassword, ...dataToSend} = customerDatas;
-      const response = await axios.post("/api/customeraccount/signup", dataToSend);
+      const response = await axios.post("/api/customer/signup", dataToSend);
     const result = response.data;
     if(result){
       setLoading(false)
@@ -40,7 +40,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     }
     
     if (result.success) {
-      router.push("/customer-account")
+      router.push("/customer/dashboard")
     }
   }
     catch (error) {

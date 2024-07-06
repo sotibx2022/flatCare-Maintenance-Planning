@@ -12,7 +12,7 @@ export interface CustomerDocument extends Document {
   isTechnician:Boolean,
   isVerified:Boolean,
   isApproved:Boolean,
-  isCustomer:Boolean
+  isCustomer:Booleawn
 }
 const customerSchema: Schema<CustomerDocument> = new Schema({
   fullName: {

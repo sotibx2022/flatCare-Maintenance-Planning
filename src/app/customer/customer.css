@@ -93,3 +93,89 @@ button:disabled {
 .customerHeader_wrapper{
   justify-content: space-between;
 }
+/* Customer Dashboard CSS */
+/* Container for the whole layout */
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Styles for the left sidebar */
+.leftSideBar {
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leftSideBar .Customer_Profile {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leftSideBar .Customer_Profile h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Styles for the right sidebar */
+/* Container for the whole layout */
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Styles for the left sidebar */
+.leftSideBar {
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leftSideBar .Customer_Profile {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leftSideBar .Customer_Profile h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Styles for the right sidebar */
+.rightSideBar {
+  flex: 2;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rightSideBar section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rightSideBar section h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+
+
+
