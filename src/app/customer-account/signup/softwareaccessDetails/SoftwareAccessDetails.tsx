@@ -90,14 +90,10 @@ const SoftwareAccess: React.FC<SoftwareAccessProps> = ({ softwareAccessValue, cu
 
       <div className="form_item">
         <label>Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={currentConfirmPassword}
-          onChange={(e) => setConfirmCurrentPassword(e.target.value)}
-          onBlur={(e) => blurHandler(e)}
-        />
+        <PasswordInput name='confirmPassword' placeholder='Confirm Password'
+        value={currentConfirmPassword} onChange={(e) => setConfirmCurrentPassword(e.target.value)}
+        onBlur={(e) => blurHandler(e)}/>
+       
         {errors.confirmPassword && focus.confirmPassword && <span className='error_message'>{errors.confirmPassword}</span>}
       </div>
 

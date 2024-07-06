@@ -4,7 +4,6 @@ import { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
-    console.log(path);
 
     // Correct evaluation of isPublicPath
     let isPublicPath = path === '/customer-account/login' || path === '/customer-account/signup';

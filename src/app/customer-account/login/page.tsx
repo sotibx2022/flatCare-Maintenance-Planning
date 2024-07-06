@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const Login = () => {
+    const router = useRouter()
     const [currentEmail, setCurrentEmail] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
     const [focus, setFocus] = useState({
@@ -27,8 +28,9 @@ const Login = () => {
                 console.log(result)
                 alert(result.message)
             } if (result.success) {
-                const router = useRouter()
-                router.push("/")
+                console.log(result.success)
+                
+                router.push("/customer-account")
             }
         } catch (error) {
             if (error instanceof Error) {

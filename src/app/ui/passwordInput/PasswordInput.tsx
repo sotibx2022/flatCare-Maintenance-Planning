@@ -11,7 +11,7 @@ const PasswordInput:React.FC<PasswordInputProps> = ({placeholder,value,name,onCh
     let inputType = showPassword? "text":"password";
   return (
     <div>
-    <input type={inputType} placeholder={placeholder} value={value} name={name} onChange={onChange}></input>
+    <input type={inputType} placeholder={placeholder} value={value} name={name} onChange={onChange} autoComplete='off'></input>
     <span onClick={()=>setShowPassword(!showPassword)}>{showPassword? "Hide":"Show"}</span>
     </div>
   )
