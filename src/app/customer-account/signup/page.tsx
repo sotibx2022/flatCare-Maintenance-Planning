@@ -22,7 +22,6 @@ const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
     fullName:'',
-    userName: '',
     imageUrl: '',
     email: '',
     password: '',
@@ -77,10 +76,12 @@ const Page: React.FC = () => {
           </h1>
         ))}
       </div>
+      <form>
       {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
       {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
       {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
       {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
+      </form>
     </div>
   );
 };
