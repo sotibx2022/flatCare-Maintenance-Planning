@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { CustomerData } from '../../types'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -20,6 +20,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     roomNumber,
     phoneNumber
   } = customerDatas;
+  const[loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handlePrev = () => {
@@ -28,16 +29,28 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
   }
   async function submitHanler(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
     event.preventDefault();
-    console.log(customerDatas);
-    const {confirmPassword, ...dataToSend} = customerDatas;
-    console.log(dataToSend)
-    const response = await axios.post("/api/customeraccount/signup", dataToSend);
+    try {
+      setLoading(true);
+      const {confirmPassword, ...dataToSend} = customerDatas;
+      const response = await axios.post("/api/customeraccount/signup", dataToSend);
     const result = response.data;
-    alert(result.message)
+    if(result){
+      setLoading(false)
+      alert(result.message)
+    }
+    
     if (result.success) {
       router.push("/")
     }
   }
+    catch (error) {
+      setLoading(false)
+    }
+    
+  }
+    
+   
+    
 
   return (
     <div className='container'>
@@ -53,7 +66,8 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
         <img src={imageUrl} alt="Profile" style={{ maxWidth: '200px', maxHeight: '200px' }} />
 
         <button onClick={handlePrev}>Prev</button>
-        <button onClick={submitHanler} type='submit'>Submit</button>
+        {loading ? <button>Loading</button>:<button onClick={submitHanler} type='submit'>Submit</button>}
+        
       </div>
     </div>
   )

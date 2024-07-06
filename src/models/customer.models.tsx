@@ -8,6 +8,11 @@ export interface CustomerDocument extends Document {
   floorNumber: string;
   roomNumber: string;
   phoneNumber: string;
+  isPlanner:Boolean,
+  isTechnician:Boolean,
+  isVerified:Boolean,
+  isApproved:Boolean,
+  isCustomer:Boolean
 }
 const customerSchema: Schema<CustomerDocument> = new Schema({
   fullName: {
@@ -48,6 +53,26 @@ const customerSchema: Schema<CustomerDocument> = new Schema({
     type: String,
     required: true,
     match: [/^\d{10}$/, 'Phone number must be 10 digits']
+  },
+  isApproved:{
+    type:Boolean,
+    default:false
+  },
+  isVerified:{
+    type:Boolean,
+    default:false,
+  },
+  isPlanner:{
+    type:Boolean,
+    default:false,
+  },
+  isTechnician:{
+    type:Boolean,
+    default:false,
+  },
+  isCustomer:{
+    type:Boolean,
+    default:true,
   }
 }, {
   timestamps: true
