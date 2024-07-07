@@ -1,5 +1,5 @@
 import React from 'react';
-import '@/app/ui/softwareFeatures/softwareFeatures.css';
+import "../softwareFeatures/softwareFeatures.css";
 const features = [
     {
         featureTitle: "Routine Maintenance",
