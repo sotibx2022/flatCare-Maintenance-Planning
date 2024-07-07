@@ -5,7 +5,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-
+import "../customer.css";
 const  Header: React.FC = () => {
   const [token, setToken] = useState<string | null>(null); // Initialize token with null
   const pathname = usePathname(); // Get the current pathname
@@ -53,7 +53,7 @@ const  Header: React.FC = () => {
           <li className='menu_item'><Link href="/pricing">How it works</Link></li>
           <li className='menu_item'><Link href="/about">About Us</Link></li>
           <li className='menu_item'><Link href="/contact">Contact</Link></li>
-          {pathname === "/customer" ? (
+          {pathname === "/customer/dashboard" ? (
             <li className='menu_item' onClick={handleLogout}>Logout</li>
           ) : (
             <>

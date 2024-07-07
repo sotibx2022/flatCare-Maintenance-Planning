@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../dashboard/dashboard.css";
-import CustomerHeader from "../header/CustomerHeader";
+
 
 import CustomerDashboardNavigation from "./navigation/Navigation";
-import Navigation from "./navigation/Navigation";
+
 import Header from "../header/CustomerHeader";
 
 
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <main>
       <Header />
-      <div className="layoutContainer">
+      <div className="layoutContainer container">
 
         <section className="leftSide">
           <CustomerDashboardNavigation />

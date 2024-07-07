@@ -1,5 +1,20 @@
-.layoutContainer{
-display: flex;
-justify-content: center;
-align-items: center;
-}
+.layoutContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .leftSide {
+    width: 250px; /* Fixed width for navigation */
+    background-color: #f8f9fa; /* Light grey background */
+    padding: 20px; /* Padding for inner spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Light shadow for separation */
+    overflow-y: auto; /* Scroll if content overflows */
+  }
+  
+  .rightSide {
+    flex: 1; /* Take up the remaining space */
+    padding: 20px; /* Padding for inner spacing */
+    background-color: #ffffff; /* White background */
+    overflow-y: auto; /* Scroll if content overflows */
+  }

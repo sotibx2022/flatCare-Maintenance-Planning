@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { CustomerData } from '../../types';
-import PasswordInput from '@/app/ui/passwordInput/PasswordInput';
+import PasswordInput from '../../../ui/passwordInput/PasswordInput';
+
 
 interface SoftwareAccessProps {
   softwareAccessValue: (email: string, password: string, confirmPassword: string, next: number) => void;

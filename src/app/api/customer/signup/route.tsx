@@ -1,8 +1,9 @@
-import { ConnectToDb } from '@/helper/connectToDb';
-import { Customer, CustomerDocument } from '@/models/customer.models';
+
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { ConnectToDb } from '../../../../helper/connectToDb';
+import { Customer,CustomerDocument } from '../../../../models/customer.models';
 
 // Changed GET function parameter to NextRequest instead of NextResponse
 export async function GET(request: NextRequest) { 

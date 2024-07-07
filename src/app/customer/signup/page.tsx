@@ -9,6 +9,7 @@ import PersonalDetails from './personalDetails/PersonalDetails';
 import LocationDetails from './locationDetails/LocationDetails';
 import PreviewandSubmit from './previewandsubmit/PreviewandSubmit';
 import SoftwareAccessDetails from './softwareaccessDetails/SoftwareAccessDetails';
+import Header from '../header/CustomerHeader';
 
 
 let steps = [
@@ -68,6 +69,8 @@ const Page: React.FC = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className='container'>
       <div className='steps'>
         {steps.map(item => (
@@ -82,7 +85,7 @@ const Page: React.FC = () => {
       {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
       {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
       </form>
-    </div>
+    </div></>
   );
 };
 

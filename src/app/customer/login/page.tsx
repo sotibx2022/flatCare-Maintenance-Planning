@@ -1,8 +1,10 @@
 "use client"
-import PasswordInput from '@/app/ui/passwordInput/PasswordInput';
+
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import PasswordInput from '../../ui/passwordInput/PasswordInput';
+import Header from '../header/CustomerHeader';
 
 const Login = () => {
     const router = useRouter()
@@ -44,7 +46,9 @@ const Login = () => {
 
     }
     return (
-        <form onSubmit={submitHandler}>
+      <>
+        <Header/>
+        <form onSubmit={submitHandler} className='stepInputs_Wrapper'>
             <div className="form_item">
                 <label>Email</label>
                 <input
@@ -70,6 +74,7 @@ const Login = () => {
             </div>
             <button type='submit'>SUbmit</button>
         </form>
+        </>
     )
 }
 
