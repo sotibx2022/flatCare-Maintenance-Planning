@@ -22,7 +22,8 @@ export async function GET(request: NextRequest) {
 
             try {
                 let decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
-                let userId = decodedToken.Id;
+
+                let userId = decodedToken.userId;
 
                 let customer = await Customer.findOne({ _id: userId });
 

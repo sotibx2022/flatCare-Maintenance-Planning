@@ -4,6 +4,7 @@ export interface CustomerDocument extends Document {
   imageUrl: string,
   email: string;
   password: string;
+  passwordHistory:Array<{password:string,createdAt:Date}>;
   buildingNumber: string;
   floorNumber: string;
   roomNumber: string;
@@ -12,7 +13,7 @@ export interface CustomerDocument extends Document {
   isTechnician:Boolean,
   isVerified:Boolean,
   isApproved:Boolean,
-  isCustomer:Booleawn
+  isCustomer:Boolean,
 }
 const customerSchema: Schema<CustomerDocument> = new Schema({
   fullName: {
@@ -37,6 +38,10 @@ const customerSchema: Schema<CustomerDocument> = new Schema({
     type: String,
     required: true
   },
+  passwordHistory:[
+    {password:{type:String,required:true},
+    createdAt:{type:Date,default:Date.now()}}
+  ],
   buildingNumber: {
     type: String,
     required: true

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import "../customer.css";
-const  Header: React.FC = () => {
+const Header: React.FC = () => {
   const [token, setToken] = useState<string | null>(null); // Initialize token with null
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
@@ -16,7 +16,7 @@ const  Header: React.FC = () => {
       try {
         const response = await axios.get("/api/customer/findToken");
         const result = response.data;
-        console.log(result);
+
         if (result.success) {
           setToken(result.token);
         }
@@ -68,4 +68,4 @@ const  Header: React.FC = () => {
   );
 };
 
-export default  Header;
+export default Header;
