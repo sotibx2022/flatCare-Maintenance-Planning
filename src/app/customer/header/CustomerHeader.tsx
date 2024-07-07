@@ -16,6 +16,7 @@ const  Header: React.FC = () => {
       try {
         const response = await axios.get("/api/customer/findToken");
         const result = response.data;
+        console.log(result);
         if (result.success) {
           setToken(result.token);
         }
@@ -53,7 +54,7 @@ const  Header: React.FC = () => {
           <li className='menu_item'><Link href="/pricing">How it works</Link></li>
           <li className='menu_item'><Link href="/about">About Us</Link></li>
           <li className='menu_item'><Link href="/contact">Contact</Link></li>
-          {pathname === "/customer/dashboard" ? (
+          {pathname.startsWith("/customer/dashboard") ? (
             <li className='menu_item' onClick={handleLogout}>Logout</li>
           ) : (
             <>

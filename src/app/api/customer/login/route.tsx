@@ -5,8 +5,9 @@ import jwt from 'jsonwebtoken'
 import { ConnectToDb } from "../../../../helper/connectToDb";
 import { Customer } from "../../../../models/customer.models";
 export async function GET(request: NextRequest) {
+    ConnectToDb()
     try {
-        ConnectToDb();
+        
         const customers = await Customer.find();
         return NextResponse.json({
             message: "Customers found successfully",
@@ -25,8 +26,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest, response: NextResponse) {
+    ConnectToDb();
     try {
-        ConnectToDb();
+        
         const { currentEmail, currentPassword } = await request.json();
         const customer = await Customer.findOne({ email: currentEmail });
         
@@ -57,7 +59,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 response.cookies.set('token',token,{
                     httpOnly:true,
                     path:'/',
-                    expires:new Date(Date.now() + 1*24*60*60*60)
+                    expires:new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
                 })
             }
 return response;

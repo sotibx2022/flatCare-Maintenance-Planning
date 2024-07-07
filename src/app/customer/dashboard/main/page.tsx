@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import "../main/dashboardMain.css";
+import "./dashboardMain.css";
 const Dashboard = () => {
   const router = useRouter();
   
@@ -54,6 +54,13 @@ const Dashboard = () => {
         <ul>
           <li>High Budget Orders</li>
           <li>Orders History</li>
+        </ul>
+      </section>
+      <section className="dashboard-block">
+        <h2>Track Order Status</h2>
+        <ul>
+          <li>Contact Technician</li>
+          <li>Contact Planner</li>
         </ul>
       </section>
     </div>

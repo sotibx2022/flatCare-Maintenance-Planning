@@ -40,7 +40,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     }
     
     if (result.success) {
-      router.push("/customer/dashboard")
+      router.push("/customer/dashboard/main")
     }
   }
     catch (error) {

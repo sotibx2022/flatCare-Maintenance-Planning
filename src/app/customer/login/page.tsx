@@ -32,7 +32,7 @@ const Login = () => {
             } if (result.success) {
                 console.log(result.success)
                 
-                router.push("/customer/dashboard")
+                router.push("/customer/dashboard/main")
             }
         } catch (error) {
             if (error instanceof Error) {
