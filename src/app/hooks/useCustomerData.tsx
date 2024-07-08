@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface CustomerData {
-  
+
   fullName: string;
   imageUrl: string;
   email: string;
@@ -29,10 +29,10 @@ const useCustomerData = () => {
       try {
         let response = await axios.get("/api/customer/findCustomer");
         let result = response.data;
-        console.log(result.customer);
 
-        setCustomerDatas(prevCustomerData=>({
-            ...prevCustomerData,
+
+        setCustomerDatas(prevCustomerData => ({
+          ...prevCustomerData,
           fullName: result.customer.fullName,
           imageUrl: result.customer.imageUrl,
           email: result.customer.email,
@@ -47,7 +47,7 @@ const useCustomerData = () => {
     };
 
     getUserDetails();
-  }, []); 
+  }, []);
 
   return [customerDatas, setCustomerDatas] as const;
 };

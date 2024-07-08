@@ -5,15 +5,15 @@ import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export async function GET(request: NextRequest) {
     await ConnectToDb(); // Assuming ConnectToDb() returns a promise
-    
+
     try {
         // Retrieve token from cookies
         let token;
-        const tokenCookie:RequestCookie = request.cookies.get('token')!
-        if(tokenCookie){
-             token = tokenCookie.value;
+        const tokenCookie: RequestCookie = request.cookies.get('token')!
+        if (tokenCookie) {
+            token = tokenCookie.value;
         }
-        
+
 
         if (!token) {
             return NextResponse.json({
@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
         } catch (error) {
             console.error('Error verifying token:', error);
             if (error instanceof TokenExpiredError) {
+
                 return NextResponse.json({
                     message: 'Token Expired',
                     status: 401,
@@ -48,7 +49,7 @@ export async function GET(request: NextRequest) {
                 });
             }
         }
-        
+
         return NextResponse.json({
             message: 'Token Found Successfully',
             status: 200,

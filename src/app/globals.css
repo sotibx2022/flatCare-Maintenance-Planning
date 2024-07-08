@@ -128,7 +128,7 @@ font-size: 2rem;
 }
 
 /* Input field styling */
-.form_item input {
+.form_item input, textarea {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -143,4 +143,28 @@ font-size: 2rem;
   margin-top: 5px;
 }
 
-/* Image preview container */
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+  background-color: #fff;
+  background-image: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+}
+
+select:focus {
+  outline: none; /* Removes focus outline */
+  border-color: #5b9dd9; /* Example color for focus state */
+}
+
+select option {
+  padding: 10px 12px; /* Adjust spacing */
+  background-color: #fff; /* Match select background */
+  border-bottom: 1px dotted red; /* Visual separation */
+  color: red;
+  
+}
+

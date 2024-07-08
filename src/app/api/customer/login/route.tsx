@@ -7,7 +7,7 @@ import { Customer } from "../../../../models/customer.models";
 export async function GET(request: NextRequest) {
     ConnectToDb()
     try {
-        
+
         const customers = await Customer.find();
         return NextResponse.json({
             message: "Customers found successfully",
@@ -28,12 +28,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest, response: NextResponse) {
     ConnectToDb();
     try {
-        
+
         const { currentEmail, currentPassword } = await request.json();
         const customer = await Customer.findOne({ email: currentEmail });
-        
+
         if (!customer) {
-            response=  NextResponse.json({
+            response = NextResponse.json({
                 message: "There is no registered Customer",
                 status: 400,
                 success: false
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         } else {
             const isPasswordValid = await bcrypt.compare(currentPassword, customer.password);
             if (!isPasswordValid) {
-                response=  NextResponse.json({
+                response = NextResponse.json({
                     message: "Invalid Password",
                     status: 200,
                     success: true,
@@ -49,20 +49,20 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 })
             }
             else {
-                response=  NextResponse.json({
+                response = NextResponse.json({
                     message: "There is  registered Customer",
                     status: 200,
                     success: true,
                     customer
                 })
-                const token = jwt.sign({Id:customer._id},process.env.SECRET_KEY!,{expiresIn:'1h'})
-                response.cookies.set('token',token,{
-                    httpOnly:true,
-                    path:'/',
-                    expires:new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
+                const token = jwt.sign({ Id: customer._id }, process.env.SECRET_KEY!)
+                response.cookies.set('token', token, {
+                    httpOnly: true,
+                    path: '/',
+                    expires: new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
                 })
             }
-return response;
+            return response;
         }
     } catch (error) {
         console.error(error);

@@ -17,13 +17,14 @@ export async function GET(request: NextRequest) {
     try {
         let tokenCookie = request.cookies.get('token') as RequestCookie | undefined;
 
+
         if (tokenCookie) {
             let token = tokenCookie.value;
 
             try {
                 let decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
 
-                let userId = decodedToken.userId;
+                let userId = decodedToken.Id;
 
                 let customer = await Customer.findOne({ _id: userId });
 

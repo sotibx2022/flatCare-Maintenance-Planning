@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { ConnectToDb } from '../../../../helper/connectToDb';
-import { Customer,CustomerDocument } from '../../../../models/customer.models';
+import { Customer, CustomerDocument } from '../../../../models/customer.models';
 
 // Changed GET function parameter to NextRequest instead of NextResponse
-export async function GET(request: NextRequest) { 
+export async function GET(request: NextRequest) {
   ConnectToDb(); // Connect to the database
 
   try {
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 }
 
 // Removed response parameter from POST function
-export async function POST(request: NextRequest,response:NextResponse) { 
+export async function POST(request: NextRequest, response: NextResponse) {
   await ConnectToDb();
 
   try {
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest,response:NextResponse) {
       roomNumber,
       phoneNumber
     } = await request.json();
-    console.log(fullName,imageUrl,email,password,buildingNumber,floorNumber,roomNumber,phoneNumber)
+    console.log(fullName, imageUrl, email, password, buildingNumber, floorNumber, roomNumber, phoneNumber)
     const dbCustomer = await Customer.findOne({ email });
     if (dbCustomer) {
       // Removed alert and directly return response
@@ -58,26 +58,24 @@ export async function POST(request: NextRequest,response:NextResponse) {
       });
 
       const result = await newCustomer.save();
-      
-      
+
+
 
       // Moved response creation after token creation
-       response = NextResponse.json({
+      response = NextResponse.json({
         message: 'Customer Details Saved Successfully',
         status: 200,
         success: true,
         data: result,
       });
-      const token = jwt.sign({ userId: newCustomer._id }, process.env.SECRET_KEY!, {
-        expiresIn: '1d',
-      });
+      const token = jwt.sign({ userId: newCustomer._id }, process.env.SECRET_KEY!);
       // Setting the cookie properly
       response.cookies.set('token', token, {
         httpOnly: true,
         path: '/',
-        expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 day
+        expires: new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
       });
-    
+
       return response;
     }
   } catch (error) {

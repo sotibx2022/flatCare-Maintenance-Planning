@@ -13,7 +13,7 @@ const CommonHeader = () => {
         <nav className="account_navigation">
           <ul>
             <li><Link href="/technician-account">Technician Account</Link></li>
-            <li><Link href="/customer-account">Customer Account</Link></li>
+            <li><Link href="/customer/login">Customer Account</Link></li>
             <li><Link href="/planner-account">Planner Account</Link></li>
           </ul>
         </nav>
