@@ -1,13 +1,10 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../dashboard/dashboard.css";
-
-
-import CustomerDashboardNavigation from "./navigation/Navigation";
-
-import Header from "../header/CustomerHeader";
-
-
+import SubLayout from "./subLayout";
+import ThemeContex from "../../../useContext/themeContext";
+import "../../customer/customer.css";
+import "../../customer/darkMode.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,18 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
-      <Header />
-      <div className="layoutContainer container">
-
-        <section className="leftSide">
-          <CustomerDashboardNavigation />
-        </section>
-        <section className='rightSide'>
+    <>
+      <ThemeContex>
+        <SubLayout>
           {children}
-        </section>
+        </SubLayout>
+      </ThemeContex>
 
-      </div>
-    </main>
+    </>
   );
 }

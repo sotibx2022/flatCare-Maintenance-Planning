@@ -43,7 +43,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className='container flex_items  Header_wrapper'>
+    <header className='container flex_items  Customer_Header_wrapper'>
       <div className='logo_area'>
         <Image src={logo} className='logo' alt='Logo' priority={true} />
       </div>
@@ -62,9 +62,10 @@ const Header: React.FC = () => {
               <li className='menu_item'><Link href="/customer/signup">Sign Up</Link></li>
             </>
           )}
+          <li className='menu_item'><Link href="/contact">Toggle</Link></li>
         </ul>
       </div>
-    </div>
+    </header>
   );
 };
 

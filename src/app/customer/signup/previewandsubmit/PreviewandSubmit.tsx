@@ -20,7 +20,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     roomNumber,
     phoneNumber
   } = customerDatas;
-  const[loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handlePrev = () => {
@@ -31,26 +31,26 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     event.preventDefault();
     try {
       setLoading(true);
-      const {confirmPassword, ...dataToSend} = customerDatas;
+      const { confirmPassword, ...dataToSend } = customerDatas;
       const response = await axios.post("/api/customer/signup", dataToSend);
-    const result = response.data;
-    if(result){
-      setLoading(false)
-      alert(result.message)
+      const result = response.data;
+      if (result) {
+        setLoading(false)
+        alert(result.message)
+      }
+
+      if (result.success) {
+        router.push("/customer/dashboard/main")
+      }
     }
-    
-    if (result.success) {
-      router.push("/customer/dashboard/main")
-    }
-  }
     catch (error) {
       setLoading(false)
     }
-    
+
   }
-    
-   
-    
+
+
+
 
   return (
     <div className='container'>
@@ -58,16 +58,37 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
         <h2>Preview and Submit</h2>
 
 
-        <p><strong>Full Name:</strong> {fullName}</p>
-        <p><strong>Email:</strong> {email}</p>
-        <p><strong>Phone Number:</strong> {phoneNumber}</p>
-        <p><strong>Address:</strong> {buildingNumber}, {floorNumber}, {roomNumber}</p>
-        <p><strong>Profile Image:</strong></p>
+        <div className="form_Item">
+          <label>Full Name</label>
+          <input type="text" value={fullName} readOnly />
+        </div>
+
+        <div className="form_Item">
+          <label>Email</label>
+          <input type="text" value={email} readOnly />
+        </div>
+
+        <div className="form_Item">
+          <label>Phone Number</label>
+          <input type="text" value={phoneNumber} readOnly />
+        </div>
+
+        <div className="form_Item">
+          <label>Address</label>
+          <input type="text" value={`${buildingNumber}, ${floorNumber}, ${roomNumber}`} readOnly />
+        </div>
+
+        <div className="form_Item">
+          <label>Profile Image</label>
+          {/* Assuming there's an <img> tag or some other way to display the profile image */}
+          <img src={profileImageUrl} alt="Profile" />
+        </div>
+
         <img src={imageUrl} alt="Profile" style={{ maxWidth: '200px', maxHeight: '200px' }} />
 
         <button onClick={handlePrev}>Prev</button>
-        {loading ? <button>Loading</button>:<button onClick={submitHanler} type='submit'>Submit</button>}
-        
+        {loading ? <button>Loading</button> : <button onClick={submitHanler} type='submit'>Submit</button>}
+
       </div>
     </div>
   )

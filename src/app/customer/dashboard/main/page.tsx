@@ -1,18 +1,25 @@
 "use client"
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import "./dashboardMain.css";
+
+import { DarkModeContext } from '../../../../useContext/themeContext';
+
+
+
+
 const Dashboard = () => {
   const router = useRouter();
-  
+
+
+
 
   return (
     <div className="dashboard">
-     
-     <section className="dashboard-block">
+
+      <section className="dashboard-block">
         <h2>Work Flow Emails</h2>
-       
+
       </section>
       <section className="dashboard-block">
         <h2>Notifications By Status</h2>

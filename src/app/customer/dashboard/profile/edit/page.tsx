@@ -6,8 +6,8 @@ import Image from 'next/image';
 import dummyProfile from "@/../../public/assets/images/dummyprofile.png"
 
 const EditCustomerProfile = () => {
-  const [customerDatas,setCustomerDatas] = useCustomerData();
-  const[loading,setLoading] = useState(false)
+  const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [loading, setLoading] = useState(false)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerDatas(prevState => ({
@@ -17,12 +17,12 @@ const EditCustomerProfile = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
       setLoading(true);
       const response = await axios.put("/api/customer/updateProfile", customerDatas);
       const result = response.data.updatedCustomer;
-  
+
       setCustomerDatas(prevCustomerDatas => ({
         ...prevCustomerDatas,
         fullName: result.fullName,
@@ -33,7 +33,7 @@ const EditCustomerProfile = () => {
         roomNumber: result.roomNumber,
         phoneNumber: result.phoneNumber
       }));
-  
+
       console.log("Customer details updated successfully.");
     } catch (error) {
       setLoading(false);
@@ -41,45 +41,45 @@ const EditCustomerProfile = () => {
       // Handle error state or display error message to user
     }
   };
-  
+
   return (
     <section>
       <h1 className='heading_primary'>Customer Edit Profile</h1>
       <img
-  src={customerDatas.imageUrl ?? dummyProfile}
-  alt='profileImage'
-  className='profile_Image'
-/>
+        src={customerDatas.imageUrl ?? dummyProfile}
+        alt='profileImage'
+        className='profile_Image'
+      />
       <form className='editForm' onSubmit={handleSubmit}>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Full Name:</label>
-          <input type="text" value={customerDatas.fullName} name='fullName' onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.fullName} name='fullName' onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Email:</label>
-          <input type="email" value={customerDatas.email} name="email" onChange={handleInputChange}/>
+          <input type="email" value={customerDatas.email} name="email" onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Building Number:</label>
-          <input type="text" value={customerDatas.buildingNumber} name="buildingNumber" onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.buildingNumber} name="buildingNumber" onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Floor Number:</label>
-          <input type="text" value={customerDatas.floorNumber} name="floorNumber" onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.floorNumber} name="floorNumber" onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Room Number:</label>
-          <input type="text" value={customerDatas.roomNumber} name="roomNumber" onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.roomNumber} name="roomNumber" onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Phone Number:</label>
-          <input type="text" value={customerDatas.phoneNumber} name="phoneNumber" onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.phoneNumber} name="phoneNumber" onChange={handleInputChange} />
         </div>
-        <div className="formItem">
+        <div className="form_Item">
           <label>Image URL:</label>
-          <input type="text" value={customerDatas.imageUrl} name="imageUrl" onChange={handleInputChange}/>
+          <input type="text" value={customerDatas.imageUrl} name="imageUrl" onChange={handleInputChange} />
         </div>
-        <button type="submit">{loading?"Loading...":"Submit"}</button>
+        <button type="submit">{loading ? "Loading..." : "Submit"}</button>
       </form>
     </section>
   );

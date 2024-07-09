@@ -102,7 +102,7 @@ const Page = () => {
       <h1>Create Notification</h1>
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Notification Title:</label>
             <input
               type="text"
@@ -115,7 +115,7 @@ const Page = () => {
               <span className="error_message">{noficationErrors.notificationTitle}</span>
             )}
           </div>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Notification Description:</label>
             <textarea
               id="description"
@@ -128,7 +128,7 @@ const Page = () => {
               <span className="error_message">{noficationErrors.notificationDescription}</span>
             )}
           </div>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Notification Priority:</label>
             <select
               id="priority"
@@ -145,7 +145,7 @@ const Page = () => {
               <span className="error_message">{noficationErrors.notificationPriority}</span>
             )}
           </div>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Notification Categories:</label>
             <select
               id="categories"
@@ -164,7 +164,7 @@ const Page = () => {
               <span className="error_message">{noficationErrors.notificationCategory}</span>
             )}
           </div>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Created By:</label>
             <input
               type="text"
@@ -174,7 +174,7 @@ const Page = () => {
               readOnly
             />
           </div>
-          <div className="form_item">
+          <div className="form_Item">
             <label>Location</label>
             <input
               type="text"
