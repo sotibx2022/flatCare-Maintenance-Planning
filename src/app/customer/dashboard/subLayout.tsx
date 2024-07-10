@@ -12,7 +12,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
     const { state } = useContext(DarkModeContext)
     return (
 
-        <body className={state.darkMode ? "darkMode" : "lightMode"}>
+        <main className={state.darkMode ? "darkMode" : "lightMode"}>
 
             <Header />
             <div className="layoutContainer flex_items container">
@@ -26,7 +26,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
 
             </div>
 
-        </body>
+        </main>
 
     )
 }

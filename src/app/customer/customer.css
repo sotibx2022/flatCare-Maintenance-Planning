@@ -13,6 +13,7 @@
   max-width: 250px; /* Fixed width for navigation */
   box-shadow: var(--primaryLightBoxShadow); /* Light shadow for separation */
   padding: 20px;
+  min-width: 200px;
 }
 
 .rightSide {
@@ -21,6 +22,7 @@
   background-color: transparent;
   box-shadow: var(--primaryLightBoxShadow);
   height: 100%;
+  
 }
 
 .viewForm {

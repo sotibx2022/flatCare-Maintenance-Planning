@@ -5,6 +5,7 @@ import SubLayout from "./subLayout";
 import ThemeContex from "../../../useContext/themeContext";
 import "../../customer/customer.css";
 import "../../customer/darkMode.css";
+import "../dashboard/notifications/notifications.css"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
