@@ -30,12 +30,6 @@ const Navigation = () => {
         <li className={pathName === "/customer/dashboard/notifications/create" ? "active" : ""}>
           <Link href="/customer/dashboard/notifications/create">Create Notification</Link>
         </li>
-        <li className={pathName === "/customer/dashboard/notifications/edit" ? "active" : ""}>
-          <Link href="/customer/dashboard/notifications/edit">Edit Notification</Link>
-        </li>
-        <li className={pathName === "/customer/dashboard/notifications/search" ? "active" : ""}>
-          <Link href="/customer/dashboard/notifications/search">Search Notifications</Link>
-        </li>
         <li className={pathName === "/customer/dashboard/notifications/list" ? "active" : ""}>
           <Link href="/customer/dashboard/notifications/list">List Notifications</Link>
         </li>

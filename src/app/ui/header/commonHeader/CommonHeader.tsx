@@ -2,23 +2,23 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import logo from "../../../../../public/assets/images/logo.png"
-import "../commonHeader/commonHeader.css";
+
 const CommonHeader = () => {
   return (
-    <div className='container'>
-      <header className="common_header">
-        <div className="logo">
-          <Image src={logo} alt="Company Logo" width={100} height={50} />
-        </div>
-        <nav className="account_navigation">
+    <header className='container flex_items Header_wrapper'>
+      <div className="logo_area">
+
+        <Image src={logo} alt="Company Logo" width={100} height={50} />
+
+        <nav className="navigation_area">
           <ul>
-            <li><Link href="/technician-account">Technician Account</Link></li>
-            <li><Link href="/customer/login">Customer Account</Link></li>
-            <li><Link href="/planner-account">Planner Account</Link></li>
+            <li className='menu_item'><Link href="/technician-account">Technician Account</Link></li>
+            <li className='menu_item'><Link href="/customer/login">Customer Account</Link></li>
+            <li className='menu_item'><Link href="/planner-account">Planner Account</Link></li>
           </ul>
         </nav>
-      </header>
-    </div>
+      </div>
+    </header>
   )
 }
 

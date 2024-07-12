@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import { Notification } from "../../../models/notification.models";
 import { ConnectToDb } from "../../../helper/connectToDb";
-
+import jwt, { JwtPayload } from "jsonwebtoken"
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 // GET request handler to return all notifications
 export async function GET(request: NextResponse) {
     try {
         ConnectToDb(); // Connect to MongoDB
+        const tokenCookie: RequestCookie | undefined = request.cookies.get('token');
+        if (tokenCookie) {
+            const token = tokenCookie.value;
+            const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload
+            let { userId } = decodedToken;
+        }
 
-        // Retrieve all notifications from the database
-        const notifications = await Notification.find();
+        //   find the token.
+        //   find the userId from that token.
+        //   find those notifications which belongs to provided userId.
+        const notifications = await Notification.find({ _id: userId });
 
         // Return the notifications as JSON response
         return NextResponse.json({

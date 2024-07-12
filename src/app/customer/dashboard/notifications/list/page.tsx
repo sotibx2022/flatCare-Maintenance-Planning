@@ -34,13 +34,9 @@ const page = () => {
     setLoading(true);
     const response = await axios.get("/api/notification");
     const result = response.data;
-    
- 
+    setNotifications(result.notifications)
+    setLoading(false);
 
-     
-
-      setNotifications(result.notifications)
-    
 
 
   }
