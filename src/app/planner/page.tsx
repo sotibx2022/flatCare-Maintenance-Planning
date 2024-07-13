@@ -7,8 +7,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import SubmitError from '../ui/SubmitError';
+import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 
 type FormData = {
     email: string;
@@ -26,10 +26,11 @@ const Login = () => {
 
     return (
         <>
+
             <CommonHeader />
             <form onSubmit={handleSubmit(onSubmit)} className='center_container'>
                 <div className='form_container'>
-                    <h1 className='primary_heading'>Customer Login</h1>
+                    <h1 className='primary_heading'>Planner Login</h1>
                     <div className="form_Item">
                         <label>Email</label>
                         <div style={{ position: 'relative' }}>
@@ -80,7 +81,7 @@ const Login = () => {
 
 
                     <button type='submit'>{isSubmitting ? "Submitting" : "Submit"}</button>
-                    {isSubmitted && <SubmitError message="Please Contact Your Planner For Login Credentials." />}
+                    {isSubmitted && <SubmitError message="Please Contact Your Admin For Credentials" />}
                 </div>
             </form>
         </>

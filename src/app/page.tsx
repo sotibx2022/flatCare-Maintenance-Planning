@@ -7,10 +7,11 @@ const page = () => {
   return (
     <div>
       <div>
-     <CommonHeader/>
-     <SoftwareFeatures/>
-     <CommonFooter/>
-     
+        <CommonHeader />
+        <SoftwareFeatures />
+
+        <CommonFooter />
+
       </div>
     </div>
   )

@@ -31,9 +31,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
         const { currentEmail, currentPassword } = await request.json();
         const customer = await Customer.findOne({ email: currentEmail });
-
+        console.log(currentEmail, currentPassword)
         if (!customer) {
-            response = NextResponse.json({
+            return NextResponse.json({
                 message: "There is no registered Customer",
                 status: 400,
                 success: false
@@ -44,18 +44,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 response = NextResponse.json({
                     message: "Invalid Password",
                     status: 200,
-                    success: true,
+                    success: false,
                     customer
                 })
             }
             else {
                 response = NextResponse.json({
-                    message: "There is  registered Customer",
+                    message: "Login Successful",
                     status: 200,
                     success: true,
                     customer
                 })
-                const token = jwt.sign({ Id: customer._id }, process.env.SECRET_KEY!)
+                const token = jwt.sign({ userId: customer._id }, process.env.SECRET_KEY!)
                 response.cookies.set('token', token, {
                     httpOnly: true,
                     path: '/',

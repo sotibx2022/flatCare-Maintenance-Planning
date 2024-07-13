@@ -3,6 +3,12 @@ import React, { useState } from 'react'
 import { CustomerData } from '../../types'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import dummyProfile from "@/../../public/assets/images/dummyprofile.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
+import SubmitSuccess from '../../../ui/submitSuccess';
+import SubmitError from '../../../ui/SubmitError';
 interface CustomerDataProps {
   customerDatas: CustomerData,
   previewDetailsValue: (nextValue: number) => void;
@@ -22,7 +28,8 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
   } = customerDatas;
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-
+  const [success, setSuccess] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const handlePrev = () => {
 
     previewDetailsValue(3)
@@ -30,17 +37,23 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
   async function submitHanler(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
     event.preventDefault();
     try {
+      setSubmitted(true)
       setLoading(true);
       const { confirmPassword, ...dataToSend } = customerDatas;
       const response = await axios.post("/api/customer/signup", dataToSend);
       const result = response.data;
       if (result) {
         setLoading(false)
-        alert(result.message)
+
       }
 
       if (result.success) {
+        setSuccess(true)
+        toast.success(result.message)
         router.push("/customer/dashboard/main")
+      } else {
+        setSuccess(false);
+        toast.error(result.message)
       }
     }
     catch (error) {
@@ -48,15 +61,13 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     }
 
   }
-
-
-
-
   return (
     <div className='container'>
-      <div className='stepInputs_Wrapper'>
-        <h2>Preview and Submit</h2>
 
+      <div className='stepInputs_Wrapper'>
+
+        {submitted && success && !loading && <SubmitSuccess message="User Registered ! Please Wait for Redirection" />}
+        {submitted && !success && !loading && <SubmitError message="Please Login ! Provided Email already Registered" />}
 
         <div className="form_Item">
           <label>Full Name</label>
@@ -75,19 +86,20 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
 
         <div className="form_Item">
           <label>Address</label>
-          <input type="text" value={`${buildingNumber}, ${floorNumber}, ${roomNumber}`} readOnly />
+          <input type="text" value={`Building Number : ${buildingNumber}, Floor Number : ${floorNumber}, Room Number:${roomNumber}`} readOnly />
         </div>
 
         <div className="form_Item">
           <label>Profile Image</label>
           {/* Assuming there's an <img> tag or some other way to display the profile image */}
-          <img src={profileImageUrl} alt="Profile" />
         </div>
 
         <img src={imageUrl} alt="Profile" style={{ maxWidth: '200px', maxHeight: '200px' }} />
 
-        <button onClick={handlePrev}>Prev</button>
-        {loading ? <button>Loading</button> : <button onClick={submitHanler} type='submit'>Submit</button>}
+        <div className='buttonsWrapper' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+          <button onClick={handlePrev}><FontAwesomeIcon icon={faArrowLeft} /></button>
+          <button onClick={submitHanler} disabled={submitted && loading}>{loading ? "Loading" : "Submit"}</button>
+        </div>
 
       </div>
     </div>

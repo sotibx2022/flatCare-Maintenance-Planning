@@ -11,12 +11,8 @@ export async function GET(request: NextResponse) {
         if (tokenCookie) {
             const token = tokenCookie.value;
             const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload
-            let { userId } = decodedToken;
+            const { userId } = decodedToken;
         }
-
-        //   find the token.
-        //   find the userId from that token.
-        //   find those notifications which belongs to provided userId.
         const notifications = await Notification.find({ _id: userId });
 
         // Return the notifications as JSON response

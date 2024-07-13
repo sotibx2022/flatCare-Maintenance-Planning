@@ -22,7 +22,7 @@ let steps = [
 const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
-    fullName:'',
+    fullName: '',
     imageUrl: '',
     email: '',
     password: '',
@@ -33,8 +33,8 @@ const Page: React.FC = () => {
     phoneNumber: ''
   });
 
-  const handlePersonalDetailsSubmit = (fullName:string, phoneNumber: string, imageUrl: string, nextStep: number) => {
-    
+  const handlePersonalDetailsSubmit = (fullName: string, phoneNumber: string, imageUrl: string, nextStep: number) => {
+
     setCustomerDatas(prevData => ({
       ...prevData,
       fullName,
@@ -70,22 +70,24 @@ const Page: React.FC = () => {
 
   return (
     <>
-    <Header/>
-    <div className='container'>
-      <div className='steps'>
-        {steps.map(item => (
-          <h1 key={item.step} className={currentStep === item.step ? "active_step" : "normal_step"}>
-            {item.title}
-          </h1>
-        ))}
-      </div>
-      <form>
-      {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
-      {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
-      {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
-      {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
-      </form>
-    </div></>
+      <Header />
+      <div className='container'>
+        <div className='steps'>
+          <div className='all_steps'>
+            {steps.map(item => (
+              <h1 key={item.step} className={currentStep === item.step ? "active_step" : "normal_step"}>
+                {item.title}
+              </h1>
+            ))}
+          </div>
+        </div>
+        <form>
+          {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
+          {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
+          {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
+          {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
+        </form>
+      </div></>
   );
 };
 
