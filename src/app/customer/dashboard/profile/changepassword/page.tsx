@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import CheckPassword from '../../../../ui/checkPassword/CheckPassword'
 import UpdatePassword from '../../../../ui/updatePassword/UpdatePassword';
+import SubmitSuccess from '../../../../ui/submitSuccess';
 
 
 const page = () => {
@@ -12,8 +13,8 @@ const page = () => {
   }
   return (
     <div>
-      <section>
-        {checkedPassed ? <h1>Check Passed</h1> : <CheckPassword successValue={receiveSuccessValue} />}
+      <section className='form_container'>
+        {checkedPassed ? <SubmitSuccess message="Original Password Validated ! Please Enter New Password" /> : <CheckPassword successValue={receiveSuccessValue} />}
         {checkedPassed ? <UpdatePassword /> : <h1>Please Enter Original Password First</h1>}
 
 

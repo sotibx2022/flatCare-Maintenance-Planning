@@ -6,6 +6,9 @@ import useSingleNotification from '../../../../hooks/useSingleNotification';
 import useCustomerData from '../../../../hooks/useCustomerData';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import SubmitSuccess from '../../../../ui/submitSuccess';
+import SubmitError from '../../../../ui/SubmitError';
+import { toast } from 'react-toastify';
 
 interface FormData {
     notificationTitle: string;
@@ -26,7 +29,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
 
     const [categories, setCategories] = useState<string[] | undefined>();
     const [notification, setNotification] = useSingleNotification(editId);
-    const [customerDatas, setCustomerDatas] = useCustomerData()
+    const [customerDatas, setCustomerDatas] = useCustomerData();
+    const [submitError, setSubmitError] = useState();
     const { register, setValue, handleSubmit, formState: { errors, isSubmitted, isValid, isSubmitting } } = useForm<FormData>();
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -51,9 +55,13 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
         try {
             const response = await axios.put(`/api/notification/${editId}`, { editId, data });
             const result = response.data;
+
             if (result.success) {
-                alert(result.message);
-                router.push("/dashboard/customer/notifications/list");
+                toast.success(result.message);
+                router.push("/customer/dashboard/notifications/list");
+            } else {
+                toast.error(result.message)
+                setSubmitError(result.message);
             }
         } catch (error) {
             console.error("Failed to update notification:", error);
@@ -64,6 +72,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
     return (
         <div>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
+                <h1 className='primary_heading'>Edit Notification</h1>
+                {submitError && <SubmitError message={submitError} />}
                 <div className="form_Item">
                     <label htmlFor="notificationTitle">Notification Title</label>
                     <input
@@ -80,11 +90,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                             }
                         })}
                     />
-                    {errors.notificationTitle && (
-                        <span className="error-message">{errors.notificationTitle.message}</span>
-                    )}
-                    {isValid && (
-                        <span className="success-message">Valid input!</span>
+                    {errors?.notificationTitle?.message && (
+                        <SubmitError message={errors.notificationTitle.message} />
                     )}
                 </div>
                 <div className="form_Item">
@@ -103,11 +110,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                             }
                         })}
                     />
-                    {errors.notificationDescription && (
-                        <span className="error-message">{errors.notificationDescription.message}</span>
-                    )}
-                    {isValid && (
-                        <span className="success-message">Valid input!</span>
+                    {errors?.notificationDescription?.message && (
+                        <SubmitError message={errors.notificationDescription.message} />
                     )}
                 </div>
                 <div className='form_Item'>
@@ -123,8 +127,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                         <option value="Urgent">Urgent</option>
                         <option value="Normal">Normal</option>
                     </select>
-                    {errors.notificationPriority && (
-                        <span className="error-message">{errors.notificationPriority.message}</span>
+                    {errors?.notificationPriority?.message && (
+                        <SubmitError message={errors.notificationPriority.message} />
                     )}
                 </div>
                 <div className='form_Item'>
@@ -140,8 +144,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                             <option value={category} key={index}>{category}</option>
                         )) : <option value="">Loading Categories</option>}
                     </select>
-                    {errors.notificationCategory && (
-                        <span className="error-message">{errors.notificationCategory.message}</span>
+                    {errors?.notificationCategory?.message && (
+                        <SubmitError message={errors.notificationCategory.message} />
                     )}
                 </div>
                 <div className="form_Item">
@@ -167,7 +171,9 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                 <button type="submit">{isSubmitting ? "loading" : "submit"}</button>
             </form>
             {isSubmitted && showSuccessMessage && (
-                <p className="final-success-message">Notification details successfully updated.</p>
+
+                <SubmitSuccess message="Notification SuccessFully Updated." />
+
             )}
         </div>
     );

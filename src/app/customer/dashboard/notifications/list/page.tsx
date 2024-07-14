@@ -1,9 +1,10 @@
 "use client"
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Customer } from '../../../../../models/customer.models';
-import { Fascinate_Inline } from 'next/font/google';
 import { useRouter } from 'next/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 interface Notification {
   notificationTitle: string,
   notificationDescription: string,
@@ -36,9 +37,21 @@ const page = () => {
     const result = response.data;
     setNotifications(result.notifications)
     setLoading(false);
+  }
+  const handleDelete = async (id: string) => {
 
+    try {
+      const response = await axios.delete(`/api/notification/${id}`);
+      const result = response.data;
+      console.log(result);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
 
-
+    }
   }
   const calculateTurnAroundTime = (d: Date) => {
     let referenceDate = new Date(d);
@@ -56,7 +69,7 @@ const page = () => {
         <h1>Loading ...</h1>
       ) : (
         <>
-          {notifications.length === 0 ? (
+          {notifications && notifications.length === 0 ? (
             <h1>There are no Notifications Created</h1>
           ) : (
             <table className="notification-table">
@@ -86,9 +99,13 @@ const page = () => {
                       <td className='normalNotification'>{notification.notificationPriority}</td>
                     )}
                     <td>{calculateTurnAroundTime(notification.createdAt)} Days</td>
-                    <td>
-                      <span onClick={() => { router.push(`/customer/dashboard/notifications/${notification._id}`) }}>Edit</span>
-                      <span>Delete</span>
+                    <td style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <span onClick={() => { router.push(`/customer/dashboard/notifications/${notification._id}`) }}>
+                        <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer', color: '#28a745' }} />
+                      </span>
+                      <span onClick={() => handleDelete(notification._id)}>
+                        <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer', color: '#dc3545' }} />
+                      </span>
                     </td>
                   </tr>
                 ))}

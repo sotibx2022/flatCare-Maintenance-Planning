@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import PasswordInput from '../passwordInput/PasswordInput';
 import axios from 'axios';
-import useCustomerData from '../../hooks/useCustomerData';
 import { useRouter } from 'next/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
+import SubmitError from '../SubmitError';
+import { toast } from 'react-toastify';
 
 interface CustomerData {
 
@@ -16,7 +18,8 @@ interface CustomerData {
     phoneNumber: string;
 }
 const UpdatePassword = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
     const [customerDatas, setCustomerDatas] = useState<CustomerData>({
         fullName: '',
         imageUrl: '',
@@ -122,7 +125,7 @@ const UpdatePassword = () => {
                 const response = await axios.post("/api/customer/updatePassword", dataToSend);
                 const result = response.data;
                 if (result.success) {
-                    alert(result.message);
+                    toast.success(result.message)
                     router.push("/customer/dashboard/main")
                 }
             }
@@ -130,29 +133,63 @@ const UpdatePassword = () => {
 
         }
     }
-
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
     return (
-        <form onSubmit={submitHandler}>
-            <h1>Update Password</h1>
-
-            <PasswordInput
-                placeholder="New Password"
-                value={passwordValue.newPassword}
-                name="newPassword"
-                onChange={changeHandler}
-                onBlur={blurHandler}
-            />
-            {focus.newPassword && <span>{newPasswordError}</span>}
-
-            <PasswordInput
-                placeholder="Confirm New Password"
-                value={passwordValue.confirmNewPassword}
-                name="confirmNewPassword"
-                onChange={changeHandler}
-                onBlur={blurHandler}
-            />
-            {focus.confirmNewPassword && <span>{confirmPasswordError}</span>}
-            <button type="submit">Submit</button>
+        <form onSubmit={submitHandler} >
+            <h1 className='primary_heading' style={{ marginTop: '1rem' }}>Update Password</h1>
+            <div className='form_Item'>
+                <label>New Password</label>
+                <div style={{ position: 'relative' }}>
+                    <FontAwesomeIcon icon={faLock} style={{
+                        position: 'absolute', top: '50%',
+                        transform: 'translateY(-50%)',
+                        color: '#29030d',
+                        left: '10px'
+                    }} />
+                    <input
+                        type='password'
+                        placeholder="New Password"
+                        value={passwordValue.newPassword}
+                        name="newPassword"
+                        onChange={changeHandler}
+                        onBlur={blurHandler}
+                        style={{ paddingLeft: '30px', paddingRight: '30px' }}
+                    />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
+                        position: 'absolute', color: '#29030d',
+                        top: '50%', right: '10px', transform: 'translateY(-50%)'
+                    }} onClick={toggleShowPassword} />
+                </div>
+            </div>
+            {focus.newPassword && newPasswordError && <SubmitError message={newPasswordError} />}
+            <div className='form_Item'>
+                <label>Confirm New Password</label>
+                <div style={{ position: 'relative' }}>
+                    <FontAwesomeIcon icon={faLock} style={{
+                        position: 'absolute', top: '50%',
+                        transform: 'translateY(-50%)',
+                        color: '#29030d',
+                        left: '10px'
+                    }} />
+                    <input
+                        type='password'
+                        placeholder="Confirm New Password"
+                        value={passwordValue.confirmNewPassword}
+                        name="confirmNewPassword"
+                        onChange={changeHandler}
+                        onBlur={blurHandler}
+                        style={{ paddingLeft: '30px', paddingRight: '30px' }}
+                    />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
+                        position: 'absolute', color: '#29030d',
+                        top: '50%', right: '10px', transform: 'translateY(-50%)'
+                    }} onClick={toggleShowPassword} />
+                </div>
+            </div>
+            {focus.confirmNewPassword && confirmPasswordError && <SubmitError message={confirmPasswordError} />}
+            <button type="submit" style={{ marginTop: '1rem' }}>Submit</button>
         </form>
     );
 };

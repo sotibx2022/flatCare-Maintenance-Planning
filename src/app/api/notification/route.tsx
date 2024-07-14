@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Notification } from "../../../models/notification.models";
 import { ConnectToDb } from "../../../helper/connectToDb";
 import jwt, { JwtPayload } from "jsonwebtoken"
@@ -8,12 +8,13 @@ export async function GET(request: NextResponse) {
     try {
         ConnectToDb(); // Connect to MongoDB
         const tokenCookie: RequestCookie | undefined = request.cookies.get('token');
+        let userId;
         if (tokenCookie) {
             const token = tokenCookie.value;
             const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload
-            const { userId } = decodedToken;
+            userId = decodedToken.userId;
         }
-        const notifications = await Notification.find({ _id: userId });
+        const notifications = await Notification.find({ userId: userId });
 
         // Return the notifications as JSON response
         return NextResponse.json({
@@ -34,10 +35,33 @@ export async function GET(request: NextResponse) {
     }
 }
 
-// POST request handler to save a single notification in the DB
-export async function POST(request: NextResponse) {
+
+
+export async function POST(request: NextRequest) {
     try {
         ConnectToDb(); // Connect to MongoDB
+
+        // Extract token from cookies
+        const tokenCookie: RequestCookie | undefined = request.cookies.get('token');
+        if (!tokenCookie) {
+            return NextResponse.json({
+                message: "User not authenticated",
+                status: 401,
+                success: false,
+            });
+        }
+
+        const token = tokenCookie.value;
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+        const userId = decodedToken.userId;
+
+        if (!userId) {
+            return NextResponse.json({
+                message: "User ID not found in token",
+                status: 401,
+                success: false,
+            });
+        }
 
         // Extract notification data from the request body
         const {
@@ -45,10 +69,11 @@ export async function POST(request: NextResponse) {
             notificationDescription,
             notificationPriority,
             notificationCategory,
-            createdBy,
             address,
+            createdBy,
         } = await request.json();
         const { roomNumber, flatNumber, buildingNumber } = address;
+
         // Create a new instance of Notification model
         const newNotification = new Notification({
             notificationTitle,
@@ -56,6 +81,7 @@ export async function POST(request: NextResponse) {
             notificationPriority,
             notificationCategory,
             createdBy,
+            userId,
             address: {
                 buildingNumber,
                 flatNumber,
@@ -80,7 +106,7 @@ export async function POST(request: NextResponse) {
             message: "Failed to create notification",
             status: 500,
             success: false,
-
         });
     }
 }
+

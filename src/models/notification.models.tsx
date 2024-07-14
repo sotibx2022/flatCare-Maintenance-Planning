@@ -7,6 +7,7 @@ interface NotificationDocument extends Document {
     notificationCategory: string;
     notificationPriority: string;
     createdBy: string;
+    userId: mongoose.Schema.Types.ObjectId;
     address: {
         roomNumber: string;
         flatNumber: string;
@@ -31,6 +32,11 @@ const notificationSchema: Schema<NotificationDocument> = new Schema({
     notificationPriority: {
         type: String,
         enum: ["Normal", "Urgent", "Emergency"],
+        required: true,
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     },
     createdBy: {

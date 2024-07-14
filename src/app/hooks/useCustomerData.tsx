@@ -11,6 +11,7 @@ interface CustomerData {
   floorNumber: string;
   roomNumber: string;
   phoneNumber: string;
+  userId: string
 }
 
 const useCustomerData = () => {
@@ -21,7 +22,8 @@ const useCustomerData = () => {
     buildingNumber: '',
     floorNumber: '',
     roomNumber: '',
-    phoneNumber: ''
+    phoneNumber: '',
+    userId: ''
   });
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const useCustomerData = () => {
         let response = await axios.get("/api/customer/findCustomer");
         let result = response.data;
 
-
+        console.log(result);
         setCustomerDatas(prevCustomerData => ({
           ...prevCustomerData,
           fullName: result.customer.fullName,
@@ -39,7 +41,8 @@ const useCustomerData = () => {
           buildingNumber: result.customer.buildingNumber,
           floorNumber: result.customer.floorNumber,
           roomNumber: result.customer.roomNumber,
-          phoneNumber: result.customer.phoneNumber
+          phoneNumber: result.customer.phoneNumber,
+          userId: result.customer._id
         }));
       } catch (error) {
         console.error("Error fetching customer details:", error);

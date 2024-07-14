@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import PasswordInput from '../passwordInput/PasswordInput'
 import useCustomerData from '../../hooks/useCustomerData'
+import SubmitError from '../SubmitError'
+import SubmitSuccess from '../submitSuccess'
+import { toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
 
 
 interface checkPasswordProps {
@@ -20,7 +25,8 @@ interface CustomerData {
 }
 const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
 
-
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("")
 
     const [customerDatas, setCustomerDatas] = useState<CustomerData>({
         fullName: '',
@@ -61,6 +67,8 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
     const [focus, setFocus] = useState(false);
     const [updateField, setUpdateField] = useState(false)
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
     const validatePassword = (password: string) => {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -85,51 +93,80 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
         }
         return "";
     };
-    const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
 
+    const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
         const error = validatePassword(originalPassword);
-        setPasswordError(error)
+        setPasswordError(error);
         setFocus(true);
     };
-    const CheckPassword = async () => {
+
+    const checkPassword = async () => {
         const error = validatePassword(originalPassword);
-        setPasswordError(error)
+        setPasswordError(error);
         setFocus(true);
         if (error === "") {
             try {
-                setLoading(true)
-                const dataToSend = { originalPassword, email: customerDatas.email }
+                setLoading(true);
+                const dataToSend = { originalPassword, email: customerDatas.email };
                 const response = await axios.post("/api/customer/checkPassword", dataToSend);
                 const result = response.data;
-                alert(result.message)
-                setLoading(false)
-                successValue(!!result.success)
+                if (result.success === true) {
+                    toast.success("Please Enter New Password");
+                    setSuccessMessage("Password Check Passed. Please Enter New Password");
+                } else {
+                    toast.error(result.message);
+                    setErrorMessage("Invalid Password! Please Try Again");
+                }
+                setLoading(false);
+                successValue(result.success);
             } catch (error) {
                 setLoading(false);
+                console.error("Error checking password:", error);
             }
-
-
         }
-    }
+    };
+
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOriginalPassword(e.target.value);
         setFocus(false);
-    }
+    };
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div>
-            <h1>Customer Change Password</h1>
-            <div>
-                <PasswordInput
-                    placeholder="Original Password"
-                    value={originalPassword} name="password"
-                    onChange={changeHandler} onBlur={blurHandler} />
-                {focus && <span>{passwordError}</span>}
-                <button onClick={CheckPassword}>{loading ? "Loading" : "Check"}</button>
+            <h1 className='primary_heading' style={{ marginBottom: '1rem' }}>Customer Change Password</h1>
+            <label>Enter Original Password</label>
+            <div className='form_Item' style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <div style={{ position: 'relative' }}>
+                    <FontAwesomeIcon icon={faLock} style={{
+                        position: 'absolute', top: '50%',
+                        transform: 'translateY(-50%)',
+                        color: '#29030d',
+                        left: '10px'
+                    }} />
+                    <input
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Original Password"
+                        value={originalPassword} name="password"
+                        onChange={changeHandler} onBlur={blurHandler}
+                        style={{ paddingLeft: '30px', paddingRight: '30px' }}
+
+                    />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
+                        position: 'absolute', color: '#29030d',
+                        top: '50%', right: '10px', transform: 'translateY(-50%)'
+                    }} onClick={toggleShowPassword} />
+                </div>
+                <button onClick={checkPassword}>{loading ? "Validating" : "Check"}</button>
             </div>
-
+            {focus && passwordError && <SubmitError message={passwordError} />}
+            {successMessage && <SubmitSuccess message={successMessage} />}
+            {errorMessage && <SubmitError message={errorMessage} />}
         </div>
-    )
-}
+    );
+};
 
-export default CheckPassword
+export default CheckPassword;

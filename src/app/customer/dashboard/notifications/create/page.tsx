@@ -5,9 +5,13 @@ import { getCategoreis } from '../../../../../helper/getCategories';
 import validateNotificationDetails from '../../../../../helper/validateNotificationDetails';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import SubmitError from '../../../../ui/SubmitError';
+import { toast } from 'react-toastify';
+import SubmitSuccess from '../../../../ui/submitSuccess';
 
 const Page = () => {
   const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [categories, setCategories] = useState<string[]>([]);
   const [priority, setPriority] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
@@ -21,6 +25,7 @@ const Page = () => {
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter()
+
   useEffect(() => {
     const findCategories = async () => {
       const allCategories: string[] | undefined = await getCategoreis();
@@ -70,6 +75,8 @@ const Page = () => {
           notificationPriority: priority,
           notificationCategory: categoryValue,
           createdBy: customerDatas.fullName,
+          userId: customerDatas.userId,
+
           address: {
             buildingNumber: customerDatas.buildingNumber,
             flatNumber: customerDatas.floorNumber,
@@ -79,10 +86,14 @@ const Page = () => {
 
         const response = await axios.post('http://localhost:3000/api/notification', dataToSend);
         const result = response.data;
-        alert(result.message);
+
         setLoading(false);
         if (result.success) {
+          setSubmitSuccess(true)
+          toast.success(result.success)
           router.push('/customer/dashboard/notifications/list');
+        } else {
+          toast.error(result.message)
         }
       } catch (error) {
         console.error('Error submitting notification:', error);
@@ -99,8 +110,9 @@ const Page = () => {
 
   return (
     <div className="container">
-      <h1>Create Notification</h1>
+      <h1 className='primary_heading'>Create Notification</h1>
       <div className="container">
+        {submitSuccess && <SubmitSuccess message='Notification Created Successfully ! Wait for Redirection' />}
         <form onSubmit={handleSubmit}>
           <div className="form_Item">
             <label>Notification Title:</label>
@@ -112,7 +124,7 @@ const Page = () => {
               onChange={handleTitleChange}
             />
             {noficationErrors.notificationTitle && (
-              <span className="error_message">{noficationErrors.notificationTitle}</span>
+              <SubmitError message={noficationErrors.notificationTitle} />
             )}
           </div>
           <div className="form_Item">
@@ -125,7 +137,7 @@ const Page = () => {
               onChange={handleDescriptionChange}
             ></textarea>
             {noficationErrors.notificationDescription && (
-              <span className="error_message">{noficationErrors.notificationDescription}</span>
+              <SubmitError message={noficationErrors.notificationDescription} />
             )}
           </div>
           <div className="form_Item">
@@ -142,7 +154,7 @@ const Page = () => {
               <option value="Emergency">Emergency</option>
             </select>
             {noficationErrors.notificationPriority && (
-              <span className="error_message">{noficationErrors.notificationPriority}</span>
+              <SubmitError message={noficationErrors.notificationPriority} />
             )}
           </div>
           <div className="form_Item">
@@ -161,7 +173,7 @@ const Page = () => {
               ))}
             </select>
             {noficationErrors.notificationCategory && (
-              <span className="error_message">{noficationErrors.notificationCategory}</span>
+              <SubmitError message={noficationErrors.notificationCategory} />
             )}
           </div>
           <div className="form_Item">
@@ -184,10 +196,11 @@ const Page = () => {
               readOnly
             />
           </div>
-          <button type="submit">{loading ? "Loading" : "Create Notification"}</button>
+          <button type="submit" disabled={loading} style={{ minWidth: '200px' }}>{loading ? "Loading" : "Create Notification"}</button>
         </form>
       </div>
     </div>
+
   );
 };
 

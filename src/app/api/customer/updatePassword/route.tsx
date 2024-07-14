@@ -8,16 +8,15 @@ export async function POST(request: NextRequest) {
 
     try {
         const { email, newPassword } = await request.json();
-        console.log(email, newPassword)
         const customer = await Customer.findOne({ email: email });
 
         if (customer) {
 
             const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-
+            console.log(customer.passwordHistory)
 
             const isRepeated = customer.passwordHistory.some((passwordObj) => passwordObj.password === hashedNewPassword);
-
+            console.log(isRepeated)
             if (!isRepeated) {
 
                 customer.password = hashedNewPassword;

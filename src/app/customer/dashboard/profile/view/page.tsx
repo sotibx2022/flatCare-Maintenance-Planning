@@ -50,7 +50,7 @@ const page = () => {
 
 
           </table>
-          <Link href="/customer/dashboard/profile/edit" className='button' style={{ marginTop: '20px', important: 'true' }}>Edit</Link>
+          <Link href="/customer/dashboard/profile/edit" className='button' style={{ marginTop: '20px' }}>Edit</Link>
 
         </div>
       </div>

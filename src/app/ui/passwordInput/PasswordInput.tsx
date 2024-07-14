@@ -37,8 +37,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, id, o
           color: '#29030d'
         }}
       >
-        <FontAwesomeIcon icon={faEyeSlash} onClick={() => setShowPassword(true)} />
-        <FontAwesomeIcon icon={faEye} onClick={() => setShowPassword(false)} />
+
+
 
       </span>
     </div>

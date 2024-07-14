@@ -50,10 +50,7 @@ const Header: React.FC = () => {
       <div className='navigation_area'>
         <ul>
           <li className='menu_item'><Link href="/">Home</Link></li>
-          <li className='menu_item'><Link href="/features">Features</Link></li>
-          <li className='menu_item'><Link href="/pricing">How it works</Link></li>
-          <li className='menu_item'><Link href="/about">About Us</Link></li>
-          <li className='menu_item'><Link href="/contact">Contact</Link></li>
+
           {pathname.startsWith("/customer/dashboard") ? (
             <li className='menu_item' onClick={handleLogout}>Logout</li>
           ) : (

@@ -29,15 +29,14 @@ const EditCustomerProfile = () => {
   const [submitError, setSubmitError] = useState(false)
 
   useEffect(() => {
-    const fieldsToUpdate: (keyof FormData)[] = ['fullName', 'email', 'buildingNumber', 'floorNumber', 'roomNumber', 'phoneNumber', 'imageUrl'];
-
-    fieldsToUpdate.forEach(field => {
-      const fieldName = field as keyof FormData;
-      if (customerDatas[fieldName]) {
-        setValue(fieldName, customerDatas[fieldName]);
-      }
-    });
-  }, [customerDatas, setValue]);
+    setValue("fullName", customerDatas.fullName)
+    setValue("email", customerDatas.email)
+    setValue("imageUrl", customerDatas.imageUrl)
+    setValue("phoneNumber", customerDatas.phoneNumber)
+    setValue("buildingNumber", customerDatas.buildingNumber)
+    setValue("roomNumber", customerDatas.roomNumber)
+    setValue("floorNumber", customerDatas.floorNumber)
+  }, [customerDatas])
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       setLoading(true);
