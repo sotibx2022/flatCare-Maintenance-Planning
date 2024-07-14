@@ -22,7 +22,6 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
 
     return (
         <main className={state.darkMode ? "darkMode" : "lightMode"}>
-            <Header />
             <div className="layoutContainer flex_items container">
                 <section className="leftSide">
                     <Navigation />

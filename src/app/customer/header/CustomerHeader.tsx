@@ -1,16 +1,19 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from "@/../../public/assets/images/logo.png";
 import Image from 'next/image';
 import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import "../customer.css";
+import { DarkModeContext } from '../../../useContext/themeContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 const Header: React.FC = () => {
   const [token, setToken] = useState<string | null>(null); // Initialize token with null
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
-
+  const { state, dispatch } = useContext(DarkModeContext);
   useEffect(() => {
     const fetchToken = async () => {
       try {
@@ -41,7 +44,9 @@ const Header: React.FC = () => {
       console.error('Error logging out:', error);
     }
   };
-
+  const toggleDarkMode = () => {
+    dispatch({ type: 'TOGGLE' });
+  };
   return (
     <header className='container flex_items  Customer_Header_wrapper'>
       <div className='logo_area'>
@@ -59,7 +64,6 @@ const Header: React.FC = () => {
               <li className='menu_item'><Link href="/customer/signup">Sign Up</Link></li>
             </>
           )}
-          <li className='menu_item'><Link href="/contact">Toggle</Link></li>
         </ul>
       </div>
     </header>

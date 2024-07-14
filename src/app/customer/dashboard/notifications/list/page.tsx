@@ -70,7 +70,7 @@ const page = () => {
       ) : (
         <>
           {notifications && notifications.length === 0 ? (
-            <h1>There are no Notifications Created</h1>
+            <h1 className='secondary_heading'>There are no Notifications Created</h1>
           ) : (
             <table className="notification-table">
               <thead>

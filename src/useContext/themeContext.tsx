@@ -1,28 +1,49 @@
 "use client"
-import React, { createContext, ReactNode, useReducer } from 'react'
+import React, { createContext, ReactNode, useReducer } from 'react';
 
-
-const initial_State = {
-    darkMode: false
+interface State {
+    darkMode: boolean;
 }
 
-export const DarkModeContext = createContext(initial_State)
-const reducer = (state, action) => {
+type ThemeContextProps = {
+    children: ReactNode;
+}
+
+const initial_State: State = {
+    darkMode: false
+};
+
+type Action = { type: 'DARKMODE' } | { type: 'LIGHTMODE' } | { type: 'TOGGLE' };
+const initialContextValue: {
+    state: State,
+    dispatch: React.Dispatch<Action>
+} = {
+    state: { darkMode: false },
+    dispatch: () => { }
+}
+export const DarkModeContext = createContext(initialContextValue);
+
+const reducer = (state: State, action: Action): State => {
     switch (action.type) {
         case 'DARKMODE':
-            return { darkMode: true }
+            return { ...state, darkMode: true };
         case 'LIGHTMODE':
-            return { darkMode: false }
-        case 'TOOGLE': return { darkMode: !state.darkMode }
-        default: return state;
+            return { ...state, darkMode: false };
+        case 'TOGGLE':
+            return { ...state, darkMode: !state.darkMode };
+        default:
+            return state;
     }
-}
+};
 
-const ThemeContex = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initial_State)
+const ThemeContext: React.FC<ThemeContextProps> = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initial_State);
+
     return (
-        <DarkModeContext.Provider value={{ state, dispatch }}>{children}</DarkModeContext.Provider>
-    )
-}
+        <DarkModeContext.Provider value={{ state, dispatch }}>
+            {children}
+        </DarkModeContext.Provider>
+    );
+};
 
-export default ThemeContex
+export default ThemeContext;

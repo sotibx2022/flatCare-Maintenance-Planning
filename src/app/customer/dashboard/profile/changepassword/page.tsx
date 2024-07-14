@@ -15,7 +15,7 @@ const page = () => {
     <div>
       <section className='form_container'>
         {checkedPassed ? <SubmitSuccess message="Original Password Validated ! Please Enter New Password" /> : <CheckPassword successValue={receiveSuccessValue} />}
-        {checkedPassed ? <UpdatePassword /> : <h1>Please Enter Original Password First</h1>}
+        {checkedPassed ? <UpdatePassword /> : <h1 className='secondary_heading'>Please Enter Original Password First</h1>}
 
 
 
