@@ -1,0 +1,30 @@
+.features_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+
+}
+
+.feature_box {
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    box-shadow: var(--primaryDarkBoxShadow);
+}
+
+.feature_box:hover {
+    transform: translateY(-10px);
+    background-color: var(--gradinet);
+}
+
+.featureIcon {
+    color: var(--primaryDark);
+}

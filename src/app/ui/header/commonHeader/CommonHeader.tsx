@@ -18,10 +18,7 @@ const CommonHeader = () => {
             <li className='menu_item'><Link href="/technician">Technician</Link></li>
             <li className='menu_item'><Link href="/customer/login">Customer</Link></li>
             <li className='menu_item'><Link href="/planner">Planner</Link></li>
-            <li className='menu_item'><Link href="/features">Features</Link></li>
-            <li className='menu_item'><Link href="/planner">How It Works</Link></li>
-            <li className='menu_item'><Link href="/planner">About Us</Link></li>
-            <li className='menu_item'><Link href="/planner">Contact US</Link></li>
+
 
           </ul>
         </nav>

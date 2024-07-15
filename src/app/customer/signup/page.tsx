@@ -82,6 +82,7 @@ const Page: React.FC = () => {
           </div>
         </div>
         <form>
+          <h1 className='primary_heading'>Customer Sign Up</h1>
           {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
           {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
           {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}

@@ -1,0 +1,203 @@
+.callToAction {
+    background: var(--gradient);
+    color: var(--primaryLight);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    transition: all 0.5s linear;
+    max-width: 200px;
+}
+
+#about-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6rem;
+}
+
+#about-section img {
+    max-width: 500px;
+    border-radius: 50%;
+    border: 10px solid var(--primaryDark);
+}
+
+.about-us {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main_paragraph {
+    font-size: 2rem;
+}
+
+.section-heading {
+
+    display: flex;
+    align-items: center;
+
+
+}
+
+.bouncing-ball {
+    max-width: 500px;
+    margin: 1rem auto;
+}
+
+.section-heading ul {
+    display: flex;
+    gap: 0rem;
+    justify-content: center;
+}
+
+.section-heading ul li {
+    list-style: none;
+    background: var(--gradient);
+    color: var(--primary);
+    width: 3rem;
+    height: 3rem;
+    color: var(--primaryLight);
+    display: grid;
+    place-items: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    animation: changeball 1s linear infinite alternate-reverse;
+
+}
+
+@keyframes changeball {
+    0% {
+        transform: translateY(5px);
+
+    }
+
+    20% {
+        transform: translateY(10px);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+
+    80% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.section-paragraph {
+    max-width: 500PX;
+    margin: 1rem auto;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--primaryDarkBoxShadow);
+    padding: 1rem;
+
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.service-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.item-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.borderChange {
+    color: var(--primaryLight);
+    background: var(--gradient);
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    padding: 1rem;
+    animation: border-change 2s linear infinite;
+
+}
+
+@keyframes border-change {
+    0% {
+        border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
+    }
+
+    50% {
+        border-radius: 22% 38% 53% 7% / 31% 18% 42% 69%;
+
+    }
+
+    100% {
+        border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
+    }
+}
+
+.models_area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+
+}
+
+.model-item {
+    background-color: var(--primaryDark);
+    color: var(--primaryLight);
+    width: 30vw;
+    padding: 1rem;
+}
+
+/* Align items differently */
+.model-item:nth-child(1) {
+    align-self: flex-start;
+    /* Align to start */
+}
+
+.model-item:nth-child(2) {
+    align-self: center;
+    /* Align to center */
+}
+
+.model-item:nth-child(3) {
+    align-self: flex-end;
+    /* Align to end */
+}
+
+.model-item p {
+    color: var(--primaryLight) !important;
+}
+
+.userModelIcon {
+    color: var(--primaryDark);
+    background-color: var(--primaryLight);
+    font-size: 2rem;
+    padding: 1rem;
+
+}
+
+svg {
+    background-color: var(--primaryDark);
+}

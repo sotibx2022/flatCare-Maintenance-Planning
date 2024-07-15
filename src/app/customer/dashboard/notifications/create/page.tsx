@@ -104,10 +104,6 @@ const Page = () => {
       console.log('Form validation failed');
     }
   };
-
-
-
-
   return (
     <div className="container">
       <h1 className='primary_heading'>Create Notification</h1>

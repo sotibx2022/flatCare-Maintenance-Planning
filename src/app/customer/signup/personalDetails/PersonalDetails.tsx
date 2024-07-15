@@ -63,6 +63,7 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({ personalDetailsValue,
   return (
     <div className='container'>
       <div className='stepInputs_Wrapper'>
+
         <div className="form_Item">
           <label>Full Name</label>
           <div style={{ position: 'relative' }}>

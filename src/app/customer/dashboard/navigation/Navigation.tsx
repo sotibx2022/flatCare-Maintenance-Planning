@@ -1,8 +1,7 @@
 "use client"
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { DarkModeContext } from '../../../../useContext/themeContext';
 import logo from "@/../../public/assets/images/logo.png"
 import Image from 'next/image';
 import axios from 'axios';
@@ -12,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faEdit, faKey, faListAlt, faSignOutAlt, faTachometerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Navigation = () => {
-  const { dispatch } = useContext(DarkModeContext);
+
   const router = useRouter()
   const pathName = usePathname()
   const handleLogout = async () => {
@@ -69,8 +68,6 @@ const Navigation = () => {
               <FontAwesomeIcon icon={faListAlt} /> List Notifications
             </Link>
           </li>
-
-          {/* Other menu items */}
         </ul>
 
       </ul>
