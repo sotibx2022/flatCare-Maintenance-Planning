@@ -14,23 +14,13 @@ interface Notification {
   notificationCategory: string,
   _id: string,
 }
-
 const page = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     findNotifications()
-
-
   }, [])
-  const findCreatedDate = (d: Date) => {
-    let date = new Date(d)
-    let fullYear = date.getFullYear();
-    let month = date.toLocaleDateString("en-us", { month: "long" })
-    let day = date.getDate()
-    return `${day}/${month}/${fullYear}`
-  }
   const findNotifications = async () => {
     setLoading(true);
     const response = await axios.get("/api/notification");
@@ -39,7 +29,6 @@ const page = () => {
     setLoading(false);
   }
   const handleDelete = async (id: string) => {
-
     try {
       const response = await axios.delete(`/api/notification/${id}`);
       const result = response.data;
@@ -50,7 +39,6 @@ const page = () => {
         toast.error(result.message);
       }
     } catch (error) {
-
     }
   }
   const calculateTurnAroundTime = (d: Date) => {
@@ -60,9 +48,6 @@ const page = () => {
     let timeDifferenceInDays = Math.floor(timeDifferenceInMillis / 86400000);
     return timeDifferenceInDays;
   }
-
-
-
   return (
     <>
       {loading ? (
@@ -98,7 +83,7 @@ const page = () => {
                     {notification.notificationPriority === "Normal" && (
                       <td className='normalNotification'>{notification.notificationPriority}</td>
                     )}
-                    <td>{calculateTurnAroundTime(notification.createdAt)} Days</td>
+                    <td suppressHydrationWarning >{calculateTurnAroundTime(notification.createdAt)} Days</td>
                     <td style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                       <span onClick={() => { router.push(`/customer/dashboard/notifications/${notification._id}`) }}>
                         <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer', color: '#28a745' }} />
@@ -116,7 +101,5 @@ const page = () => {
       )}
     </>
   );
-
 }
-
 export default page

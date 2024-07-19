@@ -1,146 +1,51 @@
-"use client";
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
-import SubmitError from '../SubmitError';
-import { toast } from 'react-toastify';
-
-interface CustomerData {
-
-    fullName: string;
-    imageUrl: string;
-    email: string;
-    buildingNumber: string;
-    floorNumber: string;
-    roomNumber: string;
-    phoneNumber: string;
+import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import SubmitError from '../SubmitError'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
+import SubmitSuccess from '../submitSuccess'
+import useCustomerData from '../../hooks/useCustomerData'
+interface UpdatePasswordData {
+    newPassword: string,
+    confirmNewPassword: string,
 }
 const UpdatePassword = () => {
-    const router = useRouter();
-    const [showPassword, setShowPassword] = useState(false);
-    const [customerDatas, setCustomerDatas] = useState<CustomerData>({
-        fullName: '',
-        imageUrl: '',
-        email: '',
-        buildingNumber: '',
-        floorNumber: '',
-        roomNumber: '',
-        phoneNumber: ''
-    });
-
-    useEffect(() => {
-        const getUserDetails = async () => {
-            try {
-                let response = await axios.get("/api/customer/findCustomer");
-                let result = response.data;
-                console.log(result.customer);
-
-                setCustomerDatas(prevCustomerData => ({
-                    ...prevCustomerData,
-                    fullName: result.customer.fullName,
-                    imageUrl: result.customer.imageUrl,
-                    email: result.customer.email,
-                    buildingNumber: result.customer.buildingNumber,
-                    floorNumber: result.customer.floorNumber,
-                    roomNumber: result.customer.roomNumber,
-                    phoneNumber: result.customer.phoneNumber
-                }));
-            } catch (error) {
-                console.error("Error fetching customer details:", error);
-            }
-        };
-
-        getUserDetails();
-    }, []);
-    const [passwordValue, setPasswordValue] = useState({
-        newPassword: "",
-        confirmNewPassword: ""
-    });
-
-    const [focus, setFocus] = useState({
-        newPassword: false,
-        confirmNewPassword: false
-    });
-
-    const [newPasswordError, setNewPasswordError] = useState("");
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setPasswordValue({
-            ...passwordValue,
-            [name]: value
-        });
-    };
-
-    const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        let error = "";
-
-        if (name === "newPassword") {
-            error = validatePassword(value);
-            setNewPasswordError(error);
-            setFocus({ ...focus, newPassword: true });
-        } else if (name === "confirmNewPassword") {
-            if (value !== passwordValue.newPassword) {
-                error = "Passwords do not match.";
-            }
-            setConfirmPasswordError(error);
-            setFocus({ ...focus, confirmNewPassword: true });
+    const router = useRouter()
+    const [customerDatas, setCustomerDatas] = useCustomerData()
+    const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<UpdatePasswordData>()
+    const [showPassword, setShowPassword] = useState(false)
+    const [submitError, setSubmitError] = useState("");
+    const [submitSuccess, setSubmitSuccess] = useState("");
+    const [loading, setLoading] = useState(false)
+    const newPassword = watch("newPassword")
+    const onSubmit: SubmitHandler<UpdatePasswordData> = async (data) => {
+        setLoading(true)
+        const dataToSend = { email: customerDatas.email, newPassword: data.newPassword }
+        const response = await axios.post("/api/customer/updatePassword", dataToSend);
+        const result = response.data;
+        setLoading(false)
+        if (result.success) {
+            setSubmitSuccess(result.message)
+            toast.success(result.message)
+            router.push("/customer/dashboard/main")
+        } else {
+            toast.error(result.message)
+            setSubmitError(result.message)
         }
     };
-
-    const validatePassword = (password: string) => {
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumber = /[0-9]/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-        if (password.length < minLength) {
-            return "Password must be at least 8 characters long.";
-        }
-        if (!hasUpperCase) {
-            return "Password must contain at least one uppercase letter.";
-        }
-        if (!hasLowerCase) {
-            return "Password must contain at least one lowercase letter.";
-        }
-        if (!hasNumber) {
-            return "Password must contain at least one number.";
-        }
-        if (!hasSpecialChar) {
-            return "Password must contain at least one special character.";
-        }
-        return "";
-    };
-    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            if (newPasswordError === "" && confirmPasswordError === "") {
-                const { newPassword } = passwordValue;
-                const dataToSend = { email: customerDatas.email, newPassword }
-                const response = await axios.post("/api/customer/updatePassword", dataToSend);
-                const result = response.data;
-                if (result.success) {
-                    toast.success(result.message)
-                    router.push("/customer/dashboard/main")
-                }
-            }
-        } catch (error) {
-
-        }
+    function toggleShowPassword(): void {
+        setShowPassword(!showPassword)
     }
-    const toggleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
     return (
-        <form onSubmit={submitHandler} >
+        <form noValidate onSubmit={handleSubmit(onSubmit)} >
             <h1 className='primary_heading' style={{ marginTop: '1rem' }}>Update Password</h1>
+            {isSubmitted && submitError && <SubmitError message={submitError} />}
+            {isSubmitted && submitSuccess && <SubmitSuccess message={submitSuccess} />}
             <div className='form_Item'>
-                <label>New Password</label>
+                <label htmlFor='newPassword'>New Password</label>
                 <div style={{ position: 'relative' }}>
                     <FontAwesomeIcon icon={faLock} style={{
                         position: 'absolute', top: '50%',
@@ -149,23 +54,27 @@ const UpdatePassword = () => {
                         left: '10px'
                     }} />
                     <input
-                        type='password'
+                        type={showPassword ? "text" : "password"}
                         placeholder="New Password"
-                        value={passwordValue.newPassword}
-                        name="newPassword"
-                        onChange={changeHandler}
-                        onBlur={blurHandler}
+                        id="newPassword"
                         style={{ paddingLeft: '30px', paddingRight: '30px' }}
+                        {...register("newPassword", {
+                            required: { value: true, message: "New Password is Required." },
+                            pattern: {
+                                value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/,
+                                message: "Password must be 8+ characters with uppercase, lowercase, number, and special character"
+                            }
+                        })}
                     />
                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
                         position: 'absolute', color: '#29030d',
                         top: '50%', right: '10px', transform: 'translateY(-50%)'
                     }} onClick={toggleShowPassword} />
                 </div>
+                {errors.newPassword?.message && <SubmitError message={errors.newPassword.message} />}
             </div>
-            {focus.newPassword && newPasswordError && <SubmitError message={newPasswordError} />}
             <div className='form_Item'>
-                <label>Confirm New Password</label>
+                <label htmlFor='confirmNewPassword'>Confirm New Password</label>
                 <div style={{ position: 'relative' }}>
                     <FontAwesomeIcon icon={faLock} style={{
                         position: 'absolute', top: '50%',
@@ -174,24 +83,24 @@ const UpdatePassword = () => {
                         left: '10px'
                     }} />
                     <input
-                        type='password'
+                        type={showPassword ? "text" : "password"}
                         placeholder="Confirm New Password"
-                        value={passwordValue.confirmNewPassword}
-                        name="confirmNewPassword"
-                        onChange={changeHandler}
-                        onBlur={blurHandler}
+                        id="confirmNewPassword"
                         style={{ paddingLeft: '30px', paddingRight: '30px' }}
+                        {...register("confirmNewPassword", {
+                            required: { value: true, message: "Confirm Password is Required." },
+                            validate: (value) => value === newPassword || "Password Don't Match ! Try Again"
+                        })}
                     />
                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
                         position: 'absolute', color: '#29030d',
                         top: '50%', right: '10px', transform: 'translateY(-50%)'
                     }} onClick={toggleShowPassword} />
                 </div>
+                {errors.confirmNewPassword?.message && <SubmitError message={errors.confirmNewPassword.message} />}
             </div>
-            {focus.confirmNewPassword && confirmPasswordError && <SubmitError message={confirmPasswordError} />}
-            <button type="submit" style={{ marginTop: '1rem' }}>Submit</button>
+            <button type="submit" style={{ marginTop: '1rem' }} disabled={loading}>Submit</button>
         </form>
-    );
-};
-
-export default UpdatePassword;
+    )
+}
+export default UpdatePassword

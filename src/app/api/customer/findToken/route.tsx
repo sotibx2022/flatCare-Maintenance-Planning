@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
 import jwt, { JsonWebTokenError, JwtPayload, TokenExpiredError } from 'jsonwebtoken';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { isTokenExpired } from '../../../../helper/isTokenExpired';
 
-export async function GET(request: NextRequest) {
-    await ConnectToDb(); // Assuming ConnectToDb() returns a promise
+export async function GET(request: NextRequest, response: NextResponse) {
+    await ConnectToDb();
+    isTokenExpired(request, response);
 
     try {
         // Retrieve token from cookies

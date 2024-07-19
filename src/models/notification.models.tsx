@@ -1,8 +1,7 @@
-import mongoose, { Schema, Document } from "mongoose";
-
+import mongoose, { Schema, Document, Model } from "mongoose";
 interface NotificationDocument extends Document {
-
     notificationTitle: string;
+    notificationNumber: number;
     notificationDescription: string;
     notificationCategory: string;
     notificationPriority: string;
@@ -14,12 +13,15 @@ interface NotificationDocument extends Document {
         buildingNumber: string;
     };
 }
-
 const notificationSchema: Schema<NotificationDocument> = new Schema({
-
     notificationTitle: {
         type: String,
         required: true,
+    },
+    notificationNumber: {
+        type: Number,
+        required: true,
+        unique: true
     },
     notificationDescription: {
         type: String,
@@ -49,7 +51,34 @@ const notificationSchema: Schema<NotificationDocument> = new Schema({
         buildingNumber: { type: String, required: true },
     }
 }, { timestamps: true });
-
-
-
-export const Notification = mongoose.models.Notification || mongoose.model<NotificationDocument>("Notification", notificationSchema);
+// Pre-save hook to assign notificationNumber if it's new
+notificationSchema.pre<Document>('save', async function (next) {
+    let doc = this as NotificationDocument;
+    if (doc.isNew) {
+        try {
+            const latestNotification = await Notification.findOne().sort({ notificationNumber: -1 });
+            doc.notificationNumber = latestNotification ? latestNotification.notificationNumber + 1 : 1;
+        } catch (error) {
+            console.error('Error finding latest notification:', error);
+            throw error; // Handle or rethrow the error as needed
+        }
+    }
+    next();
+});
+// Static method to ensure all notifications have a notificationNumber assigned
+notificationSchema.statics.ensureNotificationNumbers = async function () {
+    try {
+        const noNumberNotifications = await Notification.find({ notificationNumber: { $exists: false } });
+        let nextNotificationNumber = 1;
+        for (let notification of noNumberNotifications) {
+            notification.notificationNumber = nextNotificationNumber;
+            await notification.save();
+            nextNotificationNumber++;
+        }
+        console.log('Notification numbers assigned successfully.');
+    } catch (error) {
+        console.error('Error assigning notification numbers:', error);
+        throw error; // Handle or rethrow the error as needed
+    }
+};
+export const Notification: Model<NotificationDocument> = mongoose.models.Notification || mongoose.model<NotificationDocument>("Notification", notificationSchema);

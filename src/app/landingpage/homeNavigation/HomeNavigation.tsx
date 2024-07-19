@@ -17,7 +17,7 @@ const HomeNavigation = () => {
         <div className='menu_area'>
             <ul >
                 {menuItems.map((item, index) => {
-                    return <MenuItem icon={item.icon} name={item.name} />
+                    return <MenuItem icon={item.icon} name={item.name} key={index} />
                 })}
             </ul>
         </div>

@@ -8,58 +8,22 @@ import SubmitSuccess from '../submitSuccess'
 import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
-
-
 interface checkPasswordProps {
     successValue: (value: boolean) => void;
 }
-interface CustomerData {
-
-    fullName: string;
-    imageUrl: string;
-    email: string;
-    buildingNumber: string;
-    floorNumber: string;
-    roomNumber: string;
-    phoneNumber: string;
-}
 const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
-
+    const [customerDatas, setCustomerDatas] = useCustomerData();
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("")
-
-    const [customerDatas, setCustomerDatas] = useState<CustomerData>({
-        fullName: '',
-        imageUrl: '',
-        email: '',
-        buildingNumber: '',
-        floorNumber: '',
-        roomNumber: '',
-        phoneNumber: ''
-    });
-
     useEffect(() => {
         const getUserDetails = async () => {
             try {
                 let response = await axios.get("/api/customer/findCustomer");
                 let result = response.data;
-                console.log(result.customer);
-
-                setCustomerDatas(prevCustomerData => ({
-                    ...prevCustomerData,
-                    fullName: result.customer.fullName,
-                    imageUrl: result.customer.imageUrl,
-                    email: result.customer.email,
-                    buildingNumber: result.customer.buildingNumber,
-                    floorNumber: result.customer.floorNumber,
-                    roomNumber: result.customer.roomNumber,
-                    phoneNumber: result.customer.phoneNumber
-                }));
             } catch (error) {
                 console.error("Error fetching customer details:", error);
             }
         };
-
         getUserDetails();
     }, []);
     const [originalPassword, setOriginalPassword] = useState("");
@@ -68,14 +32,12 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
     const [updateField, setUpdateField] = useState(false)
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
     const validatePassword = (password: string) => {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
         const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
         if (password.length < minLength) {
             return "Password must be at least 8 characters long.";
         }
@@ -93,13 +55,11 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
         }
         return "";
     };
-
     const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
         const error = validatePassword(originalPassword);
         setPasswordError(error);
         setFocus(true);
     };
-
     const checkPassword = async () => {
         const error = validatePassword(originalPassword);
         setPasswordError(error);
@@ -125,16 +85,13 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
             }
         }
     };
-
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOriginalPassword(e.target.value);
         setFocus(false);
     };
-
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-
     return (
         <div>
             <h1 className='primary_heading' style={{ marginBottom: '1rem' }}>Customer Change Password</h1>
@@ -153,7 +110,6 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
                         value={originalPassword} name="password"
                         onChange={changeHandler} onBlur={blurHandler}
                         style={{ paddingLeft: '30px', paddingRight: '30px' }}
-
                     />
                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
                         position: 'absolute', color: '#29030d',
@@ -168,5 +124,4 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
         </div>
     );
 };
-
 export default CheckPassword;

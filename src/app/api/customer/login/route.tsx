@@ -4,7 +4,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import { ConnectToDb } from "../../../../helper/connectToDb";
 import { Customer } from "../../../../models/customer.models";
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest, response: NextResponse) {
+
     ConnectToDb()
     try {
 
@@ -55,11 +56,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
                     success: true,
                     customer
                 })
-                const token = jwt.sign({ userId: customer._id }, process.env.SECRET_KEY!)
+                const token = jwt.sign({ userId: customer._id }, process.env.SECRET_KEY!, { expiresIn: '1h' })
                 response.cookies.set('token', token, {
                     httpOnly: true,
                     path: '/',
-                    expires: new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
+                    expires: new Date(Date.now() + (60 * 60 * 1000))
                 })
             }
             return response;

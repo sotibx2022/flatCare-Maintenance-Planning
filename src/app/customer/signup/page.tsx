@@ -1,24 +1,18 @@
 "use client"
 import React, { useState } from 'react';
-
-
 import { CustomerData } from '../types';
-
 import PersonalDetails from './personalDetails/PersonalDetails';
-
 import LocationDetails from './locationDetails/LocationDetails';
 import PreviewandSubmit from './previewandsubmit/PreviewandSubmit';
 import SoftwareAccessDetails from './softwareaccessDetails/SoftwareAccessDetails';
 import Header from '../header/CustomerHeader';
-
-
+import next from 'next';
 let steps = [
   { step: 1, title: 'Customer Details' },
   { step: 2, title: 'Software Access Details' },
   { step: 3, title: 'Location Details' },
   { step: 4, title: 'Preview and Submit' }
 ];
-
 const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
@@ -32,18 +26,14 @@ const Page: React.FC = () => {
     roomNumber: '',
     phoneNumber: ''
   });
-
-  const handlePersonalDetailsSubmit = (fullName: string, phoneNumber: string, imageUrl: string, nextStep: number) => {
-
+  const handlePersonalDetailsSubmit = (fullName: string, phoneNumber: string, nextStep: number) => {
     setCustomerDatas(prevData => ({
       ...prevData,
       fullName,
       phoneNumber,
-      imageUrl
     }));
     setCurrentStep(nextStep);
   };
-
   const handleSoftwareAccessSubmit = (email: string, password: string, confirmPassword: string, nextStep: number) => {
     setCustomerDatas(prevData => ({
       ...prevData,
@@ -53,7 +43,6 @@ const Page: React.FC = () => {
     }));
     setCurrentStep(nextStep);
   };
-
   const handleLocationDetailsSubmit = (buildingNumber: string, floorNumber: string, roomNumber: string, nextStep: number) => {
     setCustomerDatas(prevData => ({
       ...prevData,
@@ -63,26 +52,17 @@ const Page: React.FC = () => {
     }));
     setCurrentStep(nextStep);
   };
-
   const handlePreviewDetails = (nextValue: number) => {
     setCurrentStep(nextValue);
   };
-
   return (
     <>
       <Header />
       <div className='container'>
         <div className='steps'>
-          <div className='all_steps'>
-            {steps.map(item => (
-              <h1 key={item.step} className={currentStep === item.step ? "active_step" : "normal_step"}>
-                {item.title}
-              </h1>
-            ))}
-          </div>
         </div>
         <form>
-          <h1 className='primary_heading'>Customer Sign Up</h1>
+          <h1 className='primary_heading' style={{ textAlign: "center" }}>Customer Sign Up</h1>
           {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
           {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
           {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
@@ -91,5 +71,4 @@ const Page: React.FC = () => {
       </div></>
   );
 };
-
 export default Page;

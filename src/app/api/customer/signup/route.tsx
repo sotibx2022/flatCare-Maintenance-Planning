@@ -1,89 +1,80 @@
-
-import { NextRequest, NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
+import { NextRequest, NextResponse } from "next/server";
+import { Customer } from "../../../../models/customer.models";
+import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
-import { ConnectToDb } from '../../../../helper/connectToDb';
-import { Customer, CustomerDocument } from '../../../../models/customer.models';
-
-// Changed GET function parameter to NextRequest instead of NextResponse
-export async function GET(request: NextRequest) {
-  ConnectToDb(); // Connect to the database
-
+import { sendEmailToCustomer } from "../../../../helper/sendEmailToCustomer";
+import fs from 'fs';
+import path from 'path';
+import { uploadImage } from "../../../../helper/uploadImage";
+import { ConnectToDb } from "../../../../helper/connectToDb";
+export async function POST(req: NextRequest) {
   try {
-    const customers: CustomerDocument[] = await Customer.find();
-    return NextResponse.json({ name: 'binaya', customers }); // Return JSON response with customers
-  } catch (error) {
-    console.error('Error fetching customers:', error);
-    return NextResponse.json({ message: 'Error fetching customers' }); // Return JSON error response
-  }
-}
-
-// Removed response parameter from POST function
-export async function POST(request: NextRequest, response: NextResponse) {
-  await ConnectToDb();
-
-  try {
-    const {
-      fullName,
-      imageUrl,
-      email,
-      password,
-      buildingNumber,
-      floorNumber,
-      roomNumber,
-      phoneNumber
-    } = await request.json();
-    console.log(fullName, imageUrl, email, password, buildingNumber, floorNumber, roomNumber, phoneNumber)
-    const dbCustomer = await Customer.findOne({ email });
-    if (dbCustomer) {
-      // Removed alert and directly return response
+    await ConnectToDb();
+    // Parse form data from the request
+    const formData = await req.formData();
+    // Extract fields from form data
+    const email = formData.get('email') as string;
+    const fullName = formData.get('fullName') as string;
+    const password = formData.get('password') as string;
+    const buildingNumber = formData.get('buildingNumber') as string;
+    const roomNumber = formData.get('roomNumber') as string;
+    const floorNumber = formData.get('floorNumber') as string;
+    const phoneNumber = formData.get('phoneNumber') as string;
+    const file = formData.get('file') as unknown as File;
+    // Check if file base64 string is provided
+    if (!file) {
       return NextResponse.json({
-        message: "Customer already registered.",
-        status: 409,
-        success: false,
-      });
-    } else {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-
-      const newCustomer = new Customer({
-        fullName,
-        imageUrl,
-        email,
-        password: hashedPassword,
-        buildingNumber,
-        floorNumber,
-        roomNumber,
-        phoneNumber
-      });
-
-      const result = await newCustomer.save();
-
-
-
-      // Moved response creation after token creation
-      response = NextResponse.json({
-        message: 'Customer Details Saved Successfully',
-        status: 200,
-        success: true,
-        data: result,
-      });
-      const token = jwt.sign({ userId: newCustomer._id }, process.env.SECRET_KEY!);
-      // Setting the cookie properly
-      response.cookies.set('token', token, {
-        httpOnly: true,
-        path: '/',
-        expires: new Date(Date.now() + (365 * 24 * 60 * 60 * 1000))
-      });
-
-      return response;
+        message: "No file provided",
+      }, { status: 400 });
     }
-  } catch (error) {
-    console.error('Error saving customer details:', error); // Added error logging
-    return NextResponse.json({
-      message: 'Error saving customer details',
-      status: 500,
-      success: false,
+    // Check if customer already exists with the provided email
+    const existingCustomer = await Customer.findOne({ email });
+    if (existingCustomer) {
+      return NextResponse.json({ message: "There is already an account with the provided email." });
+    }
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Decode base64 string and upload the image
+    const result = await uploadImage(file, "customerImages");
+    const { error, progress, downloadUrl } = result;
+    console.log(result.error, result.progress, result.downloadUrl);
+    if (!downloadUrl) {
+      return NextResponse.json({ message: "File upload failed", status: 400 });
+    }
+    // Create a new Customer document
+    const newCustomer = new Customer({
+      email,
+      fullName,
+      buildingNumber,
+      roomNumber,
+      floorNumber,
+      phoneNumber,
+      imageUrl: downloadUrl,
+      password: hashedPassword
     });
+    // Save the new Customer to the database
+    const savedCustomer = await newCustomer.save();
+    // Generate a JWT token for authentication
+    const token = jwt.sign({ userId: savedCustomer._id }, process.env.SECRET_KEY!, { expiresIn: '1h' });
+    // Set the token in the response cookies
+    // const templatePath = path.join(process.cwd(), 'templates', 'registerEmailTemplate.html');
+    // const templateContent = fs.readFileSync(templatePath, 'utf8');
+    // await sendEmailToCustomer(email, "User Registration SuccessFull", templateContent);
+    let response: NextResponse = NextResponse.json({
+      message: "User details saved successfully",
+      success: true,
+      status: 200
+    });
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 3600000),
+      secure: process.env.NODE_ENV === 'production'
+    });
+    // Return success response with status 200
+    return response;
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error saving customer details:", error);
+    return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 }

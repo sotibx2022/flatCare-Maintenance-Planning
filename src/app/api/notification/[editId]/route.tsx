@@ -2,9 +2,10 @@ import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { ConnectToDb } from "../../../../helper/connectToDb";
 import { Notification } from "../../../../models/notification.models";
+import { isTokenExpired } from "../../../../helper/isTokenExpired";
 export async function GET(request: NextRequest, response: NextResponse) {
     ConnectToDb();
-
+    isTokenExpired(request, response);
     const editId = response.params.editId;
     const notification = await Notification.find({ _id: editId })
     if (notification) {

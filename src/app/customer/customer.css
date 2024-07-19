@@ -1,31 +1,52 @@
-
 .layoutContainer {
   display: flex;
   flex-direction: row;
   background-color: transparent;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap:20px;
+  gap: 50px;
   height: 100%;
-
+  position: relative;
+  max-width: 90vw;
+  margin: 0 auto;
 }
-
-.leftSide {
-  max-width: 250px; /* Fixed width for navigation */
-  box-shadow: var(--primaryLightBoxShadow); /* Light shadow for separation */
+#leftSide {
+  position: relative;
+  max-width: 350px;
+  width: 300px;
+  min-width: 300px;
+  box-shadow: var(--primaryLightBoxShadow);
   padding: 20px;
-  min-width: 200px;
+  transform: translateX(calc(-300px - 5vw));
+  transition: 0.5s linear all;
 }
-
-.rightSide {
-  flex: 1; /* Take up the remaining space */
-  padding: 20px; /* Padding for inner spacing */
-  background-color: transparent;
+#leftSide.showSideBar {
+  transform: translateX(0);
+}
+.hideSideBar {
+  transform: translateX(-300px);
+}
+.responsiveDashboardIcon {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  background-color: var(--primaryDark);
+  color: var(--primaryLight);
+  font-size: 2rem;
+  padding: 0.1rem;
+  z-index: -111;
+  cursor: pointer;
+}
+#rightSide {
+  padding: 20px;
   box-shadow: var(--primaryLightBoxShadow);
   height: 100%;
-  
+  transition: 0.5s linear all;
+  width: 100%;
 }
-
+#rightSide.expandRightSide {
+  margin-left: -300px;
+}
 .viewForm {
   display: flex;
   flex-direction: column;
@@ -34,8 +55,10 @@
 .logoutButton {
   cursor: pointer;
   padding: 8px 16px;
-  background-color: #f00; /* Example background color */
-  color: #fff; /* Example text color */
+  background-color: #f00;
+  /* Example background color */
+  color: #fff;
+  /* Example text color */
   border: none;
   border-radius: 4px;
   font-size: 14px;
@@ -43,40 +66,17 @@
   text-align: center;
   margin-top: 1rem;
 }
-
 .logoutButton:hover {
-  background-color: #d00; /* Example hover background color */
+  background-color: #d00;
 }
-
-/* Dashboard Styles */
-.dashboard {
-  padding: 20px;
-  background-color: transparent;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-
-.dashboard-block {
-  background-color: transparent;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: var(--primaryLightBoxShadow);
-  margin-bottom: 20px;
-  width: 40%;
-  min-width: 400px;
-}
-
-/* Navigation Styles */
 .dashboardNavigation {
   width: 100%;
   background-color: transparent;
 }
-.dashboardNavigation ul{
+.dashboardNavigation ul {
   display: flex;
   flex-direction: column;
-  gap:1rem;
+  gap: 1rem;
 }
 .dashboardNavigation li a {
   text-decoration: none;
@@ -86,97 +86,80 @@
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-
 .dashboardNavigation li a:hover {
   background-color: transparent;
 }
-
 .dashboardNavigation li.active a {
   background-color: var(--primaryDark);
   color: var(--primaryLight);
 }
-
 .dashboardNavigation li.active a:hover {
   background-color: var(--primaryDark);
 }
-
 .dashboardNavigation li:hover {
   cursor: pointer;
   background-color: var(--primaryDark);
-  color:var(--primaryLight);
+  color: var(--primaryLight);
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-.dashboardNavigation li:hover a{
-  color:var(--primaryLight);
+.dashboardNavigation li:hover a {
+  color: var(--primaryLight);
 }
-
 .change_theme {
   justify-content: flex-start;
 }
 .stepInputs_Wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 600px; /* Adjust the width as needed */
+  width: 400px;
+  max-width: 600px;
   padding: 20px;
-  margin: 0 auto; /* Center the box horizontally */
-  border: 2px solid #ccc; /* Border color and thickness */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
-  background-color: transparent;
+  border-radius: 15px;
+  margin: 0 auto;
+  box-shadow: var(--primaryDarkBoxShadow);
 }
-
 .steps {
   display: flex;
   gap: 1rem;
   justify-content: center;
   align-items: center;
 }
-
 .Customer_Header_wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   background-color: transparent;
-
 }
-.Customer_Header_wrapper a{
-  color:var(--primaryDark);
+.Customer_Header_wrapper a {
+  color: var(--primaryDark);
 }
-.lightModeBox{
+.lightModeBox {
   width: 2rem;
   height: 2rem;
   background-color: var(--primaryLight);
   box-shadow: var(--primaryDarkBoxShadow);
   border-radius: 10px;
 }
-
-.darkModeBox{
+.darkModeBox {
   width: 2rem;
   height: 2rem;
   background-color: var(--primaryDark);
   box-shadow: var(--primaryLightBoxShadow);
   border-radius: 10px;
 }
-.profile_image{
-  width: 10rem;
-  height: 10rem;
-  background-color: var(--primaryDark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.profile_image img{
-  width: 10rem;
-  height: 10rem;
-}
-.dashboardNavigation .logo{
+.dashboardNavigation .logo {
   width: 20rem;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+}
+@media (max-width:500px) {
+  .stepInputs_Wrapper {
+    width: 300px;
+    padding: 10px;
+  }
 }

@@ -1,8 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ConnectToDb } from "../../../../helper/connectToDb";
+import { isTokenExpired } from "../../../../helper/isTokenExpired";
 
-export async function POST(response: NextResponse) {
+export async function POST(request: NextRequest, response: NextResponse) {
     ConnectToDb()
+    isTokenExpired(request, response);
     try {
         let response = NextResponse.json({
             message: "User Logout Successfully",

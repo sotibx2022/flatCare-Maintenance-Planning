@@ -1,9 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
 interface CustomerData {
-
   fullName: string;
   imageUrl: string;
   email: string;
@@ -13,7 +11,6 @@ interface CustomerData {
   phoneNumber: string;
   userId: string
 }
-
 const useCustomerData = () => {
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
     fullName: '',
@@ -25,14 +22,11 @@ const useCustomerData = () => {
     phoneNumber: '',
     userId: ''
   });
-
   useEffect(() => {
     const getUserDetails = async () => {
       try {
         let response = await axios.get("/api/customer/findCustomer");
         let result = response.data;
-
-        console.log(result);
         setCustomerDatas(prevCustomerData => ({
           ...prevCustomerData,
           fullName: result.customer.fullName,
@@ -48,12 +42,8 @@ const useCustomerData = () => {
         console.error("Error fetching customer details:", error);
       }
     };
-
     getUserDetails();
   }, []);
-
   return [customerDatas, setCustomerDatas] as const;
 };
 export default useCustomerData;
-
-

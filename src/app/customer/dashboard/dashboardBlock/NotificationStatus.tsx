@@ -7,25 +7,26 @@ import "../dashboardBlock/dashboardBlock.css";
 const NotificationStatus = () => {
     const [allNotifications] = useAllNotifications();
     return (
-        <div>
+        <div className='statusBlocks'>
             <div className='block totalBlock'>
                 <div className='blockHeading'>
-                    <h1 className='secondary_heading'> Active Notifications</h1>
-                    <FontAwesomeIcon icon={faCircleUp} />
+                    <h1 className='secondary_heading'> Active </h1>
                 </div>
-                <span>{allNotifications.length}</span>
+                <div className='blockData'>
+                    <FontAwesomeIcon icon={faCircleUp} />
+                    <span>{allNotifications.length}</span>
+                </div>
             </div>
             <div className='block activeBlock'>
                 <div className='blockHeading'>
-                    <h1 className='secondary_heading'> Competed Notifications</h1>
-                    <FontAwesomeIcon icon={faCircleDown} />
+                    <h1 className='secondary_heading'> Competed </h1>
                 </div>
-                <span>0</span>
+                <div className='blockData'>
+                    <FontAwesomeIcon icon={faCircleDown} />
+                    <span>0</span>
+                </div>
             </div>
-
         </div>
-
     )
 }
-
 export default NotificationStatus

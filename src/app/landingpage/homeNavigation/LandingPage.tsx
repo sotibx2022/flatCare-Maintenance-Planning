@@ -6,7 +6,6 @@ import About from './About';
 import Services from './Services';
 import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 import UserModel from './UserModel';
-
 const LandingPage = () => {
     return (
         <div>
@@ -14,13 +13,9 @@ const LandingPage = () => {
                 <About />
                 <Services />
                 <UserModel />
-
             </div>
             <CommonFooter />
-
-
         </div>
     )
 }
-
 export default LandingPage

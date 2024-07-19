@@ -29,12 +29,9 @@ const UserModel = () => {
         <div className="userModelWrapper">
             <div className="section-heading">
                 <ul className="bouncing-ball">
-                    <li>S</li>
-                    <li>E</li>
-                    <li>R</li>
-                    <li>V</li>
-                    <li>I</li>
-                    <li>C</li>
+                    <li>M</li>
+                    <li>0</li>
+                    <li>D</li>
                     <li>E</li>
                     <li>S</li>
                 </ul>

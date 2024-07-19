@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'  // import your desired icons
 import Link from 'next/link'
-
+import "../homeNavigation/landingPage.css";
 interface MenuItemProps {
     icon: any,
     name: string,

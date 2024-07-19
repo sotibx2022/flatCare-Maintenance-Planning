@@ -10,18 +10,15 @@ import SubmitError from '../../ui/SubmitError';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../ui/submitSuccess';
 import Link from 'next/link';
-
 type FormData = {
     email: string;
     password: string;
 };
-
 const Login = () => {
     const router = useRouter();
     const [submitsuccess, setSubmitSuccess] = useState(false);
     const [showPassword, setShowPassword] = useState(false)
     const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitted, isSubmitSuccessful } } = useForm<FormData>();
-
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         setSubmitSuccess(false)
         try {
@@ -31,15 +28,11 @@ const Login = () => {
             if (result.success === false) {
                 setSubmitSuccess(false);
                 toast.error(result.message)
-
             } else {
                 setSubmitSuccess(true)
                 router.push("/customer/dashboard/main");
                 toast.success(result.message)
             }
-
-
-
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.message);
@@ -48,7 +41,6 @@ const Login = () => {
             }
         }
     };
-
     return (
         <>
             <Header />
@@ -66,7 +58,7 @@ const Login = () => {
                                     {...register("email", { required: "Email is required" })}
                                     style={{ paddingLeft: '30px' }}
                                 />
-                                <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#29030d' }} />
+                                <FontAwesomeIcon icon={faLock} className='input_icon_left' />
                             </div>
                             {errors.email?.message && <SubmitError message={errors.email?.message} />}
                         </div>
@@ -80,43 +72,26 @@ const Login = () => {
                                     {...register("password", { required: "Password is required" })}
                                     style={{ paddingLeft: '30px' }}
                                 />
-                                <FontAwesomeIcon icon={faLock}
-                                    style={{
-                                        position: 'absolute', left: '10px', top: '50%',
-                                        transform: 'translateY(-50%)', color: '#29030d'
-                                    }} />
-
+                                <FontAwesomeIcon icon={faLock} className='input_icon_left' />
                                 {showPassword ? <FontAwesomeIcon icon={faEyeSlash}
-                                    onClick={() => setShowPassword(false)} style={{
-                                        position: 'absolute', right: '10px', top: '50%',
-                                        transform: 'translateY(-50%)', color: "#29030d",
-                                        cursor: 'pointer'
-                                    }} />
-                                    : <FontAwesomeIcon icon={faEye} style={{
-                                        position: 'absolute', right: '10px',
-                                        transform: 'translateY(-50%)', top: '50%',
-                                        color: "#29030d", cursor: 'pointer'
-                                    }}
-                                        onClick={() => setShowPassword(true)} />}
-
+                                    className='input_icon_right'
+                                    onClick={() => setShowPassword(false)} />
+                                    : <FontAwesomeIcon icon={faEye}
+                                        onClick={() => setShowPassword(true)} className='input_icon_right' />}
                             </div>
                             {errors.email?.message && <SubmitError message={errors.email?.message} />}
                         </div>
                         <button type='submit'>{isSubmitting ? "Submitting" : "Submit"}</button>
                         {isSubmitted && !submitsuccess && <SubmitError message="Please Correct The Errors Before Submitting Again" />}
                         {isSubmitSuccessful && submitsuccess && <SubmitSuccess message="Login Success, wait for redirection" />}
-                        <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                            <p style={{ marginBottom: '10px' }}>Account not created yet? Please <Link href="/customer/signup" style={{ color: '#007bff', textDecoration: 'underline' }}>Register</Link></p>
-                            <p>Forgot your password? <Link href="/customer/resetPassword" style={{ color: '#007bff', textDecoration: 'underline' }}>Reset</Link></p>
+                        <div style={{ marginTop: '20px' }}>
+                            <p className='secondary_heading'>Account not created? <Link href="/customer/signup" style={{ color: '#007bff', textDecoration: 'underline' }}>Register</Link></p>
+                            <p className='secondary_heading'>Forgot your password? <Link href="/customer/resetPassword" style={{ color: '#007bff', textDecoration: 'underline' }}>Reset</Link></p>
                         </div>
-
                     </div>
-
                 </form>
-
             </div>
         </>
     );
 };
-
 export default Login;

@@ -2,9 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 :root {
   --primaryDark: #a73754;
   --primaryLight: #f5e0e3;
@@ -12,7 +10,6 @@
   --primaryLightBoxShadow: 0 4px 6px rgba(240, 164, 177, 0.3);
   --gradient: linear-gradient(90deg, rgba(184, 24, 24, 1) 0%, rgba(60, 30, 34, 1) 100%);
 }
-
 /* Body */
 body,
 html {
@@ -25,7 +22,6 @@ html {
   overflow-x: hidden;
   height: 100%;
 }
-
 /* Primary Button */
 button,
 .button {
@@ -39,47 +35,38 @@ button,
   max-width: 10rem;
   text-align: center;
 }
-
 button:hover,
 .button:hover {
   background-color: var(--primaryLight);
   color: var(--primaryDark);
 }
-
 .container {
   max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
-
 }
-
 .center_container {
   height: 80vh;
   display: grid;
   place-items: center;
 }
-
 p {
   color: var(--primaryDark);
   line-height: 1.6;
 }
-
 a {
   color: var(--primaryDark);
   text-decoration: none;
 }
-
 .form_Item {
   margin-bottom: 15px;
 }
-
 .form_Item label {
   display: block;
   margin-bottom: 5px;
   color: var(--primaryDark);
   /* Label color */
 }
-
 .form_Item input[type="text"],
 .form_Item input[type="email"],
 .form_Item input[type="password"],
@@ -92,11 +79,9 @@ a {
   background-color: var(--primaryLight);
   color: var(--primaryDark);
 }
-
 label {
   color: var(--primaryDark);
 }
-
 .form_Item input[type="text"]:focus,
 .form_Item input[type="email"]:focus,
 .form_Item input[type="password"]:focus,
@@ -105,18 +90,15 @@ label {
   border-color: var(--primaryDark);
   /* Border color on focus */
 }
-
 /* Headings */
 .primary_heading {
   color: var(--primaryDark);
   font-size: 1.5rem;
 }
-
 .secondary_heading {
   color: var(--primaryDark);
   font-size: 1rem;
 }
-
 /* Flex items */
 .flex_items {
   display: flex;
@@ -124,13 +106,11 @@ label {
   align-items: center;
   gap: 1rem;
 }
-
 .error_message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
-
 select {
   width: 100%;
   padding: 8px;
@@ -140,14 +120,12 @@ select {
   box-sizing: border-box;
   background-color: var(--primaryLight);
 }
-
 select:focus {
   outline: none;
   /* Removes focus outline */
   border-color: var(--primaryDark);
   /* Example color for focus state */
 }
-
 select option {
   padding: 10px 12px;
   /* Adjust spacing */
@@ -157,70 +135,72 @@ select option {
   /* Visual separation */
   color: var(--primaryDark);
 }
-
 .Header_wrapper {
   background-color: var(--primaryLight);
   box-shadow: var(--primaryLightBoxShadow);
   justify-content: space-between;
 }
-
 .logo_area {
   display: flex;
   align-items: center;
 }
-
 .logo {
   width: 50px;
   height: auto;
 }
-
 .navigation_area {
   flex: 1;
   text-align: right;
 }
-
 .navigation_area ul {
   list-style: none;
   display: flex;
   gap: 20px;
   justify-content: flex-end;
 }
-
 .menu_item {
   cursor: pointer;
   font-weight: bold;
   color: var(--primaryDark);
 }
-
 .menu_item:hover {
   text-decoration: underline;
 }
-
 button:disabled {
-
   background-color: var(--primaryLight);
   /* Using primary light color */
   color: var(--primaryDark);
   /* Text color using primary dark color */
   cursor: not-allowed;
 }
-
 ul li {
   list-style: none;
 }
-
 .form_container {
   width: 400px;
   max-width: 800px;
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 20px;
 }
-
+.input_icon_left {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primaryDark);
+}
+.input_icon_right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primaryDark);
+  cursor: pointer;
+}
 .loginFormContainer {
   display: flex;
   flex-direction: column;
 }
-
 .all_steps {
   display: flex;
   gap: 2rem;
@@ -228,7 +208,6 @@ ul li {
   /* Ensure padding and border are included in the element's total width and height */
   padding: 3rem;
 }
-
 .active_step {
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 1rem;
@@ -240,12 +219,72 @@ ul li {
   flex: 1;
   /* Allow each active_step to grow to fill the available space */
 }
-
 .active_step h1 {
   font-weight: bolder;
   text-transform: capitalize;
 }
-
 .active_step:hover {
   box-shadow: var(--primaryLightBoxShadow);
+}
+.step_number {
+  background: var(--gradient);
+  color: var(--primary);
+  width: 3rem;
+  height: 3rem;
+  color: var(--primaryLight);
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  animation: changeball 1s linear infinite alternate-reverse;
+}
+.profilePicture {
+  width: 200px;
+  height: 200px;
+  background-color: var(--primary);
+  position: relative;
+}
+.profileImageLabel {
+  color: var(--primaryLight);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #29030d;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 111;
+}
+.profileImageInput {
+  display: none;
+}
+.profileImagePreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.profileImagePreview img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@media(max-width:500px) {
+  button,
+  .button {
+    padding: 5px 10px;
+    border-radius: 2.5px;
+    max-width: 6rem;
+  }
+  .primary_heading {
+    font-size: 1rem;
+  }
+  .form_container {
+    width: 300px;
+    padding: 10px;
+  }
 }

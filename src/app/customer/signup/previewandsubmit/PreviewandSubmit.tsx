@@ -1,26 +1,24 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CustomerData } from '../../types'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import dummyProfile from "@/../../public/assets/images/dummyprofile.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../../ui/submitSuccess';
 import SubmitError from '../../../ui/SubmitError';
+import ProfileImage from '../../../ui/ProfileImage';
+import { onChange } from 'react-toastify/dist/core/store';
 interface CustomerDataProps {
   customerDatas: CustomerData,
   previewDetailsValue: (nextValue: number) => void;
 }
-
 const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewDetailsValue }) => {
   const {
     fullName,
-    imageUrl,
     email,
     password,
-    confirmPassword,
     buildingNumber,
     floorNumber,
     roomNumber,
@@ -30,80 +28,84 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
   const router = useRouter()
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [uploadError, setUplaodError] = useState<string>("")
   const handlePrev = () => {
-
     previewDetailsValue(3)
   }
-  async function submitHanler(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
+  const submitHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    try {
-      setSubmitted(true)
-      setLoading(true);
-      const { confirmPassword, ...dataToSend } = customerDatas;
-      const response = await axios.post("/api/customer/signup", dataToSend);
-      const result = response.data;
-      if (result) {
-        setLoading(false)
-
+    if (file === null) {
+      setUplaodError("Please Upload Profile Image First")
+    } else {
+      try {
+        setLoading(true);
+        const formData = new FormData();
+        if (file) {
+          formData.append('file', file);
+        }
+        formData.append('fullName', fullName);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('buildingNumber', buildingNumber);
+        formData.append('roomNumber', roomNumber);
+        formData.append('floorNumber', floorNumber);
+        formData.append('phoneNumber', phoneNumber);
+        const response = await axios.post("/api/customer/signup", formData, {
+          headers: { "content-type": "multipart/form-data" }
+        });
+        const result = response.data;
+        if (result.success) {
+          router.push("/customer/dashboard/main")
+          toast.success(result.message);
+        } else {
+          toast.error(result.message)
+        }
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Submitting Form")
       }
-
-      if (result.success) {
-        setSuccess(true)
-        toast.success(result.message)
-        router.push("/customer/dashboard/main")
-      } else {
-        setSuccess(false);
-        toast.error(result.message)
-      }
+    };
+  }
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      let url = URL.createObjectURL(selectedFile);
+      setImageUrl(url)
     }
-    catch (error) {
-      setLoading(false)
-    }
-
   }
   return (
     <div className='container'>
-
       <div className='stepInputs_Wrapper'>
-
+        {submitted && uploadError && <SubmitError message={uploadError} />}
         {submitted && success && !loading && <SubmitSuccess message="User Registered ! Please Wait for Redirection" />}
         {submitted && !success && !loading && <SubmitError message="Please Login ! Provided Email already Registered" />}
-
+        <ProfileImage onChange={onChange} title='Upload Profile Picture' imageUrl={imageUrl} />
         <div className="form_Item">
           <label>Full Name</label>
           <input type="text" value={fullName} readOnly />
         </div>
-
         <div className="form_Item">
           <label>Email</label>
           <input type="text" value={email} readOnly />
         </div>
-
         <div className="form_Item">
           <label>Phone Number</label>
           <input type="text" value={phoneNumber} readOnly />
         </div>
-
         <div className="form_Item">
           <label>Address</label>
           <input type="text" value={`Building Number : ${buildingNumber}, Floor Number : ${floorNumber}, Room Number:${roomNumber}`} readOnly />
         </div>
-
-        <div className="form_Item">
-          <label>Profile Image</label>
-          {/* Assuming there's an <img> tag or some other way to display the profile image */}
-        </div>
-
-        <img src={imageUrl} alt="Profile" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-
         <div className='buttonsWrapper' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
           <button onClick={handlePrev}><FontAwesomeIcon icon={faArrowLeft} /></button>
-          <button onClick={submitHanler} disabled={submitted && loading}>{loading ? "Loading" : "Submit"}</button>
+          <button onClick={submitHandler} disabled={submitted && loading}>{loading ? "Submitting" : "Submit"}</button>
         </div>
-
+        <h1 className='primary_heading' style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>Step <span className='step_number'>4</span> of <span>4</span></h1>
       </div>
     </div>
   )
 }
-
 export default PreviewandSubmit

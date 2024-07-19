@@ -10,25 +10,20 @@ interface SingleServiceProps {
     serviceDescription: string;
     icon: IconDefinition; // IconDefinition type from FontAwesome
 }
-
 const SingleService: React.FC<SingleServiceProps> = ({ title, imageSrc, altTag, serviceDescription, icon }) => {
     return (
         <div className="service-item">
-            <div className="item-image">
+            <div className="item-image responsive_flex">
                 <img src={imageSrc} alt={altTag} className="service-item-img" />
             </div>
-
             <p className="section-paragraph">
                 {serviceDescription}
             </p>
             <div className="item-title">
-                <h4 className="service-sub-heading">
-                    <FontAwesomeIcon icon={icon} className='borderChange' />
-                    <div className='primary_heading'>{title}</div>
-                </h4>
+                <FontAwesomeIcon icon={icon} className='borderChange' />
+                <div className='primary_heading'>{title}</div>
             </div>
         </div>
     );
 }
-
 export default SingleService;
