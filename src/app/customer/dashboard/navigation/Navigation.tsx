@@ -26,9 +26,6 @@ const Navigation = () => {
   };
   return (
     <nav className='dashboardNavigation'>
-      <div className='logo_area'>
-        <Image src={logo} className='logo' alt='Logo' priority={true} />
-      </div>
       <ul>
         <li className={pathName === "/customer/dashboard/main" ? "active" : ""}>
           <Link href="/customer/dashboard/main">

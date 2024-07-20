@@ -3,6 +3,10 @@ import crypto from 'crypto';
 export interface CustomerDocument extends Document {
   fullName: string;
   imageUrl: string;
+  fileName: String;
+  fileSize: Number,
+  fileType: String,
+  imageUniqueName: String,
   email: string;
   password: string;
   passwordHistory: Array<{ password: string; createdAt: Date }>;
@@ -28,6 +32,22 @@ const customerSchema: Schema<CustomerDocument> = new Schema({
     type: String,
     required: true,
   },
+  fileName: {
+    type: String,
+    required: true
+  },
+  fileType: {
+    type: String,
+    required: true,
+  },
+  fileSize: {
+    type: Number,
+    required: true
+  },
+  imageUniqueName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -42,7 +62,7 @@ const customerSchema: Schema<CustomerDocument> = new Schema({
   passwordHistory: [
     {
       password: { type: String, required: true },
-      createdAt: { type: Date, default: Date.now() }
+      createdAt: { type: Date, default: new Date() }
     }
   ],
   buildingNumber: {

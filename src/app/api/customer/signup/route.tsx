@@ -8,6 +8,15 @@ import path from 'path';
 import { uploadImage } from "../../../../helper/uploadImage";
 import { ConnectToDb } from "../../../../helper/connectToDb";
 import EmailVerificationTemplate from "../../../emailTemplates/EmailVerificationTemplate";
+function generateUniqueName(length = 16) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 export async function POST(req: NextRequest) {
   try {
     await ConnectToDb();
@@ -22,6 +31,9 @@ export async function POST(req: NextRequest) {
     const floorNumber = formData.get('floorNumber') as string;
     const phoneNumber = formData.get('phoneNumber') as string;
     const file = formData.get('file') as unknown as File;
+    const fileName = file.name;
+    const fileSize = file.size;
+    const fileType = file.type;
     // Check if file base64 string is provided
     if (!file) {
       return NextResponse.json({
@@ -36,7 +48,8 @@ export async function POST(req: NextRequest) {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
     // Decode base64 string and upload the image
-    const result = await uploadImage(file, "customerImages");
+    const imageUniqueName = generateUniqueName();
+    const result = await uploadImage(file, "customerImages", imageUniqueName);
     const { error, progress, downloadUrl } = result;
     console.log(result.error, result.progress, result.downloadUrl);
     if (!downloadUrl) {
@@ -51,12 +64,18 @@ export async function POST(req: NextRequest) {
       floorNumber,
       phoneNumber,
       imageUrl: downloadUrl,
-      password: hashedPassword
+      password: hashedPassword,
+      fileName,
+      fileType,
+      fileSize,
+      imageUniqueName,
     });
     // Generate the VerifyToken.
     const verifyToken = newCustomer.getVerificationToken();
     // Save the new Customer to the database
     const savedCustomer = await newCustomer.save();
+    savedCustomer.passwordHistory.push({ password: hashedPassword, createdAt: new Date() })
+    await savedCustomer.save();
     // generate verification Link
     const verificationLink = `http://localhost:3000/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
     // Send Email to user
@@ -82,4 +101,7 @@ export async function POST(req: NextRequest) {
     console.error("Error saving customer details:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
+}
+function uuidv4() {
+  throw new Error("Function not implemented.");
 }

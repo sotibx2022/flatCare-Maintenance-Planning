@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
 import { Customer } from '../../../../models/customer.models';
 import { isTokenExpired } from '../../../../helper/isTokenExpired';
+import { uploadImage } from '../../../../helper/uploadImage';
 export async function PUT(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   isTokenExpired(request, response);
@@ -12,8 +13,10 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     const buildingNumber = formData.get('buildingNumber');
     const floorNumber = formData.get('floorNumber');
     const roomNumber = formData.get('roomNumber');
-    const file = formData.get('file');
-    console.log(file);
+    const file = formData.get('file') as unknown as File
+    const fileName = file.name;
+    const fileType = file.type;
+    const fileSize = file.size;
     // Retrieve the original customer data
     const originalCustomer = await Customer.findOne({ email: email });
     if (!originalCustomer) {
@@ -23,6 +26,8 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         success: false,
       });
     }
+    const result = await uploadImage(file, "customerImages", originalCustomer.imageUniqueName.toString());
+    const { downloadUrl } = result
     // Check if there are any changes
     const isSame =
       originalCustomer.fullName === fullName &&
@@ -30,7 +35,9 @@ export async function PUT(request: NextRequest, response: NextResponse) {
       originalCustomer.buildingNumber === buildingNumber &&
       originalCustomer.floorNumber === floorNumber &&
       originalCustomer.roomNumber === roomNumber &&
-      originalCustomer.imageUrl === imageUrl;
+      originalCustomer.fileName === fileName &&
+      originalCustomer.fileSize === fileSize &&
+      originalCustomer.fileType === fileType;
     if (isSame) {
       return NextResponse.json({
         message: "There is nothing to update.",
@@ -41,7 +48,7 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     // Update the customer data if there are changes
     const updatedCustomer = await Customer.findOneAndUpdate(
       { email: email },
-      { fullName, email, buildingNumber, floorNumber, roomNumber, imageUrl },
+      { fullName, email, buildingNumber, floorNumber, roomNumber, fileName, fileSize, fileType, imageUrl: downloadUrl },
       { new: true } // Return the updated document
     );
     return NextResponse.json({
