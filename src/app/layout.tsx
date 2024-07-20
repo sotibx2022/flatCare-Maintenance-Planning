@@ -4,6 +4,7 @@ import "./globals.css";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CommonHeader from "./ui/header/commonHeader/CommonHeader";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,14 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="FlatCare Maintenance Planning - Your go-to solution for efficient and effective maintenance planning."/>
-    <meta name="keywords" content="FlatCare, Maintenance Planning, Maintenance, Planning, Efficiency"/>
-    <meta name="author" content="Binayaraj Soti"/>
-    <title>FlatCare Maintenance Planning</title>
-</head>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="FlatCare Maintenance Planning - Your go-to solution for efficient and effective maintenance planning." />
+        <meta name="keywords" content="FlatCare, Maintenance Planning, Maintenance, Planning, Efficiency" />
+        <meta name="author" content="Binayaraj Soti" />
+        <title>FlatCare Maintenance Planning</title>
+      </head>
       <body className={inter.className}>
+        <CommonHeader />
         {children}
         <ToastContainer />
       </body>

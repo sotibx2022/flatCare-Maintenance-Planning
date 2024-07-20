@@ -1,21 +1,21 @@
 // sendEmailToCustomer.ts
 import nodemailer from 'nodemailer';
-import fs from 'fs';
-import path from 'path';
 // Create a transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "sandbox.smtp.mailtrap.io",
+    port: parseInt("2525" as string),
     auth: {
-        user: process.env.email,
-        pass: process.env.password
+        user: "8ab962a7c32f5d",
+        pass: "ef26e3d68d8e84"
     },
 });
 // Function to send email to customer
 export async function sendEmailToCustomer(email: string, subject: string, htmlContent: string) {
+    console.log(process.env.HOST, process.env.PORT, process.env.USERNAME, process.env.PASSWORD, process.env.EMAIL)
     try {
         // Email options
         const mailOptions = {
-            from: process.env.email,
+            from: "sbinayaraj@gmail.com",
             to: email,
             subject: subject,
             html: htmlContent,

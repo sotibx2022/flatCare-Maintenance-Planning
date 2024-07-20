@@ -57,7 +57,6 @@ const Page: React.FC = () => {
   };
   return (
     <>
-      <Header />
       <div className='container'>
         <div className='steps'>
         </div>

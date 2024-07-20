@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { uploadImage } from "../../../../helper/uploadImage";
 import { ConnectToDb } from "../../../../helper/connectToDb";
+import EmailVerificationTemplate from "../../../emailTemplates/EmailVerificationTemplate";
 export async function POST(req: NextRequest) {
   try {
     await ConnectToDb();
@@ -52,14 +53,18 @@ export async function POST(req: NextRequest) {
       imageUrl: downloadUrl,
       password: hashedPassword
     });
+    // Generate the VerifyToken.
+    const verifyToken = newCustomer.getVerificationToken();
     // Save the new Customer to the database
     const savedCustomer = await newCustomer.save();
+    // generate verification Link
+    const verificationLink = `http://localhost:3000/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
+    // Send Email to user
+    // Call Email Verification Template
+    const registerEmail = EmailVerificationTemplate(verificationLink)
+    await sendEmailToCustomer(email, "Customer Registration Verification", registerEmail)
     // Generate a JWT token for authentication
     const token = jwt.sign({ userId: savedCustomer._id }, process.env.SECRET_KEY!, { expiresIn: '1h' });
-    // Set the token in the response cookies
-    // const templatePath = path.join(process.cwd(), 'templates', 'registerEmailTemplate.html');
-    // const templateContent = fs.readFileSync(templatePath, 'utf8');
-    // await sendEmailToCustomer(email, "User Registration SuccessFull", templateContent);
     let response: NextResponse = NextResponse.json({
       message: "User details saved successfully",
       success: true,
