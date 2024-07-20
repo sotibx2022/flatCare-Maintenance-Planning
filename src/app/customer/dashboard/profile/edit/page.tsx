@@ -83,7 +83,7 @@ const EditCustomerProfile = () => {
     }
   }
   return (
-    <section style={{ display: 'flex', justifyContent: 'flex-start', gap: '30px', marginTop: '20px' }}>
+    <section style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', gap: '10px', marginTop: '20px', maxWidth: '400px' }}>
       <h1 className='primary_heading'>Customer Edit Profile</h1>
       <ProfileImage imageUrl={customerDatas.imageUrl} onChange={handleImageChange} />
       <form className='editForm' style={{ minWidth: '400px', marginTop: '50px' }} onSubmit={handleSubmit(onSubmit)}>

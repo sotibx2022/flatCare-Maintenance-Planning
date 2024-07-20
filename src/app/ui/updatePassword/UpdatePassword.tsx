@@ -47,12 +47,7 @@ const UpdatePassword = () => {
             <div className='form_Item'>
                 <label htmlFor='newPassword'>New Password</label>
                 <div style={{ position: 'relative' }}>
-                    <FontAwesomeIcon icon={faLock} style={{
-                        position: 'absolute', top: '50%',
-                        transform: 'translateY(-50%)',
-                        color: '#29030d',
-                        left: '10px'
-                    }} />
+                    <FontAwesomeIcon icon={faLock} className='input_icon_left' />
                     <input
                         type={showPassword ? "text" : "password"}
                         placeholder="New Password"
@@ -66,22 +61,14 @@ const UpdatePassword = () => {
                             }
                         })}
                     />
-                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
-                        position: 'absolute', color: '#29030d',
-                        top: '50%', right: '10px', transform: 'translateY(-50%)'
-                    }} onClick={toggleShowPassword} />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className='input_icon_right' onClick={toggleShowPassword} />
                 </div>
                 {errors.newPassword?.message && <SubmitError message={errors.newPassword.message} />}
             </div>
             <div className='form_Item'>
                 <label htmlFor='confirmNewPassword'>Confirm New Password</label>
                 <div style={{ position: 'relative' }}>
-                    <FontAwesomeIcon icon={faLock} style={{
-                        position: 'absolute', top: '50%',
-                        transform: 'translateY(-50%)',
-                        color: '#29030d',
-                        left: '10px'
-                    }} />
+                    <FontAwesomeIcon icon={faLock} className='input_icon_left' />
                     <input
                         type={showPassword ? "text" : "password"}
                         placeholder="Confirm New Password"
@@ -92,10 +79,7 @@ const UpdatePassword = () => {
                             validate: (value) => value === newPassword || "Password Don't Match ! Try Again"
                         })}
                     />
-                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
-                        position: 'absolute', color: '#29030d',
-                        top: '50%', right: '10px', transform: 'translateY(-50%)'
-                    }} onClick={toggleShowPassword} />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className='input_icon_right' onClick={toggleShowPassword} />
                 </div>
                 {errors.confirmNewPassword?.message && <SubmitError message={errors.confirmNewPassword.message} />}
             </div>

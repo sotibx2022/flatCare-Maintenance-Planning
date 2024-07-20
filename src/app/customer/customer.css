@@ -43,6 +43,9 @@
   height: 100%;
   transition: 0.5s linear all;
   width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
 }
 #rightSide.expandRightSide {
   margin-left: -300px;
@@ -156,6 +159,17 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+}
+.create_Notification_container {
+  min-width: 300px;
+  width: 500px;
+  max-width: 600px;
+}
+.notification_table_container {
+  overflow-x: scroll;
+}
+.notification-table {
+  width: 100%;
 }
 @media (max-width:500px) {
   .stepInputs_Wrapper {

@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import SubmitError from '../../../../ui/SubmitError';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../../../ui/submitSuccess';
-
 const Page = () => {
   const [customerDatas, setCustomerDatas] = useCustomerData();
   const [submitSuccess, setSubmitSuccess] = useState(false)
@@ -25,7 +24,6 @@ const Page = () => {
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter()
-
   useEffect(() => {
     const findCategories = async () => {
       const allCategories: string[] | undefined = await getCategoreis();
@@ -35,38 +33,30 @@ const Page = () => {
     };
     findCategories();
   }, []);
-
   const selectPriority = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPriority(e.target.value);
   };
-
   const selectCategoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategoryValue(e.target.value);
   };
-
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNotificationTitle(e.target.value);
   };
-
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNotificationDescription(e.target.value);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const error = validateNotificationDetails(
       notificationTitle,
       notificationDescription,
       priority,
       categoryValue
     );
-
     setNotificationErrors(error);
-
     if (!noficationErrors.notificationTitle || !noficationErrors.notificationDescription ||
       !noficationErrors.notificationCategory || !noficationErrors.notificationPriority
     ) {
-
       setLoading(true);
       try {
         const dataToSend = {
@@ -76,17 +66,14 @@ const Page = () => {
           notificationCategory: categoryValue,
           createdBy: customerDatas.fullName,
           userId: customerDatas.userId,
-
           address: {
             buildingNumber: customerDatas.buildingNumber,
             flatNumber: customerDatas.floorNumber,
             roomNumber: customerDatas.roomNumber
           }
         };
-
         const response = await axios.post('http://localhost:3000/api/notification', dataToSend);
         const result = response.data;
-
         setLoading(false);
         if (result.success) {
           setSubmitSuccess(true)
@@ -105,9 +92,9 @@ const Page = () => {
     }
   };
   return (
-    <div className="container">
+    <div className='create_Notification_container'>
       <h1 className='primary_heading'>Create Notification</h1>
-      <div className="container">
+      <div>
         {submitSuccess && <SubmitSuccess message='Notification Created Successfully ! Wait for Redirection' />}
         <form onSubmit={handleSubmit}>
           <div className="form_Item">
@@ -196,8 +183,6 @@ const Page = () => {
         </form>
       </div>
     </div>
-
   );
 };
-
 export default Page;

@@ -7,15 +7,13 @@ export async function POST(request: NextRequest, response: NextResponse) {
     ConnectToDb();
     await isTokenExpired(request, response); // Ensure await is used here to wait for isTokenExpired to complete
     try {
-
         const { email, newPassword } = await request.json();
         const customer = await Customer.findOne({ email: email });
-
         if (customer) {
             const hashedNewPassword = await bcrypt.hash(newPassword, 10);
             const comparisonPromises = customer.passwordHistory.map(async (passwordObj) => {
                 try {
-                    return await bcrypt.compare(passwordObj.password, hashedNewPassword);
+                    return await bcrypt.compare(newPassword, passwordObj.password);
                 } catch (error) {
                     console.error('Error comparing passwords:', error);
                     return false; // Handle error condition and return a boolean

@@ -98,12 +98,7 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
             <label>Enter Original Password</label>
             <div className='form_Item' style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <div style={{ position: 'relative' }}>
-                    <FontAwesomeIcon icon={faLock} style={{
-                        position: 'absolute', top: '50%',
-                        transform: 'translateY(-50%)',
-                        color: '#29030d',
-                        left: '10px'
-                    }} />
+                    <FontAwesomeIcon icon={faLock} className='input_icon_left' />
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Original Password"
@@ -111,10 +106,7 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
                         onChange={changeHandler} onBlur={blurHandler}
                         style={{ paddingLeft: '30px', paddingRight: '30px' }}
                     />
-                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{
-                        position: 'absolute', color: '#29030d',
-                        top: '50%', right: '10px', transform: 'translateY(-50%)'
-                    }} onClick={toggleShowPassword} />
+                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className='input_icon_right' onClick={toggleShowPassword} />
                 </div>
                 <button onClick={checkPassword}>{loading ? "Validating" : "Check"}</button>
             </div>

@@ -9,31 +9,26 @@ import { useRouter } from 'next/navigation';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 import SubmitError from '../../../../ui/SubmitError';
 import { toast } from 'react-toastify';
-
 interface FormData {
     notificationTitle: string;
     notificationDescription: string;
     notificationPriority: string;
     notificationCategory: string;
 }
-
 interface EditNotificationProps {
     params: {
         editId: string;
     }
 }
-
 const FormComponent: React.FC<EditNotificationProps> = (props) => {
     const router = useRouter()
     const editId = props.params.editId;
-
     const [categories, setCategories] = useState<string[] | undefined>();
     const [notification, setNotification] = useSingleNotification(editId);
     const [customerDatas, setCustomerDatas] = useCustomerData();
     const [submitError, setSubmitError] = useState();
     const { register, setValue, handleSubmit, formState: { errors, isSubmitted, isValid, isSubmitting } } = useForm<FormData>();
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
     useEffect(() => {
         const findCategory = async () => {
             const categoreis = await getCategoreis();
@@ -41,7 +36,6 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
         };
         findCategory();
     }, []);
-
     useEffect(() => {
         if (notification.notificationTitle) {
             setValue('notificationTitle', notification.notificationTitle);
@@ -50,12 +44,10 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
             setValue('notificationCategory', notification.notificationCategory);
         }
     }, [notification, setValue]);
-
     const onSubmit = async (data: FormData) => {
         try {
             const response = await axios.put(`/api/notification/${editId}`, { editId, data });
             const result = response.data;
-
             if (result.success) {
                 toast.success(result.message);
                 router.push("/customer/dashboard/notifications/list");
@@ -68,9 +60,8 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
             alert("An error occurred while updating the notification. Please try again.");
         }
     };
-
     return (
-        <div>
+        <div className='create_Notification_container'>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='primary_heading'>Edit Notification</h1>
                 {submitError && <SubmitError message={submitError} />}
@@ -171,12 +162,9 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
                 <button type="submit">{isSubmitting ? "loading" : "submit"}</button>
             </form>
             {isSubmitted && showSuccessMessage && (
-
                 <SubmitSuccess message="Notification SuccessFully Updated." />
-
             )}
         </div>
     );
 };
-
 export default FormComponent;

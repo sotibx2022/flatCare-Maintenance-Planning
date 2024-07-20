@@ -14,6 +14,14 @@ interface Notification {
   notificationCategory: string,
   _id: string,
 }
+const truncate_title = (title: string) => {
+  const words = title.split(" ");
+  if (words.length > 3) {
+    const truncatedTitle = words.slice(0, 3).join(" ") + "...";
+    return truncatedTitle.toUpperCase();
+  }
+  else return title.toUpperCase();
+}
 const page = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const router = useRouter()
@@ -49,7 +57,7 @@ const page = () => {
     return timeDifferenceInDays;
   }
   return (
-    <>
+    <div className='notification_table_container'>
       {loading ? (
         <h1>Loading ...</h1>
       ) : (
@@ -70,9 +78,9 @@ const page = () => {
               </thead>
               <tbody>
                 {notifications.map((notification, index) => (
-                  <tr key={index}>
+                  <tr key={index} className='notificationSingleList'>
                     <td>1234</td>
-                    <td>{notification.notificationTitle}</td>
+                    <td>{truncate_title(notification.notificationTitle)}</td>
                     <td>{notification.notificationCategory}</td>
                     {notification.notificationPriority === "Emergency" && (
                       <td className='emergencyNotification'>{notification.notificationPriority}</td>
@@ -99,7 +107,7 @@ const page = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 }
 export default page

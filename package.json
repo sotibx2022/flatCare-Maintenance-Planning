@@ -34,7 +34,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "react-toastify": "^10.0.5",
-    "recharts": "^2.12.7"
+    "recharts": "^2.13.0-alpha.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
