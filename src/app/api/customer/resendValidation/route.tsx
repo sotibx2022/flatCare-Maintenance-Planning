@@ -30,9 +30,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         const currentDate = new Date();
         // Check if verification token is expired
         const isExpired = verifyTokenExpiry && verifyTokenExpiry < currentDate;
-        console.log(isExpired);
-        console.log("verifyTokenExpiry", verifyTokenExpiry);
-        console.log("currentDate", currentDate);
         if (!isExpired) {
             return NextResponse.json({ message: "Your previous verification token is not expired yet.", status: 400, success: false });
         }

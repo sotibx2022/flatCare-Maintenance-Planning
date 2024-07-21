@@ -39,7 +39,6 @@
 }
 #rightSide {
   padding: 20px;
-  box-shadow: var(--primaryLightBoxShadow);
   height: 100%;
   transition: 0.5s linear all;
   width: 100%;
@@ -49,6 +48,7 @@
 }
 #rightSide.expandRightSide {
   margin-left: -300px;
+  min-width: 300px;
 }
 .viewForm {
   display: flex;
@@ -59,18 +59,18 @@
   cursor: pointer;
   padding: 8px 16px;
   background-color: #f00;
-  /* Example background color */
-  color: #fff;
-  /* Example text color */
+  color: var(--primaryLight);
   border: none;
   border-radius: 4px;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
   margin-top: 1rem;
+  min-width: 150px;
 }
 .logoutButton:hover {
   background-color: #d00;
+  color: var(--primaryLight);
 }
 .dashboardNavigation {
   width: 100%;
@@ -120,23 +120,12 @@
   padding: 20px;
   border-radius: 15px;
   margin: 0 auto;
-  box-shadow: var(--primaryDarkBoxShadow);
 }
 .steps {
   display: flex;
   gap: 1rem;
   justify-content: center;
   align-items: center;
-}
-.Customer_Header_wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: transparent;
-  border-top: 10px solid red;
-  color: var(--primaryDark);
-  background-color: red;
 }
 .dashboardNavigation .logo {
   width: 20rem;

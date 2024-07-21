@@ -9,32 +9,35 @@ const NotificationCreatedTemplate = (notificationTitle: string): string => {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f5e0e3;
             margin: 0;
             padding: 20px;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
+            background-color: #f5e0e3;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
         h1 {
-            color: #007bff;
+            color: #a73754;;
         }
         p {
             color: #333333;
             line-height: 1.5;
         }
         a {
-            color: #007bff;
+            color: white;
+            background-color:#a73754;
             text-decoration: none;
+            padding:0.1rem 0.5rem;
         }
-        a:hover {
-            text-decoration: underline;
-        }
+             .logo{
+            width:100px;
+            height:100px;
+            }
     </style>
 </head>
 <body>
@@ -42,7 +45,7 @@ const NotificationCreatedTemplate = (notificationTitle: string): string => {
         <h1>New Notification Created</h1>
         <p>You created a new notification with the title: <strong>${notificationTitle}</strong>.</p>
         <p>You may visit <a href="http://localhost:3000/customer/dashboard/notifications/list">this link</a> to edit the notification.</p>
-    </div>
+        </div>
 </body>
 </html>
 `;

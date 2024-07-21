@@ -4,6 +4,7 @@ import { CustomerData } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import SubmitError from '../../../ui/SubmitError';
+import Link from 'next/link';
 interface PersonalDetailsProps {
   personalDetailsValue: (currentFullName: string, currentPhoneNumber: string, next: number) => void;
   customerDatas: CustomerData;
@@ -44,7 +45,7 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({ personalDetailsValue,
     setFocus({ ...focus, [name]: true })
   }
   return (
-    <div className='container'>
+    <div>
       <div className='stepInputs_Wrapper'>
         <div className="form_Item">
           <label>Full Name</label>
@@ -88,6 +89,11 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({ personalDetailsValue,
           <button onClick={handleNext} disabled={isButtonDisabled}><FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
         <h1 className='primary_heading' style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>Step <span className='step_number'>1</span> of <span>4</span></h1>
+      </div>
+      <div style={{ marginTop: '20px' }}>
+        <p className='secondary_heading'>Account Already created? <Link href="/customer/login" style={{ color: '#007bff' }}>Login</Link></p>
+        <p className='secondary_heading'>Forgot your password? <Link href="/customer/forgetPassword" style={{ color: '#007bff' }}>Reset</Link></p>
+        <p className='secondary_heading'>Not Verified Yet? <Link href="/customer/resendValidation" style={{ color: '#007bff' }}>Verify</Link></p>
       </div>
     </div>
   )

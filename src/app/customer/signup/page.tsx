@@ -57,10 +57,8 @@ const Page: React.FC = () => {
   };
   return (
     <>
-      <div className='container'>
-        <div className='steps'>
-        </div>
-        <form>
+      <div className='signupFormContainer container'>
+        <form className='form_container'>
           <h1 className='primary_heading' style={{ textAlign: "center" }}>Customer Sign Up</h1>
           {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
           {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}

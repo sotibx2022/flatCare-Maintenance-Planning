@@ -18,7 +18,7 @@
     align-items: center;
     gap: 6rem;
 }
-#about-section img {
+.about-card img {
     max-width: 500px;
     border-radius: 50%;
     border: 10px solid var(--primaryDark);

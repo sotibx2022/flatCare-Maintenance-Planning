@@ -81,9 +81,9 @@ const page = () => {
                     {isSubmitted && errorMessage && <SubmitError message={errorMessage} />}
                     {isSubmitSuccessful && submitsuccess && successMessage && <SubmitSuccess message={successMessage} />}
                     <div style={{ marginTop: '20px' }}>
-                        <p className='secondary_heading'>Account not created? <Link href="/customer/signup" style={{ color: '#007bff', textDecoration: 'underline' }}>Register</Link></p>
-                        <p className='secondary_heading'>Forgot your password? <Link href="/customer/forgetPassword" style={{ color: '#007bff', textDecoration: 'underline' }}>Reset</Link></p>
-                        <p className='secondary_heading'>Already Verified? <Link href="/customer/login" style={{ color: '#007bff', textDecoration: 'underline' }}>Login</Link></p>
+                        <p className='secondary_heading'>Account not created? <Link href="/customer/signup" style={{ color: '#007bff' }}>Register</Link></p>
+                        <p className='secondary_heading'>Forgot your password? <Link href="/customer/forgetPassword" style={{ color: '#007bff' }}>Reset</Link></p>
+                        <p className='secondary_heading'>Already Verified? <Link href="/customer/login" style={{ color: '#007bff' }}>Login</Link></p>
                     </div>
                 </div>
             </form>

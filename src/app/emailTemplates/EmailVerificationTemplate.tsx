@@ -11,14 +11,14 @@ const EmailVerificationTemplate = (verificationLink: string): string => {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f5e0e3;
             text-align: center;
         }
         .container {
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
+            background-color: #f5e0e3;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@ const EmailVerificationTemplate = (verificationLink: string): string => {
             padding: 10px 20px;
             font-size: 16px;
             color: #ffffff;
-            background-color: #007bff;
+            background-color: #a73754;
             text-decoration: none;
             border-radius: 5px;
         }
@@ -38,6 +38,13 @@ const EmailVerificationTemplate = (verificationLink: string): string => {
             color: #777;
             margin-top: 20px;
         }
+            p{
+            color:#a73754;
+            }
+            .logo{
+            width:100px;
+            height:100px;
+            }
     </style>
 </head>
 <body>
@@ -45,9 +52,9 @@ const EmailVerificationTemplate = (verificationLink: string): string => {
         <h1>Registration Successful</h1>
         <p>Dear User,</p>
         <p>Thank you for registering with us. We look forward to serving you!</p>
-        <p>Please <a href="${verificationLink}" class="button">click here to verify your email</a></p>
+        <p><a href="${verificationLink}" class="button">click </a>Verify your email</p>
         <div class="footer">
-            <p>Regards,<br>Your App Team</p>
+            <p>Regards,<br>FlatCare Maintenance Planner.</p>
         </div>
     </div>
 </body>

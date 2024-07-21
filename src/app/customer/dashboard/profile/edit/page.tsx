@@ -86,7 +86,7 @@ const EditCustomerProfile = () => {
     <section style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', gap: '10px', marginTop: '20px', maxWidth: '400px' }}>
       <h1 className='primary_heading'>Customer Edit Profile</h1>
       <ProfileImage imageUrl={customerDatas.imageUrl} onChange={handleImageChange} />
-      <form className='editForm' style={{ minWidth: '400px', marginTop: '50px' }} onSubmit={handleSubmit(onSubmit)}>
+      <form className='editForm' style={{ minWidth: '300px', marginTop: '50px' }} onSubmit={handleSubmit(onSubmit)}>
         {isSubmitted && submitError && <SubmitError message='Nothing to Update ! Please Modify Form Data' />}
         {isSubmitted && submitSuccess && <SubmitSuccess message="Datas Updated SuccessFully ! wait for Redirection" />}
         <div className="form_Item">
