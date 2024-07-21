@@ -1,6 +1,9 @@
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { firestore, storage } from "./fireBase";
-export const uploadImage = async (file: File, folderName: string, imageUniqueName: string): Promise<{ error: string | null; progress: number; downloadUrl: string | null }> => {
+interface UploadImageResponse {
+  error: string | null; progress: number; downloadUrl: string | null
+}
+export const uploadImage = async (file: File, folderName: string, imageUniqueName: string): Promise<UploadImageResponse> => {
   const storageRef = ref(storage, `${folderName}/${imageUniqueName}`);
   // Create a reference to the file to upload
   const uploadTask = uploadBytesResumable(storageRef, file);

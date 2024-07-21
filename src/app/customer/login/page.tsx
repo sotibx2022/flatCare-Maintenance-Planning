@@ -85,7 +85,8 @@ const Login = () => {
                         {isSubmitSuccessful && submitsuccess && <SubmitSuccess message="Login Success, wait for redirection" />}
                         <div style={{ marginTop: '20px' }}>
                             <p className='secondary_heading'>Account not created? <Link href="/customer/signup" style={{ color: '#007bff', textDecoration: 'underline' }}>Register</Link></p>
-                            <p className='secondary_heading'>Forgot your password? <Link href="/customer/resetPassword" style={{ color: '#007bff', textDecoration: 'underline' }}>Reset</Link></p>
+                            <p className='secondary_heading'>Forgot your password? <Link href="/customer/forgetPassword" style={{ color: '#007bff', textDecoration: 'underline' }}>Reset</Link></p>
+                            <p className='secondary_heading'>Not Verified Yet? <Link href="/customer/resendValidation" style={{ color: '#007bff', textDecoration: 'underline' }}>Verify</Link></p>
                         </div>
                     </div>
                 </form>

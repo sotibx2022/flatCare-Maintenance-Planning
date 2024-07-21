@@ -134,23 +134,9 @@
   align-items: center;
   padding: 20px;
   background-color: transparent;
-}
-.Customer_Header_wrapper a {
+  border-top: 10px solid red;
   color: var(--primaryDark);
-}
-.lightModeBox {
-  width: 2rem;
-  height: 2rem;
-  background-color: var(--primaryLight);
-  box-shadow: var(--primaryDarkBoxShadow);
-  border-radius: 10px;
-}
-.darkModeBox {
-  width: 2rem;
-  height: 2rem;
-  background-color: var(--primaryDark);
-  box-shadow: var(--primaryLightBoxShadow);
-  border-radius: 10px;
+  background-color: red;
 }
 .dashboardNavigation .logo {
   width: 20rem;

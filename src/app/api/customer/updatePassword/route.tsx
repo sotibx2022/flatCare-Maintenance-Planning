@@ -5,9 +5,9 @@ import bcrypt from 'bcryptjs';
 import { isTokenExpired } from "../../../../helper/isTokenExpired";
 export async function POST(request: NextRequest, response: NextResponse) {
     ConnectToDb();
-    await isTokenExpired(request, response); // Ensure await is used here to wait for isTokenExpired to complete
     try {
         const { email, newPassword } = await request.json();
+        console.log(email);
         const customer = await Customer.findOne({ email: email });
         if (customer) {
             const hashedNewPassword = await bcrypt.hash(newPassword, 10);

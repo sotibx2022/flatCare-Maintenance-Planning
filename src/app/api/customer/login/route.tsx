@@ -1,14 +1,11 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import { ConnectToDb } from "../../../../helper/connectToDb";
 import { Customer } from "../../../../models/customer.models";
 export async function GET(request: NextRequest, response: NextResponse) {
-
     ConnectToDb()
     try {
-
         const customers = await Customer.find();
         return NextResponse.json({
             message: "Customers found successfully",
@@ -25,11 +22,9 @@ export async function GET(request: NextRequest, response: NextResponse) {
         });
     }
 }
-
 export async function POST(request: NextRequest, response: NextResponse) {
     ConnectToDb();
     try {
-
         const { currentEmail, currentPassword } = await request.json();
         const customer = await Customer.findOne({ email: currentEmail });
         console.log(currentEmail, currentPassword)
@@ -48,6 +43,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
                     success: false,
                     customer
                 })
+            } else if (!customer.isVerified) {
+                return NextResponse.json({ message: "Your account is not Verified", success: false, status: 400 })
             }
             else {
                 response = NextResponse.json({

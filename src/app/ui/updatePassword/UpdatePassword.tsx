@@ -12,7 +12,11 @@ interface UpdatePasswordData {
     newPassword: string,
     confirmNewPassword: string,
 }
-const UpdatePassword = () => {
+interface UpdatePasswordProps {
+    email?: string
+}
+const UpdatePassword: React.FC<UpdatePasswordProps> = ({ email }) => {
+    console.log(email)
     const router = useRouter()
     const [customerDatas, setCustomerDatas] = useCustomerData()
     const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<UpdatePasswordData>()
@@ -22,8 +26,9 @@ const UpdatePassword = () => {
     const [loading, setLoading] = useState(false)
     const newPassword = watch("newPassword")
     const onSubmit: SubmitHandler<UpdatePasswordData> = async (data) => {
+        console.log(email)
         setLoading(true)
-        const dataToSend = { email: customerDatas.email, newPassword: data.newPassword }
+        const dataToSend = { email: customerDatas.email || email, newPassword: data.newPassword }
         const response = await axios.post("/api/customer/updatePassword", dataToSend);
         const result = response.data;
         setLoading(false)

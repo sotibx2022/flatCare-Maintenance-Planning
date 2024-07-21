@@ -27,17 +27,19 @@ const useCustomerData = () => {
       try {
         let response = await axios.get("/api/customer/findCustomer");
         let result = response.data;
-        setCustomerDatas(prevCustomerData => ({
-          ...prevCustomerData,
-          fullName: result.customer.fullName,
-          imageUrl: result.customer.imageUrl,
-          email: result.customer.email,
-          buildingNumber: result.customer.buildingNumber,
-          floorNumber: result.customer.floorNumber,
-          roomNumber: result.customer.roomNumber,
-          phoneNumber: result.customer.phoneNumber,
-          userId: result.customer._id
-        }));
+        if (result.success) {
+          setCustomerDatas(prevCustomerData => ({
+            ...prevCustomerData,
+            fullName: result.customer.fullName,
+            imageUrl: result.customer.imageUrl,
+            email: result.customer.email,
+            buildingNumber: result.customer.buildingNumber,
+            floorNumber: result.customer.floorNumber,
+            roomNumber: result.customer.roomNumber,
+            phoneNumber: result.customer.phoneNumber,
+            userId: result.customer._id
+          }));
+        }
       } catch (error) {
         console.error("Error fetching customer details:", error);
       }

@@ -57,7 +57,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
         });
         const result = response.data;
         if (result.success) {
-          router.push("/customer/dashboard/main")
+          router.push(`/customer/registrationSuccess?name=${fullName}&email=${email}`)
           toast.success(result.message);
         } else {
           toast.error(result.message)

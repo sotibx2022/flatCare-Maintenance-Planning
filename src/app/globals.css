@@ -139,6 +139,7 @@ select option {
   background-color: var(--primaryLight);
   box-shadow: var(--primaryLightBoxShadow);
   justify-content: space-between;
+  border-top: 2px solid var(--primaryDark);
 }
 .logo_area {
   display: flex;

@@ -82,19 +82,11 @@ export async function POST(req: NextRequest) {
     // Call Email Verification Template
     const registerEmail = EmailVerificationTemplate(verificationLink)
     await sendEmailToCustomer(email, "Customer Registration Verification", registerEmail)
-    // Generate a JWT token for authentication
-    const token = jwt.sign({ userId: savedCustomer._id }, process.env.SECRET_KEY!, { expiresIn: '1h' });
     let response: NextResponse = NextResponse.json({
       message: "User details saved successfully",
       success: true,
       status: 200
     });
-    response.cookies.set('token', token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 3600000),
-      secure: process.env.NODE_ENV === 'production'
-    });
-    // Return success response with status 200
     return response;
   } catch (error) {
     // Handle any errors that occur during the process
