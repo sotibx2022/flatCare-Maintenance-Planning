@@ -1,26 +1,17 @@
-/* styles/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
   --primaryDark: #a73754;
   --primaryLight: #f5e0e3;
   --primaryDarkBoxShadow: 0 4px 6px rgba(123, 42, 63, 0.3);
   --primaryLightBoxShadow: 0 4px 6px rgba(240, 164, 177, 0.3);
-  --gradient: linear-gradient(
-    90deg,
-    rgba(184, 24, 24, 1) 0%,
-    rgba(60, 30, 34, 1) 100%
-  );
+  --gradient: linear-gradient(90deg, rgba(184, 24, 24, 1) 0%, rgba(60, 30, 34, 1) 100%);
 }
-/* Body */
 body,
 html {
   background-color: var(--primaryLight);
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -35,9 +26,7 @@ button,
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   max-width: 10rem;
   text-align: center;
 }
@@ -71,11 +60,10 @@ a {
   display: block;
   margin-bottom: 5px;
   color: var(--primaryDark);
-  /* Label color */
 }
-.form_Item input[type='text'],
-.form_Item input[type='email'],
-.form_Item input[type='password'],
+.form_Item input[type="text"],
+.form_Item input[type="email"],
+.form_Item input[type="password"],
 .form_Item input[type='select'],
 .form_Item textarea {
   width: 100%;
@@ -89,15 +77,13 @@ a {
 label {
   color: var(--primaryDark);
 }
-.form_Item input[type='text']:focus,
-.form_Item input[type='email']:focus,
-.form_Item input[type='password']:focus,
+.form_Item input[type="text"]:focus,
+.form_Item input[type="email"]:focus,
+.form_Item input[type="password"]:focus,
 .form_Item textarea:focus {
   outline: none;
   border-color: var(--primaryDark);
-  /* Border color on focus */
 }
-/* Headings */
 .primary_heading {
   color: var(--primaryDark);
   font-size: 1.5rem;
@@ -106,7 +92,6 @@ label {
   color: var(--primaryDark);
   font-size: 1rem;
 }
-/* Flex items */
 .flex_items {
   display: flex;
   justify-content: center;
@@ -176,9 +161,7 @@ select option {
 }
 button:disabled {
   background-color: var(--primaryLight);
-  /* Using primary light color */
   color: var(--primaryDark);
-  /* Text color using primary dark color */
   cursor: not-allowed;
 }
 ul li {
@@ -218,7 +201,6 @@ ul li {
   display: flex;
   gap: 2rem;
   box-sizing: border-box;
-  /* Ensure padding and border are included in the element's total width and height */
   padding: 3rem;
 }
 .active_step {
@@ -226,13 +208,9 @@ ul li {
   padding: 1rem;
   display: grid;
   place-items: center;
-  transition:
-    box-shadow 0.3s ease,
-    font-weight 0.3s ease;
+  transition: box-shadow 0.3s ease, font-weight 0.3s ease;
   box-sizing: border-box;
-  /* Ensure padding and border are included in the element's total width and height */
   flex: 1;
-  /* Allow each active_step to grow to fill the available space */
 }
 .active_step h1 {
   font-weight: bolder;
@@ -333,7 +311,7 @@ ul li {
     transform: translateY(0);
   }
 }
-@media (max-width: 500px) {
+@media(max-width:500px) {
   button,
   .button {
     padding: 5px 10px;
