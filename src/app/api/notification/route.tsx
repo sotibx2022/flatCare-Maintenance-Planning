@@ -7,7 +7,7 @@ import { sendEmailToCustomer } from '../../../helper/sendEmailToCustomer';
 import { Customer } from '../../../models/customer.models';
 import NotificationCreatedTemplate from '../../emailTemplates/NotificationCreatedTemplate';
 // GET request handler to return all notifications
-export async function GET(request: NextResponse) {
+export async function GET(request: NextRequest) {
   try {
     ConnectToDb(); // Connect to MongoDB
     const tokenCookie: RequestCookie | undefined = request.cookies.get('token');

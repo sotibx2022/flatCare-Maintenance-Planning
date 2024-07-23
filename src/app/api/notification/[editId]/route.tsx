@@ -6,7 +6,8 @@ import { isTokenExpired } from '../../../../helper/isTokenExpired';
 export async function GET(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   isTokenExpired(request, response);
-  const editId = response.params.editId;
+  const url = new URL(request.url);
+  const editId = url.searchParams.get('editId');
   const notification = await Notification.find({ _id: editId });
   if (notification) {
     return NextResponse.json({
@@ -16,25 +17,20 @@ export async function GET(request: NextRequest, response: NextResponse) {
       notification,
     });
   }
-
   return NextResponse.json({
     message: 'notification Not found',
     success: false,
     status: 400,
   });
 }
-
 export async function PUT(request: NextRequest) {
   try {
     // Connect to the database
     await ConnectToDb();
-
     // Parse the request body
     const { editId, data } = await request.json();
-
     // Find the existing notification
     const existingNotification = await Notification.findById(editId);
-
     if (!existingNotification) {
       return NextResponse.json({
         message: 'Notification Not Found',
@@ -42,12 +38,11 @@ export async function PUT(request: NextRequest) {
         success: false,
       });
     }
-
     // Check if the details are unchanged
     if (
       existingNotification.notificationTitle === data.notificationTitle &&
       existingNotification.notificationDescription ===
-        data.notificationDescription &&
+      data.notificationDescription &&
       existingNotification.notificationCategory === data.notificationCategory &&
       existingNotification.notificationPriority === data.notificationPriority
     ) {
@@ -58,7 +53,6 @@ export async function PUT(request: NextRequest) {
         success: false,
       });
     }
-
     // Update the notification
     const updatedNotification = await Notification.findOneAndUpdate(
       { _id: editId },
@@ -70,7 +64,6 @@ export async function PUT(request: NextRequest) {
       },
       { new: true }, // Return the updated document
     );
-
     // Return success response
     return NextResponse.json({
       message: 'Notification successfully updated',
@@ -90,12 +83,10 @@ export async function PUT(request: NextRequest) {
 export async function DELETE(request: NextRequest, response: NextResponse) {
   try {
     await ConnectToDb(); // Connect to the database
-
-    const editId = response.params.editId; // Corrected from response.prams.editId to request.params.editId
-
+    const url = new URL(request.url);
+    const editId = url.searchParams.get('editId');
     // Check if the notification exists
     const existingNotification = await Notification.findById(editId);
-
     if (!existingNotification) {
       return NextResponse.json({
         message: 'Notification Not Found',
@@ -103,10 +94,8 @@ export async function DELETE(request: NextRequest, response: NextResponse) {
         success: false,
       });
     }
-
     // Delete the notification
     const deletedNotification = await Notification.deleteOne({ _id: editId });
-
     return NextResponse.json({
       message: 'Notification Deleted Successfully',
       status: 200,
