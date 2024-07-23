@@ -32,3 +32,9 @@ Welcome to the **Flatcare Maintenance** platform! This system is designed to str
 - **Nodemailer**: For sending emails.
 - **Custom Authentication**: Using **JSON Web Tokens (JWT)** and **bcryptjs** for user authentication and authorization.
 ![Flatcare Logo](/public/assets/images/logo.png)
+![Flatcare Logo](/public/assets/images/loginInterface.PNG)
+![Flatcare Logo](/public/assets/images/signupInterface.PNG)
+![Flatcare Logo](/public/assets/images/userModes.PNG)
+![Flatcare Logo](/public/assets/images/footer.PNG)
+![Flatcare Logo](/public/assets/images/dashboardlayout.PNG)
+
