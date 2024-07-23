@@ -31,3 +31,4 @@ Welcome to the **Flatcare Maintenance** platform! This system is designed to str
 - **Firebase**: For storing images.
 - **Nodemailer**: For sending emails.
 - **Custom Authentication**: Using **JSON Web Tokens (JWT)** and **bcryptjs** for user authentication and authorization.
+![Flatcare Logo](/public/assets/images/logo.png)
