@@ -113,9 +113,7 @@ const Login = () => {
           <button type="submit">
             {isSubmitting ? 'Submitting' : 'Submit'}
           </button>
-          {isSubmitted && (
-            <SubmitError message="Please Contact Your Planner For Login Credentials." />
-          )}
+          <SubmitError message="Please Contact Your Planner For Login Credentials." />
         </div>
       </form>
     </>

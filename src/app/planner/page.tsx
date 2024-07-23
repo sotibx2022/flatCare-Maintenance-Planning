@@ -113,9 +113,7 @@ const Login = () => {
           <button type="submit">
             {isSubmitting ? 'Submitting' : 'Submit'}
           </button>
-          {isSubmitted && (
-            <SubmitError message="Please Contact Your Admin For Credentials" />
-          )}
+          <SubmitError message="Please Contact Your Admin For Credentials" />
         </div>
       </form>
     </>
