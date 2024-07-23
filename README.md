@@ -1,28 +1,33 @@
-**Project Overview**
-Welcome to the Flatcare Maintenance platform! This system is designed to streamline communication between customers, technicians, and planners.
+# Flatcare Maintenance Platform Documentation
 
-**User Roles and Responsibilities**
-Customers
+## Project Overview
 
-Create notifications
-Order materials
-Update profiles
-Technicians
+Welcome to the **Flatcare Maintenance** platform! This system is designed to streamline communication between customers, technicians, and planners.
 
-View notifications
-Visit sites
-Recommend materials
-Planners
+## User Roles and Responsibilities
 
-Create and update work orders
-Track material deliveries
-Admins
+### Customers
+- **Create notifications**
+- **Order materials**
+- **Update profiles**
 
-Approve accounts
-Oversee administrative tasks
-**Major Technology Stack**
-Next.js with TypeScript: For building the front-end interface.
-MongoDB with Mongoose ODM: For managing and querying the database.
-Firebase: For storing images.
-Nodemailer: For sending emails.
-Custom Authentication: Using JSON Web Tokens (JWT) and bcryptjs for user authentication and authorization.
+### Technicians
+- **View notifications**
+- **Visit sites**
+- **Recommend materials**
+
+### Planners
+- **Create and update work orders**
+- **Track material deliveries**
+
+### Admins
+- **Approve accounts**
+- **Oversee administrative tasks**
+
+## Major Technology Stack
+
+- **Next.js** with **TypeScript**: For building the front-end interface.
+- **MongoDB** with **Mongoose ODM**: For managing and querying the database.
+- **Firebase**: For storing images.
+- **Nodemailer**: For sending emails.
+- **Custom Authentication**: Using **JSON Web Tokens (JWT)** and **bcryptjs** for user authentication and authorization.
