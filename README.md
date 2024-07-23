@@ -1,6 +1,7 @@
 # Flatcare Maintenance Platform Documentation
 ## Project Overview
 Welcome to the **Flatcare Maintenance** platform! This system is designed to streamline communication between customers, technicians, and planners.
+ <img src="/public/assets/images/logo.png" alt="Flatcare Logo" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
 ## User Roles and Responsibilities
 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
     <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background-color: #f9f9f9;">
@@ -10,6 +11,10 @@ Welcome to the **Flatcare Maintenance** platform! This system is designed to str
             <li><strong>Order materials</strong></li>
             <li><strong>Update profiles</strong></li>
         </ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+         <img src="/public/assets/images/loginInterface.PNG" alt="Login Interface" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
+    <img src="/public/assets/images/signupInterface.PNG" alt="Signup Interface" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
+        </div>
     </div>
     <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background-color: #f9f9f9;">
         <h3 style="margin-top: 0;">Technicians</h3>
@@ -59,10 +64,6 @@ Welcome to the **Flatcare Maintenance** platform! This system is designed to str
 </div>
 ## Images
 <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-    <img src="/public/assets/images/logo.png" alt="Flatcare Logo" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
-    <img src="/public/assets/images/loginInterface.PNG" alt="Login Interface" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
-    <img src="/public/assets/images/signupInterface.PNG" alt="Signup Interface" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
-    <img src="/public/assets/images/userModes.PNG" alt="User Modes" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
-    <img src="/public/assets/images/footer.PNG" alt="Footer" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
+   
     <img src="/public/assets/images/dashboardlayout.PNG" alt="Dashboard Layout" width="200" style="border-radius: 8px; border: 1px solid #ddd;"/>
 </div>
