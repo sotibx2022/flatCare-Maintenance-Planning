@@ -18,13 +18,13 @@ const Dashboard = () => {
         <h2 className='primary_heading'>Notifications By Status</h2>
         <NotificationStatus />
       </section>
-      <section className="dashboard_main_block emailsBlock secondary_block">
-        <h2 className='primary_heading'>Work Flow Emails</h2>
-        <p className='secondary_heading'>There are no workflow emails yet for your action.</p>
-      </section>
       <section className="dashboard_main_block priorityBlock secondary_block">
         <h2 className='primary_heading'>Notifications By Priority</h2>
         <NotificationPriority />
+      </section>
+      <section className="dashboard_main_block emailsBlock secondary_block">
+        <h2 className='primary_heading'>Work Flow Emails</h2>
+        <p className='secondary_heading'>There are no workflow emails yet for your action.</p>
       </section>
       <section className='dashboard_main_block secondary_block'>
         <div className=" materialsManagementBlock ">

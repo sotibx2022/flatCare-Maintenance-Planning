@@ -90,6 +90,10 @@
     padding: 1rem;
     gap: 1rem;
 }
+.service-item-img {
+    width: 300px;
+    height: auto;
+}
 .services-list {
     display: flex;
     flex-direction: column;

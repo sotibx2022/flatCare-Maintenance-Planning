@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     const token = request.cookies.get('token');
-    const isPublicPath = (path === "/customer/login" || path === "/customer/signup" || path === "/");
+    const isPublicPath = (path === "/customer/login" || path === "/customer/signup");
     // If token exists and is trying to access a public path
     if (token && isPublicPath) {
         return NextResponse.redirect(new URL('/customer/dashboard/main', request.url));

@@ -9,7 +9,6 @@ interface Service {
     serviceDescription: string;
     icon: IconDefinition; // Icon should be of type IconDefinition from FontAwesome
 }
-
 const services: Service[] = [
     {
         title: "Preventive Maintenance",
@@ -40,7 +39,6 @@ const services: Service[] = [
         icon: faSearch // Search icon
     }
 ];
-
 const Services: React.FC = () => {
     return (
         <section id="services-section">
@@ -67,5 +65,4 @@ const Services: React.FC = () => {
         </section>
     );
 }
-
 export default Services;
