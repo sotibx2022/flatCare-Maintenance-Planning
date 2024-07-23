@@ -1,13 +1,40 @@
-Flatcare Maintenance Platform Documentation
-Project Overview
-Welcome to the Flatcare Maintenance website platform, designed for efficient communication between customers, technicians, and planners.
-Customers: Create notifications, order materials, and update profiles.
-Technicians: View notifications, visit sites, and recommend materials.
-Planners: Create and update work orders, track material deliveries.
-Admins: Approve accounts and oversee administrative tasks.
-Major Technology Stack
-Next.js framework with TypeScript.
-MongoDB using Mongoose ODM.
-Firebase for image storage.
-Nodemailer to shoot emails.
-Custom user authentication and authorization using JSON Web Tokens and bcryptjs.
+# Flatcare Maintenance Platform Documentation
+
+## Project Overview
+
+Welcome to the **Flatcare Maintenance** platform! This system is designed to streamline communication between customers, technicians, and planners.
+
+## User Roles and Responsibilities
+
+### Customers
+- **Create notifications**
+- **Order materials**
+- **Update profiles**
+
+### Technicians
+- **View notifications**
+- **Visit sites**
+- **Recommend materials**
+
+### Planners
+- **Create and update work orders**
+- **Track material deliveries**
+
+### Admins
+- **Approve accounts**
+- **Oversee administrative tasks**
+
+## Major Technology Stack
+
+- **Next.js** with **TypeScript**: For building the front-end interface.
+- **MongoDB** with **Mongoose ODM**: For managing and querying the database.
+- **Firebase**: For storing images.
+- **Nodemailer**: For sending emails.
+- **Custom Authentication**: Using **JSON Web Tokens (JWT)** and **bcryptjs** for user authentication and authorization.
+![Flatcare Logo](/public/assets/images/logo.png)
+![Flatcare Logo](/public/assets/images/loginInterface.PNG)
+![Flatcare Logo](/public/assets/images/signupInterface.PNG)
+![Flatcare Logo](/public/assets/images/userModes.PNG)
+![Flatcare Logo](/public/assets/images/footer.PNG)
+![Flatcare Logo](/public/assets/images/dashboardlayout.PNG)
+
