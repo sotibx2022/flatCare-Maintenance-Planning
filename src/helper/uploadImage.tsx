@@ -1,9 +1,15 @@
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { firestore, storage } from "./fireBase";
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { firestore, storage } from './fireBase';
 interface UploadImageResponse {
-  error: string | null; progress: number; downloadUrl: string | null
+  error: string | null;
+  progress: number;
+  downloadUrl: string | null;
 }
-export const uploadImage = async (file: File, folderName: string, imageUniqueName: string): Promise<UploadImageResponse> => {
+export const uploadImage = async (
+  file: File,
+  folderName: string,
+  imageUniqueName: string,
+): Promise<UploadImageResponse> => {
   const storageRef = ref(storage, `${folderName}/${imageUniqueName}`);
   // Create a reference to the file to upload
   const uploadTask = uploadBytesResumable(storageRef, file);
@@ -26,14 +32,16 @@ export const uploadImage = async (file: File, folderName: string, imageUniqueNam
       },
       () => {
         // Handle successful completion
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          downloadUrl = url;
-          resolve({ error, progress, downloadUrl });
-        }).catch((err) => {
-          error = err.message;
-          resolve({ error, progress, downloadUrl });
-        });
-      }
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((url) => {
+            downloadUrl = url;
+            resolve({ error, progress, downloadUrl });
+          })
+          .catch((err) => {
+            error = err.message;
+            resolve({ error, progress, downloadUrl });
+          });
+      },
     );
   });
 };

@@ -1,16 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 const SelectInput = () => {
-    return (
-        <div>
-            <label></label>
-            <select>
-                <option>
+  return (
+    <div>
+      <label></label>
+      <select>
+        <option></option>
+      </select>
+    </div>
+  );
+};
 
-                </option>
-            </select>
-        </div>
-    )
-}
-
-export default SelectInput
+export default SelectInput;

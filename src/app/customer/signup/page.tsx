@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { useState } from 'react';
 import { CustomerData } from '../types';
 import PersonalDetails from './personalDetails/PersonalDetails';
@@ -7,11 +7,11 @@ import PreviewandSubmit from './previewandsubmit/PreviewandSubmit';
 import SoftwareAccessDetails from './softwareaccessDetails/SoftwareAccessDetails';
 import Header from '../header/CustomerHeader';
 import next from 'next';
-let steps = [
+const steps = [
   { step: 1, title: 'Customer Details' },
   { step: 2, title: 'Software Access Details' },
   { step: 3, title: 'Location Details' },
-  { step: 4, title: 'Preview and Submit' }
+  { step: 4, title: 'Preview and Submit' },
 ];
 const Page: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -24,31 +24,45 @@ const Page: React.FC = () => {
     buildingNumber: '',
     floorNumber: '',
     roomNumber: '',
-    phoneNumber: ''
+    phoneNumber: '',
   });
-  const handlePersonalDetailsSubmit = (fullName: string, phoneNumber: string, nextStep: number) => {
-    setCustomerDatas(prevData => ({
+  const handlePersonalDetailsSubmit = (
+    fullName: string,
+    phoneNumber: string,
+    nextStep: number,
+  ) => {
+    setCustomerDatas((prevData) => ({
       ...prevData,
       fullName,
       phoneNumber,
     }));
     setCurrentStep(nextStep);
   };
-  const handleSoftwareAccessSubmit = (email: string, password: string, confirmPassword: string, nextStep: number) => {
-    setCustomerDatas(prevData => ({
+  const handleSoftwareAccessSubmit = (
+    email: string,
+    password: string,
+    confirmPassword: string,
+    nextStep: number,
+  ) => {
+    setCustomerDatas((prevData) => ({
       ...prevData,
       email,
       password,
-      confirmPassword
+      confirmPassword,
     }));
     setCurrentStep(nextStep);
   };
-  const handleLocationDetailsSubmit = (buildingNumber: string, floorNumber: string, roomNumber: string, nextStep: number) => {
-    setCustomerDatas(prevData => ({
+  const handleLocationDetailsSubmit = (
+    buildingNumber: string,
+    floorNumber: string,
+    roomNumber: string,
+    nextStep: number,
+  ) => {
+    setCustomerDatas((prevData) => ({
       ...prevData,
       buildingNumber,
       floorNumber,
-      roomNumber
+      roomNumber,
     }));
     setCurrentStep(nextStep);
   };
@@ -57,15 +71,38 @@ const Page: React.FC = () => {
   };
   return (
     <>
-      <div className='signupFormContainer container'>
-        <form className='form_container'>
-          <h1 className='primary_heading' style={{ textAlign: "center" }}>Customer Sign Up</h1>
-          {currentStep === 1 && <PersonalDetails personalDetailsValue={handlePersonalDetailsSubmit} customerDatas={customerDatas} />}
-          {currentStep === 2 && <SoftwareAccessDetails softwareAccessValue={handleSoftwareAccessSubmit} customerDatas={customerDatas} />}
-          {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
-          {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
+      <div className="signupFormContainer container">
+        <form className="form_container">
+          <h1 className="primary_heading" style={{ textAlign: 'center' }}>
+            Customer Sign Up
+          </h1>
+          {currentStep === 1 && (
+            <PersonalDetails
+              personalDetailsValue={handlePersonalDetailsSubmit}
+              customerDatas={customerDatas}
+            />
+          )}
+          {currentStep === 2 && (
+            <SoftwareAccessDetails
+              softwareAccessValue={handleSoftwareAccessSubmit}
+              customerDatas={customerDatas}
+            />
+          )}
+          {currentStep === 3 && (
+            <LocationDetails
+              locationDetailsValues={handleLocationDetailsSubmit}
+              customerDatas={customerDatas}
+            />
+          )}
+          {currentStep === 4 && (
+            <PreviewandSubmit
+              previewDetailsValue={handlePreviewDetails}
+              customerDatas={customerDatas}
+            />
+          )}
         </form>
-      </div></>
+      </div>
+    </>
   );
 };
 export default Page;

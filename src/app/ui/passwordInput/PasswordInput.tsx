@@ -10,19 +10,25 @@ interface PasswordInputProps {
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, id, onChange, onBlur }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({
+  placeholder,
+  value,
+  id,
+  onChange,
+  onBlur,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const inputType = showPassword ? 'text' : 'password';
 
   return (
-    <div className='form_Item' style={{ position: 'relative' }}>
+    <div className="form_Item" style={{ position: 'relative' }}>
       <input
         type={inputType}
         placeholder={placeholder}
         value={value}
         name={id}
         onChange={onChange}
-        autoComplete='off'
+        autoComplete="off"
         onBlur={onBlur}
         style={{ paddingRight: '30px', paddingLeft: '30px' }}
       />
@@ -34,13 +40,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, id, o
           top: '50%',
           transform: 'translateY(-50%)',
           cursor: 'pointer',
-          color: '#29030d'
+          color: '#29030d',
         }}
-      >
-
-
-
-      </span>
+      ></span>
     </div>
   );
 };

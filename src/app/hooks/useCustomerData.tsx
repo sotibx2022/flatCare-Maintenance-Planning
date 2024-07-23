@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 interface CustomerData {
@@ -9,7 +9,7 @@ interface CustomerData {
   floorNumber: string;
   roomNumber: string;
   phoneNumber: string;
-  userId: string
+  userId: string;
 }
 const useCustomerData = () => {
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
@@ -20,15 +20,15 @@ const useCustomerData = () => {
     floorNumber: '',
     roomNumber: '',
     phoneNumber: '',
-    userId: ''
+    userId: '',
   });
   useEffect(() => {
     const getUserDetails = async () => {
       try {
-        let response = await axios.get("/api/customer/findCustomer");
-        let result = response.data;
+        const response = await axios.get('/api/customer/findCustomer');
+        const result = response.data;
         if (result.success) {
-          setCustomerDatas(prevCustomerData => ({
+          setCustomerDatas((prevCustomerData) => ({
             ...prevCustomerData,
             fullName: result.customer.fullName,
             imageUrl: result.customer.imageUrl,
@@ -37,11 +37,11 @@ const useCustomerData = () => {
             floorNumber: result.customer.floorNumber,
             roomNumber: result.customer.roomNumber,
             phoneNumber: result.customer.phoneNumber,
-            userId: result.customer._id
+            userId: result.customer._id,
           }));
         }
       } catch (error) {
-        console.error("Error fetching customer details:", error);
+        console.error('Error fetching customer details:', error);
       }
     };
     getUserDetails();

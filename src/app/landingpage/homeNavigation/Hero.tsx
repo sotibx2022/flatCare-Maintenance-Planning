@@ -1,11 +1,7 @@
-import React from 'react'
-import "../homeNavigation/landingPage.css";
+import React from 'react';
+import '../homeNavigation/landingPage.css';
 const Hero = () => {
-    return (
-        <div className='heroArea'>
+  return <div className="heroArea"></div>;
+};
 
-        </div>
-    )
-}
-
-export default Hero
+export default Hero;

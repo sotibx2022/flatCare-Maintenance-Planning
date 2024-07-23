@@ -8,7 +8,11 @@
   --primaryLight: #f5e0e3;
   --primaryDarkBoxShadow: 0 4px 6px rgba(123, 42, 63, 0.3);
   --primaryLightBoxShadow: 0 4px 6px rgba(240, 164, 177, 0.3);
-  --gradient: linear-gradient(90deg, rgba(184, 24, 24, 1) 0%, rgba(60, 30, 34, 1) 100%);
+  --gradient: linear-gradient(
+    90deg,
+    rgba(184, 24, 24, 1) 0%,
+    rgba(60, 30, 34, 1) 100%
+  );
 }
 /* Body */
 body,
@@ -16,7 +20,7 @@ html {
   background-color: var(--primaryLight);
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -31,7 +35,9 @@ button,
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   max-width: 10rem;
   text-align: center;
 }
@@ -67,9 +73,9 @@ a {
   color: var(--primaryDark);
   /* Label color */
 }
-.form_Item input[type="text"],
-.form_Item input[type="email"],
-.form_Item input[type="password"],
+.form_Item input[type='text'],
+.form_Item input[type='email'],
+.form_Item input[type='password'],
 .form_Item input[type='select'],
 .form_Item textarea {
   width: 100%;
@@ -83,9 +89,9 @@ a {
 label {
   color: var(--primaryDark);
 }
-.form_Item input[type="text"]:focus,
-.form_Item input[type="email"]:focus,
-.form_Item input[type="password"]:focus,
+.form_Item input[type='text']:focus,
+.form_Item input[type='email']:focus,
+.form_Item input[type='password']:focus,
 .form_Item textarea:focus {
   outline: none;
   border-color: var(--primaryDark);
@@ -220,7 +226,9 @@ ul li {
   padding: 1rem;
   display: grid;
   place-items: center;
-  transition: box-shadow 0.3s ease, font-weight 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    font-weight 0.3s ease;
   box-sizing: border-box;
   /* Ensure padding and border are included in the element's total width and height */
   flex: 1;
@@ -325,7 +333,7 @@ ul li {
     transform: translateY(0);
   }
 }
-@media(max-width:500px) {
+@media (max-width: 500px) {
   button,
   .button {
     padding: 5px 10px;

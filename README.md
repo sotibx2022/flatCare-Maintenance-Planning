@@ -1,7 +1,11 @@
 # Flatcare Maintenance Platform Documentation
+
 ## Project Overview
+
 Welcome to the **Flatcare Maintenance** platform! This system is designed to streamline communication between customers, technicians, and planners.
+
 ## User Roles and Responsibilities
+
 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
     <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background-color: #f9f9f9;">
         <h3 style="margin-top: 0;">Customers</h3>

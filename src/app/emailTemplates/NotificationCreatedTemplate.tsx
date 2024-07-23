@@ -1,5 +1,5 @@
 const NotificationCreatedTemplate = (notificationTitle: string): string => {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,5 +49,5 @@ const NotificationCreatedTemplate = (notificationTitle: string): string => {
 </body>
 </html>
 `;
-}
+};
 export default NotificationCreatedTemplate;

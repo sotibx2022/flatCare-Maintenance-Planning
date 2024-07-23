@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { useEffect, useState } from 'react';
 import useCustomerData from '../../../../hooks/useCustomerData';
 import { getCategoreis } from '../../../../../helper/getCategories';
@@ -10,20 +10,20 @@ import { toast } from 'react-toastify';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 const Page = () => {
   const [customerDatas, setCustomerDatas] = useCustomerData();
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [categories, setCategories] = useState<string[]>([]);
-  const [priority, setPriority] = useState("");
-  const [categoryValue, setCategoryValue] = useState("");
-  const [notificationTitle, setNotificationTitle] = useState("");
-  const [notificationDescription, setNotificationDescription] = useState("");
+  const [priority, setPriority] = useState('');
+  const [categoryValue, setCategoryValue] = useState('');
+  const [notificationTitle, setNotificationTitle] = useState('');
+  const [notificationDescription, setNotificationDescription] = useState('');
   const [noficationErrors, setNotificationErrors] = useState({
-    notificationTitle: "",
-    notificationDescription: "",
-    notificationPriority: "",
-    notificationCategory: ""
+    notificationTitle: '',
+    notificationDescription: '',
+    notificationPriority: '',
+    notificationCategory: '',
   });
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     const findCategories = async () => {
       const allCategories: string[] | undefined = await getCategoreis();
@@ -42,7 +42,9 @@ const Page = () => {
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNotificationTitle(e.target.value);
   };
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     setNotificationDescription(e.target.value);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,11 +53,14 @@ const Page = () => {
       notificationTitle,
       notificationDescription,
       priority,
-      categoryValue
+      categoryValue,
     );
     setNotificationErrors(error);
-    if (!noficationErrors.notificationTitle || !noficationErrors.notificationDescription ||
-      !noficationErrors.notificationCategory || !noficationErrors.notificationPriority
+    if (
+      !noficationErrors.notificationTitle ||
+      !noficationErrors.notificationDescription ||
+      !noficationErrors.notificationCategory ||
+      !noficationErrors.notificationPriority
     ) {
       setLoading(true);
       try {
@@ -69,18 +74,21 @@ const Page = () => {
           address: {
             buildingNumber: customerDatas.buildingNumber,
             flatNumber: customerDatas.floorNumber,
-            roomNumber: customerDatas.roomNumber
-          }
+            roomNumber: customerDatas.roomNumber,
+          },
         };
-        const response = await axios.post('http://localhost:3000/api/notification', dataToSend);
+        const response = await axios.post(
+          'http://localhost:3000/api/notification',
+          dataToSend,
+        );
         const result = response.data;
         setLoading(false);
         if (result.success) {
-          setSubmitSuccess(true)
-          toast.success(result.success)
+          setSubmitSuccess(true);
+          toast.success(result.success);
           router.push('/customer/dashboard/notifications/list');
         } else {
-          toast.error(result.message)
+          toast.error(result.message);
         }
       } catch (error) {
         console.error('Error submitting notification:', error);
@@ -92,10 +100,12 @@ const Page = () => {
     }
   };
   return (
-    <div className='create_Notification_container'>
-      <h1 className='primary_heading'>Create Notification</h1>
+    <div className="create_Notification_container">
+      <h1 className="primary_heading">Create Notification</h1>
       <div>
-        {submitSuccess && <SubmitSuccess message='Notification Created Successfully ! Wait for Redirection' />}
+        {submitSuccess && (
+          <SubmitSuccess message="Notification Created Successfully ! Wait for Redirection" />
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form_Item">
             <label>Notification Title:</label>
@@ -179,7 +189,13 @@ const Page = () => {
               readOnly
             />
           </div>
-          <button type="submit" disabled={loading} style={{ minWidth: '200px' }}>{loading ? "Loading" : "Create Notification"}</button>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{ minWidth: '200px' }}
+          >
+            {loading ? 'Loading' : 'Create Notification'}
+          </button>
         </form>
       </div>
     </div>

@@ -1,8 +1,9 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 export interface CategoryDocument extends Document {
-    name: string
+  name: string;
 }
 const categorySchema: Schema<CategoryDocument> = new Schema({
-    name: String
-})
-export const Category = mongoose.models.Category || mongoose.model("Category", categorySchema)
+  name: String,
+});
+export const Category =
+  mongoose.models.Category || mongoose.model('Category', categorySchema);

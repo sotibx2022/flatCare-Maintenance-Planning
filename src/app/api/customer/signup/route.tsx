@@ -1,15 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Customer } from "../../../../models/customer.models";
-import bcrypt from "bcryptjs";
+import { NextRequest, NextResponse } from 'next/server';
+import { Customer } from '../../../../models/customer.models';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { sendEmailToCustomer } from "../../../../helper/sendEmailToCustomer";
+import { sendEmailToCustomer } from '../../../../helper/sendEmailToCustomer';
 import fs from 'fs';
 import path from 'path';
-import { uploadImage } from "../../../../helper/uploadImage";
-import { ConnectToDb } from "../../../../helper/connectToDb";
-import EmailVerificationTemplate from "../../../emailTemplates/EmailVerificationTemplate";
+import { uploadImage } from '../../../../helper/uploadImage';
+import { ConnectToDb } from '../../../../helper/connectToDb';
+import EmailVerificationTemplate from '../../../emailTemplates/EmailVerificationTemplate';
 function generateUniqueName(length = 16) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
@@ -36,24 +37,29 @@ export async function POST(req: NextRequest) {
     const fileType = file.type;
     // Check if file base64 string is provided
     if (!file) {
-      return NextResponse.json({
-        message: "No file provided",
-      }, { status: 400 });
+      return NextResponse.json(
+        {
+          message: 'No file provided',
+        },
+        { status: 400 },
+      );
     }
     // Check if customer already exists with the provided email
     const existingCustomer = await Customer.findOne({ email });
     if (existingCustomer) {
-      return NextResponse.json({ message: "There is already an account with the provided email." });
+      return NextResponse.json({
+        message: 'There is already an account with the provided email.',
+      });
     }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
     // Decode base64 string and upload the image
     const imageUniqueName = generateUniqueName();
-    const result = await uploadImage(file, "customerImages", imageUniqueName);
+    const result = await uploadImage(file, 'customerImages', imageUniqueName);
     const { error, progress, downloadUrl } = result;
     console.log(result.error, result.progress, result.downloadUrl);
     if (!downloadUrl) {
-      return NextResponse.json({ message: "File upload failed", status: 400 });
+      return NextResponse.json({ message: 'File upload failed', status: 400 });
     }
     // Create a new Customer document
     const newCustomer = new Customer({
@@ -74,26 +80,33 @@ export async function POST(req: NextRequest) {
     const verifyToken = newCustomer.getVerificationToken();
     // Save the new Customer to the database
     const savedCustomer = await newCustomer.save();
-    savedCustomer.passwordHistory.push({ password: hashedPassword, createdAt: new Date() })
+    savedCustomer.passwordHistory.push({
+      password: hashedPassword,
+      createdAt: new Date(),
+    });
     await savedCustomer.save();
     // generate verification Link
     const verificationLink = `http://localhost:3000/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
     // Send Email to user
     // Call Email Verification Template
-    const registerEmail = EmailVerificationTemplate(verificationLink)
-    await sendEmailToCustomer(email, "Customer Registration Verification", registerEmail)
-    let response: NextResponse = NextResponse.json({
-      message: "User details saved successfully",
+    const registerEmail = EmailVerificationTemplate(verificationLink);
+    await sendEmailToCustomer(
+      email,
+      'Customer Registration Verification',
+      registerEmail,
+    );
+    const response: NextResponse = NextResponse.json({
+      message: 'User details saved successfully',
       success: true,
-      status: 200
+      status: 200,
     });
     return response;
   } catch (error) {
     // Handle any errors that occur during the process
-    console.error("Error saving customer details:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    console.error('Error saving customer details:', error);
+    return NextResponse.json({ message: 'Internal server error', status: 500 });
   }
 }
 function uuidv4() {
-  throw new Error("Function not implemented.");
+  throw new Error('Function not implemented.');
 }

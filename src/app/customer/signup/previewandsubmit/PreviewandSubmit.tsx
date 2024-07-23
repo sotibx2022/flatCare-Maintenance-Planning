@@ -1,6 +1,6 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import { CustomerData } from '../../types'
+'use client';
+import React, { useEffect, useState } from 'react';
+import { CustomerData } from '../../types';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,10 +11,13 @@ import SubmitError from '../../../ui/SubmitError';
 import ProfileImage from '../../../ui/ProfileImage';
 import { onChange } from 'react-toastify/dist/core/store';
 interface CustomerDataProps {
-  customerDatas: CustomerData,
+  customerDatas: CustomerData;
   previewDetailsValue: (nextValue: number) => void;
 }
-const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewDetailsValue }) => {
+const PreviewandSubmit: React.FC<CustomerDataProps> = ({
+  customerDatas,
+  previewDetailsValue,
+}) => {
   const {
     fullName,
     email,
@@ -22,22 +25,22 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
     buildingNumber,
     floorNumber,
     roomNumber,
-    phoneNumber
+    phoneNumber,
   } = customerDatas;
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [uploadError, setUplaodError] = useState<string>("")
+  const [imageUrl, setImageUrl] = useState<string>('');
+  const [uploadError, setUplaodError] = useState<string>('');
   const handlePrev = () => {
-    previewDetailsValue(3)
-  }
+    previewDetailsValue(3);
+  };
   const submitHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (file === null) {
-      setUplaodError("Please Upload Profile Image First")
+      setUplaodError('Please Upload Profile Image First');
     } else {
       try {
         setLoading(true);
@@ -52,37 +55,47 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
         formData.append('roomNumber', roomNumber);
         formData.append('floorNumber', floorNumber);
         formData.append('phoneNumber', phoneNumber);
-        const response = await axios.post("/api/customer/signup", formData, {
-          headers: { "content-type": "multipart/form-data" }
+        const response = await axios.post('/api/customer/signup', formData, {
+          headers: { 'content-type': 'multipart/form-data' },
         });
         const result = response.data;
         if (result.success) {
-          router.push(`/customer/registrationSuccess?name=${fullName}&email=${email}`)
+          router.push(
+            `/customer/registrationSuccess?name=${fullName}&email=${email}`,
+          );
           toast.success(result.message);
         } else {
-          toast.error(result.message)
+          toast.error(result.message);
         }
         setLoading(false);
       } catch (error) {
-        toast.error("Error Submitting Form")
+        toast.error('Error Submitting Form');
       }
-    };
-  }
+    }
+  };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let selectedFile = e.target.files?.[0];
+    const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
-      let url = URL.createObjectURL(selectedFile);
-      setImageUrl(url)
+      const url = URL.createObjectURL(selectedFile);
+      setImageUrl(url);
     }
-  }
+  };
   return (
-    <div className='container'>
-      <div className='stepInputs_Wrapper'>
+    <div className="container">
+      <div className="stepInputs_Wrapper">
         {submitted && uploadError && <SubmitError message={uploadError} />}
-        {submitted && success && !loading && <SubmitSuccess message="User Registered ! Please Wait for Redirection" />}
-        {submitted && !success && !loading && <SubmitError message="Please Login ! Provided Email already Registered" />}
-        <ProfileImage onChange={onChange} title='Upload Profile Picture' imageUrl={imageUrl} />
+        {submitted && success && !loading && (
+          <SubmitSuccess message="User Registered ! Please Wait for Redirection" />
+        )}
+        {submitted && !success && !loading && (
+          <SubmitError message="Please Login ! Provided Email already Registered" />
+        )}
+        <ProfileImage
+          onChange={onChange}
+          title="Upload Profile Picture"
+          imageUrl={imageUrl}
+        />
         <div className="form_Item">
           <label>Full Name</label>
           <input type="text" value={fullName} readOnly />
@@ -97,15 +110,40 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({ customerDatas, previewD
         </div>
         <div className="form_Item">
           <label>Address</label>
-          <input type="text" value={`Building Number : ${buildingNumber}, Floor Number : ${floorNumber}, Room Number:${roomNumber}`} readOnly />
+          <input
+            type="text"
+            value={`Building Number : ${buildingNumber}, Floor Number : ${floorNumber}, Room Number:${roomNumber}`}
+            readOnly
+          />
         </div>
-        <div className='buttonsWrapper' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-          <button onClick={handlePrev}><FontAwesomeIcon icon={faArrowLeft} /></button>
-          <button onClick={submitHandler} disabled={submitted && loading}>{loading ? "Submitting" : "Submit"}</button>
+        <div
+          className="buttonsWrapper"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: '10px',
+          }}
+        >
+          <button onClick={handlePrev}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+          <button onClick={submitHandler} disabled={submitted && loading}>
+            {loading ? 'Submitting' : 'Submit'}
+          </button>
         </div>
-        <h1 className='primary_heading' style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>Step <span className='step_number'>4</span> of <span>4</span></h1>
+        <h1
+          className="primary_heading"
+          style={{
+            display: 'flex',
+            gap: '5px',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          Step <span className="step_number">4</span> of <span>4</span>
+        </h1>
       </div>
     </div>
-  )
-}
-export default PreviewandSubmit
+  );
+};
+export default PreviewandSubmit;

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import useCustomerData from '../../../../hooks/useCustomerData';
 import Link from 'next/link';
 import ProfileImage from '../../../../ui/ProfileImage';
-import "../../dashboardBlock/dashboardBlock.css";
+import '../../dashboardBlock/dashboardBlock.css';
 const Page = () => {
   const [customerDatas] = useCustomerData();
   return (
@@ -41,7 +41,9 @@ const Page = () => {
               </tr>
             </tbody>
           </table>
-          <Link href="/customer/dashboard/profile/edit" className="button">Edit</Link>
+          <Link href="/customer/dashboard/profile/edit" className="button">
+            Edit
+          </Link>
         </div>
       </div>
     </section>

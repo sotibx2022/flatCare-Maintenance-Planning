@@ -1,5 +1,5 @@
 const EmailVerificationTemplate = (verificationLink: string): string => {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +59,6 @@ const EmailVerificationTemplate = (verificationLink: string): string => {
     </div>
 </body>
 </html>
-`
-}
+`;
+};
 export default EmailVerificationTemplate;

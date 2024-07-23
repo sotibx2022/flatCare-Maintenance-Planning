@@ -7,13 +7,13 @@ export async function PUT(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   isTokenExpired(request, response);
   try {
-    const formData = await request.formData()
+    const formData = await request.formData();
     const fullName = formData.get('fullName');
     const email = formData.get('email');
     const buildingNumber = formData.get('buildingNumber');
     const floorNumber = formData.get('floorNumber');
     const roomNumber = formData.get('roomNumber');
-    const file = formData.get('file') as unknown as File
+    const file = formData.get('file') as unknown as File;
     const fileName = file.name;
     const fileType = file.type;
     const fileSize = file.size;
@@ -21,13 +21,17 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     const originalCustomer = await Customer.findOne({ email: email });
     if (!originalCustomer) {
       return NextResponse.json({
-        message: "Customer not found.",
+        message: 'Customer not found.',
         status: 404,
         success: false,
       });
     }
-    const result = await uploadImage(file, "customerImages", originalCustomer.imageUniqueName.toString());
-    const { downloadUrl } = result
+    const result = await uploadImage(
+      file,
+      'customerImages',
+      originalCustomer.imageUniqueName.toString(),
+    );
+    const { downloadUrl } = result;
     // Check if there are any changes
     const isSame =
       originalCustomer.fullName === fullName &&
@@ -40,7 +44,7 @@ export async function PUT(request: NextRequest, response: NextResponse) {
       originalCustomer.fileType === fileType;
     if (isSame) {
       return NextResponse.json({
-        message: "There is nothing to update.",
+        message: 'There is nothing to update.',
         status: 200,
         success: false,
       });
@@ -48,11 +52,21 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     // Update the customer data if there are changes
     const updatedCustomer = await Customer.findOneAndUpdate(
       { email: email },
-      { fullName, email, buildingNumber, floorNumber, roomNumber, fileName, fileSize, fileType, imageUrl: downloadUrl },
-      { new: true } // Return the updated document
+      {
+        fullName,
+        email,
+        buildingNumber,
+        floorNumber,
+        roomNumber,
+        fileName,
+        fileSize,
+        fileType,
+        imageUrl: downloadUrl,
+      },
+      { new: true }, // Return the updated document
     );
     return NextResponse.json({
-      message: "Customer Details Updated Successfully.",
+      message: 'Customer Details Updated Successfully.',
       status: 200,
       success: true,
       updatedCustomer,
@@ -60,7 +74,7 @@ export async function PUT(request: NextRequest, response: NextResponse) {
   } catch (error) {
     console.error('Error updating customer details:', error);
     return NextResponse.json({
-      message: "Error updating customer details.",
+      message: 'Error updating customer details.',
       status: 400,
       success: false,
     });
