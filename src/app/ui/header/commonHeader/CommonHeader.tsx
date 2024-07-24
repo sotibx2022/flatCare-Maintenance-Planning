@@ -1,12 +1,11 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
-import logo from '../../../../../public/assets/images/logo.png';
+import logo from "@/../../public/assets/images/logo.png";
 const CommonHeader = () => {
   return (
     <header className="Header_wrapper">
-      <div className="container flex_items" ref={commonHeader}>
+      <div className="container flex_items">
         <div className="logo_area">
           <Image
             src={logo}
