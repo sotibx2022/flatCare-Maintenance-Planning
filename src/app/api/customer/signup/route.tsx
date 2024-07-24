@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     });
     await savedCustomer.save();
     // generate verification Link
-    const verificationLink = `http://localhost:3000/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
+    const verificationLink = `/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
     // Send Email to user
     // Call Email Verification Template
     const registerEmail = EmailVerificationTemplate(verificationLink);

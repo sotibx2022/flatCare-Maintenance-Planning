@@ -32,7 +32,7 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="center_container">
         <div className="form_container">
-          <h1 className="primary_heading">Customer Login</h1>
+          <h1 className="primary_heading">Technician Login</h1>
           <div className="form_Item">
             <label>Email</label>
             <div style={{ position: 'relative' }}>

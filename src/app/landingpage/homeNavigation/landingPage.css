@@ -1,15 +1,17 @@
 .callToAction {
   background: var(--gradient);
   color: var(--primaryLight);
-  padding: 1rem 2rem;
+  padding: 1 rem;
   gap: 1rem;
   display: inline-flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 1rem;
   position: relative;
-  transition: all 0.5s linear;
-  max-width: 200px;
+  transition: all .5s linear;
+  max-width: 150px;
+  align-items: center;
+  justify-content: center;
 }
 #about-section {
   display: flex;
