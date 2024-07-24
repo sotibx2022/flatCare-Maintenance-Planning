@@ -1,13 +1,9 @@
 'use client';
-import React, { useContext } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { DarkModeContext } from '../../../../useContext/themeContext';
 import NotificationStatus from '../dashboardBlock/NotificationStatus';
 import NotificationPriority from '../dashboardBlock/NotificationPriority';
 import NotificationCategory from '../dashboardBlock/NotificationCategory';
 const Dashboard = () => {
-  const router = useRouter();
+
   return (
     <div className="dashboard">
       <section className="dashboard_main_block notificationsbyCategory">
