@@ -3,10 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
 import logo from '../../../../../public/assets/images/logo.png';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 const CommonHeader = () => {
-  const commonHeader = useRef(null);
   return (
     <header className="Header_wrapper">
       <div className="container flex_items" ref={commonHeader}>
