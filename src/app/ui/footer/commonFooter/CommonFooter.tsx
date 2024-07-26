@@ -74,7 +74,6 @@ const CommonFooter = () => {
             return (
               <Link
                 href={`/${category.categoryTitle.toLocaleLowerCase().replace(/ /g, '-')}`}
-                className="category_wrapper flex_items"
                 key={index}
               >
                 <p className="categoryItem">{category.categoryTitle}</p>

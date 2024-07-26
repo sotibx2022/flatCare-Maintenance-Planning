@@ -12,6 +12,7 @@
   max-width: 150px;
   align-items: center;
   justify-content: center;
+  margin-top:1rem;
 }
 #about-section {
   display: flex;
@@ -23,20 +24,14 @@
 .about-card img {
   max-width: 500px;
   border-radius: 50%;
-  border: 10px solid var(--primaryDark);
-}
-.about-us {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 .main_paragraph {
-  font-size: 2rem;
+  font-size: 1rem;
+  font-style: italic;
 }
 .section-heading {
   display: flex;
   align-items: center;
-  margin: 2rem auto;
 }
 .bouncing-ball {
   max-width: 500px;

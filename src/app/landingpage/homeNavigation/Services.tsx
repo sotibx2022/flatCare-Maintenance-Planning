@@ -65,11 +65,9 @@ const Services: React.FC = () => {
         </ul>
       </div>
       <div className="service-area">
-        <p className="section-paragraph">
-          Personal contribution is not enough to start and complete any custom
-          project from scratch to live. I have a dedicated team to provide the
-          services included below.
-        </p>
+      <p className="section-paragraph">
+  Successfully maintaining a flat goes beyond individual efforts. Our dedicated team is here to manage and provide the comprehensive maintenance services you need, ensuring everything runs smoothly.
+</p>
         <div className="services-list">
           {services.map((service, index) => (
             <SingleService

@@ -5,7 +5,7 @@ import logo from "@/../../public/assets/images/logo.png";
 const CommonHeader = () => {
   return (
     <header className="Header_wrapper">
-      <div className="container flex_items" style={{padding:0}}>
+      <div className="container flex_items">
         <div className="logo_area">
          <Link href='/'> <Image
             src={logo}

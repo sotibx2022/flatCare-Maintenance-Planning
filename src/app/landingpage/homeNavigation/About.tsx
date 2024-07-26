@@ -27,7 +27,7 @@ const About = () => {
       <div className="about-us">
         <h1 className="primary_heading">FlatCare Maintenance Planning</h1>
         <p className="main_paragraph">
-          Effortless maintenance planning for a hassle-free living experience.
+        Effortless maintenance for a hassle-free life.
         </p>
         <SoftwareFeatures />
         <Link href="/customer/signup" className="callToAction">
