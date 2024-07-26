@@ -52,6 +52,10 @@
 }
 .secondary_block {
   width: 45%;
+  box-shadow: var(--primaryDarkBoxShadow);
+  min-width: 320px;
+  padding: 1rem;
+  min-height: 200px;
 }
 .statusBlocks {
   display: flex;

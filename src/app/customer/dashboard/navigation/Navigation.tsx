@@ -69,7 +69,6 @@ const Navigation = () => {
             <FontAwesomeIcon icon={faKey} /> Change Password
           </Link>
         </li>
-        <ul>
           <li
             className={
               pathName === '/customer/dashboard/notifications/create'
@@ -92,7 +91,6 @@ const Navigation = () => {
               <FontAwesomeIcon icon={faListAlt} /> List Notifications
             </Link>
           </li>
-        </ul>
       </ul>
       <button onClick={handleLogout} className="logoutButton">
         <FontAwesomeIcon icon={faSignOutAlt} /> Logout

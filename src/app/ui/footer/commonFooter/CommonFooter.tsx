@@ -20,31 +20,18 @@ import {
 const maintenanceCategories = [
   {
     categoryTitle: 'Plumbing',
-    categoryIcon: '🚰',
   },
   {
     categoryTitle: 'Electrical',
-    categoryIcon: '💡',
   },
   {
     categoryTitle: 'Carpentry',
-    categoryIcon: '🔨',
   },
   {
     categoryTitle: 'Painting',
-    categoryIcon: '🎨',
   },
   {
-    categoryTitle: 'Pest Control',
-    categoryIcon: '🐜',
-  },
-  {
-    categoryTitle: 'Appliance Repair',
-    categoryIcon: '🔧',
-  },
-  {
-    categoryTitle: 'Waste Management',
-    categoryIcon: '🚮',
+    categoryTitle: 'and Others.....',
   },
 ];
 const CommonFooter = () => {
