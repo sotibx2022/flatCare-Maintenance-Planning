@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-export async function middleware(request: NextRequest) {
+import NextResponse from 'next/server';
+import NextRequest from 'next/server';
+export async function middleware(request: NextRequest,response:NextResponse) {
   const path = request.nextUrl.pathname;
   const token = request.cookies.get('token');
   // Define public paths
@@ -16,6 +16,11 @@ export async function middleware(request: NextRequest) {
   // If token does not exist and trying to access a protected path
   if (!token && !isPublicPath) {
     return NextResponse.redirect(new URL('/customer/login', request.url));
+  }
+  if(token && isPublicPath){
+    if(path!=='customer/dashboard/main'){
+        return NextResponse.redirect(new URL('customer/dashboard/main',request.url))
+    }
   }
   // Allow the request to proceed if none of the conditions match
   return NextResponse.next();
