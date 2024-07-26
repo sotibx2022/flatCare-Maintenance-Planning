@@ -5,8 +5,8 @@
 .dashboard {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
+  align-items: stretch;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 .categorychartContainer {
@@ -51,9 +51,8 @@
   width: 100%;
 }
 .secondary_block {
-  width: 45%;
+  width: 42%;
   box-shadow: var(--primaryDarkBoxShadow);
-  min-width: 320px;
   padding: 1rem;
   min-height: 200px;
 }
@@ -112,7 +111,7 @@
 .viewProfileTable tbody {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   justify-content: flex-start;
   align-items: flex-start;
   width: auto;
@@ -122,12 +121,16 @@
 .viewProfileTable tr {
   border-left: 2px solid var(--primaryDark);
   display: inline-block;
-  padding: 10px;
+  box-shadow: var(--primaryDarkBoxShadow);
+  min-width: 300px;
 }
 .viewProfileTable th,
 .viewProfileTable td {
-  padding: 10px;
+  padding: 6px;
   color: var(--primaryDark);
+}
+.viewProfileTable td{
+  text-align: right;
 }
 @media (max-width: 400px) {
   .dashboard_main_block {

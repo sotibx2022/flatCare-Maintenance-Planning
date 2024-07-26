@@ -14,7 +14,7 @@
   position: relative;
   max-width: 350px;
   width: 300px;
-  min-width: 300px;
+  min-width: 200px;
   box-shadow: var(--primaryLightBoxShadow);
   padding: 20px;
   transform: translateX(calc(-300px - 5vw));

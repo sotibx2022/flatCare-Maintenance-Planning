@@ -32,6 +32,7 @@
 .section-heading {
   display: flex;
   align-items: center;
+  margin:5rem 0;
 }
 .bouncing-ball {
   max-width: 500px;
@@ -133,7 +134,7 @@
   gap: 1rem;
 }
 .model-item {
-  background-color: var(--primaryDark);
+  background:var(--gradient);
   color: var(--primaryLight);
   width: 30vw;
   padding: 1rem;

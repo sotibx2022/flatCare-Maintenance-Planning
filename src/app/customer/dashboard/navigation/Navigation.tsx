@@ -34,7 +34,7 @@ const Navigation = () => {
   };
   return (
     <nav className="dashboardNavigation">
-      <ul>
+      <ul style={{margin:0,padding:0}}>
         <li className={pathName === '/customer/dashboard/main' ? 'active' : ''}>
           <Link href="/customer/dashboard/main">
             <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard

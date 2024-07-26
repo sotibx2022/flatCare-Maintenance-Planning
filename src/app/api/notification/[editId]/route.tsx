@@ -3,25 +3,45 @@ import { NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
 import { Notification } from '../../../../models/notification.models';
 import { isTokenExpired } from '../../../../helper/isTokenExpired';
+import { useSearchParams } from 'next/navigation';
 export async function GET(request: NextRequest, response: NextResponse) {
-  ConnectToDb();
-  isTokenExpired(request, response);
-  const url = new URL(request.url);
-  const editId = url.searchParams.get('editId');
-  const notification = await Notification.find({ _id: editId });
-  if (notification) {
+  try {
+    ConnectToDb();
+    isTokenExpired(request, response);
+    const { editId } = response.params;
+    if (!editId) {
+      return NextResponse.json({
+        message: 'Edit ID is missing',
+        success: false,
+        status: 400,
+      });
+    }
+    // Find the notification by ID
+    const notification = await Notification.find({ _id: editId });
+    if (notification.length > 0) {
+      return NextResponse.json({
+        message: 'Success',
+        notification,
+        success: true,
+        status: 200,
+      });
+    } else {
+      return NextResponse.json({
+        message: 'Notification not found',
+        success: false,
+        status: 404,
+      });
+    }
+  }
+  catch (error) {
+    console.error('Error in GET handler:', error);
+    // Return a generic error response
     return NextResponse.json({
-      message: 'Notification Found Successfully',
-      status: 200,
-      success: true,
-      notification,
+      message: 'Internal Server Error',
+      success: false,
+      status: 500,
     });
   }
-  return NextResponse.json({
-    message: 'notification Not found',
-    success: false,
-    status: 400,
-  });
 }
 export async function PUT(request: NextRequest) {
   try {

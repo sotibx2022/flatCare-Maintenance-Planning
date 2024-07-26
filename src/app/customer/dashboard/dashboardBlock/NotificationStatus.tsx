@@ -28,7 +28,7 @@ const NotificationStatus = () => {
         </div>
         <div className="blockData">
           <FontAwesomeIcon icon={faCircleDown} />
-          <span>0</span>
+          <span>8</span>
         </div>
       </div>
     </div>

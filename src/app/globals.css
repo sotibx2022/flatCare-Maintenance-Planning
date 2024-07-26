@@ -64,15 +64,16 @@ a {
 .form_Item input[type="text"],
 .form_Item input[type="email"],
 .form_Item input[type="password"],
-.form_Item input[type='select'],
+.form_Item select,
 .form_Item textarea {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid var(--primaryDark);
   border-radius: 5px;
   background-color: var(--primaryLight);
   color: var(--primaryDark);
+  box-sizing: border-box;
 }
 label {
   color: var(--primaryDark);
@@ -232,8 +233,8 @@ ul li {
   animation: changeball 1s linear infinite alternate-reverse;
 }
 .profilePicture {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: var(--primary);
   position: relative;
 }
@@ -261,10 +262,10 @@ ul li {
   left: 0;
 }
 .profileImagePreview img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  box-shadow: var(--primaryDarkBoxShadow);
 }
 .notFoundConatiner {
   display: flex;
@@ -299,8 +300,8 @@ ul li {
   align-items: center;
 }
 .loadingContainer img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 @keyframes moveupanddown {
   0% {

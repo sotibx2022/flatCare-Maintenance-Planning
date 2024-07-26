@@ -5,71 +5,59 @@
   max-width: 80vw;
   overflow-x: scroll;
 }
-
 .notification-table th,
 .notification-table td {
   padding: 8px;
   text-align: left;
 }
-tr {
+.notification-table tr {
   box-shadow: var(--primaryLightBoxShadow);
 }
-tr:hover {
+.notification-table tr:hover {
   box-shadow: var(--primaryDarkBoxShadow);
 }
 .notification-table .emergencyNotification {
   color: #cc0000; /* Dark red */
   font-weight: bold;
 }
-
 .notification-table .urgentNotification {
   color: #e69500; /* Dark orange */
   font-weight: bold;
 }
-
 .notification-table .normalNotification {
   color: #009900; /* Dark green */
   font-weight: bold;
 }
-
 .notification-table td h6 {
   margin-bottom: 5px;
   font-size: 12px;
   color: var(--primaryDark);
 }
-
 .notification-table td span {
   display: block;
   margin-bottom: 3px;
   font-size: 14px;
 }
-
 .notification-table td span:first-child {
   margin-top: 5px;
 }
-
 .notification-table td span:last-child {
   margin-bottom: 0;
 }
-
 .locationItem {
   background-color: #f0c9cf;
   color: var(--primaryDark);
   padding: 0.1rem;
-
   border-radius: 10px;
 }
-
-th,
-td {
+.notification-table th,
+.notification-table td {
   min-width: 100px;
   text-align: center;
 }
-
 .large_content {
   min-width: 200px;
 }
-
 .minimum_content {
   max-width: 50px;
 }

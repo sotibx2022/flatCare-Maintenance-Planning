@@ -46,7 +46,7 @@ const NotificationPriority = () => {
         width: '100%',
         height: '90%',
         position: 'relative',
-        marginTop: '-1rem',
+        marginTop: '-2rem',
       }}
     >
       <ResponsiveContainer>
@@ -75,8 +75,8 @@ const NotificationPriority = () => {
           textAlign: 'center',
           marginTop: '10px',
           position: 'absolute',
-          bottom: '0',
-          width: '100%',
+          bottom: '10px',
+          width: '111%',
         }}
       >
         {data.map((entry, index) => (

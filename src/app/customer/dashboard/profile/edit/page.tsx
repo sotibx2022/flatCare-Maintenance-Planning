@@ -97,7 +97,7 @@ const EditCustomerProfile = () => {
         justifyContent: 'flex-start',
         flexDirection: 'column',
         gap: '10px',
-        marginTop: '20px',
+        marginTop: '10px',
         maxWidth: '400px',
       }}
     >
@@ -108,7 +108,7 @@ const EditCustomerProfile = () => {
       />
       <form
         className="editForm"
-        style={{ minWidth: '300px', marginTop: '50px' }}
+        style={{ minWidth: '300px', marginTop: '10px' }}
         onSubmit={handleSubmit(onSubmit)}
       >
         {isSubmitted && submitError && (
@@ -147,13 +147,8 @@ const EditCustomerProfile = () => {
           <input
             type="text"
             id="email"
-            {...register('email', {
-              required: { value: true, message: 'This Field is Required' },
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
-              },
-            })}
+            value={customerDatas.email}
+            readOnly
           />
           {errors?.email?.message && (
             <SubmitError message={errors?.email?.message} />

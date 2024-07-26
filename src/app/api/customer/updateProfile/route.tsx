@@ -3,6 +3,7 @@ import { ConnectToDb } from '../../../../helper/connectToDb';
 import { Customer } from '../../../../models/customer.models';
 import { isTokenExpired } from '../../../../helper/isTokenExpired';
 import { uploadImage } from '../../../../helper/uploadImage';
+import { INSTRUMENTATION_HOOK_FILENAME } from 'next/dist/lib/constants';
 export async function PUT(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   isTokenExpired(request, response);
@@ -14,9 +15,14 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     const floorNumber = formData.get('floorNumber');
     const roomNumber = formData.get('roomNumber');
     const file = formData.get('file') as unknown as File;
-    const fileName = file.name;
-    const fileType = file.type;
-    const fileSize = file.size;
+    let fileName = '';
+    let fileType = '';
+    let fileSize = 0;
+    if (file) {
+      fileName = file.name;
+      fileType = file.type;
+      fileSize = file.size;
+    }
     // Retrieve the original customer data
     const originalCustomer = await Customer.findOne({ email: email });
     if (!originalCustomer) {
@@ -35,13 +41,13 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     // Check if there are any changes
     const isSame =
       originalCustomer.fullName === fullName &&
-      originalCustomer.email === email &&
       originalCustomer.buildingNumber === buildingNumber &&
       originalCustomer.floorNumber === floorNumber &&
       originalCustomer.roomNumber === roomNumber &&
-      originalCustomer.fileName === fileName &&
-      originalCustomer.fileSize === fileSize &&
-      originalCustomer.fileType === fileType;
+      (file && (originalCustomer.fileName === fileName &&
+        originalCustomer.fileType === fileType &&
+        originalCustomer.fileSize === fileSize
+      ))
     if (isSame) {
       return NextResponse.json({
         message: 'There is nothing to update.',
@@ -58,10 +64,10 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         buildingNumber,
         floorNumber,
         roomNumber,
-        fileName,
-        fileSize,
-        fileType,
-        imageUrl: downloadUrl,
+        fileName: file ? fileName : originalCustomer.fileName,
+        fileSize: file ? fileSize : originalCustomer.fileSize,
+        fileType: file ? fileType : originalCustomer.fileType,
+        imageUrl: file ? downloadUrl : originalCustomer.imageUrl,
       },
       { new: true }, // Return the updated document
     );
