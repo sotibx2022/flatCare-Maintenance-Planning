@@ -1,7 +1,6 @@
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
 import ThemeContex, { DarkModeContext } from '../../../useContext/themeContext';
-import Header from '../header/CustomerHeader';
 import Navigation from './navigation/Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
