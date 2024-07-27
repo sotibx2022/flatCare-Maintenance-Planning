@@ -1,5 +1,6 @@
 import React from 'react';
-import '../homeNavigation/landingPage.css';
+import "./../../globals.css";
+import "./landingPage.css";
 import HomeNavigation from './HomeNavigation';
 import Hero from './Hero';
 import About from './About';

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import SoftwareFeatures from '../softwareFeatures/SoftwareFeatures';
+import "./../../globals.css";
 const About = () => {
   const router = useRouter();
   return (
@@ -27,7 +28,7 @@ const About = () => {
       <div className="about-us">
         <h1 className="primary_heading">FlatCare Maintenance Planning</h1>
         <p className="main_paragraph">
-        Effortless maintenance for a hassle-free life.
+          Effortless maintenance for a hassle-free life.
         </p>
         <SoftwareFeatures />
         <Link href="/customer/signup" className="callToAction">

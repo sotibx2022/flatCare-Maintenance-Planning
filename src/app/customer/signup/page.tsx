@@ -5,7 +5,7 @@ import PersonalDetails from './personalDetails/PersonalDetails';
 import LocationDetails from './locationDetails/LocationDetails';
 import PreviewandSubmit from './previewandsubmit/PreviewandSubmit';
 import SoftwareAccessDetails from './softwareaccessDetails/SoftwareAccessDetails';
-import Header from '../header/CustomerHeader';
+import "../../globals.css";
 import next from 'next';
 let steps = [
   { step: 1, title: 'Customer Details' },

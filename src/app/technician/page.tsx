@@ -10,9 +10,8 @@ import {
   faEyeSlash,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
-import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import SubmitError from '../ui/SubmitError';
+import "../globals.css";
 type FormData = {
   email: string;
   password: string;

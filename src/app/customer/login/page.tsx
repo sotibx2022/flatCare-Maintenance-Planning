@@ -10,6 +10,7 @@ import SubmitError from '../../ui/SubmitError';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../ui/submitSuccess';
 import Link from 'next/link';
+import "../../globals.css";
 type FormData = {
   email: string;
   password: string;

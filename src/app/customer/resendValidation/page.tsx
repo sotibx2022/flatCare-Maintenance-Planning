@@ -7,6 +7,7 @@ import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
 import SubmitSuccess from '../../ui/submitSuccess';
 import Link from 'next/link';
 import axios from 'axios';
+import "../../globals.css";
 import { toast } from 'react-toastify';
 interface FormData {
   email: string;

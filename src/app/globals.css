@@ -139,7 +139,7 @@ select option {
   align-items: center;
 }
 .logo {
-  width: 50px;
+  width: 0px;
   height: auto;
 }
 .navigation_area {

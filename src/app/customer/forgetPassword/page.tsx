@@ -4,6 +4,7 @@ import CheckEmail from '../../ui/checkEmail/CheckEmail';
 import UpdatePassword from '../../ui/updatePassword/UpdatePassword';
 import SubmitSuccess from '../../ui/submitSuccess';
 import SubmitError from '../../ui/SubmitError';
+import "../../globals.css";
 import Link from 'next/link';
 const page = () => {
   const [successValue, setSuccessValue] = useState(false);

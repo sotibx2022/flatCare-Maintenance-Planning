@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import SubmitError from '../ui/SubmitError';
-import CommonHeader from '../ui/header/commonHeader/CommonHeader';
+import "../globals.css";
 type FormData = {
   email: string;
   password: string;
