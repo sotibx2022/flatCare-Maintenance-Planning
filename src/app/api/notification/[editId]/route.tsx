@@ -8,7 +8,8 @@ export async function GET(request: NextRequest, response: NextResponse) {
   try {
     ConnectToDb();
     isTokenExpired(request, response);
-    const { editId } = response.params;
+    const url = new URL(request.url);
+    const editId = url.pathname.split("/")[3]
     if (!editId) {
       return NextResponse.json({
         message: 'Edit ID is missing',
@@ -17,8 +18,9 @@ export async function GET(request: NextRequest, response: NextResponse) {
       });
     }
     // Find the notification by ID
-    const notification = await Notification.find({ _id: editId });
-    if (notification.length > 0) {
+    const notification = await Notification.findOne({ _id: editId });
+    console.log(notification)
+    if (notification) {
       return NextResponse.json({
         message: 'Success',
         notification,
