@@ -16,7 +16,7 @@ interface Notification {
 }
 const truncate_title = (title: string) => {
   const words = title.split(' ');
-  if (words.length > 3) {
+  if (words.length > 4) {
     const truncatedTitle = words.slice(0, 3).join(' ') + '...';
     return truncatedTitle.toUpperCase();
   } else return title.toUpperCase();
@@ -45,7 +45,7 @@ const page = () => {
       } else {
         toast.error(result.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const calculateTurnAroundTime = (d: Date) => {
     const referenceDate = new Date(d);
@@ -81,7 +81,7 @@ const page = () => {
                 {notifications.map((notification, index) => (
                   <tr key={index} className="notificationSingleList">
                     <td>1234</td>
-                    <td>{truncate_title(notification.notificationTitle)}</td>
+                    <td className='large_content'>{truncate_title(notification.notificationTitle)}</td>
                     <td>{notification.notificationCategory}</td>
                     {notification.notificationPriority === 'Emergency' && (
                       <td className="emergencyNotification">

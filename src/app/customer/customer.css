@@ -146,6 +146,9 @@
 .notification-table {
   width: 100%;
 }
+.large_content {
+  min-width: 200px !important;
+}
 @media (max-width: 500px) {
   .stepInputs_Wrapper {
     width: 300px;

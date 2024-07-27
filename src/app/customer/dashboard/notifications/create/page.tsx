@@ -43,56 +43,62 @@ const Page = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Validate form details
     const error = validateNotificationDetails(
       notificationTitle,
       notificationDescription,
       priority,
       categoryValue,
     );
+    // Update the state with validation errors
     setNotificationErrors(error);
-    if (
-      !noficationErrors.notificationTitle ||
-      !noficationErrors.notificationDescription ||
-      !noficationErrors.notificationCategory ||
-      !noficationErrors.notificationPriority
-    ) {
-      try {
-        setLoading(true);
-        const dataToSend = {
-          notificationTitle,
-          notificationDescription,
-          notificationPriority: priority,
-          notificationCategory: categoryValue,
-          createdBy: customerDatas.fullName,
-          userId: customerDatas.userId,
-          address: {
-            buildingNumber: customerDatas.buildingNumber,
-            flatNumber: customerDatas.floorNumber,
-            roomNumber: customerDatas.roomNumber,
-          },
-        };
-        const response = await axios.post(
-          'http://localhost:3000/api/notification',
-          { dataToSend },
-        );
-        const result = response.data;
-        console.log(result)
-        setLoading(false);
-        if (result.success) {
-          setSubmitSuccess(true);
-          toast.success(result.success);
-          router.push('/customer/dashboard/notifications/list');
-        } else {
-          toast.error(result.message);
+    // Wait for state update to complete before proceeding
+    setTimeout(async () => {
+      // Check if there are any validation errors
+      if (
+        !error.notificationTitle &&
+        !error.notificationDescription &&
+        !error.notificationCategory &&
+        !error.notificationPriority
+      ) {
+        try {
+          setLoading(true);
+          const dataToSend = {
+            notificationTitle,
+            notificationDescription,
+            notificationPriority: priority,
+            notificationCategory: categoryValue,
+            createdBy: customerDatas.fullName,
+            userId: customerDatas.userId,
+            address: {
+              buildingNumber: customerDatas.buildingNumber,
+              flatNumber: customerDatas.floorNumber,
+              roomNumber: customerDatas.roomNumber,
+            },
+          };
+          const response = await axios.post(
+            'http://localhost:3000/api/notification',
+            { dataToSend },
+          );
+          const result = response.data;
+          console.log(result);
+          setLoading(false);
+          if (result.success) {
+            setSubmitSuccess(true);
+            toast.success('Notification created successfully!');
+            router.push('/customer/dashboard/notifications/list');
+          } else {
+            toast.error(result.message);
+          }
+        } catch (error) {
+          console.error('Error submitting notification:', error);
+          setLoading(false);
+          // Handle error display or logging as needed
         }
-      } catch (error) {
-        console.error('Error submitting notification:', error);
-        setLoading(false);
-        // Handle error display or logging as needed
+      } else {
+        console.log('Form validation failed');
       }
-    } else {
-      console.log('Form validation failed');
-    }
+    }, 0); // Use a timeout to ensure state updates before submission logic
   };
   return (
     <div className="create_Notification_container">

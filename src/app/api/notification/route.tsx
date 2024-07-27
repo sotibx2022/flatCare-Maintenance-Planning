@@ -51,13 +51,10 @@ export async function POST(request: NextRequest) {
       });
     }
     const token = tokenCookie.value;
-    const decodedToken = jwt.verify(
-      token,
-      process.env.SECRET_KEY!,
-    ) as JwtPayload;
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
     const userId = decodedToken.userId;
     const customer = await Customer.findOne({ _id: userId });
-    if (!userId) {
+    if (!customer) {
       return NextResponse.json({
         message: 'User ID not found in token',
         status: 401,
@@ -65,6 +62,7 @@ export async function POST(request: NextRequest) {
       });
     }
     // Extract notification data from the request body
+    const { dataToSend } = await request.json();
     const {
       notificationTitle,
       notificationDescription,
@@ -72,9 +70,8 @@ export async function POST(request: NextRequest) {
       notificationCategory,
       address,
       createdBy,
-    } = await request.json();
+    } = dataToSend;
     const { roomNumber, flatNumber, buildingNumber } = address;
-    console.log(notificationTitle, notificationDescription, userId);
     // Create a new instance of Notification model
     const newNotification = new Notification({
       notificationTitle,
@@ -108,7 +105,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     // Handle any errors that occur during the operation
-    console.error('Error saving notification:', error);
+    console.error('Error processing request:', error);
     return NextResponse.json({
       message: 'Failed to create notification',
       status: 500,
