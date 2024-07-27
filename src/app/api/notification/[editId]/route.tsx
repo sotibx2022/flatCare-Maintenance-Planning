@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
 import { Notification } from '../../../../models/notification.models';
 import { isTokenExpired } from '../../../../helper/isTokenExpired';
-import { useSearchParams } from 'next/navigation';
 export async function GET(request: NextRequest, response: NextResponse) {
   try {
     ConnectToDb();
@@ -20,6 +19,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     // Find the notification by ID
     const notification = await Notification.findOne({ _id: editId });
     if (notification) {
+      console.log(notification)
       return NextResponse.json({
         message: 'Success',
         notification,
