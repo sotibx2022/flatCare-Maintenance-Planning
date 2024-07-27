@@ -5,6 +5,7 @@ import About from './About';
 import Services from './Services';
 import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 import UserModel from './UserModel';
+import Features from '../Features';
 const LandingPage = () => {
   return (
     <div>
@@ -12,6 +13,7 @@ const LandingPage = () => {
         <About />
         <Services />
         <UserModel />
+        <Features />
       </div>
       <CommonFooter />
     </div>

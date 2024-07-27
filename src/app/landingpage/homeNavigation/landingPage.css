@@ -258,6 +258,72 @@
 .social ul .facebook :hover {
   background-color: #3b5998;
 }
+.featureItems {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding: 10px;
+  justify-content: space-between;
+  margin: 5rem auto;
+}
+.featureItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 300px;
+  box-shadow: var(--primaryDarkBoxShadow);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.featureItem::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primaryDark);
+  transition: height 0.5s ease;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  transform-origin: bottom;
+  transition: all 0.5s;
+}
+.featureItem::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient);
+  transition: height 0.5s ease;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  transform-origin: top;
+  transition: 0.5s;
+}
+.featureItem:hover:before {
+  bottom: -6px;
+  left: 0;
+  transform: perspective(1000px) rotateX(75deg);
+}
+.featureItem:hover:after {
+  top: -6px;
+  left: 0;
+  transform: perspective(1000px) rotateX(-75deg);
+}
+.featureItem h1 {
+  color: var(--primaryLight);
+  transition: 0.5s;
+  z-index: 111;
+}
+.featureItem:hover h1 {
+  color: var(--primaryDark);
+}
 @media (max-width: 900px) {
   .footerItems {
     flex-direction: column;
