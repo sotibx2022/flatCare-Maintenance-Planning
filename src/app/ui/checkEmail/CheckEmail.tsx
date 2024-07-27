@@ -71,7 +71,9 @@ const CheckEmail: React.FC<checkEmailProps> = ({ successValue }) => {
         className="form_Item"
         style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}
       >
-        <div style={{ position: 'relative' }}>
+        <div style={{
+          position: 'relative', width: '100%', marginTop: '0.1rem'
+        }}>
           <FontAwesomeIcon icon={faLock} className="input_icon_left" />
           <input
             type="text"
@@ -88,7 +90,7 @@ const CheckEmail: React.FC<checkEmailProps> = ({ successValue }) => {
       {focus && emailError && <SubmitError message={emailError} />}
       {successMessage && <SubmitSuccess message={successMessage} />}
       {errorMessage && <SubmitError message={errorMessage} />}
-    </div>
+    </div >
   );
 };
 export default CheckEmail;

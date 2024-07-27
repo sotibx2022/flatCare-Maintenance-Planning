@@ -43,9 +43,9 @@ const page = () => {
             </Link>
           </p>
           <p className="secondary_heading">
-            Forgot your password?{' '}
-            <Link href="/customer/forgetPassword" style={{ color: '#007bff' }}>
-              Reset
+            Account Already Created?{' '}
+            <Link href="/customer/login" style={{ color: '#007bff' }}>
+              Login
             </Link>
           </p>
           <p className="secondary_heading">

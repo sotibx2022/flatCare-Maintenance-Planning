@@ -33,12 +33,6 @@ const Page = () => {
     };
     findCategories();
   }, []);
-  const selectPriority = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPriority(e.target.value);
-  };
-  const selectCategoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategoryValue(e.target.value);
-  };
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNotificationTitle(e.target.value);
   };
@@ -62,8 +56,8 @@ const Page = () => {
       !noficationErrors.notificationCategory ||
       !noficationErrors.notificationPriority
     ) {
-      setLoading(true);
       try {
+        setLoading(true);
         const dataToSend = {
           notificationTitle,
           notificationDescription,
@@ -79,9 +73,10 @@ const Page = () => {
         };
         const response = await axios.post(
           'http://localhost:3000/api/notification',
-          dataToSend,
+          { dataToSend },
         );
         const result = response.data;
+        console.log(result)
         setLoading(false);
         if (result.success) {
           setSubmitSuccess(true);
@@ -139,7 +134,7 @@ const Page = () => {
               id="priority"
               name="priority"
               value={priority}
-              onChange={selectPriority}
+              onChange={(e) => setPriority(e.target.value)}
             >
               <option value="">Select One</option>
               <option value="Normal">Normal</option>
@@ -156,7 +151,7 @@ const Page = () => {
               id="categories"
               name="categories"
               value={categoryValue}
-              onChange={selectCategoryValue}
+              onChange={(e) => setCategoryValue(e.target.value)}
             >
               <option value="">Select One</option>
               {categories.map((category, index) => (

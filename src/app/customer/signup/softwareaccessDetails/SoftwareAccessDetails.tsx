@@ -165,6 +165,7 @@ const SoftwareAccess: React.FC<SoftwareAccessProps> = ({
             <FontAwesomeIcon
               icon={showPassword ? faEyeSlash : faEye}
               className="input_icon_right"
+              onClick={() => setShowPassword(!showPassword)}
             />
           </div>
           {errors.confirmPassword && focus.confirmPassword && (

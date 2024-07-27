@@ -39,6 +39,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({
   };
   const submitHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setSubmitted(true)
     if (file === null) {
       setUplaodError('Please Upload Profile Image First');
     } else {
@@ -87,9 +88,6 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({
         {submitted && uploadError && <SubmitError message={uploadError} />}
         {submitted && success && !loading && (
           <SubmitSuccess message="User Registered ! Please Wait for Redirection" />
-        )}
-        {submitted && !success && !loading && (
-          <SubmitError message="Please Login ! Provided Email already Registered" />
         )}
         <ProfileImage
           onChange={onChange}

@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
       createdBy,
     } = await request.json();
     const { roomNumber, flatNumber, buildingNumber } = address;
+    console.log(notificationTitle, notificationDescription, userId);
     // Create a new instance of Notification model
     const newNotification = new Notification({
       notificationTitle,

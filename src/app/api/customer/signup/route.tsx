@@ -39,9 +39,10 @@ export async function POST(req: NextRequest) {
     if (!file) {
       return NextResponse.json(
         {
-          message: 'No file provided',
+          message: 'Please Upload Profile Image',
+          success: false,
+          status: 400,
         },
-        { status: 400 },
       );
     }
     // Check if customer already exists with the provided email
@@ -86,7 +87,7 @@ export async function POST(req: NextRequest) {
     });
     await savedCustomer.save();
     // generate verification Link
-    const verificationLink = `${process.env.WEBSITE_URL}customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
+    const verificationLink = `${process.env.WEBSITE_URL}/customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
     // Send Email to user
     // Call Email Verification Template
     const registerEmail = EmailVerificationTemplate(verificationLink);
