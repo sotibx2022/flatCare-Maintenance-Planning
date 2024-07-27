@@ -21,13 +21,10 @@ const page: React.FC = () => {
       </h1>
       <p className="registration-success-message">
         Hello <strong>{name}</strong>, your account with email{' '}
-        <strong>{email}</strong> has been created. Please verify your email to
+        <strong>{email}</strong> has been created. Please login with your Email and Password to
         access the dashboard.
       </p>
-      <p className="registration-success-instruction">
-        Note : Your Verification Token will expire in 30 Minutes.
-      </p>
-      <Link href="/customer/resendValidation">Resend Validation Link</Link>
+      <Link href="/customer/login">Login</Link>
     </div>
   );
 };

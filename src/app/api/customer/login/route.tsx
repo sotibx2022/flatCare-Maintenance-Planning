@@ -46,12 +46,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
           success: false,
           customer,
         });
-      } else if (!customer.isVerified) {
-        return NextResponse.json({
-          message: 'Your account is not Verified',
-          success: false,
-          status: 400,
-        });
       } else {
         response = NextResponse.json({
           message: 'Login Successful',
