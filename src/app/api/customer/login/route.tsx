@@ -27,8 +27,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   try {
     const { currentEmail, currentPassword } = await request.json();
-    const customer = await Customer.findOne({ email: currentEmail });
     console.log(currentEmail, currentPassword);
+    const customer = await Customer.findOne({ email: currentEmail });
+    console.log(customer)
     if (!customer) {
       return NextResponse.json({
         message: 'There is no registered Customer',

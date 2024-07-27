@@ -5,12 +5,10 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faEnvelope,
   faEye,
   faEyeSlash,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
 import SubmitError from '../ui/SubmitError';
 import "../globals.css";
 type FormData = {

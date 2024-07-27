@@ -1,13 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCogs,
-  faWrench,
-  faDatabase,
-  faSearch,
-  IconName,
-} from '@fortawesome/free-solid-svg-icons'; // Import relevant icons
 import '../homeNavigation/landingPage.css';
 interface SingleServiceProps {
   title: string;

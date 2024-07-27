@@ -19,7 +19,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
     }
     // Find the notification by ID
     const notification = await Notification.findOne({ _id: editId });
-    console.log(notification)
     if (notification) {
       return NextResponse.json({
         message: 'Success',

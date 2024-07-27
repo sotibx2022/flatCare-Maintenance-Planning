@@ -1,18 +1,13 @@
 'use client';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebook,
-  faLinkedin,
-  faYoutube,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import '../homeNavigation/landingPage.css'; // Make sure your CSS file path is correct
+import '../homeNavigation/landingPage.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import SoftwareFeatures from '../softwareFeatures/SoftwareFeatures';
 import "./../../globals.css";
+import "./../../layout.css";
 const About = () => {
   const router = useRouter();
   return (

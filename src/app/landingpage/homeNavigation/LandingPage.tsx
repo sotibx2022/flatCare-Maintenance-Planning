@@ -1,6 +1,7 @@
 import React from 'react';
 import "./../../globals.css";
-import "./landingPage.css";
+import "./../../layout.css";
+import "../homeNavigation/landingPage.css";
 import About from './About';
 import Services from './Services';
 import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
