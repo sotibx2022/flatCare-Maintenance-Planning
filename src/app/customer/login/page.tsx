@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
-import Header from '../header/CustomerHeader';
 import SubmitError from '../../ui/SubmitError';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../ui/submitSuccess';
