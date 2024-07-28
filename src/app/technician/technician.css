@@ -1,0 +1,131 @@
+.about-highlights {
+    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    margin: 5% 0;
+}
+/*-----------------ABOUT FEATURES--------------------*/
+.about-features {
+    margin: auto 0;
+    /*    display: flex;*/
+}
+.feature-item {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+.feature-item-title {
+    display: grid;
+    place-items: center;
+}
+.feature-item-title h4 {
+    font-size: 1.5rem;
+}
+.feature-item-title i {
+    width: 3rem;
+}
+.helper-bg {
+    background: var(--helper);
+}
+.text-bg {
+    background: var(--text);
+}
+.feature-item span {
+    position: absolute;
+    width: 4rem;
+    top: 25%;
+    left: -3rem;
+    font-size: 2rem;
+    padding: 1rem;
+    background-color: var(--optional);
+    color: var(--helper);
+    font-weight: 900;
+    z-index: -1;
+}
+/*-----------------RESUME-----------------------*/
+.resume-data {
+    margin: 5% 0;
+}
+.about-area {
+    margin: 5% 0;
+}
+.grid-two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+}
+.designation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: var(--helper);
+}
+.resume-para {
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    color: var(--helper);
+}
+.resume-data-subsection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4.8rem;
+    margin-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dotted var(--helper);
+}
+.resume-data-left .grid p,
+.resume-data-right p {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+}
+.resume-data-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.resume-data-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.resume-data-right .resume-data-button {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--primary);
+    padding: 0 0.5rem;
+    min-width: 5rem;
+    background: var(--helper);
+    border-radius: 0.5rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+.resume-data-bottom-subsection {
+    margin-top: 1rem;
+}
+.resume-data-bottom-subsection .margin-small {
+    margin-top: 1rem;
+}
+.resume-data-bottom-subsection .resume-data-button {
+    width: 80%;
+}
+/*==========================MEDIA QUERY=============================*/
+@media screen and (max-width: 1000px) {
+    .about-highlights {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

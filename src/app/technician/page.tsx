@@ -1,120 +1,124 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faEnvelope,
-  faEye,
-  faEyeSlash,
-  faLock,
-} from '@fortawesome/free-solid-svg-icons';
-import SubmitError from '../ui/SubmitError';
-import "../globals.css";
-type FormData = {
-  email: string;
-  password: string;
-};
-const Login = () => {
-  const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isSubmitted },
-  } = useForm<FormData>();
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data);
-  };
-  return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} className="center_container">
-        <div className="form_container">
-          <h1 className="primary_heading">Technician Login</h1>
-          <div className="form_Item">
-            <label>Email</label>
-            <div style={{ position: 'relative' }}>
-              <input
-                type="email"
-                placeholder="Email"
-                id="email"
-                {...register('email', { required: 'Email is required' })}
-                style={{ paddingLeft: '30px' }}
-              />
-              <FontAwesomeIcon
-                icon={faLock}
-                style={{
-                  position: 'absolute',
-                  left: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#29030d',
-                }}
-              />
+import { faBriefcase, faBuilding, faMapMarker, faCalendar, faUser } from '@fortawesome/free-solid-svg-icons';
+import "./../technician/technician.css";
+interface JobExperience {
+    title: string;
+    company: string;
+    location: string;
+    roleType: string;
+    dateRange: string;
+}
+interface Certification {
+    title: string;
+    institution: string;
+    location: string;
+    status: string;
+    professional: string;
+}
+const jobExperiences: JobExperience[] = [
+    {
+        title: "Web Developer",
+        company: "Freelancing",
+        location: "Chitwan, Nepal",
+        roleType: "Full Time",
+        dateRange: "Dec. 2021 - Present"
+    },
+    {
+        title: "SAP Maintenance Planner",
+        company: "Saudi Aramco Oil Company",
+        location: "Shaybah, Saudi Arabia",
+        roleType: "Fulltime",
+        dateRange: "July 2015 - Dec. 2021"
+    },
+    {
+        title: "Project Manager for Web Development",
+        company: "Frntech Pvt. Ltd.",
+        location: "Kathmandu, Nepal",
+        roleType: "Fulltime",
+        dateRange: "Nov. 2013 - May 2015"
+    }
+];
+const certifications: Certification[] = [
+    {
+        title: "SAP Maintenance Planner",
+        institution: "SAP System",
+        location: "Saudi Arabia",
+        status: "Certified",
+        professional: "SAP professional"
+    },
+    {
+        title: "Project Management",
+        institution: "Harvard (eLearning)",
+        location: "Boston, USA",
+        status: "Certified",
+        professional: "Project Mgmt."
+    }
+];
+const Technician: React.FC = () => {
+    return (
+        <section className="resume-data">
+            <p className="resume-para">Experiences</p>
+            {jobExperiences.map((job, index) => (
+                <div className="resume-data-subsection" key={index}>
+                    <div className="resume-data-left">
+                        <div className="designation">
+                            <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
+                            <h3>{job.title}</h3>
+                        </div>
+                        <div className="grid grid-two-col">
+                            <p>
+                                <FontAwesomeIcon icon={faBuilding} aria-hidden="true" />
+                                {job.company}
+                            </p>
+                            <p>
+                                <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" />
+                                {job.location}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="resume-data-right">
+                        <p className="resume-data-button">{job.roleType}</p>
+                        <p>
+                            <FontAwesomeIcon icon={faCalendar} aria-hidden="true" />
+                            {job.dateRange}
+                        </p>
+                    </div>
+                </div>
+            ))}
+            <div className="resume-data-bottom-subsection">
+                <p className="resume-para">Certifications</p>
+                {certifications.map((cert, index) => (
+                    <div className={`resume-data-subsection ${index > 0 ? 'margin-small' : ''}`} key={index}>
+                        <div className="resume-data-left">
+                            <div className="designation">
+                                <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
+                                <h3>{cert.title}</h3>
+                            </div>
+                            <div className="grid grid-two-col">
+                                <p>
+                                    <FontAwesomeIcon icon={faBuilding} aria-hidden="true" />
+                                    {cert.institution}
+                                </p>
+                                <p>
+                                    <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" />
+                                    {cert.location}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="resume-data-right">
+                            <p className="resume-data-button">{cert.status}</p>
+                            <p>
+                                <span>
+                                    <FontAwesomeIcon icon={faUser} aria-hidden="true" />
+                                    {cert.professional}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                ))}
             </div>
-            {errors.email?.message && (
-              <SubmitError message={errors.email?.message} />
-            )}
-          </div>
-          <div className="form_Item">
-            <label>Password</label>
-            <div style={{ position: 'relative' }}>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                id="password"
-                {...register('password', { required: 'Password is required' })}
-                style={{ paddingLeft: '30px' }}
-              />
-              <FontAwesomeIcon
-                icon={faLock}
-                style={{
-                  position: 'absolute',
-                  left: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#29030d',
-                }}
-              />
-              {showPassword ? (
-                <FontAwesomeIcon
-                  icon={faEyeSlash}
-                  onClick={() => setShowPassword(false)}
-                  style={{
-                    position: 'absolute',
-                    right: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: '#29030d',
-                    cursor: 'pointer',
-                  }}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faEye}
-                  style={{
-                    position: 'absolute',
-                    right: '10px',
-                    transform: 'translateY(-50%)',
-                    top: '50%',
-                    color: '#29030d',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => setShowPassword(true)}
-                />
-              )}
-            </div>
-            {errors.email?.message && (
-              <SubmitError message={errors.email?.message} />
-            )}
-          </div>
-          <button type="submit">
-            {isSubmitting ? 'Submitting' : 'Submit'}
-          </button>
-          <SubmitError message="Please Contact Your Planner For Login Credentials." />
-        </div>
-      </form>
-    </>
-  );
+        </section>
+    );
 };
-export default Login;
+export default Technician;

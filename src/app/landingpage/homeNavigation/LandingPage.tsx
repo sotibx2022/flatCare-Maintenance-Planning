@@ -6,17 +6,19 @@ import Services from './Services';
 import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 import UserModel from './UserModel';
 import Features from '../Features';
+import Pricing from './Pricing';
 const LandingPage = () => {
   return (
-    <div>
+    <>
       <div className="container">
         <About />
         <Services />
         <UserModel />
         <Features />
+        <Pricing />
       </div>
       <CommonFooter />
-    </div>
+    </>
   );
 };
 export default LandingPage;

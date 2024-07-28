@@ -1,10 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
-  --primaryDark: #a73754;
-  --primaryLight: #f5e0e3;
-  --primaryDarkBoxShadow: 0 4px 6px rgba(123, 42, 63, 0.3);
-  --primaryLightBoxShadow: 0 4px 6px rgba(240, 164, 177, 0.3);
-  --gradient: linear-gradient(90deg, rgba(184, 24, 24, 1) 0%, rgba(60, 30, 34, 1) 100%);
+  --primaryDark: #2b2bb4;
+  --primaryLight: #d7daf1;
+  --primaryDarkBoxShadow: 0 4px 6px rgba(58, 58, 238, 0.397);
+  --primaryLightBoxShadow: 0 4px 6px rgba(187, 195, 251, 0.3);
+  --gradient: linear-gradient(90deg, #2b2bb4 0%, #6169a8 100%);
+  --helper: #ecb301;
 }
 body,
 html {
@@ -132,25 +136,60 @@ select option {
   background-color: var(--primaryLight);
   box-shadow: var(--primaryLightBoxShadow);
   justify-content: space-between;
-  border-top: 2px solid var(--primaryDark);
+  margin-top: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  height: 5vh;
+}
+.menuIcon {
+  list-style: none;
+  font-size: 1.5rem;
+  background: var(--gradient);
+  color: var(--primary);
+  width: 2rem;
+  height: 2rem;
+  color: var(--primaryLight);
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  animation: border-change 1s linear infinite alternate-reverse;
+  cursor: pointer;
 }
 .logo_area {
   display: flex;
   align-items: center;
 }
 .logo {
-  width: 0px;
+  width: 4rem;
   height: auto;
 }
 .navigation_area {
   flex: 1;
-  text-align: right;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  right: -280px;
+  z-index: 1;
+  border-left: 10px solid var(--primaryDark);
+  height: 100vh;
+  background-color: var(--primaryLight);
+  padding: 5rem 2rem;
+  opacity: 0;
 }
 .navigation_area ul {
   list-style: none;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
   gap: 20px;
-  justify-content: flex-end;
+  padding: 0;
+  margin-top: 1rem;
+}
+.navigation_area ul li {
+  text-transform: uppercase;
 }
 .menu_item {
   cursor: pointer;

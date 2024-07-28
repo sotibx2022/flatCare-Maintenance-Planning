@@ -1,0 +1,125 @@
+.grid-col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+.idea-item {
+    height: 10rem;
+    padding-left: 5rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.idea-item .ideaIcon {
+    color: var(--primaryDark);
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+}
+/* Contact form  */
+.form-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.form-items input {
+    height: 2.5rem;
+    width: 100%;
+    border: 0.1rem solid var(--primaryDark);
+    color: var(--primaryDark);
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    cursor: text;
+    outline: none;
+}
+.contact-form {
+    box-shadow: var(--primaryDarkBoxShadow);
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    padding: 5rem 0;
+    position: relative;
+}
+.fa-paper-plane {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient);
+    color: var(--primaryLight);
+    padding: 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    animation: border-change 2s linear infinite;
+}
+.form-items textarea {
+    height: 8rem;
+    width: 80%;
+    background: transparent;
+    border: 0.1rem solid var(--primaryDark);
+    color: var(--primaryDark);
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+}
+.form-items select {
+    height: 3rem;
+    background: transparent;
+    border: 0.1rem solid var(--primaryDark);
+    width: 85%;
+    color: var(--primaryDark);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+.form-item {
+    position: relative;
+    margin-bottom: 1rem;
+}
+.form-item span {
+    position: absolute;
+    top: 0.40rem;
+    left: 10%;
+    transition: 0.5s;
+    color: var(--text)
+}
+#submit-form {
+    width: 60%;
+    cursor: pointer;
+}
+.form-item input:focus~span,
+.form-item input[type="email"]:focus~span,
+.form-item input[type="email"]:valid~span,
+.form-item textarea:focus~span,
+.form-item input:valid~span,
+.form-item textarea:valid~span {
+    top: -1rem;
+    background: var(--primaryDark);
+    padding: 0 0.5rem;
+    font-size: 1rem
+}
+.error-message {
+    color: red;
+    text-align: left;
+    padding-left: 10%;
+    font-size: 1rem;
+}
+.success-icon {
+    color: green;
+    position: absolute;
+    top: 0.75rem;
+    left: 88%;
+    opacity: 0;
+}
+.error-icon {
+    color: red;
+    position: absolute;
+    top: 0.75rem;
+    left: 88%;
+    opacity: 0;
+}

@@ -1,0 +1,240 @@
+.container {
+    margin: 0 auto;
+}
+/*--------------PAGE HEADING--------------------*/
+.page-heading {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+.page-heading h2 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+.page-heading i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+.page-heading p {
+    color: var(--primary);
+}
+.page-heading i {
+    font-size: 3rem;
+}
+.page-sub-heading {
+    color: var(--text);
+    padding-top: 1rem;
+}
+.page-sub-heading h2 {
+    position: relative;
+    display: inline-block;
+    background: var(--helper);
+    padding: 1rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    width: 15vw;
+}
+.page-sub-heading h2::after {
+    position: absolute;
+    content: "";
+    left: 100%;
+    top: 25%;
+    width: 50vw;
+    height: 50%;
+    background-color: var(--optional);
+}
+/*TIMELINE STYLING*/
+.timeline {
+    width: 100%;
+    position: relative;
+}
+.timeline::after {
+    position: absolute;
+    content: "";
+    width: 0.5rem;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    background: var(--text);
+}
+.right-container {
+    position: relative;
+    left: 50%;
+    width: 50%;
+}
+.left-container {
+    position: relative;
+    left: 0;
+    width: 50%;
+}
+.experience-item {
+    width: 35vw;
+    background: var(--helper);
+}
+.right-content {
+    margin-left: auto;
+}
+.right-container span {
+    position: absolute;
+    left: 0;
+    background: var(--primary);
+    color: var(--helper);
+    font-size: 1.5rem;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-left: -0.75rem;
+    border: 2px solid var(--helper);
+    top: 15%;
+}
+.left-container span {
+    position: absolute;
+    right: 0;
+    background: var(--primary);
+    color: var(--helper);
+    font-size: 1.5rem;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-right: -1.25rem;
+    border: 2px solid var(--helper);
+    top: 15%;
+}
+.right-content {
+    position: relative;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+.right-content::after {
+    position: absolute;
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    background: var(--helper);
+    left: 0;
+    top: 15%;
+    margin-left: -1rem;
+    transform: rotate(45deg);
+}
+.left-content {
+    position: relative;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.left-content::after {
+    position: absolute;
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    background: var(--helper);
+    right: 0%;
+    top: 15%;
+    margin-right: -1rem;
+    transform: rotate(45deg);
+}
+#experience {
+    margin: 5% 0;
+}
+.timeline .fa-arrow-circle-up {
+    position: absolute;
+    background: var(--primary);
+    color: var(--helper);
+    font-size: 1.5rem;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-left: -0.75rem;
+    border: 2px solid var(--text);
+    left: 50%;
+    top: 100%;
+    margin-top: -1rem;
+}
+.experience-item h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--primary);
+}
+.fa-briefcase {
+    margin-right: 1rem;
+}
+.experience-item h3 {
+    font-size: 1.4rem;
+    text-align: center;
+    color: var(--optional);
+    font-style: italic;
+}
+.fa-map-marker {
+    margin-right: 0.5rem;
+}
+.employment-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+.employment-details small {
+    background: var(--text);
+    padding: 0.5rem 1rem;
+    color: var(--primary);
+}
+.employment-details location {
+    color: var(--primary);
+}
+.duration {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+.duration .start-date,
+.end-date {
+    padding: 0.5rem;
+    background: var(--primary);
+    z-index: 1;
+    cursor: pointer;
+}
+.duration h6 {
+    background: var(--optional);
+    color: var(--primary);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+    .timeline::after {
+        display: none;
+    }
+    .experience-item {
+        width: 80vw;
+    }
+    .content-wrapper {
+        margin-bottom: 1rem;
+    }
+    .right-container {
+        left: 0;
+    }
+    .right-container span {
+        right: 100%;
+    }
+    .left-container span {
+        left: -1rem;
+    }
+    .left-content::after {
+        display: none;
+    }
+    .right-content::after {
+        display: none;
+    }
+    .timeline .fa-arrow-circle-up {
+        left: -0.1rem;
+    }
+}
