@@ -1,4 +1,5 @@
 'use client';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../homeNavigation/landingPage.css';
 import { useRouter } from 'next/navigation';
@@ -6,24 +7,24 @@ import Link from 'next/link';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import "./../../globals.css";
 import "./../../layout.css";
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import PortfolioCounter from './PortfolioCounter';
 import Rating from './Rating';
 const About = () => {
   const router = useRouter();
-  useGSAP(() => {
-    const tl = gsap.timeline({ defaults: { duration: 1 } })
-    tl.to(".about-us", {
+  useEffect(() => {
+    // GSAP animation for other sections
+    const tl = gsap.timeline({ defaults: { duration: 1 } });
+    tl.to(".rating-section", {
       transform: 'translateX(0)',
       duration: 1,
-    })
+    });
     tl.to(".about-card", {
       opacity: 1,
       scale: 1,
       rotate: 360,
-    })
-  }, [])
+    });
+  }, []);
   return (
     <>
       <section id="about-section" className="responsive_flex">

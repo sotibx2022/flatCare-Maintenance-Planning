@@ -22,6 +22,9 @@
   align-items: center;
   gap: 6rem;
 }
+.rating-section {
+  transform: translateX(-50%);
+}
 .review-text {
   font-style: italic;
 }
