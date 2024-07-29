@@ -1,160 +1,82 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faMapMarker, faArrowCircleUp } from '@fortawesome/free-solid-svg-icons';
 import "../howitworks/howitworks.css";
-interface ExperienceProps {
-    number: string;
-    title: string;
-    company: string;
-    location: string;
-    type: string;
-    responsibilities: string;
-    startDate: string;
-    endDate: string;
-}
-const ExperienceItem: React.FC<ExperienceProps> = ({
-    number,
-    title,
-    company,
-    location,
-    type,
-    responsibilities,
-    startDate,
-    endDate
-}) => {
-    const isLeft = parseInt(number) % 2 !== 0; // Determine left or right alignment based on the experience number
+import ProcessItem from './ProcessItem';
+const tasks = [
+    {
+        TaskTitle: "Create Notification",
+        TaskDescription: "Generate a detailed notification based on the specific request submitted by the customer, including all relevant details such as urgency, description of the issue, and any specific instructions provided.",
+        Role: "Customer",
+    },
+    {
+        TaskTitle: "Approve Notification",
+        TaskDescription: "Review and approve the notification created by the customer. Ensure all details are accurate and complete, and confirm that it meets the necessary requirements before moving forward.",
+        Role: "Planner",
+    },
+    {
+        TaskTitle: "Site Visit",
+        TaskDescription: "Conduct an on-site visit to evaluate the current situation. Assess the scope of work required, identify any additional resources or materials needed, and document findings to facilitate further actions.",
+        Role: "Technician",
+    },
+    {
+        TaskTitle: "Request Material",
+        TaskDescription: "Submit a request for the materials required for the job to the supplier. Include detailed specifications, quantities, and any special instructions to ensure the materials are suitable for the task at hand.",
+        Role: "Customer",
+    },
+    {
+        TaskTitle: "Create Work Order",
+        TaskDescription: "Draft a comprehensive work order that outlines the tasks to be performed, the materials required, and any specific instructions or deadlines. Ensure the work order aligns with the customer’s request and requirements.",
+        Role: "Planner",
+    },
+    {
+        TaskTitle: "Order Material",
+        TaskDescription: "Place an order for the materials specified in the work order. Verify that the order includes all necessary items and quantities, and follow up with the supplier to confirm delivery times and availability.",
+        Role: "Planner",
+    },
+    {
+        TaskTitle: "Approve Work Order",
+        TaskDescription: "Review the work order created by the planner for accuracy and completeness. Ensure that all aspects of the job are correctly outlined and approve the work order to proceed with the next steps.",
+        Role: "Customer",
+    },
+    {
+        TaskTitle: "Update Work Order Status",
+        TaskDescription: "Regularly update the status of the work order based on the progress of the tasks. Provide detailed information on completed activities, any delays or issues encountered, and any changes to the initial plan.",
+        Role: "Planner",
+    },
+    {
+        TaskTitle: "Complete Job",
+        TaskDescription: "Carry out the job as specified in the work order. Ensure that all tasks are completed to the required standard, and address any issues or additional requirements that arise during the process.",
+        Role: "Technician",
+    },
+    {
+        TaskTitle: "Complete Confirmation",
+        TaskDescription: "Verify and confirm the completion of the job from the customer’s perspective. Ensure that all aspects of the work meet the customer’s satisfaction and obtain formal confirmation that the job is finished.",
+        Role: "Customer",
+    },
+    {
+        TaskTitle: "Close Work Order",
+        TaskDescription: "Finalize and close the work order after verifying that all tasks have been completed according to the specifications. Ensure all documentation is updated and filed appropriately, and perform any necessary follow-up tasks.",
+        Role: "Planner",
+    }
+];
+const ProcessItemsSection: React.FC = () => {
     return (
-        <div className={`content-wrapper ${isLeft ? 'left-container' : 'right-container'}`}>
-            <span>{number}</span>
-            <div className={`experience-item ${isLeft ? 'left-content' : 'right-content'}`}>
-                <h2>
-                    <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
-                    {title}
-                </h2>
-                <h3>{company}</h3>
-                <div className="employment-details">
-                    <p>
-                        <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" />
-                        {location}
-                    </p>
-                    <small>{type}</small>
-                </div>
-                <p>Responsibilities: <br />{responsibilities}</p>
-                <div className="duration">
-                    <p className="start-date">{startDate}</p>
-                    <h6 className="duration">Duration: {new Date(endDate).getFullYear() - new Date(startDate).getFullYear()} year</h6>
-                    <p className="end-date">{endDate}</p>
-                </div>
+        <section id="processes" className='container timeline'>
+            <div className='pageTitle'>
+                <h1 className='primary_heading'>How it Works</h1>
+                <p>At Flatcare Maintenance, we ensure that managing and maintaining your property is as seamless and stress-free as possible. Here’s how our process works</p>
             </div>
-        </div>
-    );
-};
-const ExperienceSection: React.FC = () => {
-    const experiences = [
-        {
-            number: "I",
-            title: "SEO & Online Advertising Officer",
-            company: "Ved International Company",
-            location: "Kathmandu, Nepal",
-            type: "Homebased",
-            responsibilities: "Online Micro Projects, Forum Posting, Blog Posting, Basic SEO, Content Writing, Website Promotion, Social Media Advertising",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "II",
-            title: "Data Entry Officer",
-            company: "Nepal Art & Ocean Training Institute",
-            location: "Kathmandu, Nepal",
-            type: "Homebased",
-            responsibilities: "Data Entry, Ad-Posting, Excel Entry, Online Advertising, Content Creation, Report Processing",
-            startDate: "2011-01-01",
-            endDate: "2012-01-01"
-        },
-        {
-            number: "III",
-            title: "Data Entry Trainer",
-            company: "Bridge Tech Pvt. Ltd.",
-            location: "Kathmandu, Nepal",
-            type: "Homebased",
-            responsibilities: "Training, Counseling, Data Entry, Ad-Posting, Excel Entry, Online Advertising, Content Creation, Report Processing",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "IV",
-            title: "Online Job Trainer",
-            company: "Nexon Education Consultancy",
-            location: "Kathmandu, Nepal",
-            type: "Homebased",
-            responsibilities: "Training, Counseling, Data Entry, Ad-Posting, Excel Entry, Online Advertising, Content Creation, Report Processing",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "V",
-            title: "Junior Graphics Designer",
-            company: "Bholenath Printing Press",
-            location: "Kathmandu, Nepal",
-            type: "Full Time",
-            responsibilities: "Designing, Printing, Office Assistance, Record Keeping, Customer Dealing, Product Delivery",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "VI",
-            title: "Web Project Manager",
-            company: "Frntech Pvt. Ltd.",
-            location: "Kathmandu, Nepal",
-            type: "Full Time",
-            responsibilities: "Designing, Development, Web Customization, Team Handling, Client Relations, Consulting, CMS Training, Client Visiting, Reporting",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "VII",
-            title: "SAP Maintenance Planner",
-            company: "Saudi Aramco Oil Company",
-            location: "Saudi Arabia",
-            type: "Full Time",
-            responsibilities: "Work Orders, Materials, Schedule, Planning, Tracking, SAP System, Heavy Equipment, Reporting, Presentation",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        },
-        {
-            number: "VIII",
-            title: "Web Developer",
-            company: "Upwork Freelancing",
-            location: "Chitwan, Nepal",
-            type: "Homebased",
-            responsibilities: "Designing, Development, HTML, CSS, JavaScript, Bootstrap, WordPress, Content Writing",
-            startDate: "2010-01-01",
-            endDate: "2011-01-01"
-        }
-    ];
-    return (
-        <section id="experience">
-            <section className="experience-area container">
-                <div className="experience-items timeline">
-                    {experiences.map((exp) => (
-                        <ExperienceItem
-                            key={exp.number}
-                            number={exp.number}
-                            title={exp.title}
-                            company={exp.company}
-                            location={exp.location}
-                            type={exp.type}
-                            responsibilities={exp.responsibilities}
-                            startDate={exp.startDate}
-                            endDate={exp.endDate}
-                        />
-                    ))}
-                    <a href='/experience'>
-                        <FontAwesomeIcon icon={faArrowCircleUp} aria-hidden="true" />
-                    </a>
-                </div>
-            </section>
+            <div className=''>
+                {tasks.map((process, index) => (
+                    <ProcessItem
+                        key={index}
+                        taskTitle={process.TaskTitle}
+                        taskDescription={process.TaskDescription}
+                        role={process.Role}
+                        index={index}
+                    />
+                ))}
+            </div>
         </section>
     );
 };
-export default ExperienceSection;
+export default ProcessItemsSection;

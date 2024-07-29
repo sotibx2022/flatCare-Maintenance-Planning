@@ -1,124 +1,93 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faBuilding, faMapMarker, faCalendar, faUser } from '@fortawesome/free-solid-svg-icons';
-import "./../technician/technician.css";
-interface JobExperience {
-    title: string;
-    company: string;
-    location: string;
-    roleType: string;
-    dateRange: string;
-}
-interface Certification {
-    title: string;
-    institution: string;
-    location: string;
-    status: string;
-    professional: string;
-}
-const jobExperiences: JobExperience[] = [
+import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import "../technician/technician.css";
+import Rating from '../landingpage/homeNavigation/Rating';
+const technicians = [
     {
-        title: "Web Developer",
-        company: "Freelancing",
-        location: "Chitwan, Nepal",
-        roleType: "Full Time",
-        dateRange: "Dec. 2021 - Present"
+        title: "Senior Electrician",
+        name: "Rajit Pathak",
+        EmployeeId: "9864823",
+        status: "Certified",
+        Contact: "9864893602",
+        photo: "/assets/images/rajitpathak.jpg",
+        address: "123 Main St, Kathmandu, Nepal"
     },
     {
-        title: "SAP Maintenance Planner",
-        company: "Saudi Aramco Oil Company",
-        location: "Shaybah, Saudi Arabia",
-        roleType: "Fulltime",
-        dateRange: "July 2015 - Dec. 2021"
+        title: "HVAC Technician",
+        name: "Anita Sharma",
+        EmployeeId: "9864824",
+        status: "Certified",
+        Contact: "9864893603",
+        photo: "/assets/images/anitasharma.jpg",
+        address: "456 Elm St, Pokhara, Nepal"
     },
     {
-        title: "Project Manager for Web Development",
-        company: "Frntech Pvt. Ltd.",
-        location: "Kathmandu, Nepal",
-        roleType: "Fulltime",
-        dateRange: "Nov. 2013 - May 2015"
+        title: "Plumbing Specialist",
+        name: "Sanjay Kumar",
+        EmployeeId: "9864825",
+        status: "In-Training",
+        Contact: "9864893604",
+        photo: "/assets/images/sanjayakumar.jpg",
+        address: "789 Pine St, Lalitpur, Nepal"
+    },
+    {
+        title: "Carpenter",
+        name: "Maya Singh",
+        EmployeeId: "9864826",
+        status: "Certified",
+        Contact: "9864893605",
+        photo: "/assets/images/mayasingh.jpg",
+        address: "101 Maple St, Biratnagar, Nepal"
+    },
+    {
+        title: "General Maintenance Technician",
+        name: "Ravi Joshi",
+        EmployeeId: "9864827",
+        status: "Certified",
+        Contact: "9864893606",
+        photo: "/assets/images/ravijosi.jpg",
+        address: "202 Oak St, Janakpur, Nepal"
     }
 ];
-const certifications: Certification[] = [
-    {
-        title: "SAP Maintenance Planner",
-        institution: "SAP System",
-        location: "Saudi Arabia",
-        status: "Certified",
-        professional: "SAP professional"
-    },
-    {
-        title: "Project Management",
-        institution: "Harvard (eLearning)",
-        location: "Boston, USA",
-        status: "Certified",
-        professional: "Project Mgmt."
-    }
-];
-const Technician: React.FC = () => {
+const TechnicianList = () => {
     return (
-        <section className="resume-data">
-            <p className="resume-para">Experiences</p>
-            {jobExperiences.map((job, index) => (
-                <div className="resume-data-subsection" key={index}>
-                    <div className="resume-data-left">
-                        <div className="designation">
-                            <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
-                            <h3>{job.title}</h3>
-                        </div>
-                        <div className="grid grid-two-col">
-                            <p>
-                                <FontAwesomeIcon icon={faBuilding} aria-hidden="true" />
-                                {job.company}
-                            </p>
-                            <p>
-                                <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" />
-                                {job.location}
-                            </p>
-                        </div>
-                    </div>
-                    <div className="resume-data-right">
-                        <p className="resume-data-button">{job.roleType}</p>
-                        <p>
-                            <FontAwesomeIcon icon={faCalendar} aria-hidden="true" />
-                            {job.dateRange}
-                        </p>
-                    </div>
-                </div>
-            ))}
-            <div className="resume-data-bottom-subsection">
-                <p className="resume-para">Certifications</p>
-                {certifications.map((cert, index) => (
-                    <div className={`resume-data-subsection ${index > 0 ? 'margin-small' : ''}`} key={index}>
-                        <div className="resume-data-left">
+        <div className="technician-data container">
+            <p className="primary_heading">Check Our Highly Rated Technicians</p>
+            <div className="singleTechnician">
+                {technicians.map((tech, index) => (
+                    <div className="technicianDetails" key={tech.EmployeeId}>
+                        <div className="technicianDetailsLeft">
+                            <div className="technicianProfile">
+                                <img src={tech.photo} alt={tech.name} className="technician_profile" />
+                                <p>{tech.name}</p>
+                            </div>
                             <div className="designation">
                                 <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
-                                <h3>{cert.title}</h3>
+                                <h3>{tech.title}</h3>
                             </div>
-                            <div className="grid grid-two-col">
+                            <div className="technicianContact">
                                 <p>
-                                    <FontAwesomeIcon icon={faBuilding} aria-hidden="true" />
-                                    {cert.institution}
+                                    <FontAwesomeIcon icon={faPhone} aria-hidden="true" className='addressIcon' />
+                                    {tech.Contact}
                                 </p>
                                 <p>
-                                    <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" />
-                                    {cert.location}
+                                    <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" className='addressIcon' />
+                                    {tech.address}
                                 </p>
                             </div>
                         </div>
-                        <div className="resume-data-right">
-                            <p className="resume-data-button">{cert.status}</p>
+                        <div className="technicianStatus">
+                            <p className="statusButton">{tech.status}</p>
                             <p>
-                                <span>
-                                    <FontAwesomeIcon icon={faUser} aria-hidden="true" />
-                                    {cert.professional}
-                                </span>
+                                Employee ID: {tech.EmployeeId}
                             </p>
+                            <Rating />
                         </div>
                     </div>
                 ))}
             </div>
-        </section>
+        </div>
     );
 };
-export default Technician;
+export default TechnicianList;

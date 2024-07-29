@@ -14,7 +14,7 @@ type FormData = {
     email: string;
     password: string;
 };
-const Login = () => {
+const Page = () => {
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const {
@@ -116,4 +116,4 @@ const Login = () => {
         </>
     );
 };
-export default Login;
+export default Page;

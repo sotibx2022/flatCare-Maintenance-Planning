@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CommonHeader from './ui/header/commonHeader/CommonHeader';
+import LandingPage from './landingpage/homeNavigation/LandingPage';
 const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Create Next App',

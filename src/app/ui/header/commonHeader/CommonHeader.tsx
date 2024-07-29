@@ -1,13 +1,13 @@
-'use client';
-import Link from 'next/link';
-import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faExpand, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+"use client"
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import gsap from 'gsap'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 const CommonHeader = () => {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
+  const router = useRouter()
   const toggleResponsiveMenu = () => {
     setShowResponsiveMenu(!showResponsiveMenu);
   };
@@ -19,20 +19,19 @@ const CommonHeader = () => {
     });
   }, [showResponsiveMenu]);
   return (
-    <>
+    <div>
       <div className="Header_wrapper container">
         <div className="logo_area">
-          <Link href='/'>
-            <img
-              src="/assets/images/logo.png"
-              alt="Company Logo"
-              className="logo"
-            />
-          </Link>
+          <img
+            src="/assets/images/logo.png"
+            alt="Company Logo"
+            className="logo"
+            onClick={() => router.push("/")}
+          />
         </div>
         <FontAwesomeIcon icon={faBars} className="icon menuIcon" onClick={toggleResponsiveMenu} />
       </div>
-      <nav className="navigation_area">
+      <div className="navigation_area">
         <FontAwesomeIcon icon={faTimes} className="icon close-icon menuIcon" onClick={toggleResponsiveMenu} />
         <ul>
           <li className="menu_item">
@@ -54,8 +53,8 @@ const CommonHeader = () => {
             <Link href="/contact">Contact</Link>
           </li>
         </ul>
-      </nav>
-    </>
-  );
-};
-export default CommonHeader;
+      </div>
+    </div>
+  )
+}
+export default CommonHeader

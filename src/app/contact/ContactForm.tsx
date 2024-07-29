@@ -1,6 +1,13 @@
 import { faCheckCircle, faPaperPlane, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from "react";
+const optionsArray = [
+    'Maintenance Services',
+    'Service Request',
+    'Schedule a Visit',
+    'Feedback/Suggestions',
+    'Other Reason'
+];
 const ContactForm = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -37,8 +44,6 @@ const ContactForm = () => {
                         />
                         <span>Name</span>
                         <div id="nameerror" className="error-message"></div>
-                        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" id="si1" aria-hidden="true" />
-                        <FontAwesomeIcon icon={faTimes} className="error-icon" id="ei1" aria-hidden="true" />
                     </div>
                     <div className="form-item">
                         <input
@@ -51,8 +56,6 @@ const ContactForm = () => {
                         />
                         <span>Email</span>
                         <div id="emailerror" className="error-message"></div>
-                        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" id="si1" aria-hidden="true" />
-                        <FontAwesomeIcon icon={faTimes} className="error-icon" id="ei1" aria-hidden="true" />
                     </div>
                     <div className="form-item">
                         <input
@@ -65,8 +68,6 @@ const ContactForm = () => {
                         />
                         <span>Subject</span>
                         <div id="subjecterror" className="error-message"></div>
-                        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" id="si1" aria-hidden="true" />
-                        <FontAwesomeIcon icon={faTimes} className="error-icon" id="ei1" aria-hidden="true" />
                     </div>
                     <select
                         id="reason"
@@ -75,12 +76,14 @@ const ContactForm = () => {
                         required
                         value={formData.reason}
                         onChange={handleChange}
+                        className='contactForm-select'
                     >
                         <option value="">Select One</option>
-                        <option value="To Build Website">To Build Website</option>
-                        <option value="To Share Project Ideas">To Share Project Ideas</option>
-                        <option value="Any Feedback/Suggestions">Any Feedback/Suggestions</option>
-                        <option value="Other Reason">Other Reason</option>
+                        {optionsArray.map((option, index) => (
+                            <option key={index} value={option}>
+                                {option}
+                            </option>
+                        ))}
                     </select>
                     <div className="form-item">
                         <textarea
@@ -90,14 +93,10 @@ const ContactForm = () => {
                             autoComplete="off"
                             value={formData.message}
                             onChange={handleChange}
-                        ></textarea>
-                        <span>Message</span>
-                        <div id="messageerror" className="error-message"></div>
-                        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" id="si1" aria-hidden="true" />
-                        <FontAwesomeIcon icon={faTimes} className="error-icon" id="ei1" aria-hidden="true" />
+                            className="contactForm-textarea"
+                        />
                     </div>
-                    <input type="submit" value="Submit" id="submit-form" required />
-                    <div id="submiterror" className="error-message"></div>
+                    <button>Submit</button>
                 </form>
             </div>
         </div>

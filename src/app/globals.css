@@ -164,6 +164,7 @@ select option {
 .logo {
   width: 4rem;
   height: auto;
+  cursor: pointer;
 }
 .navigation_area {
   flex: 1;
@@ -317,12 +318,13 @@ ul li {
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background-color: #f5e0e3;
+  background-color: var(--primaryLight);
+  box-shadow: var(--primaryLightBoxShadow);
 }
 .notFoundError h1 {
   font-size: 100px;
   margin: 0;
-  color: #e74c3c;
+  color: var(--helper);
 }
 .notFoundError p {
   font-size: 20px;
@@ -341,6 +343,17 @@ ul li {
 .loadingContainer img {
   width: 200px;
   height: 200px;
+}
+@keyframes border-change {
+  0% {
+    border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
+  }
+  50% {
+    border-radius: 22% 38% 53% 7% / 31% 18% 42% 69%;
+  }
+  100% {
+    border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
+  }
 }
 @keyframes moveupanddown {
   0% {

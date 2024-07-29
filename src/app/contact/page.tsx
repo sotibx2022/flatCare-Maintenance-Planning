@@ -1,9 +1,7 @@
 "use client"
-import "../contact/contact.css"
 import IdeaItem from './IdeaItem';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faPaperPlane, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faCommenting, faLaptop, faLightbulb, faListOl } from "@fortawesome/free-solid-svg-icons";
+import "../contact/contact.css";
+import { faCalendarCheck, faCommentDots, faCommenting, faLaptop, faLightbulb, faListOl, faPhoneAlt, faTools } from "@fortawesome/free-solid-svg-icons";
 import ContactForm from "./ContactForm";
 type IdeaItemData = {
     title: string;
@@ -13,52 +11,47 @@ type IdeaItemData = {
 };
 const ideaItemDatas: IdeaItemData[] = [
     {
-        title: 'Project Idea',
-        paragraph: 'I am always excited to explore new innovative ideas to convert your dream to reality. Let’s open the topic!',
-        icon: faLightbulb,
+        title: 'Maintenance Services',
+        paragraph: 'We provide comprehensive maintenance services to keep your property in top shape. From routine checks to urgent repairs, we’ve got you covered.',
+        icon: faTools,
         className: 'idea-item-helper'
     },
     {
-        title: 'Project Requirement',
-        paragraph: 'What are you looking for? How can we work together? Kindly drop a message. I am available 24/7 for your requirements.',
-        icon: faListOl,
+        title: 'Service Request',
+        paragraph: 'Need maintenance? Let us know your requirements. Our team is available 24/7 to address your needs and provide timely solutions.',
+        icon: faCalendarCheck,
         className: 'idea-item-text'
     },
     {
-        title: 'Online Meeting',
-        paragraph: 'Communication is key to deliver the project exactly as per your requirements. Let’s ensure our best time.',
-        icon: faLaptop,
+        title: 'Schedule a Visit',
+        paragraph: 'Let’s set up a visit to discuss your maintenance needs and ensure we meet your expectations effectively.',
+        icon: faPhoneAlt,
         className: 'idea-item-helper'
     },
     {
         title: 'Feedback/Suggestions',
-        paragraph: 'Raise any issues with your project frankly. I always appreciate your reviews to move ahead with more productivity.',
-        icon: faCommenting,
+        paragraph: 'Share your feedback or suggestions to help us improve our services. We value your input and strive to enhance your experience.',
+        icon: faCommentDots,
         className: 'idea-item-text'
     }
 ];
 const Contact = () => {
     return (
-        <section id="contact-section">
-            <div className="contact-area">
-                <div className="contact-tools grid-col-2">
-                    <div className="contact-ideas">
-                        <div className="idea-items">
-                            <div className="idea-items">
-                                {ideaItemDatas.map((item, index) => (
-                                    <IdeaItem
-                                        key={index}
-                                        title={item.title}
-                                        paragraph={item.paragraph}
-                                        icon={item.icon}
-                                        className={item.className}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <ContactForm />
+        <section id="contact-section" className='container'>
+            <h1 className="primary_heading">Lets Connect to address your Idea !! </h1>
+            <div className='contactSections'>
+                <div className="idea-items">
+                    {ideaItemDatas.map((item, index) => (
+                        <IdeaItem
+                            key={index}
+                            title={item.title}
+                            paragraph={item.paragraph}
+                            icon={item.icon}
+                            className={item.className}
+                        />
+                    ))}
                 </div>
+                <ContactForm />
             </div>
         </section>
     );
