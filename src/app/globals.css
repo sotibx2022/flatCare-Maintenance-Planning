@@ -32,7 +32,10 @@ button,
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   max-width: 10rem;
-  text-align: center;
+  max-height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 button:hover,
 .button:hover {
@@ -370,6 +373,10 @@ ul li {
     padding: 5px 10px;
     border-radius: 2.5px;
     max-width: 6rem;
+    max-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .primary_heading {
     font-size: 1rem;
