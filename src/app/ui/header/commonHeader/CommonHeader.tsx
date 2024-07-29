@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faExpand, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 const CommonHeader = () => {
@@ -11,7 +11,7 @@ const CommonHeader = () => {
   const toggleResponsiveMenu = () => {
     setShowResponsiveMenu(!showResponsiveMenu);
   };
-  useGSAP(() => {
+  useEffect(() => {
     gsap.to(".navigation_area", {
       x: showResponsiveMenu ? -300 : 0,
       opacity: 1,
@@ -48,10 +48,10 @@ const CommonHeader = () => {
             <Link href="/planner">Planner</Link>
           </li>
           <li className="menu_item">
-            <Link href="/planner">How It Works</Link>
+            <Link href="/howitworks">How It Works</Link>
           </li>
           <li className="menu_item">
-            <Link href="/planner">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </nav>
