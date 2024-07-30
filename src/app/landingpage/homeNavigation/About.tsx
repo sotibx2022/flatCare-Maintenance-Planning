@@ -8,6 +8,8 @@ import gsap from 'gsap';
 import PortfolioCounter from './PortfolioCounter';
 import Rating from './Rating';
 import Call2Action from './Call2Action';
+import Lottie from 'lottie-react';
+import herobackground from "@/../../public/assets/animations/herobackground.json"
 const About = () => {
   const router = useRouter();
   useEffect(() => {
@@ -28,10 +30,7 @@ const About = () => {
       <section id="about-section" className="responsive_flex">
         <div className="about-card">
           <div className="about-img">
-            <img
-              src="/assets/images/heroimage.png"
-              alt="FlatCate Maintenance Planning..."
-            />
+            <Lottie animationData={herobackground} autoPlay={true} />
           </div>
         </div>
         <div className="rating-section">
