@@ -1,6 +1,7 @@
 "use client"
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -11,6 +12,13 @@ const CommonHeader = () => {
   const toggleResponsiveMenu = () => {
     setShowResponsiveMenu(!showResponsiveMenu);
   };
+  useGSAP(() => {
+    gsap.from(".Header_wrapper", {
+      y: -500,
+      duration: 0.5,
+      delay: 0.1,
+    })
+  })
   useEffect(() => {
     gsap.to(".navigation_area", {
       x: showResponsiveMenu ? -300 : 0,

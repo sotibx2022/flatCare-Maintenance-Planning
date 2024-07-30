@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../homeNavigation/landingPage.css';
 import { useRouter } from 'next/navigation';
 import "./../../globals.css";
@@ -9,15 +9,18 @@ import PortfolioCounter from './PortfolioCounter';
 import Rating from './Rating';
 import Call2Action from './Call2Action';
 import Lottie from 'lottie-react';
-import herobackground from "@/../../public/assets/animations/herobackground.json"
+import herobackground from "@/../../public/assets/animations/herobackground.json";
+import LoadingComponent from '../../ui/LoadingComponent';
 const About = () => {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    // GSAP animation for other sections
+    setMounted(true)
     const tl = gsap.timeline({ defaults: { duration: 1 } });
     tl.to(".rating-section", {
       transform: 'translateX(0)',
       duration: 1,
+      opacity: 1,
     });
     tl.to(".about-card", {
       opacity: 1,
@@ -35,10 +38,14 @@ const About = () => {
         </div>
         <div className="rating-section">
           <div className="rating-summary">
-            <h1 className="primary_heading">FlatCare <span>Maintenance</span> Planning</h1>
-            <p className="review-text">"Outstanding service! Our maintenance needs are always handled efficiently and professionally. Highly recommended!"</p>
+            <h1 className="primary_heading">
+              FlatCare <span>Maintenance</span> Planning
+            </h1>
+            <p className="review-text">
+              "Outstanding service! Our maintenance needs are always handled efficiently and professionally. Highly recommended!"
+            </p>
             <Rating />
-            <Call2Action type="start Now" link="/customer/login" />
+            <Call2Action type="Start Now" link="/customer/login" />
           </div>
         </div>
       </section>

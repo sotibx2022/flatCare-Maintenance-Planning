@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { counter } from '@fortawesome/fontawesome-svg-core';
+import gsap from 'gsap';
 const PortfolioCounter = () => {
     const [counters, setCounters] = useState({
         projectsCompleted: 0,
@@ -12,29 +13,38 @@ const PortfolioCounter = () => {
     })
     const [animationCompleted, setAnimationCompleted] = useState(false);
     useEffect(() => {
-        const startTime = Date.now();
-        const duration = 2000;
-        const actualProjectsCompleted = 9;
-        const actualhappyClients = 12;
-        const actualyearOfServices = 2;
-        const actualInternalServices = 18;
-        const updateCounter = () => {
-            const now = Date.now();
-            const elapsedTime = now - startTime;
-            const progress = Math.min(elapsedTime / duration, 1)
-            setCounters({
-                projectsCompleted: Math.floor(progress * actualProjectsCompleted),
-                happyClients: Math.floor(progress * actualhappyClients),
-                yearOfServices: Math.floor(progress * actualyearOfServices),
-                InternalSoftwares: Math.floor(progress * actualInternalServices)
-            })
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                setAnimationCompleted(true);
+        gsap.to(".counter-item", {
+            y: 0,
+            stagger: 0.2,
+            duration: 1,
+            opacity: 1,
+            ease: "power1.out",
+            onComplete: () => {
+                const startTime = Date.now();
+                const duration = 2000;
+                const actualProjectsCompleted = 9;
+                const actualhappyClients = 12;
+                const actualyearOfServices = 2;
+                const actualInternalServices = 18;
+                const updateCounter = () => {
+                    const now = Date.now();
+                    const elapsedTime = now - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1)
+                    setCounters({
+                        projectsCompleted: Math.floor(progress * actualProjectsCompleted),
+                        happyClients: Math.floor(progress * actualhappyClients),
+                        yearOfServices: Math.floor(progress * actualyearOfServices),
+                        InternalSoftwares: Math.floor(progress * actualInternalServices)
+                    })
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        setAnimationCompleted(true);
+                    }
+                }
+                updateCounter()
             }
-        }
-        updateCounter()
+        })
     }, [])
     return (
         <section className="portfolio-counter section">
@@ -84,7 +94,7 @@ const PortfolioCounter = () => {
                     <p>Internal Softwares</p>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 export default PortfolioCounter;
