@@ -29,3 +29,13 @@ Welcome to the **Flatcare Maintenance** platform! This system is designed to str
 ![Flatcare Logo](/public/assets/images/userModes.PNG)
 ![Flatcare Logo](/public/assets/images/footer.PNG)
 ![Flatcare Logo](/public/assets/images/dashboardlayout.PNG)
+
+
+Challenges:-
+1) Update the counters at the home page.
+- store current time when page mounts.
+-store current time when update animation function runs.
+- difference between these two times divide by duration will bring the progress.
+- we need to clamp that progress below 1 using math.min.
+-now if we multiply progress by actual number, we can set that value to the jsx.
+

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import SubmitError from '../../../../ui/SubmitError';
 import { toast } from 'react-toastify';
 import SubmitSuccess from '../../../../ui/submitSuccess';
+import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
 const Page = () => {
   const [customerDatas, setCustomerDatas] = useCustomerData();
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -195,7 +196,7 @@ const Page = () => {
             disabled={loading}
             style={{ minWidth: '200px' }}
           >
-            {loading ? 'Loading' : 'Create Notification'}
+            {loading ? <LoadingButton /> : 'Create Notification'}
           </button>
         </form>
       </div>

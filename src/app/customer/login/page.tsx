@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 import SubmitSuccess from '../../ui/submitSuccess';
 import Link from 'next/link';
 import "../../globals.css";
+import CommonHeader from '../../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 type FormData = {
   email: string;
   password: string;
@@ -48,6 +50,7 @@ const Login = () => {
   };
   return (
     <>
+      <CommonHeader />
       <div className="loginFormContainer">
         <form onSubmit={handleSubmit(onSubmit)} className="center_container">
           <div className="form_container">
@@ -137,6 +140,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <CommonFooter />
     </>
   );
 };

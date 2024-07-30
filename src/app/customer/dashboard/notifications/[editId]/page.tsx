@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 import SubmitError from '../../../../ui/SubmitError';
 import { toast } from 'react-toastify';
+import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
 interface FormData {
   notificationTitle: string;
   notificationDescription: string;
@@ -196,7 +197,7 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
             readOnly
           />
         </div>
-        <button type="submit">{isSubmitting ? 'loading' : 'submit'}</button>
+        <button type="submit">{isSubmitting ? <LoadingButton /> : 'submit'}</button>
       </form>
       {isSubmitted && showSuccessMessage && (
         <SubmitSuccess message="Notification SuccessFully Updated." />

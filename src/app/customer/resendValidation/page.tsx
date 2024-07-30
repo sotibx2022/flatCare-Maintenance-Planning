@@ -9,6 +9,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import "../../globals.css";
 import { toast } from 'react-toastify';
+import LoadingButton from '../../landingpage/homeNavigation/LoadingButton';
 interface FormData {
   email: string;
   password: string;
@@ -93,7 +94,7 @@ const page = () => {
               <SubmitError message={errors.email?.message} />
             )}
           </div>
-          <button type="submit">{loading ? 'Submitting' : 'Submit'}</button>
+          <button type="submit">{loading ? <LoadingButton /> : 'Submit'}</button>
           {isSubmitted && errorMessage && (
             <SubmitError message={errorMessage} />
           )}

@@ -2,7 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import "../technician/technician.css";
+import "../../app/landingpage/homeNavigation/landingPage.css";
 import Rating from '../landingpage/homeNavigation/Rating';
+import Call2Action from '../landingpage/homeNavigation/Call2Action';
+import CommonHeader from '../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
 const technicians = [
     {
         title: "Senior Electrician",
@@ -52,42 +56,47 @@ const technicians = [
 ];
 const TechnicianList = () => {
     return (
-        <div className="technician-data container">
-            <p className="primary_heading">Check Our Highly Rated Technicians</p>
-            <div className="singleTechnician">
-                {technicians.map((tech, index) => (
-                    <div className="technicianDetails" key={tech.EmployeeId}>
-                        <div className="technicianDetailsLeft">
-                            <div className="technicianProfile">
-                                <img src={tech.photo} alt={tech.name} className="technician_profile" />
-                                <p>{tech.name}</p>
+        <>
+            <CommonHeader />
+            <div className="technician-data container">
+                <p className="primary_heading">Check Our Highly Rated Technicians</p>
+                <Call2Action type="Start Now" link="/technician/login" />
+                <div className="singleTechnician">
+                    {technicians.map((tech, index) => (
+                        <div className="technicianDetails" key={tech.EmployeeId}>
+                            <div className="technicianDetailsLeft">
+                                <div className="technicianProfile">
+                                    <img src={tech.photo} alt={tech.name} className="technician_profile" />
+                                    <p>{tech.name}</p>
+                                </div>
+                                <div className="designation">
+                                    <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
+                                    <h3>{tech.title}</h3>
+                                </div>
+                                <div className="technicianContact">
+                                    <p>
+                                        <FontAwesomeIcon icon={faPhone} aria-hidden="true" className='addressIcon' />
+                                        {tech.Contact}
+                                    </p>
+                                    <p>
+                                        <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" className='addressIcon' />
+                                        {tech.address}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="designation">
-                                <FontAwesomeIcon icon={faBriefcase} aria-hidden="true" />
-                                <h3>{tech.title}</h3>
-                            </div>
-                            <div className="technicianContact">
+                            <div className="technicianStatus">
+                                <p className="statusButton">{tech.status}</p>
                                 <p>
-                                    <FontAwesomeIcon icon={faPhone} aria-hidden="true" className='addressIcon' />
-                                    {tech.Contact}
+                                    Employee ID: {tech.EmployeeId}
                                 </p>
-                                <p>
-                                    <FontAwesomeIcon icon={faMapMarker} aria-hidden="true" className='addressIcon' />
-                                    {tech.address}
-                                </p>
+                                <Rating />
                             </div>
                         </div>
-                        <div className="technicianStatus">
-                            <p className="statusButton">{tech.status}</p>
-                            <p>
-                                Employee ID: {tech.EmployeeId}
-                            </p>
-                            <Rating />
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+            <CommonFooter />
+        </>
     );
 };
 export default TechnicianList;

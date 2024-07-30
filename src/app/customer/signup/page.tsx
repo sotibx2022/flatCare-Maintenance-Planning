@@ -7,6 +7,8 @@ import PreviewandSubmit from './previewandsubmit/PreviewandSubmit';
 import SoftwareAccessDetails from './softwareaccessDetails/SoftwareAccessDetails';
 import "../../globals.css";
 import next from 'next';
+import CommonHeader from '../../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 let steps = [
   { step: 1, title: 'Customer Details' },
   { step: 2, title: 'Software Access Details' },
@@ -57,6 +59,7 @@ const Page: React.FC = () => {
   };
   return (
     <>
+      <CommonHeader />
       <div className='signupFormContainer container'>
         <form className='form_container'>
           <h1 className='primary_heading' style={{ textAlign: "center" }}>Customer Sign Up</h1>
@@ -65,7 +68,9 @@ const Page: React.FC = () => {
           {currentStep === 3 && <LocationDetails locationDetailsValues={handleLocationDetailsSubmit} customerDatas={customerDatas} />}
           {currentStep === 4 && <PreviewandSubmit previewDetailsValue={handlePreviewDetails} customerDatas={customerDatas} />}
         </form>
-      </div></>
+      </div>
+      <CommonFooter />
+    </>
   );
 };
 export default Page;

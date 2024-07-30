@@ -4,28 +4,31 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import '../homeNavigation/landingPage.css';
 interface SingleServiceProps {
   title: string;
-  imageSrc: string;
   altTag: string;
-  serviceDescription: string;
+  serviceDescription: string[];
+  subTitle: string,
   icon: IconDefinition; // IconDefinition type from FontAwesome
 }
 const SingleService: React.FC<SingleServiceProps> = ({
   title,
-  imageSrc,
   altTag,
   serviceDescription,
   icon,
+  subTitle
 }) => {
   return (
     <div className="service-item">
-      <div className="item-image responsive_flex">
-        <img src={imageSrc} alt={altTag} className="service-item-img" />
-      </div>
-      <p className="section-paragraph">{serviceDescription}</p>
       <div className="item-title">
         <FontAwesomeIcon icon={icon} className="borderChange" />
         <div className="primary_heading">{title}</div>
       </div>
+      <h5>{subTitle}</h5>
+      <ul>
+        {serviceDescription.map((servicePoint, index) => {
+          return <li key={index}>
+            <p> <span>0{index + 1}</span> {servicePoint}</p></li>
+        })}
+      </ul>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import SubmitSuccess from '../../../ui/submitSuccess';
 import SubmitError from '../../../ui/SubmitError';
 import ProfileImage from '../../../ui/ProfileImage';
 import { onChange } from 'react-toastify/dist/core/store';
+import LoadingButton from '../../../landingpage/homeNavigation/LoadingButton';
 interface CustomerDataProps {
   customerDatas: CustomerData;
   previewDetailsValue: (nextValue: number) => void;
@@ -126,7 +127,7 @@ const PreviewandSubmit: React.FC<CustomerDataProps> = ({
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button onClick={submitHandler} disabled={submitted && loading}>
-            {loading ? 'Submitting' : 'Submit'}
+            {loading ? <LoadingButton /> : 'Submit'}
           </button>
         </div>
         <h1

@@ -1,15 +1,13 @@
 'use client';
 import React, { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../homeNavigation/landingPage.css';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import "./../../globals.css";
 import "./../../layout.css";
 import gsap from 'gsap';
 import PortfolioCounter from './PortfolioCounter';
 import Rating from './Rating';
+import Call2Action from './Call2Action';
 const About = () => {
   const router = useRouter();
   useEffect(() => {
@@ -38,13 +36,10 @@ const About = () => {
         </div>
         <div className="rating-section">
           <div className="rating-summary">
-            <h1 className="primary_heading">FlatCare Maintenance Planning</h1>
+            <h1 className="primary_heading">FlatCare <span>Maintenance</span> Planning</h1>
             <p className="review-text">"Outstanding service! Our maintenance needs are always handled efficiently and professionally. Highly recommended!"</p>
             <Rating />
-            <Link href="/customer/signup" className="callToAction">
-              <FontAwesomeIcon icon={faRocket} />
-              Start Now
-            </Link>
+            <Call2Action type="start Now" link="/customer/login" />
           </div>
         </div>
       </section>

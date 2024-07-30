@@ -10,6 +10,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import "../../globals.css";
 import SubmitError from '../../ui/SubmitError';
+import LoadingButton from '../../landingpage/homeNavigation/LoadingButton';
+import CommonHeader from '../../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 type FormData = {
     email: string;
     password: string;
@@ -27,6 +30,7 @@ const Page = () => {
     };
     return (
         <>
+            <CommonHeader />
             <form onSubmit={handleSubmit(onSubmit)} className="center_container">
                 <div className="form_container">
                     <h1 className="primary_heading">Planner Login</h1>
@@ -108,11 +112,12 @@ const Page = () => {
                         )}
                     </div>
                     <button type="submit">
-                        {isSubmitting ? 'Submitting' : 'Submit'}
+                        {isSubmitting ? <LoadingButton /> : 'Submit'}
                     </button>
                     <SubmitError message="Please Contact Your Admin For Credentials" />
                 </div>
             </form>
+            <CommonFooter />
         </>
     );
 };

@@ -1,5 +1,9 @@
 import React from 'react';
 import "../planner/planner.css";
+import Call2Action from '../landingpage/homeNavigation/Call2Action';
+import "../../app/landingpage/homeNavigation/landingPage.css";
+import CommonHeader from '../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
 const cardData = [
   {
     title: "Work Order Planning",
@@ -28,26 +32,31 @@ const cardData = [
 ];
 const Page = () => {
   return (
-    <main className='container'>
-      <div className='sectionHeading'>
-        <h1 className='primary_heading'>A goal without a plan is just a wish</h1>
-        <p>Effective planning turns goals into reality. A clear plan provides direction, outlines steps, and anticipates challenges, transforming ambitions into achievable milestones.</p>
-      </div>
-      <div className="technicianFeatures ">
-        {cardData.map((card, index) => (
-          <div className="card" key={index}>
-            <p className="title">{card.title}</p>
-            <p className="desc">
-              {card.desc.split(',').map((item, i) => (
-                <span key={i} className="desc-item">
-                  {item.trim()}
-                </span>
-              ))}
-            </p>
-          </div>
-        ))}
-      </div>
-    </main>
+    <>
+      <CommonHeader />
+      <main className='container'>
+        <div className='sectionHeading'>
+          <h1 className='primary_heading'>A goal without a plan is just a wish</h1>
+          <p>Effective planning turns goals into reality. A clear plan provides direction, outlines steps, and anticipates challenges, transforming ambitions into achievable milestones.</p>
+          <Call2Action type="Register Now" link="/planner/login" />
+        </div>
+        <div className="technicianFeatures ">
+          {cardData.map((card, index) => (
+            <div className="card" key={index}>
+              <p className="title">{card.title}</p>
+              <p className="desc">
+                {card.desc.split(',').map((item, i) => (
+                  <span key={i} className="desc-item">
+                    {item.trim()}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ))}
+        </div>
+      </main>
+      <CommonFooter />
+    </>
   );
 }
 export default Page;

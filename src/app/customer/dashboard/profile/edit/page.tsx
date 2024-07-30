@@ -10,6 +10,7 @@ import SubmitError from '../../../../ui/SubmitError';
 import { error } from 'console';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 import ProfileImage from '../../../../ui/ProfileImage';
+import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
 interface FieldValues {
   fullName: string;
   phoneNumber: string;
@@ -232,7 +233,7 @@ const EditCustomerProfile = () => {
           )}
         </div>
         <button type="submit" disabled={isSubmitting}>
-          {loading ? 'Loading...' : 'Update'}
+          {loading ? <LoadingButton /> : 'Update'}
         </button>
       </form>
     </section>

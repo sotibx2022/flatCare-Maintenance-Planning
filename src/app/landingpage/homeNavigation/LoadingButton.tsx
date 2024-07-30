@@ -5,7 +5,7 @@ const LoadingButton = () => {
     return (
         <div>
             <Lottie
-                animationData={loadingButton} // Pass the animation data directly
+                animationData={loadingButton}
                 loop={true}
                 autoplay={true}
             />

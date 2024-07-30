@@ -31,10 +31,10 @@ export default function RootLayout({
         />
         <meta name="author" content="Binayaraj Soti" />
         <title>FlatCare Maintenance Planning</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className={inter.className}>
-        <CommonHeader />
-        {children}
+        <div className="children">{children}</div>
         <ToastContainer />
       </body>
     </html>
