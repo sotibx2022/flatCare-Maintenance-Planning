@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'FlatCare Maintenance Planning',
   description: 'Your go-to solution for efficient and effective maintenance planning.',
-  // Add more metadata as needed
 };
 export default function RootLayout({
   children,
