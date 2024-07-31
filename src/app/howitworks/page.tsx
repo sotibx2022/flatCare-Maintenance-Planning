@@ -1,6 +1,8 @@
 import React from 'react';
 import "../howitworks/howitworks.css";
 import ProcessItem from './ProcessItem';
+import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
+import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 const tasks = [
     {
         TaskTitle: "Create Notification",
@@ -60,23 +62,27 @@ const tasks = [
 ];
 const ProcessItemsSection: React.FC = () => {
     return (
-        <section id="processes" className='container timeline'>
-            <div className='pageTitle'>
-                <h1 className='primary_heading'>How it Works</h1>
-                <p>At Flatcare Maintenance, we ensure that managing and maintaining your property is as seamless and stress-free as possible. Here’s how our process works</p>
-            </div>
-            <div className=''>
-                {tasks.map((process, index) => (
-                    <ProcessItem
-                        key={index}
-                        taskTitle={process.TaskTitle}
-                        taskDescription={process.TaskDescription}
-                        role={process.Role}
-                        index={index}
-                    />
-                ))}
-            </div>
-        </section>
+        <>
+            <CommonHeader />
+            <section id="processes" className='container timeline'>
+                <div className='pageTitle'>
+                    <h1 className='primary_heading'>How it Works</h1>
+                    <p>At Flatcare Maintenance, we ensure that managing and maintaining your property is as seamless and stress-free as possible. Here’s how our process works</p>
+                </div>
+                <div className='stepItemsWrapper'>
+                    {tasks.map((process, index) => (
+                        <ProcessItem
+                            key={index}
+                            taskTitle={process.TaskTitle}
+                            taskDescription={process.TaskDescription}
+                            role={process.Role}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            </section>
+            <CommonFooter />
+        </>
     );
 };
 export default ProcessItemsSection;
