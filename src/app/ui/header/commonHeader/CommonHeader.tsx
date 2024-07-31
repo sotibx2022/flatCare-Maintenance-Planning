@@ -4,11 +4,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 const CommonHeader = () => {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
+  const [path, setPath] = useState("")
   const router = useRouter()
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const location = window.location.pathname;
+      const trimmedPath = location.replace(/^\/|\/$/g, '');
+      const splittedWords = trimmedPath.split('/');
+      const splittedUppercaseWords = splittedWords.map(singleWord =>
+        singleWord.charAt(0).toUpperCase() + singleWord.slice(1)
+      );
+      const finalWords = splittedUppercaseWords.join('-');
+      setPath(finalWords);
+    }
+  }, []);
   const toggleResponsiveMenu = () => {
     setShowResponsiveMenu(!showResponsiveMenu);
   };
@@ -37,6 +50,7 @@ const CommonHeader = () => {
             onClick={() => router.push("/")}
           />
         </div>
+        <h1 className='primary_heading'>{path}</h1>
         <FontAwesomeIcon icon={faBars} className="icon menuIcon" onClick={toggleResponsiveMenu} />
       </div>
       <div className="navigation_area">
