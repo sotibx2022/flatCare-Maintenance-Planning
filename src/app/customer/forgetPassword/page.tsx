@@ -48,15 +48,6 @@ const page = () => {
               Login
             </Link>
           </p>
-          <p className="secondary_heading">
-            Not Verified Yet?{' '}
-            <Link
-              href="/customer/resendValidation"
-              style={{ color: '#007bff' }}
-            >
-              Verify
-            </Link>
-          </p>
         </div>
       </div>
     </section>

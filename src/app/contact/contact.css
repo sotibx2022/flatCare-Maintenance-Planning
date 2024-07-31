@@ -36,7 +36,7 @@
 .contact-form {
     box-shadow: var(--primaryDarkBoxShadow);
     margin: auto;
-    width: 100%;
+    max-width: 90vw;
     text-align: center;
     padding: 1rem;
     position: relative;

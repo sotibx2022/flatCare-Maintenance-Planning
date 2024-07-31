@@ -377,6 +377,10 @@ ul li {
   }
 }
 @media(max-width:1000px) {
+  .bouncing-ball {
+    margin: 0;
+    padding: 0;
+  }
   .bouncing-ball li {
     font-size: 1rem;
     padding: 0.5rem;

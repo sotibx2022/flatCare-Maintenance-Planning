@@ -548,6 +548,9 @@ input[type="checkbox"] {
   #about-section img {
     max-width: 80vw;
   }
+  .service-item ul {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .section-heading ul li {
     width: 1.5rem;
     height: 1.5rem;

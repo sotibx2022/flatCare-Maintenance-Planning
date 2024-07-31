@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
     '/customer',
     '/technician',
     '/planner',
-    '/technician/Login',
+    '/technician/login',
     '/planner/login',
     '/howitworks',
     '/contact'

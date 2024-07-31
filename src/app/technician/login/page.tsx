@@ -11,6 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import "../../globals.css";
 import SubmitError from '../../ui/SubmitError';
+import CommonHeader from '../../ui/header/commonHeader/CommonHeader';
+import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
 type FormData = {
     email: string;
     password: string;
@@ -28,6 +30,7 @@ const Page = () => {
     };
     return (
         <>
+            <CommonHeader />
             <form onSubmit={handleSubmit(onSubmit)} className="center_container">
                 <div className="form_container">
                     <h1 className="primary_heading">Technician Login</h1>
@@ -114,6 +117,7 @@ const Page = () => {
                     <SubmitError message="Please Contact Your Planner For Login Credentials." />
                 </div>
             </form>
+            <CommonFooter />
         </>
     );
 };

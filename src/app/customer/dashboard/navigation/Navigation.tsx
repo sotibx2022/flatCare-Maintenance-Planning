@@ -32,6 +32,9 @@ const Navigation = () => {
       console.error('Error logging out:', error);
     }
   };
+  const returnHome =() =>{
+    router.push("/");
+  }
   return (
     <nav className="dashboardNavigation">
       <ul style={{margin:0,padding:0}}>
@@ -94,6 +97,9 @@ const Navigation = () => {
       </ul>
       <button onClick={handleLogout} className="logoutButton">
         <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+      </button>
+      <button onClick={returnHome} className="returnHome">
+        <FontAwesomeIcon icon={faSignOutAlt} /> Return Home
       </button>
     </nav>
   );

@@ -55,7 +55,8 @@
   flex-direction: column;
   gap: 15px;
 }
-.logoutButton {
+.logoutButton,
+.returnHome {
   cursor: pointer;
   padding: 8px 16px;
   background-color: #f00;
@@ -70,6 +71,13 @@
 }
 .logoutButton:hover {
   background-color: #d00;
+  color: var(--primaryLight);
+}
+.returnHome {
+  background-color: rgb(19, 185, 19);
+}
+.returnHome:hover {
+  background-color: rgb(4, 100, 4);
   color: var(--primaryLight);
 }
 .dashboardNavigation {
