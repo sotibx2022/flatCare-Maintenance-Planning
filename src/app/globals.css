@@ -146,9 +146,10 @@ select option {
   top: 0;
   left: 50%;
   width: 90vw;
-  height: 2rem;
   transform: translateX(-50%);
   z-index: 11;
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 .children {
   margin-top: 4rem;
@@ -373,6 +374,12 @@ ul li {
   }
   50% {
     transform: translateY(0);
+  }
+}
+@media(max-width:1000px) {
+  .bouncing-ball li {
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 }
 @media(max-width:500px) {

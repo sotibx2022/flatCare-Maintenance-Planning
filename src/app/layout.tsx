@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="icon" href="../../favicon.ico" type="image/icon" />
       </head>
       <body className={inter.className}>
-        <div>{children}</div>
+        <div className='children'>{children}</div>
         <ToastContainer />
       </body>
     </html>
