@@ -88,14 +88,6 @@ export async function POST(request: NextRequest) {
     });
     // Save the new notification to the database
     const createdNotification = await newNotification.save();
-    if (customer && createdNotification) {
-      const message = NotificationCreatedTemplate(notificationTitle);
-      await sendEmailToCustomer(
-        customer.email,
-        'Notification Created',
-        message,
-      );
-    }
     // Return success response
     return NextResponse.json({
       message: 'Notification created successfully',

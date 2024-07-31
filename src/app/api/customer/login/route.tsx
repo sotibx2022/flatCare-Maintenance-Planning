@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     });
   }
 }
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   ConnectToDb();
   try {
     const { currentEmail, currentPassword } = await request.json();
@@ -40,37 +40,38 @@ export async function POST(request: NextRequest, response: NextResponse) {
         customer.password,
       );
       if (!isPasswordValid) {
-        response = NextResponse.json({
+        return NextResponse.json({
           message: 'Invalid Password',
           status: 200,
           success: false,
           customer,
         });
       } else {
-        response = NextResponse.json({
-          message: 'Login Successful',
-          status: 200,
-          success: true,
-          customer,
-        });
         const token = jwt.sign(
           { userId: customer._id },
           process.env.SECRET_KEY!,
           { expiresIn: '1h' },
         );
+        // Create a NextResponse object
+        const response = NextResponse.json({
+          message: 'Login Successful',
+          status: 200,
+          success: true,
+          customer,
+        });
+        // Set cookies using the headers object of the response
         response.cookies.set('token', token, {
           httpOnly: true,
           path: '/',
           expires: new Date(Date.now() + 60 * 60 * 1000),
         });
+        return response;
       }
-      return response;
     }
   } catch (error) {
     console.error(error);
     return NextResponse.json({
-      message:
-        error instanceof Error ? error.message : 'Unknown error occurred.',
+      message: error instanceof Error ? error.message : 'Unknown error occurred.',
       status: 500,
       success: false,
     });

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import SubmitSuccess from '../submitSuccess';
 import useCustomerData from '../../hooks/useCustomerData';
+import LoadingButton from '../../landingpage/homeNavigation/LoadingButton';
 interface UpdatePasswordData {
   newPassword: string;
   confirmNewPassword: string;
@@ -122,7 +123,7 @@ const UpdatePassword: React.FC<UpdatePasswordProps> = ({ email }) => {
         )}
       </div>
       <button type="submit" style={{ marginTop: '1rem' }} disabled={loading}>
-        Submit
+        {loading ? <LoadingButton /> : "Update"}
       </button>
     </form>
   );

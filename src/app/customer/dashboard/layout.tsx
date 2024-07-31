@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <SubLayout>{children}</SubLayout>
+      <SubLayout>
+        <div className='dashboardChildren'>{children}</div>
+      </SubLayout>
     </>
   );
 }

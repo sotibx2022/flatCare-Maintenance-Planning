@@ -12,9 +12,9 @@
 .categorychartContainer {
   max-height: 500px;
   height: 200px;
-  width: 100%;
   display: flex;
   justify-content: flex-start;
+  margin-left: -3rem;
 }
 .priorityBlock {
   height: 400px;
@@ -129,8 +129,18 @@
   padding: 6px;
   color: var(--primaryDark);
 }
-.viewProfileTable td{
+.viewProfileTable td {
   text-align: right;
+}
+@media(max-width:800px) {
+  .secondary_block {
+    min-width: 80vw;
+  }
+}
+@media(max-width:1000px) {
+  .secondary_block {
+    min-width: 80vw;
+  }
 }
 @media (max-width: 400px) {
   .dashboard_main_block {

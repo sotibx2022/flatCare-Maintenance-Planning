@@ -17,15 +17,18 @@
   box-shadow: var(--primaryDarkBoxShadow);
 }
 .notification-table .emergencyNotification {
-  color: #cc0000; /* Dark red */
+  color: #cc0000;
+  /* Dark red */
   font-weight: bold;
 }
 .notification-table .urgentNotification {
-  color: #e69500; /* Dark orange */
+  color: #e69500;
+  /* Dark orange */
   font-weight: bold;
 }
 .notification-table .normalNotification {
-  color: #009900; /* Dark green */
+  color: #009900;
+  /* Dark green */
   font-weight: bold;
 }
 .notification-table td h6 {
@@ -50,13 +53,13 @@
   padding: 0.1rem;
   border-radius: 10px;
 }
+.large_content {
+  min-width: 300px !important;
+}
 .notification-table th,
 .notification-table td {
   min-width: 100px;
   text-align: center;
-}
-.large_content {
-  min-width: 200px;
 }
 .minimum_content {
   max-width: 50px;

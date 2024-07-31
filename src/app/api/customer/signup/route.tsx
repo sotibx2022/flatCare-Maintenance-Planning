@@ -86,16 +86,6 @@ export async function POST(req: NextRequest) {
       createdAt: new Date(),
     });
     await savedCustomer.save();
-    // generate verification Link
-    const verificationLink = `${process.env.WEBSITE_URL}customer/verify-customer?userId=${newCustomer._id}&verifyToken=${verifyToken.toString()}`;
-    // Send Email to user
-    // Call Email Verification Template
-    const registerEmail = EmailVerificationTemplate(verificationLink);
-    await sendEmailToCustomer(
-      email,
-      'Customer Registration Verification',
-      registerEmail,
-    );
     const response: NextResponse = NextResponse.json({
       message: 'User details saved successfully',
       success: true,

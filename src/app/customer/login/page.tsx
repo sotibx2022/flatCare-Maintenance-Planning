@@ -12,6 +12,7 @@ import Link from 'next/link';
 import "../../globals.css";
 import CommonHeader from '../../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../../ui/footer/commonFooter/CommonFooter';
+import LoadingButton from '../../landingpage/homeNavigation/LoadingButton';
 type FormData = {
   email: string;
   password: string;
@@ -103,7 +104,7 @@ const Login = () => {
               )}
             </div>
             <button type="submit">
-              {isSubmitting ? 'Submitting' : 'Submit'}
+              {isSubmitting ? <LoadingButton /> : 'Submit'}
             </button>
             {isSubmitted && !submitsuccess && (
               <SubmitError message="Please Correct The Errors Before Submitting Again" />

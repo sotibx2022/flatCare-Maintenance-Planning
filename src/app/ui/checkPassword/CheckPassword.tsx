@@ -8,6 +8,7 @@ import SubmitSuccess from '../submitSuccess';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
+import LoadingButton from '../../landingpage/homeNavigation/LoadingButton';
 interface checkPasswordProps {
   successValue: (value: boolean) => void;
 }
@@ -103,9 +104,9 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
       <label>Enter Original Password</label>
       <div
         className="form_Item"
-        style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent:'space-between' }}
+        style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'space-between' }}
       >
-        <div style={{ position: 'relative', width:'100%' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
           <FontAwesomeIcon icon={faLock} className="input_icon_left" />
           <input
             type={showPassword ? 'text' : 'password'}
@@ -114,7 +115,7 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
             name="password"
             onChange={changeHandler}
             onBlur={blurHandler}
-            style={{ paddingLeft: '30px'}}
+            style={{ paddingLeft: '30px' }}
           />
           <FontAwesomeIcon
             icon={showPassword ? faEyeSlash : faEye}
@@ -123,7 +124,7 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
           />
         </div>
         <button onClick={checkPassword}>
-          {loading ? 'Validating' : 'Check'}
+          {loading ? <LoadingButton /> : 'Check'}
         </button>
       </div>
       {focus && passwordError && <SubmitError message={passwordError} />}

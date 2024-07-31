@@ -1,25 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import logo from '@/../../public/assets/images/logo.png';
-import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBell,
-  faEdit,
-  faKey,
-  faListAlt,
-  faSignOutAlt,
-  faTachometerAlt,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import navigationItems from '.';
+import SingleNavigationItem from './SingleNavigationItem';
 const Navigation = () => {
   const router = useRouter();
-  const pathName = usePathname();
   const handleLogout = async () => {
     try {
       const response = await axios.post('/api/customer/logout');
@@ -32,74 +22,26 @@ const Navigation = () => {
       console.error('Error logging out:', error);
     }
   };
-  const returnHome =() =>{
+  const returnHome = () => {
     router.push("/");
   }
   return (
     <nav className="dashboardNavigation">
-      <ul style={{margin:0,padding:0}}>
-        <li className={pathName === '/customer/dashboard/main' ? 'active' : ''}>
-          <Link href="/customer/dashboard/main">
-            <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard
-          </Link>
-        </li>
-        <li
-          className={
-            pathName === '/customer/dashboard/profile/view' ? 'active' : ''
-          }
-        >
-          <Link href="/customer/dashboard/profile/view">
-            <FontAwesomeIcon icon={faUser} /> View Profile
-          </Link>
-        </li>
-        <li
-          className={
-            pathName === '/customer/dashboard/profile/edit' ? 'active' : ''
-          }
-        >
-          <Link href="/customer/dashboard/profile/edit">
-            <FontAwesomeIcon icon={faEdit} /> Edit Profile
-          </Link>
-        </li>
-        <li
-          className={
-            pathName === '/customer/dashboard/profile/changepassword'
-              ? 'active'
-              : ''
-          }
-        >
-          <Link href="/customer/dashboard/profile/changepassword">
-            <FontAwesomeIcon icon={faKey} /> Change Password
-          </Link>
-        </li>
-          <li
-            className={
-              pathName === '/customer/dashboard/notifications/create'
-                ? 'active'
-                : ''
-            }
-          >
-            <Link href="/customer/dashboard/notifications/create">
-              <FontAwesomeIcon icon={faBell} /> Create Notification
-            </Link>
-          </li>
-          <li
-            className={
-              pathName === '/customer/dashboard/notifications/list'
-                ? 'active'
-                : ''
-            }
-          >
-            <Link href="/customer/dashboard/notifications/list">
-              <FontAwesomeIcon icon={faListAlt} /> List Notifications
-            </Link>
-          </li>
+      <ul>
+        {navigationItems.map((item, index) => (
+          <SingleNavigationItem
+            providedPathName={item.path}
+            icon={item.icon}
+            NavigationTitle={item.NavigationTitle}
+            key={index}
+          />
+        ))}
       </ul>
       <button onClick={handleLogout} className="logoutButton">
-        <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+        <FontAwesomeIcon icon={faSignOutAlt} className='logoutButtonIcon' /> Logout
       </button>
       <button onClick={returnHome} className="returnHome">
-        <FontAwesomeIcon icon={faSignOutAlt} /> Return Home
+        <FontAwesomeIcon icon={faHouse} className="returnHomeIcon" /> Return Home
       </button>
     </nav>
   );

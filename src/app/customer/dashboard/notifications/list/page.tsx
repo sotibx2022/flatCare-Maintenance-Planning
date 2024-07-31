@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
+import LoadingComponent from '../../../../ui/LoadingComponent';
 interface Notification {
   notificationTitle: string;
   notificationDescription: string;
@@ -16,7 +17,7 @@ interface Notification {
 }
 const truncate_title = (title: string) => {
   const words = title.split(' ');
-  if (words.length > 4) {
+  if (words.length > 6) {
     const truncatedTitle = words.slice(0, 3).join(' ') + '...';
     return truncatedTitle.toUpperCase();
   } else return title.toUpperCase();
@@ -58,7 +59,7 @@ const page = () => {
   return (
     <div className="notification_table_container">
       {loading ? (
-        <h1>Loading ...</h1>
+        <LoadingComponent />
       ) : (
         <>
           {notifications && notifications.length === 0 ? (
