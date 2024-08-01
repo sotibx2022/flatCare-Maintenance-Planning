@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import navigationItems from '.';
 import SingleNavigationItem from './SingleNavigationItem';
 const Navigation = () => {
