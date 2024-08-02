@@ -1,12 +1,14 @@
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
-import ThemeContex, { DarkModeContext } from '../../../useContext/themeContext';
+import { DarkModeContext } from '../../../useContext/themeContext';
 import Navigation from './navigation/Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { Provider } from 'react-redux';
+import store from '../../../Redux/Store';
 interface SubLayoutProps {
   children: React.ReactNode;
 }
@@ -38,12 +40,14 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
           </div>
           <Navigation />
         </section>
-        <section
-          id="rightSide"
-          className={hideSideBar ? 'expandRightSide' : 'collapseRightSide'}
-        >
-          {children}
-        </section>
+        <Provider store={store}>
+          <section
+            id="rightSide"
+            className={hideSideBar ? 'expandRightSide' : 'collapseRightSide'}
+          >
+            {children}
+          </section>
+        </Provider>
       </div>
     </main>
   );

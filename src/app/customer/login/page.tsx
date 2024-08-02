@@ -103,7 +103,7 @@ const Login = () => {
                 <SubmitError message={errors.email?.message} />
               )}
             </div>
-            <button type="submit">
+            <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? <LoadingButton /> : 'Submit'}
             </button>
             {isSubmitted && !submitsuccess && (

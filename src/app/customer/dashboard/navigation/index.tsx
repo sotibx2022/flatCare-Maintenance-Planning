@@ -28,7 +28,7 @@ const navigationItems = [
     {
         path: '/customer/dashboard/notifications/list',
         icon: faThList,
-        NavigationTitle: 'List Notifications'
+        NavigationTitle: 'Notifications'
     },
     {
         path: '/customer/dashboard/material/order',
@@ -38,12 +38,12 @@ const navigationItems = [
     {
         path: '/customer/dashboard/material/list',
         icon: faThList,
-        NavigationTitle: 'List Material'
+        NavigationTitle: 'Materials'
     },
     {
         path: '/customer/dashboard/technician/list',
         icon: faTools,
-        NavigationTitle: 'Check Technicians'
+        NavigationTitle: 'Technicians'
     }
 ];
 export default navigationItems;

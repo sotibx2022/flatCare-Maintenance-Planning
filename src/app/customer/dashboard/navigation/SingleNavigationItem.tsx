@@ -9,7 +9,6 @@ interface SingleNavigationProps {
 }
 const SingleNavigationItem: React.FC<SingleNavigationProps> = ({ providedPathName, icon, NavigationTitle }) => {
     const pathName = usePathname()
-    console.log(NavigationTitle)
     return (
         <>
             <li className={pathName === providedPathName ? 'active' : ''}>

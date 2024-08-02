@@ -23,6 +23,7 @@ export default function RootLayout({
         <meta name="description" content="FlatCare Maintenance Planning - Your go-to solution for efficient and effective maintenance planning." />
         <meta name="keywords" content="FlatCare, Maintenance Planning, Maintenance, Planning, Efficiency" />
         <meta name="author" content="Binayaraj Soti" />
+        <link href="https://unpkg.com/tailwindcss@3.3.1/dist/tailwind.min.css" rel="stylesheet" />
       </head>
       <body className={inter.className}>
         <div className='children'>{children}</div>
