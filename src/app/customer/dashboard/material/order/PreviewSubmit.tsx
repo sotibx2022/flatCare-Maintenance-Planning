@@ -1,9 +1,17 @@
 "use client"
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setNextValue } from '../../../../../Redux/formSlice'
 import { PreviewSubmitProps } from '.';
 import { MaterialDetailsData } from '.';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import MaterialLists from './MaterialLists';
+import OrderedBy from './OrderedBy';
+import OrderedFor from './OrderedFor';
+import DeliveryDetails from './DeliveryDeatils';
+import CardDetails from './CardDetails';
+import DeliveryMethod from './DeliveryMethod';
 const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   orderedBy,
   orderedFor,
@@ -11,6 +19,8 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   deliveryMethod,
   paymentDetails }) => {
   const dispatch = useDispatch()
+  console.log(paymentDetails.expiryDate);
+  console.log(typeof paymentDetails.expiryDate)
   const handlePrev = () => {
     if (deliveryMethod === "debitCard") {
       dispatch(setNextValue({ data: 5 }))
@@ -25,62 +35,51 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
       <div>
         <h1>Preview and Submit</h1>
         <div className="materials_area">
-          <table className='singleMaterialConteiner'>
-            <thead>
-              <tr>
-                <td>SN</td>
-                <td>Material Name</td>
-                <td>Quantity</td>
-                <td>Unit</td>
-              </tr>
-            </thead>
-            <tbody>
-              {materials.slice(1).map((material: MaterialDetailsData, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{material.materialName}</td>
-                  <td>{material.materialQuantity}</td>
-                  <td>{material.unitOfMeasure}</td>
-                  <td>{material.materialDescription}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h1 className='subHeading'>Materials</h1>
+          <MaterialLists materials={materials} />
         </div>
         <div className="orderedByArea">
-          <h1>Ordered By</h1>
-          <p><span>Name</span>{orderedBy.orderedByName}</p>
-          <p><span>Email</span>{orderedBy.orderedByEmail}</p>
-          <p><span>Phone</span>{orderedBy.orderedByPhone}</p>
+          <h1 className='subHeading'>Ordered By</h1>
+          <OrderedBy orderedBy={orderedBy} />
         </div>
         <div className="OrderedForArea">
-          <h1>Ordered For</h1>
-          <p><span>Name</span>{orderedFor.receipentName}</p>
-          <p><span>Email</span>{orderedFor.receipentEmail}</p>
-          <p><span>Phone</span>{orderedFor.receipentPhone}</p>
+          <h1 className='subHeading'>Ordered For</h1>
+          <OrderedFor orderedFor={orderedFor} />
         </div>
         <div className="deliveryDetailsArea">
-          <h1>Delivery Details</h1>
-          <p><span>Building Number</span>{deliveryDetails.buildingNumber}</p>
-          <p><span>Floor Number</span>{deliveryDetails.floorNumber}</p>
-          <p><span>Room Number</span>{deliveryDetails.roomNumber}</p>
+          <h1 className='subHeading'>Delivery Details</h1>
+          <DeliveryDetails deliveryDetails={deliveryDetails}></DeliveryDetails>
         </div>
         <div className="paymentMethodsArea">
-          <h1>Delivery Method</h1>
-          <p className={deliveryMethod === "paymentOnDelivery" ? "bg-red-400" : "bg-gray-50"}>payment On Delivery</p>
-          <p className={deliveryMethod === "pickupFromStore" ? "bg-red-400" : "bg-gray-50"}>pickup From Store</p>
-          <p className={deliveryMethod === "debitCard" ? "bg-red-400" : "bg-gray-50"}>debit Card</p>
+          <h1 className='subHeading'>Delivery Method</h1>
+          <DeliveryMethod deliveryMethod={deliveryMethod} />
         </div>
-        <div className="paymentDetailsArea">
-          <h1>Payment Details</h1>
-          <p><span>Card Number</span>{paymentDetails.cardNumber}</p>
-          <p><span>Card Holder Name</span>{paymentDetails.cardHolderName}</p>
-          <p><span>CVV Number</span>{paymentDetails.cvvNumber}</p>
-          {/* <p><span>Card Expiry</span>{paymentDetails.expiryDate.toLocaleDateString()}</p> */}
-        </div>
+        {deliveryMethod === "debitCard" &&
+          <div className='paymentDetailsArea'>
+            <h1 className='subHeading'>Payment Details</h1>
+            <CardDetails paymentDetails={paymentDetails} />
+          </div>}
       </div>
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handlePrev}>Previous</button>
+      <h1
+        className="primary_heading"
+        style={{
+          display: 'flex',
+          gap: '5px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '2rem'
+        }}
+      >
+        Step <span className="step_number">6</span> of <span>6</span>
+      </h1>
+      <div className='buttonsWrapper flex justify-between items-center mt-2'>
+        <button type='button' onClick={handlePrev}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
+        <button onClick={handleSubmit}>
+          <FontAwesomeIcon icon={faArrowRight} />
+        </button>
+      </div>
     </>
   )
 }

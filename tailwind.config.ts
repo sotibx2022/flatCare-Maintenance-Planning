@@ -12,6 +12,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors:{
+        primaryDark:'var(--primaryDark)',
+        secondaryDark:'var(--secondaryDark)',
+        primaryDarkBoxShadow:'var(--primaryDarkBoxShadow)'
+      },
+      boxShadow:{
+        'primaryDarkBoxShadow': '0 4px 6px rgba(58, 58, 238, 0.397)',
+        'primaryLightBoxShadow': '0 4px 6px rgba(187, 195, 251, 0.3)'
+      }
     },
   },
   plugins: [],

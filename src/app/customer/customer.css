@@ -170,6 +170,6 @@
 }
 @media (max-width:600px) {
   .responsiveDashboardIcon {
-    left: 300px;
+    left: 100%;
   }
 }

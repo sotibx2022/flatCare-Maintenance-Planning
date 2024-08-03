@@ -5,16 +5,22 @@ import { setNextValue, setOrderBy, setOrderFor } from '../../../../../Redux/form
 import { useForm } from 'react-hook-form';
 import { OrderedForData } from '.';
 import useCustomerData from '../../../../hooks/useCustomerData';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import SubmitError from '../../../../ui/SubmitError';
 const ReceipentsDetailsForm = () => {
     const [customerDatas, setCustomerDatas] = useCustomerData();
+    console.log(customerDatas);
     const { orderedFor } = useSelector((state: any) => state.form)
     const dispatch = useDispatch()
-    const { register, formState: { errors }, handleSubmit, setValue } = useForm<OrderedForData>()
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm<OrderedForData>({
+        mode: 'all'
+    })
     useEffect(() => {
-        setValue("receipentName", orderedFor.receipentName);
-        setValue("receipentEmail", orderedFor.receipentEmail);
-        setValue("receipentPhone", orderedFor.receipentPhone);
-    }, [orderedFor])
+        setValue("receipentName", customerDatas.fullName || orderedFor.receipentName);
+        setValue("receipentEmail", customerDatas.email || orderedFor.receipentEmail);
+        setValue("receipentPhone", customerDatas.phoneNumber || orderedFor.receipentPhone);
+    }, [customerDatas, orderedFor])
     const requiredData = {
         orderedByName: customerDatas.fullName,
         orderedByEmail: customerDatas.email,
@@ -31,42 +37,86 @@ const ReceipentsDetailsForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='orderForInformation'>
-                <h2>Ordered For</h2>
-                <small>Please change the Recipient details if you are ordering for someone else.</small>
+                <h2 className='secondary_heading'>Ordered For</h2>
+                <small className='text-primaryDark'>Please change the Recipient details if you are ordering for someone else.</small>
                 <div className="form_Item">
                     <label htmlFor="recipientName">Recipient Name</label>
-                    <input type='text' id="recipientName" placeholder='Recipient Name'
+                    <input
+                        type='text'
+                        id="recipientName"
+                        placeholder='Recipient Name'
                         {...register("receipentName", {
                             required: {
                                 value: true,
-                                message: "Receipent Name is Required."
+                                message: "Recipient Name is Required."
+                            },
+                            pattern: {
+                                value: /^[A-Za-z\s]+$/,
+                                message: "Recipient Name should only contain letters and spaces."
                             }
-                        })} />
+                        })}
+                    />
+                    {errors.receipentName?.message && <SubmitError message={errors.receipentName?.message} />}
                 </div>
                 <div className="form_Item">
                     <label htmlFor="recipientEmail">Recipient Email</label>
-                    <input type='text' id="recipientEmail" placeholder='Recipient Email'
+                    <input
+                        type='text'
+                        id="recipientEmail"
+                        placeholder='Recipient Email'
                         {...register("receipentEmail", {
                             required: {
                                 value: true,
-                                message: "Receipient Email is Required."
+                                message: "Recipient Email is Required."
+                            },
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Please enter a valid email address."
                             }
-                        })} />
+                        })}
+                    />
+                    {errors.receipentEmail?.message && <SubmitError message={errors.receipentEmail?.message} />}
                 </div>
                 <div className="form_Item">
                     <label htmlFor="recipientPhone">Recipient Phone</label>
-                    <input type='number' id="recipientPhone" placeholder='Recipient Phone'
+                    <input
+                        type='text'
+                        id="recipientPhone"
+                        placeholder='Recipient Phone'
                         {...register("receipentPhone", {
                             required: {
                                 value: true,
-                                message: "Receipent Phone is Required."
+                                message: "Recipient Phone is Required."
+                            },
+                            pattern: {
+                                value: /^\d{10}$/,
+                                message: "Phone number should be exactly 10 digits."
                             }
-                        })} />
+                        })}
+                    />
+                    {errors.receipentPhone?.message && <SubmitError message={errors.receipentPhone?.message} />}
                 </div>
             </div>
-            <button type="submit">Next</button>
-            <button onClick={() => handlePrev(1)}>Previous</button>
+            <h1
+                className="primary_heading"
+                style={{
+                    display: 'flex',
+                    gap: '5px',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                Step <span className="step_number">2</span> of <span>4</span>
+            </h1>
+            <div className='buttonsWrapper flex justify-between items-center'>
+                <button type='button'>
+                    <FontAwesomeIcon icon={faArrowLeft} onClick={() => handlePrev(1)} />
+                </button>
+                <button type='submit'>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </button>
+            </div>
         </form>
-    )
+    );
 }
 export default ReceipentsDetailsForm

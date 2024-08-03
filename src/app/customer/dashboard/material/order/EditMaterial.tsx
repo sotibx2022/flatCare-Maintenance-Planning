@@ -5,11 +5,22 @@ import { useForm } from 'react-hook-form';
 import { unitOfMeasureOptions } from '.';
 import { MaterialDetailsData } from '.';
 import SingleMaterial from './SingleMaterial';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 interface EditMaterialInterface {
     index: number,
+    edit?: boolean
     setEditForm: (value: boolean) => void;
 }
-const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm }) => {
+const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm, edit }) => {
+    useGSAP(() => {
+        gsap.to(".editMaterialFormContainer", {
+            top: 0,
+            duration: 0.5,
+        })
+    })
     const materials = useSelector((state: any) => state.form.materials);
     const { register, setValue, handleSubmit, formState: { errors } } = useForm<MaterialDetailsData>()
     const [material, setMaterial] = useState<MaterialDetailsData>({ materialName: '', materialDescription: '', materialQuantity: '', unitOfMeasure: '' })
@@ -36,18 +47,19 @@ const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm }) =
         setEditForm(false);
     }
     return (
-        <>
-            {!submitted && <form onSubmit={handleSubmit(onSubmit)} className='absolute bg-red-300'>
-                <h1>Edit Form</h1>
+        <div className='editMaterialFormContainer fixed flex justify-center items-center bg-black bg-opacity-80 -top-full left-0 w-full h-full z-1000'>
+            {!submitted && <form onSubmit={handleSubmit(onSubmit)} className='bg-[#d7daf1] p-8 relative'>
+                <h1 className='primary_heading'>{edit ? "Edit Material" : "View Material"}</h1>
                 <div className="form_Item">
-                    <label htmlFor="materialName">Material Name</label>
+                    <label htmlFor="materialName" className='none'>Material Name</label>
                     <input type='text' id="materialName" placeholder='eg. 2 Inch Pipe for Bathroom'
                         {...register("materialName", {
                             required: {
                                 value: true,
                                 message: "Material Name field is required !!"
                             }
-                        })} />
+                        })}
+                        readOnly={!edit} />
                 </div>
                 <div className="form_Item">
                     <label htmlFor="materialDescription">Material Description</label>
@@ -57,7 +69,8 @@ const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm }) =
                                 value: true,
                                 message: "Material Description is Required."
                             }
-                        })}></textarea>
+                        })}
+                        readOnly={!edit}></textarea>
                 </div>
                 <div className="form_Item">
                     <label htmlFor="materialQuantity">Quantity</label>
@@ -67,7 +80,8 @@ const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm }) =
                                 value: true,
                                 message: "Material Quantity is required."
                             }
-                        })} />
+                        })}
+                        readOnly={!edit} />
                 </div>
                 <div className="form_Item">
                     <label htmlFor="unitOfMeasure">Unit of Measure</label>
@@ -76,16 +90,18 @@ const EditMaterial: React.FC<EditMaterialInterface> = ({ index, setEditForm }) =
                             value: true,
                             message: 'Pleae Select One Unit of Measure.'
                         }
-                    })}>
+                    })}
+                        disabled={!edit}>
                         {unitOfMeasureOptions.map((item: { value: string, label: string }, index: number) => {
                             return <option value={item.value} key={index}>{item.label}</option>
                         })}
                     </select>
                 </div>
-                <button type='button' onClick={closeHandler}>Close Window</button>
-                <button type='submit'>Submit</button>
+                <FontAwesomeIcon icon={faTimes} onClick={closeHandler} className='menuIcon
+                absolute -top-4 right-0' />
+                {edit && <button type='submit'>Submit</button>}
             </form>}
-        </>
+        </div>
     )
 }
 export default EditMaterial

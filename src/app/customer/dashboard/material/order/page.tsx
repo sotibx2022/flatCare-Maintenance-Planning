@@ -18,12 +18,10 @@ const Page = () => {
         deliveryMethod,
         paymentDetails
     }
-    console.log(deliveryDetails);
-    console.log(paymentDetails);
     return (
         <div>
             <h1 className='primary_heading'>Order Material</h1>
-            <section>
+            <section className='min-w-[50vw]'>
                 {nextValue === 1 && <MaterialDetailsForm />}
                 {nextValue === 2 && <ReceipentsDetailsForm />}
                 {nextValue === 3 && <DeliveryDetailsForm />}

@@ -21,6 +21,10 @@ html {
   overflow-x: hidden;
   height: 100%;
 }
+p {
+  color: var(--primaryDark);
+  font-size: 1rem;
+}
 /* Primary Button */
 button,
 .button {
@@ -60,38 +64,6 @@ a {
   color: var(--primaryDark);
   text-decoration: none;
 }
-.form_Item {
-  margin-bottom: 15px;
-}
-.form_Item label {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--primaryDark);
-}
-.form_Item input[type="text"],
-.form_Item input[type="email"],
-.form_Item input[type="password"],
-.form_Item select,
-.form_Item textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid var(--primaryDark);
-  border-radius: 5px;
-  background-color: var(--primaryLight);
-  color: var(--primaryDark);
-  box-sizing: border-box;
-}
-label {
-  color: var(--primaryDark);
-}
-.form_Item input[type="text"]:focus,
-.form_Item input[type="email"]:focus,
-.form_Item input[type="password"]:focus,
-.form_Item textarea:focus {
-  outline: none;
-  border-color: var(--primaryDark);
-}
 .primary_heading {
   color: var(--primaryDark);
   font-size: 1.5rem;
@@ -111,6 +83,73 @@ label {
   font-size: 12px;
   margin-top: 5px;
 }
+/* Form Item Inputs Sytel */
+.form_Item {
+  margin-bottom: 15px;
+}
+.form_Item label {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: var(--primaryDark);
+  position: relative;
+}
+.form_Item label::after {
+  position: absolute;
+  content: "*";
+  top: 0.2rem;
+  right: -0.8rem;
+  color: var(--primaryDark);
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.form_Item input[type="text"],
+.form_Item input[type="email"],
+.form_Item input[type="password"],
+.form_Item input[type="number"],
+.form_Item input[type="date"],
+.form_Item select,
+.form_Item textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid var(--primaryDark);
+  border-radius: 5px;
+  background-color: var(--primaryLight);
+  color: var(--primaryDark);
+  box-sizing: border-box;
+}
+.form_Item select {
+  background-color: var(--primaryDark);
+  color: var(--primaryLight);
+}
+.form_Item input[type="text"]:focus,
+.form_Item input[type="email"]:focus,
+.form_Item input[type="password"]:focus,
+.form_Item input[type="number"]:focus,
+.form_Item input[type="date"]:focus,
+.form_Item textarea:focus {
+  outline: none;
+  border-color: var(--primaryDark);
+}
+.input_icon_left {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primaryDark);
+}
+.input_icon_right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primaryDark);
+  cursor: pointer;
+}
 select {
   width: 100%;
   padding: 8px;
@@ -119,20 +158,16 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
   background-color: var(--primaryLight);
+  color: var(--primaryDark);
 }
 select:focus {
   outline: none;
-  /* Removes focus outline */
   border-color: var(--primaryDark);
-  /* Example color for focus state */
 }
 select option {
   padding: 10px 12px;
-  /* Adjust spacing */
   background-color: var(--primaryLight);
-  /* Match select background */
   border-bottom: 1px dotted var(--primaryDark);
-  /* Visual separation */
   color: var(--primaryDark);
 }
 .Header_wrapper {
@@ -228,21 +263,6 @@ ul li {
   max-width: 800px;
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 20px;
-}
-.input_icon_left {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--primaryDark);
-}
-.input_icon_right {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--primaryDark);
-  cursor: pointer;
 }
 .loginFormContainer {
   display: flex;
@@ -359,6 +379,40 @@ ul li {
   width: 400px;
   height: 400px;
 }
+/* Hide the radio input */
+.radioItem input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* Style the label by default */
+.radioItem label {
+  box-shadow: var(--primaryDarkBoxShadow);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 200px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.5s;
+}
+.radioItem input:checked~label {
+  scale: 1.2;
+  color: white;
+  background: var(--gradient);
+}
+.normalDeliveryOption,
+.activeDeliveryOption {
+  box-shadow: var(--primaryDarkBoxShadow);
+  padding: 1.2rem;
+  border-radius: 1rem;
+  text-transform: capitalize;
+}
+.activeDeliveryOption {
+  background: var(--gradient);
+  color: var(--primaryLight);
+}
 @keyframes border-change {
   0% {
     border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
@@ -406,5 +460,53 @@ ul li {
   .form_container {
     width: 300px;
     padding: 10px;
+  }
+}
+.materialTableContainer {
+  width: 800px;
+  min-width: 600px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--primaryDarkBoxShadow);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.materialTable {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.materialTable thead th {
+  color: var(--primaryDark);
+  padding: 12px;
+  text-align: left;
+  border-bottom: 4px solid var(--primaryDark);
+}
+.materialTable tbody td {
+  padding: 10px;
+  color: var(--primaryDark);
+}
+.materialTable tbody tr {
+  border-bottom: 1px dotted var(--helper);
+}
+.materialTable tbody tr:hover {
+  box-shadow: var(--primaryDarkBoxShadow);
+}
+.tdSmailContainer {
+  max-width: 100px;
+}
+@media (max-width:1000px) {
+  .materialTableContainer {
+    width: 600px;
+  }
+  .materialTable {
+    width: 1000px;
+  }
+}
+@media (max-width:700px) {
+  .materialTableContainer {
+    width: 500px;
+  }
+  .materialTable {
+    width: 1000px;
   }
 }

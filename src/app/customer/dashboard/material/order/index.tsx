@@ -34,7 +34,7 @@ export interface DeliveryMethodData {
     deliveryOption: string
 }
 export interface PaymentDetailsData {
-    cardNumber: number,
+    cardNumber: string,
     cardHolderName: string,
     expiryDate: Date,
     cvvNumber: number,
@@ -63,7 +63,7 @@ export interface PreviewSubmitProps {
     },
     deliveryMethod: "paymentOnDelivery" | "pickupFromStore" | "debitCard",
     paymentDetails: {
-        cardNumber: number,
+        cardNumber: string,
         cardHolderName: string,
         cvvNumber: string,
         expiryDate: Date
