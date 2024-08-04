@@ -51,7 +51,7 @@
   width: 100%;
 }
 .secondary_block {
-  width: 42%;
+  width: 48%;
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 1rem;
   min-height: 200px;

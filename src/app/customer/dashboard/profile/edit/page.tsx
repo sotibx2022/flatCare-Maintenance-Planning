@@ -2,12 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import useCustomerData from '../../../../hooks/useCustomerData';
 import axios from 'axios';
-import dummyProfile from '@/../../public/assets/images/dummyprofile.png';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import SubmitError from '../../../../ui/SubmitError';
-import { error } from 'console';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 import ProfileImage from '../../../../ui/ProfileImage';
 import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
@@ -28,7 +26,7 @@ const EditCustomerProfile = () => {
     formState: { isSubmitting, errors, isSubmitted },
   } = useForm<FieldValues>();
   const router = useRouter();
-  const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   const [loading, setLoading] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -38,11 +36,11 @@ const EditCustomerProfile = () => {
       Object.keys(customerDatas).forEach((key) => {
         setValue(
           key as keyof FieldValues,
-          customerDatas[key as keyof FieldValues],
+          customerDataLoading ? "Loading..." : customerDatas[key as keyof FieldValues]
         );
       });
     }
-  }, [customerDatas, setValue]);
+  }, [customerDatas, setValue, customerDataLoading]);
   const onSubmit = async (data: FieldValues) => {
     const form = new FormData();
     Object.keys(data).forEach((key) => {
@@ -148,7 +146,7 @@ const EditCustomerProfile = () => {
           <input
             type="text"
             id="email"
-            value={customerDatas.email}
+            value={customerDataLoading ? "Loading..." : customerDatas.email}
             readOnly
           />
           {errors?.email?.message && (

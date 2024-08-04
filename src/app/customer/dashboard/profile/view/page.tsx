@@ -6,7 +6,7 @@ import Link from 'next/link';
 import ProfileImage from '../../../../ui/ProfileImage';
 import '../../dashboardBlock/dashboardBlock.css';
 const Page = () => {
-  const [customerDatas] = useCustomerData();
+  const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   return (
     <section>
       <h1 className="primary_heading">Customer View Profile</h1>
@@ -17,27 +17,27 @@ const Page = () => {
             <tbody>
               <tr>
                 <th>Full Name:</th>
-                <td>{customerDatas.fullName}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.fullName}</td>
               </tr>
               <tr>
                 <th>Email:</th>
-                <td>{customerDatas.email}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.email}</td>
               </tr>
               <tr>
                 <th>Building Number:</th>
-                <td>{customerDatas.buildingNumber}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.buildingNumber}</td>
               </tr>
               <tr>
                 <th>Floor Number:</th>
-                <td>{customerDatas.floorNumber}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.floorNumber}</td>
               </tr>
               <tr>
                 <th>Room Number:</th>
-                <td>{customerDatas.roomNumber}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.roomNumber}</td>
               </tr>
               <tr>
                 <th>Phone Number:</th>
-                <td>{customerDatas.phoneNumber}</td>
+                <td>{customerDataLoading ? "Loading..." : customerDatas.phoneNumber}</td>
               </tr>
             </tbody>
           </table>

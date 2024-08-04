@@ -29,6 +29,22 @@ const page = () => {
   useEffect(() => {
     findNotifications();
   }, []);
+  const updateWidth = () => {
+    const notificationContainer = document.querySelector(".notificationTableContainer");
+    const materialTable = document.querySelector(".materialTable")
+    const notificationContainerWidth = notificationContainer?.getBoundingClientRect().width;
+    const materialTableWidth = materialTable?.getBoundingClientRect().width;
+    console.log(notificationContainerWidth, materialTableWidth)
+  }
+  useEffect(() => {
+    if (notifications.length > 0) {
+      updateWidth();
+      window.addEventListener('resize', updateWidth);
+      return () => {
+        window.removeEventListener('resize', updateWidth);
+      };
+    }
+  }, [notifications])
   const findNotifications = async () => {
     setLoading(true);
     const response = await axios.get('/api/notification');
@@ -57,7 +73,7 @@ const page = () => {
     return timeDifferenceInDays;
   };
   return (
-    <div className="notification_table_container">
+    <div className="notificationTableContainer">
       {loading ? (
         <LoadingComponent />
       ) : (
@@ -67,10 +83,10 @@ const page = () => {
               There are no Notifications Created
             </h1>
           ) : (
-            <table className="notification-table">
+            <table className="materialTable">
               <thead>
                 <tr>
-                  <th>Notification#</th>
+                  <th>SN</th>
                   <th className="large_content">Notification Title</th>
                   <th>Category</th>
                   <th>Priority</th>
@@ -81,7 +97,7 @@ const page = () => {
               <tbody>
                 {notifications.map((notification, index) => (
                   <tr key={index} className="notificationSingleList">
-                    <td>1234</td>
+                    <td>{index + 1}</td>
                     <td className='large_content'>{truncate_title(notification.notificationTitle)}</td>
                     <td>{notification.notificationCategory}</td>
                     {notification.notificationPriority === 'Emergency' && (

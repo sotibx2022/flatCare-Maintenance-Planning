@@ -10,7 +10,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import SubmitError from '../../../../ui/SubmitError'
 const DeliveryDetailsForm = () => {
     const dispatch = useDispatch();
-    const [customerDatas, setCustomerDatas] = useCustomerData();
+    const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
     const { deliveryDetails } = useSelector((state: any) => state.form)
     const { register, formState: { errors }, handleSubmit, setValue } = useForm<DeliveryDetailsData>({ mode: 'all' })
     useEffect(() => {
@@ -26,7 +26,7 @@ const DeliveryDetailsForm = () => {
         dispatch(setNextValue({ data: value }))
     }
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-[80vw] max-w-[500px]'>
             <div className='deliveryAddressContainer'>
                 <h2 className='secondary_heading'>Delivery Address</h2>
                 <small className='text-primaryDark'>Below details are provided on the basis of customer's accommodation details while registering to the system.</small>
@@ -88,17 +88,6 @@ const DeliveryDetailsForm = () => {
                     {errors.roomNumber?.message && <SubmitError message={errors.roomNumber?.message} />}
                 </div>
             </div>
-            <h1
-                className="primary_heading"
-                style={{
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                Step <span className="step_number">3</span> of <span>4</span>
-            </h1>
             <div className='buttonsWrapper flex justify-between items-center'>
                 <button type='button' onClick={() => handlePrev(2)}>
                     <FontAwesomeIcon icon={faArrowLeft} />

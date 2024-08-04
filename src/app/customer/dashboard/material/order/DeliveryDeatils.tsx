@@ -19,9 +19,9 @@ const DeliveryDetails: React.FC<DeliveryDetailsProps> = ({ deliveryDetails }) =>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{deliveryDetails.buildingNumber}</td>
-                        <td>{deliveryDetails.floorNumber}</td>
-                        <td>{deliveryDetails.roomNumber}</td>
+                        <td>Kalyanpur-{deliveryDetails.buildingNumber}</td>
+                        <td>Business-{deliveryDetails.floorNumber}</td>
+                        <td>KingSize-{deliveryDetails.roomNumber}</td>
                     </tr>
                 </tbody>
             </table>

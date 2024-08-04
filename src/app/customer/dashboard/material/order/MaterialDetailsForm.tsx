@@ -22,24 +22,13 @@ const MaterialDetailsForm = () => {
         setshowAddMaterialForm(value)
     }
     return (
-        <>
+        <div className='w-[80vw] max-w-[500px]'>
             {materials.length > 1 ? <SingleMaterial setshowAddMaterialForm={sendIndicator} /> : <AddMaterial setshowAddMaterialForm={sendIndicator} />}
             {showAddMaterialForm && <AddMaterial setshowAddMaterialForm={sendIndicator} />}
-            <h1
-                className="primary_heading"
-                style={{
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                Step <span className="step_number">1</span> of <span>4</span>
-            </h1>
-            <button onClick={handleNext} className='ml-auto'>
+            <button onClick={handleNext} className='ml-auto '>
                 <FontAwesomeIcon icon={faArrowRight} />
             </button>
-        </>
+        </div>
     )
 }
 export default MaterialDetailsForm

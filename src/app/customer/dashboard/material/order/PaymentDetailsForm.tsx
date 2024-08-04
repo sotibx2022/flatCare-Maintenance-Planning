@@ -60,7 +60,7 @@ const PaymentDetailsForm = () => {
         }
     });
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-[80vw] max-w-[500px]'>
             <div className="debitCardInformations">
                 <div className="form_Item">
                     <label htmlFor="cardNumber">Card Number</label>
@@ -101,17 +101,6 @@ const PaymentDetailsForm = () => {
                     {errors.cvvNumber?.message && <SubmitError message={errors.cvvNumber?.message} />}
                 </div>
             </div>
-            <h1
-                className="primary_heading"
-                style={{
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                Step <span className="step_number">2</span> of <span>4</span>
-            </h1>
             <div className='buttonsWrapper flex justify-between items-center'>
                 <button type='button'>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={() => handlePrev(4)} />

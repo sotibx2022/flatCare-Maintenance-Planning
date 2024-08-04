@@ -12,6 +12,7 @@ interface CustomerData {
   userId: string;
 }
 const useCustomerData = () => {
+  const [customerDataLoading, setCustomerDataLoading] = useState<boolean>(false);
   const [customerDatas, setCustomerDatas] = useState<CustomerData>({
     fullName: '',
     imageUrl: '',
@@ -25,9 +26,11 @@ const useCustomerData = () => {
   useEffect(() => {
     const getUserDetails = async () => {
       try {
+        setCustomerDataLoading(true);
         const response = await axios.get('/api/customer/findCustomer');
         const result = response.data;
         if (result.success) {
+          setCustomerDataLoading(false);
           setCustomerDatas((prevCustomerData) => ({
             ...prevCustomerData,
             fullName: result.customer.fullName,
@@ -40,12 +43,14 @@ const useCustomerData = () => {
             userId: result.customer._id,
           }));
         }
+        setCustomerDataLoading(false);
       } catch (error) {
+        setCustomerDataLoading(false);
         console.error('Error fetching customer details:', error);
       }
     };
     getUserDetails();
   }, []);
-  return [customerDatas, setCustomerDatas] as const;
+  return [customerDataLoading, customerDatas, setCustomerDatas] as const;
 };
 export default useCustomerData;

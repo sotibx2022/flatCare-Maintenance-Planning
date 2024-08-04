@@ -8,7 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import navigationItems from '.';
 import SingleNavigationItem from './SingleNavigationItem';
-const Navigation = () => {
+interface NavigationProps {
+  hideSideBar: boolean
+}
+const Navigation: React.FC<NavigationProps> = ({ hideSideBar }) => {
   const router = useRouter();
   const handleLogout = async () => {
     try {
@@ -26,23 +29,30 @@ const Navigation = () => {
     router.push("/");
   }
   return (
-    <nav className="dashboardNavigation">
-      <ul>
-        {navigationItems.map((item, index) => (
-          <SingleNavigationItem
-            providedPathName={item.path}
-            icon={item.icon}
-            NavigationTitle={item.NavigationTitle}
-            key={index}
-          />
-        ))}
-      </ul>
-      <button onClick={handleLogout} className="logoutButton">
-        <FontAwesomeIcon icon={faSignOutAlt} className='logoutButtonIcon' /> Logout
-      </button>
-      <button onClick={returnHome} className="returnHome">
-        <FontAwesomeIcon icon={faHouse} className="returnHomeIcon" /> Return Home
-      </button>
+    <nav className={hideSideBar ? "hideSideBar" : "showSideBar"}>
+      <div className='sideBarContainer'>
+        <ul className='flex flex-col gap-4'>
+          {navigationItems.map((item, index) => (
+            <SingleNavigationItem
+              providedPathName={item.path}
+              icon={item.icon}
+              NavigationTitle={item.NavigationTitle}
+              key={index}
+              hideSideBar={hideSideBar}
+            />
+          ))}
+        </ul>
+        <div className={hideSideBar ? "sideBarButtonsWrapperOnHideSideBar" : "sideBarButtonsWrapperOnShowSideBar"}>
+          <button onClick={handleLogout} className="logoutButton">
+            <FontAwesomeIcon icon={faSignOutAlt} className='logoutButtonIcon' />
+            <p className='buttonText'>Logout</p>
+          </button>
+          <button onClick={returnHome} className="returnHome">
+            <FontAwesomeIcon icon={faHouse} className="returnHomeIcon" />
+            <p className='buttonText'>Return Home</p>
+          </button>
+        </div>
+      </div>
     </nav>
   );
 };

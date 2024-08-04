@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import SubmitSuccess from '../../../../ui/submitSuccess';
 import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
 const Page = () => {
-  const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [categories, setCategories] = useState<string[]>([]);
   const [priority, setPriority] = useState('');

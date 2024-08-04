@@ -479,20 +479,31 @@ ul li {
   color: var(--primaryDark);
   padding: 12px;
   text-align: left;
-  border-bottom: 4px solid var(--primaryDark);
+  border-bottom: 1px dotted var(--helper);
 }
 .materialTable tbody td {
   padding: 10px;
   color: var(--primaryDark);
 }
-.materialTable tbody tr {
-  border-bottom: 1px dotted var(--helper);
-}
-.materialTable tbody tr:hover {
-  box-shadow: var(--primaryDarkBoxShadow);
-}
 .tdSmailContainer {
   max-width: 100px;
+}
+.subHeading {
+  box-shadow: var(--primaryDarkBoxShadow);
+  position: relative;
+  font-size: 1rem;
+  padding: 1rem;
+  color: var(--primaryDark);
+  margin: 1rem 0;
+}
+.subHeading::after {
+  position: absolute;
+  content: "";
+  top: 1rem;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--helper);
 }
 @media (max-width:1000px) {
   .materialTableContainer {

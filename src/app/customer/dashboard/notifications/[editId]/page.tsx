@@ -26,7 +26,7 @@ const FormComponent: React.FC<EditNotificationProps> = (props) => {
   const editId = props.params.editId;
   const [categories, setCategories] = useState<string[] | undefined>();
   const [notification, setNotification] = useSingleNotification(editId);
-  const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   const [submitError, setSubmitError] = useState();
   const {
     register,

@@ -12,6 +12,7 @@ import OrderedFor from './OrderedFor';
 import DeliveryDetails from './DeliveryDeatils';
 import CardDetails from './CardDetails';
 import DeliveryMethod from './DeliveryMethod';
+import { toast } from 'react-toastify';
 const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   orderedBy,
   orderedFor,
@@ -19,8 +20,6 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   deliveryMethod,
   paymentDetails }) => {
   const dispatch = useDispatch()
-  console.log(paymentDetails.expiryDate);
-  console.log(typeof paymentDetails.expiryDate)
   const handlePrev = () => {
     if (deliveryMethod === "debitCard") {
       dispatch(setNextValue({ data: 5 }))
@@ -29,11 +28,11 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
     }
   }
   const handleSubmit = () => {
+    toast.success("Materials Requirement Posted Successfully.")
   }
   return (
-    <>
-      <div>
-        <h1>Preview and Submit</h1>
+    <div className='w-[80vw] max-w-[500px]'>
+      <div >
         <div className="materials_area">
           <h1 className='subHeading'>Materials</h1>
           <MaterialLists materials={materials} />
@@ -60,18 +59,6 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
             <CardDetails paymentDetails={paymentDetails} />
           </div>}
       </div>
-      <h1
-        className="primary_heading"
-        style={{
-          display: 'flex',
-          gap: '5px',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: '2rem'
-        }}
-      >
-        Step <span className="step_number">6</span> of <span>6</span>
-      </h1>
       <div className='buttonsWrapper flex justify-between items-center mt-2'>
         <button type='button' onClick={handlePrev}>
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -80,7 +67,7 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
           <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>
-    </>
+    </div>
   )
 }
 export default PreviewSubmit

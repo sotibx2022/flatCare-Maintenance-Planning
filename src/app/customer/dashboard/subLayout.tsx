@@ -27,7 +27,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
   }
   return (
     <main>
-      <div className="layoutContainer flex_items dashboardContainer">
+      <div className="layoutContainer dashboardContainer">
         <section
           id="leftSide"
           className={hideSideBar ? 'hideSideBar' : 'showSideBar'}
@@ -38,7 +38,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
               icon={hideSideBar ? faChevronRight : faChevronLeft}
             />
           </div>
-          <Navigation />
+          <Navigation hideSideBar={hideSideBar} />
         </section>
         <Provider store={store}>
           <section

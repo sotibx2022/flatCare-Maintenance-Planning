@@ -14,20 +14,18 @@ interface AddMaterialProps {
 }
 const AddMaterial: React.FC<AddMaterialProps> = ({ setshowAddMaterialForm }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<MaterialDetailsData>({
-        mode: 'all' // Validate on both blur and change
+        mode: 'all'
     });
     const dispatch = useDispatch();
     const [submitted, setSubmitted] = useState(false);
-    // Ensure that 'data' parameter is correctly handled
     const onSubmit = (data: MaterialDetailsData) => {
-        console.log("Form data submitted:", data); // Debugging line
         dispatch(addMaterial({ data }));
         setSubmitted(true);
         setshowAddMaterialForm(false);
     };
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='addMaterialWrapper'>
+            <form onSubmit={handleSubmit(onSubmit)} className='max-w-[500px]'>
                 <div className="form_Item">
                     <label htmlFor="materialName">Material Name</label>
                     <input
@@ -85,7 +83,7 @@ const AddMaterial: React.FC<AddMaterialProps> = ({ setshowAddMaterialForm }) => 
                     <FontAwesomeIcon icon={faPlusCircle} className='mr-1' /> Add Material
                 </button>
             </form>
-        </>
+        </div>
     );
 };
 export default AddMaterial;

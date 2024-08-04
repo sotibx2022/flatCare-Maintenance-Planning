@@ -27,7 +27,7 @@ const DeliveryMethodForm: React.FC = () => {
         dispatch(setNextValue({ data: value }));
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-[80vw] max-w-[500px]'>
             <div className="deliveryMethod my-8 ">
                 <div className='flex flex-col justify-start items-center md:flex-row md:justify-between' >
                     <div className="radioItem">
@@ -59,33 +59,24 @@ const DeliveryMethodForm: React.FC = () => {
                     </div>
                 </div>
                 {errors.deliveryOption?.message && <SubmitError message={errors.deliveryOption?.message} />}
-                <div className="paragraphswrapper relative my-8">
-                    <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "paymentOnDelivery" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
-                        <FontAwesomeIcon icon={faBox} />
-                        <span>Pay for your order upon delivery at your doorstep.</span>
-                    </p>
-                    <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "pickupFromStore" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
-                        <FontAwesomeIcon icon={faStore} />
-                        <span>Pick up your order directly from our store at your convenience.</span>
-                    </p>
-                    <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "debitCard" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
-                        <FontAwesomeIcon icon={faCreditCard} />
-                        <span>Pay using your debit card during checkout.</span>
-                    </p>
+                <div className='paragraphs h-[50px] my-8 hidden md:block'>
+                    <div className="paragraphswrapper relative">
+                        <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "paymentOnDelivery" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
+                            <FontAwesomeIcon icon={faBox} />
+                            <span>Pay for your order upon delivery at your doorstep.</span>
+                        </p>
+                        <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "pickupFromStore" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
+                            <FontAwesomeIcon icon={faStore} />
+                            <span>Pick up your order directly from our store at your convenience.</span>
+                        </p>
+                        <p className={`absolute top-0 left-0 flex items-center space-x-2 transition-transform duration-300 ease-in-out ${deliveryOption === "debitCard" ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}>
+                            <FontAwesomeIcon icon={faCreditCard} />
+                            <span>Pay using your debit card during checkout.</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <h1
-                className="primary_heading mt-16"
-                style={{
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                Step <span className="step_number">4</span> of <span>4</span>
-            </h1>
-            <div className='buttonsWrapper flex justify-between items-center'>
+            <div className='buttonsWrapper flex justify-between items-center mt-16'>
                 <button type='button' onClick={() => handlePrev(3)}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>

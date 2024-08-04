@@ -9,18 +9,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import SubmitError from '../../../../ui/SubmitError';
 const ReceipentsDetailsForm = () => {
-    const [customerDatas, setCustomerDatas] = useCustomerData();
-    console.log(customerDatas);
+    const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
     const { orderedFor } = useSelector((state: any) => state.form)
     const dispatch = useDispatch()
     const { register, formState: { errors }, handleSubmit, setValue } = useForm<OrderedForData>({
         mode: 'all'
     })
     useEffect(() => {
-        setValue("receipentName", customerDatas.fullName || orderedFor.receipentName);
-        setValue("receipentEmail", customerDatas.email || orderedFor.receipentEmail);
-        setValue("receipentPhone", customerDatas.phoneNumber || orderedFor.receipentPhone);
-    }, [customerDatas, orderedFor])
+        setValue("receipentName", customerDataLoading ? "Loading..." : (customerDatas.fullName || orderedFor.receipentName));
+        setValue("receipentEmail", customerDataLoading ? "Loading..." : (customerDatas.email || orderedFor.receipentEmail));
+        setValue("receipentPhone", customerDataLoading ? "Loading..." : (customerDatas.phoneNumber || orderedFor.receipentPhone));
+    }, [customerDatas, orderedFor, customerDataLoading])
     const requiredData = {
         orderedByName: customerDatas.fullName,
         orderedByEmail: customerDatas.email,
@@ -36,7 +35,7 @@ const ReceipentsDetailsForm = () => {
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='orderForInformation'>
+            <div className='orderForInformation w-[80vw] max-w-[500px]'>
                 <h2 className='secondary_heading'>Ordered For</h2>
                 <small className='text-primaryDark'>Please change the Recipient details if you are ordering for someone else.</small>
                 <div className="form_Item">
@@ -97,17 +96,6 @@ const ReceipentsDetailsForm = () => {
                     {errors.receipentPhone?.message && <SubmitError message={errors.receipentPhone?.message} />}
                 </div>
             </div>
-            <h1
-                className="primary_heading"
-                style={{
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                Step <span className="step_number">2</span> of <span>4</span>
-            </h1>
             <div className='buttonsWrapper flex justify-between items-center'>
                 <button type='button'>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={() => handlePrev(1)} />

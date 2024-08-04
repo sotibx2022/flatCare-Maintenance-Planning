@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeMaterial } from '../../../../../Redux/formSlice'
 import { MaterialDetailsData } from '.';
@@ -36,7 +36,7 @@ const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm 
         return <EditMaterial index={editIndex} setEditForm={sendIndicator} edit={editValue} />
     } else {
         return (
-            <div className='materialTableContainer'>
+            <div className='materialTableContainer w-[80vw] max-w-[1000px]'>
                 <div className='materialTableTitle flex justify-between items-center'>
                     <h1 className='secondary_heading'>List Of Materials.</h1>
                     <button type="submit" onClick={() => setshowAddMaterialForm(true)} className='flex justify-start px-1 py-0 m-0'>
