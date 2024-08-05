@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import '../homeNavigation/landingPage.css';
 import { useRouter } from 'next/navigation';
-import "./../../globals.css";
-import "./../../layout.css";
+import "../../globals.css";
 import gsap from 'gsap';
 import PortfolioCounter from './PortfolioCounter';
 import Rating from './Rating';
