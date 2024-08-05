@@ -165,10 +165,11 @@
     width: 300px;
     padding: 10px;
   }
-}
-@media(max-width:350px) {
-  .hideSideBar .responsiveDashboardIcon {
-    left: calc(100% + 100px);
-    top: -4rem;
+  #rightSide.expandRightSide {
+    margin-left: -4rem;
+  }
+  #leftSide .responsiveDashboardIcon {
+    top: -2rem;
+    left: 0;
   }
 }

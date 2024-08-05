@@ -5,7 +5,7 @@ interface DeliveryMethodProps {
 const DeliveryMethod: React.FC<DeliveryMethodProps> = ({ deliveryMethod }) => {
     return (
         <div>
-            <div className="deliveryMethodsWrapper">
+            <div className="deliveryMethodsWrapper flex flex-col max-w-[50vw] md:flex-row">
                 <p className={deliveryMethod === "paymentOnDelivery" ? "activeDeliveryOption" : "normalDeliveryOption"}>payment On Delivery</p>
                 <p className={deliveryMethod === "pickupFromStore" ? "activeDeliveryOption" : "normalDeliveryOption"}>pickup From Store</p>
                 <p className={deliveryMethod === "debitCard" ? "activeDeliveryOption" : "normalDeliveryOption"}>debit Card</p>
