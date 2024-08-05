@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import PasswordInput from '../passwordInput/PasswordInput';
 import useCustomerData from '../../hooks/useCustomerData';
 import SubmitError from '../SubmitError';
 import SubmitSuccess from '../submitSuccess';
@@ -13,7 +12,7 @@ interface checkPasswordProps {
   successValue: (value: boolean) => void;
 }
 const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
-  const [customerDatas, setCustomerDatas] = useCustomerData();
+  const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
