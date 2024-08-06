@@ -1,0 +1,51 @@
+.technicianDetails {
+    border-bottom: 1px dotted var(--helper);
+}
+.technicianDetailsLeft h3 {
+    margin: 0;
+    padding: 0;
+}
+.addressIcon {
+    margin-right: 1rem;
+}
+.technician_profile {
+    width: 60px;
+    height: 60px;
+    box-shadow: var(--primaryDarkBoxShadow);
+}
+.technicianDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+}
+.technicianProfile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+}
+.designation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primaryDark);
+}
+.statusButton {
+    background-color: var(--helper);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    display: inline-block;
+    color: var(--primaryLight);
+    border-radius: 1rem;
+}
+.star {
+    color: var(--helper);
+}
+/*==========================MEDIA QUERY=============================*/
+@media screen and (max-width: 500px) {
+    .technicianDetails {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,66 @@
+.notification-table {
+  margin-top: 20px;
+  border-spacing: 0 10px;
+}
+.notification-table th,
+.notification-table td {
+  padding: 8px;
+  text-align: left;
+}
+.notification-table tr {
+  box-shadow: var(--primaryLightBoxShadow);
+}
+.notification-table tr:hover {
+  box-shadow: var(--primaryDarkBoxShadow);
+}
+.notification-table .emergencyNotification {
+  color: #cc0000;
+  /* Dark red */
+  font-weight: bold;
+}
+.notification-table .urgentNotification {
+  color: #e69500;
+  /* Dark orange */
+  font-weight: bold;
+}
+.notification-table .normalNotification {
+  color: #009900;
+  /* Dark green */
+  font-weight: bold;
+}
+.notification-table td h6 {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: var(--primaryDark);
+}
+.notification-table td span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+.notification-table td span:first-child {
+  margin-top: 5px;
+}
+.notification-table td span:last-child {
+  margin-bottom: 0;
+}
+.locationItem {
+  background-color: #f0c9cf;
+  color: var(--primaryDark);
+  padding: 0.1rem;
+  border-radius: 10px;
+}
+.large_content {
+  min-width: 300px !important;
+}
+.notification-table th,
+.notification-table td {
+  min-width: 100px;
+  text-align: center;
+}
+.minimum_content {
+  max-width: 50px;
+}
+.medium_content {
+  min-width: 150px;
+}

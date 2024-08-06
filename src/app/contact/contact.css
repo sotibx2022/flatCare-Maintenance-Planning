@@ -1,0 +1,107 @@
+#contact-section {
+    margin: 2rem auto;
+}
+.contactSections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.idea-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.ideaHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+.ideaHeader .primary_heading {
+    margin: 0 !important;
+}
+.idea-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--primaryDark);
+    padding: 1rem;
+    border-radius: 2rem;
+}
+.idea-item .ideaIcon {
+    color: var(--primaryDark);
+    font-size: 2rem;
+}
+/* Contact form  */
+.contact-form {
+    box-shadow: var(--primaryDarkBoxShadow);
+    margin: auto;
+    max-width: 90vw;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+}
+.form-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 5rem;
+}
+.fa-paper-plane {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient);
+    color: var(--primaryLight);
+    padding: 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    animation: border-change 2s linear infinite;
+}
+.form-item {
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+.form-item span {
+    position: absolute;
+    top: -1rem;
+    left: 10%;
+    transition: 0.5s;
+    color: var(--primaryDark);
+    background-color: var(--primaryLight);
+    padding: 0.1rem 0.5rem;
+}
+.form-item input[type="text"],
+.contactForm-select {
+    height: 2.5rem;
+    border: 0.1rem solid var(--primaryDark);
+    color: var(--primaryDark);
+    background-color: var(--primaryLight);
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+.contactForm-textarea {
+    background-color: var(--primaryLight);
+    color: var(--primaryDark);
+    width: 100%;
+    border: 0.1rem solid var(--primaryDark);
+    border-radius: 0.5rem;
+    cursor: text;
+    outline: none;
+    padding: 0.2rem 1rem;
+    box-sizing: border-box;
+}
+@media(max-width:800px) {
+    .contactSections {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+}
