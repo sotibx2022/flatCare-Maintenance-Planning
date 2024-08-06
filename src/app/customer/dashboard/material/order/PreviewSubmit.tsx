@@ -18,6 +18,7 @@ import ResponsiveOrderBy from './ResponsiveOrderBy';
 import ResponsiveOrderFor from './ResponsiveOrderFor';
 import ResponsiveDeliveryDetails from './ResponsiveDeliveryDetails';
 import ResponsiveCardDetails from './ResponsiveCardDetails';
+import axios from 'axios';
 const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   orderedBy,
   orderedFor,
@@ -44,8 +45,14 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
       dispatch(setNextValue({ data: 4 }))
     }
   }
-  const handleSubmit = () => {
-    toast.success("Materials Requirement Posted Successfully.")
+  const handleSubmit = async () => {
+    const response = await axios.post("/api/material", { materials, orderedBy, orderedFor, deliveryMethod, deliveryDetails, paymentDetails })
+    const result = response.data;
+    if (result.success) {
+      toast.success("Details Posted SuccessFully");
+    } else {
+      toast.error("Problem to send Details");
+    }
   }
   return (
     <div className='w-[80vw] max-w-[600px] previewSubmitContainer'>
