@@ -1,6 +1,5 @@
 'use client';
-import React, { useContext, useEffect, useState } from 'react';
-import { DarkModeContext } from '../../../useContext/themeContext';
+import React, { useState } from 'react';
 import Navigation from './navigation/Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -9,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import store from '../../../Redux/Store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 interface SubLayoutProps {
   children: React.ReactNode;
 }
@@ -17,14 +17,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
   const toggleSidebar = () => {
     setHideSIdeBar(!hideSideBar);
   };
-  const { state } = useContext(DarkModeContext);
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-  if (!hydrated) {
-    return null;
-  }
+  const queryClient = new QueryClient()
   return (
     <main>
       <div className="layoutContainer dashboardContainer">
@@ -41,12 +34,14 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
           <Navigation hideSideBar={hideSideBar} />
         </section>
         <Provider store={store}>
-          <section
-            id="rightSide"
-            className={hideSideBar ? 'expandRightSide' : 'collapseRightSide'}
-          >
-            {children}
-          </section>
+          <QueryClientProvider client={queryClient}>
+            <section
+              id="rightSide"
+              className={hideSideBar ? 'expandRightSide' : 'collapseRightSide'}
+            >
+              {children}
+            </section>
+          </QueryClientProvider>
         </Provider>
       </div>
     </main>

@@ -60,8 +60,8 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
                 type: String,
                 required: true,
             },
-            materialQunatity: {
-                type: Number,
+            materialQuantity: {
+                type: String,
                 required: true,
             },
             unitOfMeasure: {
@@ -144,5 +144,5 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
             }
         }
     },
-})
+}, { timestamps: true })
 export const Material = mongoose.models.Material || mongoose.model("Material", materialSchema)

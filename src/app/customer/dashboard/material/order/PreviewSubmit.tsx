@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setNextValue } from '../../../../../Redux/formSlice'
 import { PreviewSubmitProps } from '.';
-import { MaterialDetailsData } from '.';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import MaterialLists from './MaterialLists';
@@ -18,13 +17,17 @@ import ResponsiveOrderBy from './ResponsiveOrderBy';
 import ResponsiveOrderFor from './ResponsiveOrderFor';
 import ResponsiveDeliveryDetails from './ResponsiveDeliveryDetails';
 import ResponsiveCardDetails from './ResponsiveCardDetails';
-import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import { postMaterial } from './api';
+import { usePostMaterial } from '../../../../hooks/usePostMaterial';
+import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
 const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   orderedBy,
   orderedFor,
   deliveryDetails,
   deliveryMethod,
   paymentDetails }) => {
+  const { mutate: postMaterial, isPending } = usePostMaterial();
   const dispatch = useDispatch()
   const [screenWidth, setScreenWidth] = useState(0)
   const findScreenWidth = () => {
@@ -38,20 +41,15 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
       window.removeEventListener('resize', findScreenWidth)
     })
   }, [])
+  const handleSubmit = () => {
+    const materialData: PreviewSubmitProps = { materials, orderedBy, orderedFor, paymentDetails, deliveryDetails, deliveryMethod }
+    postMaterial(materialData);
+  }
   const handlePrev = () => {
     if (deliveryMethod === "debitCard") {
       dispatch(setNextValue({ data: 5 }))
     } else {
       dispatch(setNextValue({ data: 4 }))
-    }
-  }
-  const handleSubmit = async () => {
-    const response = await axios.post("/api/material", { materials, orderedBy, orderedFor, deliveryMethod, deliveryDetails, paymentDetails })
-    const result = response.data;
-    if (result.success) {
-      toast.success("Details Posted SuccessFully");
-    } else {
-      toast.error("Problem to send Details");
     }
   }
   return (
@@ -87,8 +85,8 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
         <button type='button' onClick={handlePrev}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-        <button onClick={handleSubmit}>
-          <FontAwesomeIcon icon={faArrowRight} />
+        <button onClick={handleSubmit} disabled={isPending}>
+          {isPending ? <LoadingButton /> : <FontAwesomeIcon icon={faArrowRight} />}
         </button>
       </div>
     </div>

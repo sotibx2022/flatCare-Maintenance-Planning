@@ -69,3 +69,8 @@ export interface PreviewSubmitProps {
         expiryDate: Date
     }
 }
+export interface APIResponse {
+    success: boolean,
+    message: string,
+    status: number
+}
