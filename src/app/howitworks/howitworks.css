@@ -3,35 +3,42 @@
     width: 100%;
     position: relative;
 }
+
 .right-container {
     position: relative;
     left: 50%;
     width: 50%;
 }
+
 .left-container {
     position: relative;
     left: 0;
     width: 50%;
 }
+
 .process-item {
     width: 35vw;
     background: var(--primaryDark);
     color: var(--primaryLight);
 }
+
 .process-item h3 {
     font-size: 1rem;
     font-style: italic;
     font-weight: normal;
 }
+
 .process-item h4 small {
     background-color: var(--helper);
     padding: 0.5rem 1rem;
     color: var(--primaryDark);
     border-radius: 1rem;
 }
+
 .right-content {
     margin-left: auto;
 }
+
 .right-container span {
     position: absolute;
     left: 0;
@@ -48,6 +55,7 @@
     border: 2px solid var(--primaryDark);
     top: 15%;
 }
+
 .left-container span {
     position: absolute;
     right: 0;
@@ -64,11 +72,13 @@
     top: 15%;
     border: 2px solid var(--primaryDark);
 }
+
 .right-content {
     position: relative;
     padding: 2rem;
     box-sizing: border-box;
 }
+
 .right-content::after {
     position: absolute;
     content: "";
@@ -80,11 +90,13 @@
     margin-left: -1rem;
     transform: rotate(45deg);
 }
+
 .left-content {
     position: relative;
     padding: 1rem;
     box-sizing: border-box;
 }
+
 .left-content::after {
     position: absolute;
     content: "";
@@ -96,46 +108,63 @@
     margin-right: -1rem;
     transform: rotate(45deg);
 }
+
 .pageTitle {
     max-width: 600px;
     margin: 1rem 0;
 }
+
 @media(max-width: 800px) {
     .timeline {
         min-width: 90vw;
     }
+
     .stepItemsWrapper {
         display: flex;
         flex-direction: column;
-        min-width: 90vw;
+        min-width: 85vw;
         gap: 2rem;
     }
+
     .right-container {
         width: 100%;
         left: 0;
     }
+
     .left-container {
         width: 100%;
         left: 0;
     }
+
     .right-content {
         width: 100%;
     }
+
     .left-content {
         width: 100%;
         padding-left: 2rem;
     }
+
     .left-content::after {
         display: none;
     }
+
     .right-content::after {
         display: none;
     }
+
     .left-container span {
         left: 0;
         margin-left: -0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
     .right-container span {
         border: 1px solid var(--primaryLight);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -9,14 +9,15 @@ interface UserMode {
   userModelTitle: string;
   userModelDescription: string;
   icon: any;
+  keyword?: boolean,
 }
-
 const userModes: UserMode[] = [
   {
     userModelTitle: 'Customer Mode',
     userModelDescription:
       'Access customer-related features and manage service requests seamlessly.',
     icon: faUser,
+    keyword: true,
   },
   {
     userModelTitle: 'Technician Mode',
@@ -51,6 +52,7 @@ const UserModel = () => {
               userModelDescription={model.userModelDescription}
               icon={model.icon}
               key={index}
+              keyword={model.keyword}
             />
           );
         })}
@@ -58,5 +60,4 @@ const UserModel = () => {
     </div>
   );
 };
-
 export default UserModel;

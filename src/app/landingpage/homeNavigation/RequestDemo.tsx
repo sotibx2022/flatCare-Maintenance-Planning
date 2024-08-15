@@ -70,10 +70,10 @@ const RequestDemo = () => {
                 <h1 className='primary_heading'>Get Your Entire Team On the Same Page !!</h1>
                 <div className='input_item'>
                     <input type="text" id="email" placeholder='eg. sbinayaraj@gmail.com' value={email} onChange={(E) => { setEmail(E.target.value) }} />
-                    <label htmlFor='email'>Request For Demo</label>
+                    <label htmlFor='email' className='text-primaryDark'>Request For Demo</label>
                 </div>
-                <label>
-                    <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+                <label className='text-primaryDark pl-1'>
+                    <input type="checkbox" checked={checked} className='text-primaryDark pr-1' onChange={(e) => setChecked(e.target.checked)} />
                     By submitting this form, you agree to the processing of your personal data by Flatcare Maintenance Planning.
                 </label>
                 <button onClick={submitHandler} disabled={loading}>
