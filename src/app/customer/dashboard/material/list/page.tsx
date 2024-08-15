@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -58,6 +59,14 @@ const page = () => {
                     </div>
                 </div>
             })}
+=======
+import React from 'react';
+import "../../../../globals.css";
+const page = () => {
+    return (
+        <div>
+            <h1 className='primary_heading'>This Feature is Under Development..</h1>
+>>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
         </div>
     )
 }

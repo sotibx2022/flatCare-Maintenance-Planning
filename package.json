@@ -19,9 +19,14 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@gsap/react": "^2.1.1",
     "@reduxjs/toolkit": "^2.2.7",
+<<<<<<< HEAD
     "@tanstack/react-query": "^5.51.21",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.3",
+=======
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+>>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
     "bcryptjs": "^2.4.3",
     "firebase": "^10.12.3",
     "gsap": "^3.12.5",
