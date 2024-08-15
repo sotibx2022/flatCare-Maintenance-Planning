@@ -3,8 +3,8 @@ import React from 'react'
 import { PreviewSubmitProps } from '../order'
 import { useForm } from 'react-hook-form'
 interface MaterialListProps {
-    editValue: boolean,
-    materials: PreviewSubmitProps
+    editValue?: boolean,
+    materials?: PreviewSubmitProps
 }
 const MaterialsList: React.FC<MaterialListProps> = ({ editValue }) => {
     const { register, formState: { errors } } = useForm({

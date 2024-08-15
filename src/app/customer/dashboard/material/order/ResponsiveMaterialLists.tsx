@@ -8,11 +8,7 @@ const ResponsiveMaterialList: React.FC<MaterialListsProps> = ({ materials }) => 
     return (
         <div className="border border-gray-300 rounded-md w-[80vw] max-w-[300px]">
             {materials.slice(1).map((material: MaterialDetailsData, index: number) => (
-<<<<<<< HEAD
                 <div className="flex flex-row" key={index}>
-=======
-                <div className="flex flex-row">
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
                     <div className="flex flex-col gap-2 border  text-primaryLight p-2 border-b border-gray-300">
                         <p className="w-24 font-bold text-primaryLight">SN</p>
                         <p className="w-24 font-bold text-primaryLight">Name</p>

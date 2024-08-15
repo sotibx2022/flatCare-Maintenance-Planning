@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setNextValue } from '../../../../../Redux/formSlice'
 import { PreviewSubmitProps } from '.';
-<<<<<<< HEAD
-=======
-import { MaterialDetailsData } from '.';
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import MaterialLists from './MaterialLists';
@@ -21,23 +17,17 @@ import ResponsiveOrderBy from './ResponsiveOrderBy';
 import ResponsiveOrderFor from './ResponsiveOrderFor';
 import ResponsiveDeliveryDetails from './ResponsiveDeliveryDetails';
 import ResponsiveCardDetails from './ResponsiveCardDetails';
-<<<<<<< HEAD
 import { useMutation } from '@tanstack/react-query';
 import { postMaterial } from './api';
 import { usePostMaterial } from '../../../../hooks/usePostMaterial';
 import LoadingButton from '../../../../landingpage/homeNavigation/LoadingButton';
-=======
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
 const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   orderedBy,
   orderedFor,
   deliveryDetails,
   deliveryMethod,
   paymentDetails }) => {
-<<<<<<< HEAD
   const { mutate: postMaterial, isPending } = usePostMaterial();
-=======
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
   const dispatch = useDispatch()
   const [screenWidth, setScreenWidth] = useState(0)
   const findScreenWidth = () => {
@@ -51,13 +41,10 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
       window.removeEventListener('resize', findScreenWidth)
     })
   }, [])
-<<<<<<< HEAD
   const handleSubmit = () => {
     const materialData: PreviewSubmitProps = { materials, orderedBy, orderedFor, paymentDetails, deliveryDetails, deliveryMethod }
     postMaterial(materialData);
   }
-=======
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
   const handlePrev = () => {
     if (deliveryMethod === "debitCard") {
       dispatch(setNextValue({ data: 5 }))
@@ -65,12 +52,6 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
       dispatch(setNextValue({ data: 4 }))
     }
   }
-<<<<<<< HEAD
-=======
-  const handleSubmit = () => {
-    toast.success("Materials Requirement Posted Successfully.")
-  }
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
   return (
     <div className='w-[80vw] max-w-[600px] previewSubmitContainer'>
       <div >
@@ -104,13 +85,8 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
         <button type='button' onClick={handlePrev}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-<<<<<<< HEAD
         <button onClick={handleSubmit} disabled={isPending}>
           {isPending ? <LoadingButton /> : <FontAwesomeIcon icon={faArrowRight} />}
-=======
-        <button onClick={handleSubmit}>
-          <FontAwesomeIcon icon={faArrowRight} />
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
         </button>
       </div>
     </div>

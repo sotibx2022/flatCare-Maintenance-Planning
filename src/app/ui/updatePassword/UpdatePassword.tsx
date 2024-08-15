@@ -19,11 +19,7 @@ interface UpdatePasswordProps {
 const UpdatePassword: React.FC<UpdatePasswordProps> = ({ email }) => {
   console.log(email);
   const router = useRouter();
-<<<<<<< HEAD
   const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
-=======
-  const [customerDatas, setCustomerDatas] = useCustomerData();
->>>>>>> b0c3e862adb56ff0b76a17c01abdaac6a64ff053
   const {
     register,
     handleSubmit,

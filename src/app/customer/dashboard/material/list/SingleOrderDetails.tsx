@@ -26,7 +26,6 @@ const SingleOrderDetails = () => {
                 </div>
                 <div className="materialsWrapper">
                     <h1 className='subHeading'>Order Identification</h1>
-                    <MaterialsList editValue={edit} />
                 </div>
                 <div className="orderedBy">
                     <h1 className='subHeading'>Order Identification</h1>
