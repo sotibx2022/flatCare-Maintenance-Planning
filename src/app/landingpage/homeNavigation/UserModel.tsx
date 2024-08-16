@@ -35,15 +35,9 @@ const userModes: UserMode[] = [
 const UserModel = () => {
   return (
     <div className="userModelWrapper">
-      <div className="section-heading">
-        <ul className="bouncing-ball">
-          <li>M</li>
-          <li>0</li>
-          <li>D</li>
-          <li>E</li>
-          <li>S</li>
-        </ul>
-      </div>
+      <h1 className="subHeading">
+        Modes
+      </h1>
       <div className="models_area">
         {userModes.map((model, index) => {
           return (

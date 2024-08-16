@@ -45,9 +45,9 @@ const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm 
     } else {
         return (
             <div className='materialTableContainer w-[80vw]'>
-                <div className='materialTableTitle flex justify-start gap-4 items-center'>
+                <div className='materialTableTitle flex justify-start gap-4 items-center mt-4'>
                     <h1 className='secondary_heading'>List Of Materials.</h1>
-                    <button type="submit" onClick={() => setshowAddMaterialForm(true)} className='flex justify-start px-1 py-0 m-0'>
+                    <button type="submit" onClick={() => setshowAddMaterialForm(true)} className='flex justify-start px-1 py-0 m-0 '>
                         <FontAwesomeIcon icon={faPlusCircle} className='mr-1' /> Add Material
                     </button>
                 </div>

@@ -100,10 +100,9 @@ const CheckPassword: React.FC<checkPasswordProps> = ({ successValue }) => {
       <h1 className="primary_heading" style={{ marginBottom: '1rem' }}>
         Customer Change Password
       </h1>
-      <label>Enter Original Password</label>
+      <label className='text-primaryDark'>Enter Original Password</label>
       <div
-        className="form_Item"
-        style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'space-between' }}
+        className="form_Item flex gap-4 flex-col items-start md:flex-row md:justify-between md:items-center"
       >
         <div style={{ position: 'relative', width: '100%' }}>
           <FontAwesomeIcon icon={faLock} className="input_icon_left" />

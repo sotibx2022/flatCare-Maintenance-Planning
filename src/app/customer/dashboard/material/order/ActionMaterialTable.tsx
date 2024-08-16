@@ -27,7 +27,7 @@ const ActionMaterialTable: React.FC<ActionMaterialTableProps> = ({ setEditIndex,
         setEditValue(false);
     }
     return (
-        <div>
+        <div className='mt-4'>
             {materials.length > 1 && (
                 <table className='materialTable'>
                     <thead>

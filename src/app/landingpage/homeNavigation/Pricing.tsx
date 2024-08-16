@@ -32,13 +32,9 @@ const pricingData = [
 const Pricing = () => {
     return (
         <section id="pricing-section">
-            <div className="section-heading">
-                <ul className="bouncing-ball">
-                    {['P', 'R', 'I', 'C', 'I', 'N', 'G'].map((letter, index) => (
-                        <li key={index}>{letter}</li>
-                    ))}
-                </ul>
-            </div>
+            <h1 className="subHeading">
+                Pricing
+            </h1>
             <div className="pricing-area">
                 {pricingData.map((item, index) => (
                     <div className="pricing-item" key={index}>

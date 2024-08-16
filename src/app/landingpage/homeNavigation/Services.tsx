@@ -7,13 +7,9 @@ import SoftwareFeatures from '../softwareFeatures/SoftwareFeatures';
 const Services: React.FC = () => {
   return (
     <section id="services-section">
-      <div className="section-heading">
-        <ul className="bouncing-ball">
-          {["S", "E", "R", "V", "I", "C", "E", "S"].map((char, index) => (
-            <li key={index}>{char}</li>
-          ))}
-        </ul>
-      </div>
+      <h1 className="subHeading">
+        services
+      </h1>
       <div className="service-area">
         <p className="section-paragraph">
           Successfully maintaining a flat goes beyond individual efforts. Our dedicated team is here to manage and provide the comprehensive maintenance services you need, ensuring everything runs smoothly.

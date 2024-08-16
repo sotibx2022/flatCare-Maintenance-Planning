@@ -14,18 +14,9 @@ const features = [
 const Features = () => {
     return (
         <>
-            <div className="section-heading">
-                <ul className="bouncing-ball">
-                    <li>F</li>
-                    <li>E</li>
-                    <li>A</li>
-                    <li>T</li>
-                    <li>U</li>
-                    <li>R</li>
-                    <li>E</li>
-                    <li>S</li>
-                </ul>
-            </div>
+            <h1 className="subHeading">
+                FEATURES
+            </h1>
             <div className="featureItems">
                 {features.map((feature, index) => (
                     <div className="featureItem" key={index}>

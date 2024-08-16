@@ -6,6 +6,7 @@
 .notification-table td {
   padding: 8px;
   text-align: left;
+  color: var(--primaryDark);
 }
 .notification-table tr {
   box-shadow: var(--primaryLightBoxShadow);
@@ -63,4 +64,9 @@
 }
 .medium_content {
   min-width: 150px;
+}
+@media (max-width:1000) {
+  .notification-table {
+    display: flex;
+  }
 }

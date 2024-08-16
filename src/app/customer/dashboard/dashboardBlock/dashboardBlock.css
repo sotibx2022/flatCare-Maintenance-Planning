@@ -1,5 +1,5 @@
 .dashboardContainer {
-  width: 90vw;
+  width: 85vw;
   margin: 0 auto;
 }
 .dashboard {
@@ -132,14 +132,9 @@
 .viewProfileTable td {
   text-align: right;
 }
-@media(max-width:800px) {
-  .secondary_block {
-    min-width: 80vw;
-  }
-}
 @media(max-width:1000px) {
   .secondary_block {
-    min-width: 80vw;
+    width: 100%;
   }
 }
 @media (max-width: 400px) {

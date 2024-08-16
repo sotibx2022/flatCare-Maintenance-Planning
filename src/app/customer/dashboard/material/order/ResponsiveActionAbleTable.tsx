@@ -30,7 +30,7 @@ const ResponsiveActionAbleTable: React.FC<ActionMaterialTableProps> = ({ setEdit
         setEditForm(value);
     };
     return (
-        <div className="p-4 w-[80vw] max-w-[600px]">
+        <div className="p-4 w-[80vw] max-w-[600px] mt-4">
             {materials.length > 1 && (
                 <div>
                     {materials.slice(1).map((material: MaterialDetailsData, index: number) => (
@@ -38,7 +38,6 @@ const ResponsiveActionAbleTable: React.FC<ActionMaterialTableProps> = ({ setEdit
                             <div className="flex flex-col font-bold pb-2">
                                 <p className='flex-1  p-2 text-primaryDark'>SN</p>
                                 <p className='flex-2 p-2  text-primaryDark'>Material Name</p>
-                                <p className='flex-2 p-2 '>Material Description</p>
                                 <p className='flex-1  p-2 text-primaryDark'>Quantity</p>
                                 <p className='flex-1  p-2 text-primaryDark'>Unit</p>
                                 <p className='flex-1 p-2'>Actions</p>
@@ -46,7 +45,6 @@ const ResponsiveActionAbleTable: React.FC<ActionMaterialTableProps> = ({ setEdit
                             <div className="contentWrapper flex-col">
                                 <p className='flex-1  p-2 text-primaryDark'>{index + 1}</p>
                                 <p className='flex-2 p-2 '>{material.materialName}</p>
-                                <p className='flex-2 p-2 '>{truncateText(material.materialDescription, 8)}</p>
                                 <p className='flex-1  p-2 text-primaryDark'>{material.materialQuantity}</p>
                                 <p className='flex-1  p-2 text-primaryDark'>{material.unitOfMeasure}</p>
                                 <div className='flex-1 p-2 flex justify-start gap-2 items-center '>
