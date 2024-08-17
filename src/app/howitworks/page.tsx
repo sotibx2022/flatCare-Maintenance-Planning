@@ -66,7 +66,7 @@ const ProcessItemsSection: React.FC = () => {
             <CommonHeader />
             <section id="processes" className='container timeline'>
                 <div className='pageTitle'>
-                    <h1 className='primary_heading'>How it Works</h1>
+                    <h1 className='subHeading'>How it Works</h1>
                     <p>At Flatcare Maintenance, we ensure that managing and maintaining your property is as seamless and stress-free as possible. Here’s how our process works</p>
                 </div>
                 <div className='stepItemsWrapper'>

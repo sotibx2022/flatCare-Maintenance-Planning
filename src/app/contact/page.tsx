@@ -9,6 +9,7 @@ const Contact = () => {
     return (
         <>
             <CommonHeader />
+            <h1 className='subHeading'>Contact Area</h1>
             <section id="contact-section" className='container'>
                 <h1 className="primary_heading">Lets Connect to address your Idea !! </h1>
                 <div className='contactSections'>

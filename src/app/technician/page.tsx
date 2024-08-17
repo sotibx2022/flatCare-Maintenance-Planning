@@ -58,6 +58,7 @@ const TechnicianList = () => {
     return (
         <>
             <CommonHeader />
+            <h1 className='subHeading'>Technicians Area</h1>
             <div className="technician-data container">
                 <p className="primary_heading">Check Our Highly Rated Technicians</p>
                 <Call2Action type="Start Now" link="/technician/login" />

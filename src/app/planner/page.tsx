@@ -34,6 +34,7 @@ const Page = () => {
   return (
     <>
       <CommonHeader />
+      <h1 className='subHeading'>Planners Area</h1>
       <main className='container'>
         <div className='sectionHeading'>
           <h1 className='primary_heading'>A goal without a plan is just a wish</h1>
