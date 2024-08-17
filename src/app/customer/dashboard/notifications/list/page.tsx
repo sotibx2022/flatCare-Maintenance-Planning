@@ -1,4 +1,13 @@
 'use client';
+interface Notification {
+  notificationTitle: string;
+  notificationDescription: string;
+  createdAt: Date;
+  updatedAt: Date;
+  notificationPriority: string;
+  notificationCategory: string;
+  _id: string;
+}
 const calculateTurnAroundTime = (d: Date) => {
   const referenceDate = new Date(d);
   const currentDate = new Date();
@@ -21,7 +30,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import LoadingComponent from '../../../../ui/LoadingComponent';
-import { Notification } from '.';
 import ResponsiveNotificationLists from './ResponsiveNotificationLists';
 const page = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -30,15 +38,16 @@ const page = () => {
   const [width, setWidth] = useState(0)
   useEffect(() => {
     findNotifications();
-    window.addEventListener("resize", findScreenSize)
-    console.log(width)
-    return (() => {
-      window.removeEventListener("resize", findScreenSize)
-    })
   }, []);
   const findScreenSize = () => {
     setWidth(window.innerWidth)
   }
+  useEffect(() => {
+    window.addEventListener('resize', findScreenSize);
+    return (() => {
+      window.removeEventListener('resize', findScreenSize);
+    })
+  }, [])
   const findNotifications = async () => {
     setLoading(true);
     const response = await axios.get('/api/notification');
