@@ -34,8 +34,8 @@ const Page = () => {
   return (
     <>
       <CommonHeader />
-      <h1 className='subHeading'>Planners Area</h1>
       <main className='container'>
+        <h1 className='subHeading'>Planners Area</h1>
         <div className='sectionHeading'>
           <h1 className='primary_heading'>A goal without a plan is just a wish</h1>
           <p>Effective planning turns goals into reality. A clear plan provides direction, outlines steps, and anticipates challenges, transforming ambitions into achievable milestones.</p>
