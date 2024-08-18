@@ -150,8 +150,6 @@
   align-items: center;
 }
 .create_Notification_container {
-  min-width: 300px;
-  width: 500px;
   max-width: 600px;
 }
 .notification_table_container {

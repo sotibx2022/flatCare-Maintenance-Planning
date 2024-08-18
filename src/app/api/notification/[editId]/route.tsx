@@ -19,7 +19,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
     // Find the notification by ID
     const notification = await Notification.findOne({ _id: editId });
     if (notification) {
-      console.log(notification)
       return NextResponse.json({
         message: 'Success',
         notification,
@@ -105,7 +104,7 @@ export async function DELETE(request: NextRequest, response: NextResponse) {
   try {
     await ConnectToDb(); // Connect to the database
     const url = new URL(request.url);
-    const editId = url.searchParams.get('editId');
+    const editId = url.pathname.split('/')[3];
     // Check if the notification exists
     const existingNotification = await Notification.findById(editId);
     if (!existingNotification) {

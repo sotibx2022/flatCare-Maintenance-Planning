@@ -9,6 +9,7 @@ import {
 import { Provider } from 'react-redux';
 import store from '../../../Redux/Store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 interface SubLayoutProps {
   children: React.ReactNode;
 }
@@ -41,6 +42,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ children }) => {
             >
               {children}
             </section>
+            <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </Provider>
       </div>

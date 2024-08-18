@@ -487,7 +487,7 @@ ul li {
   padding: 1rem;
   color: var(--primaryDark);
   margin: 1rem 0;
-  width: 70vw;
+  width: 100%;
   text-transform: uppercase;
 }
 .subHeading::after {
