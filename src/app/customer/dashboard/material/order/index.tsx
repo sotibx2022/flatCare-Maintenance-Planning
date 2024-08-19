@@ -72,5 +72,6 @@ export interface PreviewSubmitProps {
 export interface APIResponse {
     success: boolean,
     message: string,
-    status: number
+    status: number,
+
 }

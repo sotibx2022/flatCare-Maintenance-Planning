@@ -6,7 +6,8 @@ interface MaterialListProps {
     editValue?: boolean,
     materials?: PreviewSubmitProps
 }
-const MaterialsList: React.FC<MaterialListProps> = ({ editValue }) => {
+const MaterialsList: React.FC<MaterialListProps> = ({ materials, editValue }) => {
+    console.log(materials)
     const { register, formState: { errors } } = useForm({
         mode: "all"
     })

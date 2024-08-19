@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeMaterial } from '../../../../../Redux/formSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Materials } from '../list';
 interface ActionMaterialTableProps {
     setEditIndex: (value: number) => void;
     setEditForm: (value: boolean) => void;
@@ -41,7 +42,7 @@ const ActionMaterialTable: React.FC<ActionMaterialTableProps> = ({ setEditIndex,
                         </tr>
                     </thead>
                     <tbody>
-                        {materials.slice(1).map((material: MaterialDetailsData, index: number) => (
+                        {materials.splice(0).map((material: MaterialDetailsData, index: number) => (
                             <tr key={index}>
                                 <td className='tdSmailContainer'>{index + 1}</td>
                                 <td>{material.materialName}</td>

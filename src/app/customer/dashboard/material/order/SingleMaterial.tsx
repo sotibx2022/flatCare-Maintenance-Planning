@@ -9,10 +9,12 @@ import { faEdit, faEye, faPlus, faPlusCircle, faTrash } from '@fortawesome/free-
 import { truncateText } from './CommonFunctions';
 import ActionMaterialTable from './ActionMaterialTable';
 import ResponsiveActionAbleTable from './ResponsiveActionAbleTable';
+import { Materials } from '../list';
 interface SingleMaterialProps {
-    setshowAddMaterialForm: (value: boolean) => void;
+    setshowAddMaterialForm?: (value: boolean) => void;
+    materials?: Materials[]
 }
-const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm }) => {
+const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm, materials: orderedMaterials }) => {
     const materials = useSelector((state: any) => state.form.materials)
     const dispatch = useDispatch()
     const [editForm, setEditForm] = useState(false);
@@ -47,14 +49,14 @@ const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm 
             <div className='materialTableContainer w-[80vw]'>
                 <div className='materialTableTitle flex justify-start gap-4 items-center mt-4'>
                     <h1 className='secondary_heading'>List Of Materials.</h1>
-                    <button type="submit" onClick={() => setshowAddMaterialForm(true)} className='flex justify-start px-1 py-0 m-0 '>
+                    <button type="submit" onClick={() => setshowAddMaterialForm && setshowAddMaterialForm(true)} className='flex justify-start px-1 py-0 m-0 '>
                         <FontAwesomeIcon icon={faPlusCircle} className='mr-1' /> Add Material
                     </button>
                 </div>
                 {screenWidth > 850 ?
                     <ActionMaterialTable setEditForm={sendIndicator}
                         setEditIndex={receiveEditIndex}
-                        setEditValue={receiveEditValue} />
+                        setEditValue={receiveEditValue} materials={materials | orderedMaterials} />
                     : <ResponsiveActionAbleTable setEditForm={sendIndicator}
                         setEditIndex={receiveEditIndex}
                         setEditValue={receiveEditValue} />}

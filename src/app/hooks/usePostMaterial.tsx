@@ -11,7 +11,7 @@ export const usePostMaterial = (): UseMutationResult<APIResponse, AxiosError, Pr
         onSuccess: (result) => {
             if (result.success) {
                 toast.success(result.message || "Materials Data Posted Successfully.");
-                router.push("/material/list/")
+                router.push("/customer/dashboard/material/list/")
             } else {
                 toast.error(result.message || "Problem sending Details.");
             }

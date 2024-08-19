@@ -17,28 +17,28 @@ const page = () => {
         return <NotFound />
     }
     return (
-        <div className="w-[70vw]">
+        <div className="w-[65vw]">
             <h1 className="subHeading">Material Orderes</h1>
             {data.map((material: ExtendedPreviewSubmitProps, index: number) => {
-                return <div className="materialOrdersWrapper flex flex-col md:flex-row md:justify-between border-b-2 border-dotted border-helper" key={index}>
+                return <div className="materialOrdersWrapper flex flex-col md:flex-row md:justify-between border-b-[1px]  border-primaryDark" key={index}>
                     <div className="orderRequestNumebr">
-                        <h2 className="secondary_heading">Order Request Number</h2>
+                        <h2 className="font-bold text-primaryDark">Order Req. Num.</h2>
                         <span className="text-primaryDark italic">{formatOrderRequestNumber(material.materialOrderNumber)}</span>
                     </div>
                     <div className="NumberOfMaterials">
-                        <h2 className="secondary_heading">Number of Materials</h2>
+                        <h2 className="font-bold text-primaryDark">Num. of Materials</h2>
                         <span className="text-primaryDark italic">{material.materials.length} Items</span>
                     </div>
                     <div className="createdDate">
-                        <h2 className="secondary_heading">Created Date</h2>
+                        <h2 className="font-bold text-primaryDark">Created On</h2>
                         <span className="text-primaryDark italic">{formatCreatedDate(material.createdAt)}</span>
                     </div>
                     <div className="MaterialOrderStatus">
-                        <h2 className="secondary_heading">Status</h2>
+                        <h2 className="font-bold text-primaryDark">Status</h2>
                         <span className="text-primaryDark italic">Created</span>
                     </div>
                     <div className="MaterialOrderAction">
-                        <h2 className="secondary_heading">Action</h2>
+                        <h2 className="font-bold text-primaryDark">Action</h2>
                         <div className="actionDetails flex gap-1">
                             <Link href={`/customer/dashboard/material/list/${material._id}?delete`}
                             >
