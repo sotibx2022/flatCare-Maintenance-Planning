@@ -1,74 +1,19 @@
 'use client';
-interface Notification {
-    notificationTitle: string;
-    notificationDescription: string;
-    createdAt: Date;
-    updatedAt: Date;
-    notificationPriority: string;
-    notificationCategory: string;
-    _id: string;
-}
-interface APIResponse {
-    success: boolean;
-    message: string;
-    status: number;
-    data?: Notification[]
-}
-const truncate_title = (title: string) => {
-    const words = title.split(' ');
-    if (words.length > 6) {
-        const truncatedTitle = words.slice(0, 3).join(' ') + '...';
-        return truncatedTitle.toUpperCase();
-    } else return title.toUpperCase();
-};
-const calculateTurnAroundTime = (d: Date) => {
-    const referenceDate = new Date(d);
-    const currentDate = new Date();
-    const timeDifferenceInMillis =
-        currentDate.getTime() - referenceDate.getTime();
-    const timeDifferenceInDays = Math.floor(timeDifferenceInMillis / 86400000);
-    return timeDifferenceInDays;
-};
-import axios, { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import LoadingComponent from '../../../../ui/LoadingComponent';
+import { calculateTurnAroundTime, findNotifications, truncate_title, useDeleteNotification } from '../../../../hooks/useDeleteNotification';
+import { Notification } from '../../../../hooks/useDeleteNotification';
 const ResponsiveNotificationLists = () => {
     const queryClient = useQueryClient();
-    const findNotifications = async (): Promise<Notification[]> => {
-        const response = await axios.get('/api/notification');
-        return response.data.notifications;
-    };
     const { data: notifications = [], isPending: isFetching } = useQuery({
         queryKey: ['notifications'],
         queryFn: findNotifications,
         // Optionally add staleTime or cacheTime to control when data is considered stale
     });
     const router = useRouter();
-    const deleteNotificationRequest = async (id: string): Promise<APIResponse> => {
-        const response = await axios.delete(`/api/notification/${id}`);
-        return response.data;
-    };
-    const useDeleteNotification = () => {
-        return useMutation<APIResponse, AxiosError, string>({
-            mutationFn: deleteNotificationRequest,
-            onSuccess: (result) => {
-                if (result.success) {
-                    toast.success(result.message || "Notification Deleted Successfully");
-                    queryClient.invalidateQueries({ queryKey: ['notifications'] })
-                } else {
-                    toast.error(result.message || "There is some thing wrong to delete the notification.")
-                }
-            },
-            onError: (error) => {
-                toast.error(error.message);
-            },
-        })
-    }
     const { mutate: deleteNotification, isPending: isDeleting } = useDeleteNotification()
     const handleDelete = async (id: string) => {
         deleteNotification(id)

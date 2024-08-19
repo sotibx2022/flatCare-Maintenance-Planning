@@ -1,71 +1,19 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
 import LoadingComponent from '../../../../ui/LoadingComponent';
 import ResponsiveNotificationLists from './ResponsiveNotificationLists';
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { isPending } from '@reduxjs/toolkit';
-interface Notification {
-  notificationTitle: string;
-  notificationDescription: string;
-  createdAt: Date;
-  updatedAt: Date;
-  notificationPriority: string;
-  notificationCategory: string;
-  _id: string;
-}
-interface APIResponse {
-  success: boolean;
-  message: string;
-  status: number;
-  data?: Notification[]
-}
-const calculateTurnAroundTime = (d: Date) => {
-  const referenceDate = new Date(d);
-  const currentDate = new Date();
-  const timeDifferenceInMillis = currentDate.getTime() - referenceDate.getTime();
-  const timeDifferenceInDays = Math.floor(timeDifferenceInMillis / 86400000);
-  return timeDifferenceInDays;
-};
-const truncate_title = (title: string) => {
-  const words = title.split(' ');
-  if (words.length > 6) {
-    const truncatedTitle = words.slice(0, 3).join(' ') + '...';
-    return truncatedTitle.toUpperCase();
-  } else return title.toUpperCase();
-};
+import { useDeleteNotification } from '../../../../hooks/useDeleteNotification';
+import { findNotifications } from '../../../../hooks/useDeleteNotification';
+import { useQuery } from '@tanstack/react-query';
+import { Notification } from '../../../../hooks/useDeleteNotification';
+import { truncate_title } from '../../../../hooks/useDeleteNotification';
+import { calculateTurnAroundTime } from '../../../../hooks/useDeleteNotification';
 const page = () => {
-  const queryClient = useQueryClient();
   const router = useRouter();
-  const deleteNotificationRequest = async (id: string): Promise<APIResponse> => {
-    const response = await axios.delete(`/api/notification/${id}`);
-    return response.data;
-  };
-  const useDeleteNotification = () => {
-    return useMutation<APIResponse, AxiosError, string>({
-      mutationFn: deleteNotificationRequest,
-      onSuccess: (result) => {
-        if (result.success) {
-          toast.success(result.message || "Notification deleted successfully.");
-          queryClient.invalidateQueries({ queryKey: ['notifications'] });
-        } else {
-          toast.error(result.message || "Problem deleting the notification.");
-        }
-      },
-      onError: () => {
-        toast.error("Unexpected Error occurred.");
-      },
-    });
-  };
   const { mutate: deleteNotification, isPending: isDeleting } = useDeleteNotification();
-  const findNotifications = async (): Promise<Notification[]> => {
-    const response = await axios.get('/api/notification');
-    return response.data.notifications;
-  };
   const { data: notifications = [], isPending: isFetching } = useQuery({
     queryKey: ['notifications'],
     queryFn: findNotifications,
