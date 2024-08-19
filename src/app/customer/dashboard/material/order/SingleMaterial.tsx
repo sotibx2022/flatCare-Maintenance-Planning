@@ -9,12 +9,10 @@ import { faEdit, faEye, faPlus, faPlusCircle, faTrash } from '@fortawesome/free-
 import { truncateText } from './CommonFunctions';
 import ActionMaterialTable from './ActionMaterialTable';
 import ResponsiveActionAbleTable from './ResponsiveActionAbleTable';
-import { Materials } from '../list';
 interface SingleMaterialProps {
     setshowAddMaterialForm?: (value: boolean) => void;
-    materials?: Materials[]
 }
-const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm, materials: orderedMaterials }) => {
+const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm }) => {
     const materials = useSelector((state: any) => state.form.materials)
     const dispatch = useDispatch()
     const [editForm, setEditForm] = useState(false);
@@ -56,7 +54,7 @@ const SingleMaterial: React.FC<SingleMaterialProps> = ({ setshowAddMaterialForm,
                 {screenWidth > 850 ?
                     <ActionMaterialTable setEditForm={sendIndicator}
                         setEditIndex={receiveEditIndex}
-                        setEditValue={receiveEditValue} materials={materials | orderedMaterials} />
+                        setEditValue={receiveEditValue} />
                     : <ResponsiveActionAbleTable setEditForm={sendIndicator}
                         setEditIndex={receiveEditIndex}
                         setEditValue={receiveEditValue} />}

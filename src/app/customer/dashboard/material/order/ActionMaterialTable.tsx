@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeMaterial } from '../../../../../Redux/formSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Materials } from '../list';
 interface ActionMaterialTableProps {
     setEditIndex: (value: number) => void;
     setEditForm: (value: boolean) => void;
