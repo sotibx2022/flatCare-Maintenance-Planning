@@ -28,7 +28,7 @@ export interface OrderedForData {
 export interface DeliveryDetailsData {
     roomNumber: string,
     buildingNumber: string,
-    floorNumber: String,
+    floorNumber: string,
 }
 export interface DeliveryMethodData {
     deliveryOption: string
@@ -73,5 +73,4 @@ export interface APIResponse {
     success: boolean,
     message: string,
     status: number,
-
 }

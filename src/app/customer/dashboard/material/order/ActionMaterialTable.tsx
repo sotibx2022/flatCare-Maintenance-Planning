@@ -28,7 +28,7 @@ const ActionMaterialTable: React.FC<ActionMaterialTableProps> = ({ setEditIndex,
     }
     return (
         <div className='mt-4'>
-            {materials.length > 1 && (
+            {materials.length > 0 && (
                 <table className='materialTable'>
                     <thead>
                         <tr>
@@ -41,7 +41,7 @@ const ActionMaterialTable: React.FC<ActionMaterialTableProps> = ({ setEditIndex,
                         </tr>
                     </thead>
                     <tbody>
-                        {materials.splice(0).map((material: MaterialDetailsData, index: number) => (
+                        {materials.slice(1).map((material: MaterialDetailsData, index: number) => (
                             <tr key={index}>
                                 <td className='tdSmailContainer'>{index + 1}</td>
                                 <td>{material.materialName}</td>

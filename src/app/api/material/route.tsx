@@ -66,7 +66,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
             materials: filteredMaterials,
             orderedBy,
             orderedFor,
-            deliveryMethod,
+            deliveryMethod: {
+                deliveryOption: deliveryMethod
+            },
             deliveryDetails,
             paymentDetails,
         });

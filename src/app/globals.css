@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 :root {
   --primaryDark: #2b2bb4;
   --primaryLight: #d7daf1;
@@ -11,7 +10,6 @@
   --gradient: linear-gradient(90deg, #2b2bb4 0%, #6169a8 100%);
   --helper: #ecb301;
 }
-
 body,
 html {
   background-color: var(--primaryLight);
@@ -23,12 +21,10 @@ html {
   overflow-x: hidden;
   height: 100%;
 }
-
 p {
   color: var(--primaryDark);
   font-size: 1rem;
 }
-
 /* Primary Button */
 button,
 .button {
@@ -45,70 +41,58 @@ button,
   justify-content: center;
   align-items: center;
 }
-
 button:hover,
 .button:hover {
   background-color: var(--primaryLight);
   color: var(--primaryDark);
 }
-
 .container {
   max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
 }
-
 .center_container {
   height: 80vh;
   display: grid;
   place-items: center;
 }
-
 p {
   color: var(--primaryDark);
   line-height: 1.6;
 }
-
 a {
   color: var(--primaryDark);
   text-decoration: none;
 }
-
 .primary_heading {
   color: var(--primaryDark);
   font-size: 1.5rem;
 }
-
 .secondary_heading {
   color: var(--primaryDark);
   font-size: 1rem;
 }
-
 .flex_items {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-
 .error_message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
-
 /* Form Item Inputs Sytel */
 .form_Item {
   margin-bottom: 15px;
 }
-
 .form_Item label {
   display: inline-block;
   margin-bottom: 5px;
   color: var(--primaryDark);
   position: relative;
 }
-
 .form_Item label::after {
   position: absolute;
   content: "*";
@@ -122,7 +106,6 @@ a {
   justify-content: center;
   font-size: 1.2rem;
 }
-
 .form_Item input[type="text"],
 .form_Item input[type="email"],
 .form_Item input[type="password"],
@@ -139,12 +122,10 @@ a {
   color: var(--primaryDark);
   box-sizing: border-box;
 }
-
 .form_Item select {
   background-color: var(--primaryDark);
   color: var(--primaryLight);
 }
-
 .form_Item input[type="text"]:focus,
 .form_Item input[type="email"]:focus,
 .form_Item input[type="password"]:focus,
@@ -154,7 +135,6 @@ a {
   outline: none;
   border-color: var(--primaryDark);
 }
-
 .input_icon_left {
   position: absolute;
   left: 10px;
@@ -162,7 +142,6 @@ a {
   transform: translateY(-50%);
   color: var(--primaryDark);
 }
-
 .input_icon_right {
   position: absolute;
   right: 10px;
@@ -171,7 +150,6 @@ a {
   color: var(--primaryDark);
   cursor: pointer;
 }
-
 select {
   width: 100%;
   padding: 8px;
@@ -182,19 +160,16 @@ select {
   background-color: var(--primaryLight);
   color: var(--primaryDark);
 }
-
 select:focus {
   outline: none;
   border-color: var(--primaryDark);
 }
-
 select option {
   padding: 10px 12px;
   background-color: var(--primaryLight);
   border-bottom: 1px dotted var(--primaryDark);
   color: var(--primaryDark);
 }
-
 .Header_wrapper {
   background-color: var(--primaryLight);
   box-shadow: var(--primaryLightBoxShadow);
@@ -211,17 +186,14 @@ select option {
   box-sizing: border-box;
   padding: 0.5rem;
 }
-
 .children {
   margin-top: 4rem;
 }
-
 .dashboardChildren {
   margin-top: -2rem !important;
   max-width: 74vw;
   margin-right: 1rem;
 }
-
 .menuIcon {
   list-style: none;
   font-size: 1.5rem;
@@ -237,18 +209,15 @@ select option {
   animation: border-change 1s linear infinite alternate-reverse;
   cursor: pointer;
 }
-
 .logo_area {
   display: flex;
   align-items: center;
 }
-
 .logo {
   width: 4rem;
   height: auto;
   cursor: pointer;
 }
-
 .navigation_area {
   flex: 1;
   width: 200px;
@@ -262,7 +231,6 @@ select option {
   padding: 5rem 2rem;
   opacity: 0;
 }
-
 .navigation_area ul {
   list-style: none;
   display: flex;
@@ -273,56 +241,46 @@ select option {
   padding: 0;
   margin-top: 1rem;
 }
-
 .navigation_area ul li {
   text-transform: uppercase;
 }
-
 .menu_item {
   cursor: pointer;
   font-weight: bold;
   color: var(--primaryDark);
 }
-
 .menu_item:hover {
   text-decoration: underline;
 }
-
 button:disabled {
   background-color: var(--primaryLight);
   color: var(--primaryDark);
   cursor: not-allowed;
 }
-
 ul li {
   list-style: none;
 }
-
 .form_container {
   width: 400px;
   max-width: 800px;
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 20px;
 }
-
 .loginFormContainer {
   display: flex;
   flex-direction: column;
 }
-
 .signupFormContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .all_steps {
   display: flex;
   gap: 2rem;
   box-sizing: border-box;
   padding: 3rem;
 }
-
 .active_step {
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 1rem;
@@ -332,16 +290,13 @@ ul li {
   box-sizing: border-box;
   flex: 1;
 }
-
 .active_step h1 {
   font-weight: bolder;
   text-transform: capitalize;
 }
-
 .active_step:hover {
   box-shadow: var(--primaryLightBoxShadow);
 }
-
 .step_number {
   background: var(--gradient);
   color: var(--primary);
@@ -354,14 +309,12 @@ ul li {
   border-radius: 50%;
   animation: changeball 1s linear infinite alternate-reverse;
 }
-
 .profilePicture {
   width: 150px;
   height: 150px;
   background-color: var(--primary);
   position: relative;
 }
-
 .profileImageLabel {
   color: var(--primaryLight);
   position: absolute;
@@ -377,29 +330,24 @@ ul li {
   white-space: nowrap;
   z-index: 111;
 }
-
 .profileImageInput {
   display: none;
 }
-
 .profileImagePreview {
   position: absolute;
   top: 0;
   left: 0;
 }
-
 .fa-arrow-left,
 .fa-arrow-right {
   font-size: 2rem;
 }
-
 .profileImagePreview img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   box-shadow: var(--primaryDarkBoxShadow);
 }
-
 .notFoundConatiner {
   display: flex;
   justify-content: center;
@@ -407,7 +355,6 @@ ul li {
   width: 100%;
   height: 50vh;
 }
-
 .notFoundError {
   max-width: 600px;
   margin: auto;
@@ -415,22 +362,18 @@ ul li {
   background-color: var(--primaryLight);
   box-shadow: var(--primaryLightBoxShadow);
 }
-
 .notFoundError h1 {
   font-size: 100px;
   margin: 0;
   color: var(--helper);
 }
-
 .notFoundError p {
   font-size: 20px;
   margin: 10px 0;
 }
-
 .notFoundIcon {
   animation: moveupanddown 2s linear infinite;
 }
-
 .loadingContainer {
   width: 100%;
   height: 100%;
@@ -438,12 +381,10 @@ ul li {
   justify-content: center;
   align-items: center;
 }
-
 .lottieAnimation {
   width: 400px;
   height: 400px;
 }
-
 /* Hide the radio input */
 .radioItem input {
   position: absolute;
@@ -451,7 +392,6 @@ ul li {
   width: 0;
   height: 0;
 }
-
 /* Style the label by default */
 .radioItem label {
   box-shadow: var(--primaryDarkBoxShadow);
@@ -463,13 +403,11 @@ ul li {
   display: inline-block;
   transition: 0.5s;
 }
-
 .radioItem input:checked~label {
   scale: 1.2;
   color: white;
   background: var(--gradient);
 }
-
 .normalDeliveryOption,
 .activeDeliveryOption {
   box-shadow: var(--primaryDarkBoxShadow);
@@ -477,39 +415,31 @@ ul li {
   border-radius: 1rem;
   text-transform: capitalize;
 }
-
 .activeDeliveryOption {
   background: var(--gradient);
   color: var(--primaryLight);
 }
-
 @keyframes border-change {
   0% {
     border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
   }
-
   50% {
     border-radius: 22% 38% 53% 7% / 31% 18% 42% 69%;
   }
-
   100% {
     border-radius: 42% 58% 73% 27% / 51% 38% 62% 49%;
   }
 }
-
 @keyframes moveupanddown {
   0% {
     transform: translateY(-10px);
     color: red;
   }
-
   50% {
     transform: translateY(0);
   }
 }
-
 @media(max-width:500px) {
-
   button,
   .button {
     padding: 5px 10px;
@@ -519,17 +449,14 @@ ul li {
     justify-content: center;
     align-items: center;
   }
-
   .primary_heading {
     font-size: 1rem;
   }
-
   .form_container {
     width: 300px;
     padding: 10px;
   }
 }
-
 .subHeading {
   box-shadow: var(--primaryDarkBoxShadow);
   position: relative;
@@ -540,7 +467,6 @@ ul li {
   width: 100%;
   text-transform: uppercase;
 }
-
 .subHeading::after {
   position: absolute;
   content: "";
@@ -550,31 +476,26 @@ ul li {
   height: 1rem;
   background-color: var(--helper);
 }
-
 .materialTableContainer {
   max-width: 680px;
   box-shadow: var(--primaryDarkBoxShadow);
   padding: 1rem;
   margin-bottom: 2rem;
 }
-
 .materialTable {
   border-collapse: collapse;
   table-layout: fixed;
 }
-
 .materialTable thead th {
   color: var(--primaryDark);
   padding: 12px;
   text-align: left;
   border-bottom: 1px dotted var(--helper);
 }
-
 .materialTable tbody td {
   padding: 10px;
   color: var(--primaryDark);
 }
-
 .tdSmailContainer {
   max-width: 100px;
 }

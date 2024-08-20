@@ -1,56 +1,51 @@
-import mongoose, { Schema } from "mongoose";
-import { v4 as uuidv4 } from "uuid";
+import mongoose, { Schema, Document } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 interface MaterialSchemaDocument extends Document {
-    materialOrderNumber: string,
+    materialOrderNumber: string;
     materials: Array<{
-        materialRequestNumber: string,
-        materialName: string,
-        materialDescription: string,
-        materialQuantity: string,
-        unitOfMeasure: string,
-    }
-    >,
+        materialRequestNumber: string;
+        materialName: string;
+        materialDescription: string;
+        materialQuantity: string;
+        unitOfMeasure: string;
+    }>;
     orderedBy: {
-        orderedByName: string,
-        orderedByEmail: string,
-        orderedByPhone: string,
-    },
+        orderedByName: string;
+        orderedByEmail: string;
+        orderedByPhone: string;
+    };
     orderedFor: {
-        receipentName: string,
-        receipentEmail: string,
-        receipentPhone: string,
-    },
+        receipentName: string;
+        receipentEmail: string;
+        receipentPhone: string;
+    };
     deliveryDetails: {
-        roomNumber: string,
-        floorNumber: string,
-        buildingNumber: string,
-    },
+        buildingNumber: string;
+        floorNumber: string;
+        roomNumber: string;
+    };
     deliveryMethod: {
-        deliveryOption: string
-    },
+        deliveryOption: string;
+    };
     paymentDetails?: {
-        cardNumber: string,
-        cardHolderName: string,
-        cvvNumber: number,
-        expiryDate: Date,
-    }
+        cardNumber: string;
+        cardHolderName: string;
+        cvvNumber: number;
+        expiryDate: Date;
+    };
 }
 const materialSchema = new Schema<MaterialSchemaDocument>({
     materialOrderNumber: {
         type: String,
         required: true,
-        default: function () {
-            return uuidv4();
-        }
+        default: uuidv4,
     },
     materials: [
         {
             materialRequestNumber: {
                 type: String,
                 required: true,
-                default: function () {
-                    return uuidv4();
-                }
+                default: uuidv4,
             },
             materialName: {
                 type: String,
@@ -68,12 +63,12 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
                 type: String,
                 required: true,
             },
-        }
+        },
     ],
     orderedBy: {
         orderedByName: {
             type: String,
-            required: true
+            required: true,
         },
         orderedByEmail: {
             type: String,
@@ -82,7 +77,7 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
         orderedByPhone: {
             type: String,
             required: true,
-        }
+        },
     },
     orderedFor: {
         receipentName: {
@@ -95,8 +90,8 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
         },
         receipentPhone: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     deliveryDetails: {
         buildingNumber: {
@@ -105,44 +100,45 @@ const materialSchema = new Schema<MaterialSchemaDocument>({
         },
         floorNumber: {
             type: String,
-            required: true
+            required: true,
         },
         roomNumber: {
             type: String,
             required: true,
-        }
+        },
     },
     deliveryMethod: {
         deliveryOption: {
             type: String,
-            enum: ["paymentOnDelivery", "pickupFromStore", "debitCard"],
+            required: true,
+            enum: ['paymentOnDelivery', 'pickupFromStore', 'debitCard'],
         },
-        paymentDetails: {
-            cardNumber: {
-                type: String,
-                required: function (this: MaterialSchemaDocument) {
-                    return this.deliveryMethod.deliveryOption === "debitCard";
-                },
-            },
-            cardHolderName: {
-                type: String,
-                required: function (this: MaterialSchemaDocument) {
-                    return this.deliveryMethod.deliveryOption === "debitCard";
-                },
-            },
-            expiryDate: {
-                type: Date,
-                required: function (this: MaterialSchemaDocument) {
-                    return this.deliveryMethod.deliveryOption === "debitCard";
-                },
-            },
-            cvvNumber: {
-                type: Number,
-                required: function (this: MaterialSchemaDocument) {
-                    return this.deliveryMethod.deliveryOption === "debitCard";
-                },
-            }
-        }
     },
-}, { timestamps: true })
-export const Material = mongoose.models.Material || mongoose.model("Material", materialSchema)
+    paymentDetails: {
+        cardNumber: {
+            type: String,
+            required: function (this: MaterialSchemaDocument) {
+                return this.deliveryMethod.deliveryOption === 'debitCard';
+            },
+        },
+        cardHolderName: {
+            type: String,
+            required: function (this: MaterialSchemaDocument) {
+                return this.deliveryMethod.deliveryOption === 'debitCard';
+            },
+        },
+        expiryDate: {
+            type: Date,
+            required: function (this: MaterialSchemaDocument) {
+                return this.deliveryMethod.deliveryOption === 'debitCard';
+            },
+        },
+        cvvNumber: {
+            type: Number,
+            required: function (this: MaterialSchemaDocument) {
+                return this.deliveryMethod.deliveryOption === 'debitCard';
+            },
+        },
+    },
+}, { timestamps: true });
+export const Material = mongoose.models.Material || mongoose.model<MaterialSchemaDocument>('Material', materialSchema);

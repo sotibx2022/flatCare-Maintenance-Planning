@@ -12,3 +12,10 @@ export const formatOrderRequestNumber = (orderRequestNumber: string) => {
 export const formatCreatedDate = (createdDate: string) => {
     return createdDate.split("T")[0]
 }
+export interface Materials {
+    materialName: string,
+    materialDescription: string,
+    materialQuantity: string,
+    unitOfMeasure: string,
+    materialRequestNumber: string,
+}

@@ -1,8 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeMaterial } from '../../../../../Redux/formSlice'
-import { MaterialDetailsData } from '.';
 import EditMaterial from './EditMaterial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faPlus, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';

@@ -12,7 +12,6 @@ const formatDate = (date: Date) => {
     return `${year}/${month}/${day}`;
 };
 const OrderIdentification: React.FC<OrderIdentificationProps> = ({ materialOrderNumber, createdAt, updatedAt }) => {
-    console.log(typeof createdAt, updatedAt)
     return (
         <div>
             <div className='formItems flex flex-col gap-4 md:flex md:flex-row md:justify-between '>
