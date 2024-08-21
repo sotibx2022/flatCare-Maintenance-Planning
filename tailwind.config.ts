@@ -14,6 +14,7 @@ const config: Config = {
       },
       colors:{
         primaryDark:'var(--primaryDark)',
+        primaryLight:'var(--primaryLight)',
         secondaryDark:'var(--secondaryDark)',
         helper:'var(--helper)',
         primaryDarkBoxShadow:'var(--primaryDarkBoxShadow)'

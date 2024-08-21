@@ -1,9 +1,8 @@
 import React from 'react';
 interface DeliveryMethodProps {
-    deliveryMethod: string | { deliveryOption: string }; // Use union type `|` instead of `||`
+    deliveryMethod: string | { deliveryOption: string };
 }
 const DeliveryMethod: React.FC<DeliveryMethodProps> = ({ deliveryMethod }) => {
-    // Determine if `deliveryMethod` is a string or an object with `deliveryOption`
     const method = typeof deliveryMethod === 'string' ? deliveryMethod : deliveryMethod.deliveryOption;
     return (
         <div>
