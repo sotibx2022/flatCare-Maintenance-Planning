@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setNextValue } from '../../../../../Redux/formSlice'
+import { resetForm, setNextValue } from '../../../../../Redux/formSlice'
 import { PreviewSubmitProps } from '.';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -41,6 +41,7 @@ const PreviewSubmit: React.FC<PreviewSubmitProps> = ({ materials,
   const handleSubmit = () => {
     const materialData: PreviewSubmitProps = { materials, orderedBy, orderedFor, paymentDetails, deliveryDetails, deliveryMethod }
     postMaterial(materialData);
+    dispatch(resetForm());
   }
   const handlePrev = () => {
     if (deliveryMethod === "debitCard") {

@@ -54,10 +54,13 @@ const formSlice = createSlice({
         setNextValue: (state, action) => {
             const { data } = action.payload;
             state.nextValue = data;
+        },
+        resetForm: (state) => {
+            return { ...initialState };
         }
     }
 });
 export const { setMaterial, addMaterial, removeMaterial, setOrderBy, setOrderFor,
-    setDeliveryDetails, setDeliveryMethod, setPaymentDetails, setNextValue, editMaterial } =
+    setDeliveryDetails, setDeliveryMethod, setPaymentDetails, setNextValue, editMaterial, resetForm } =
     formSlice.actions
 export default formSlice.reducer;
