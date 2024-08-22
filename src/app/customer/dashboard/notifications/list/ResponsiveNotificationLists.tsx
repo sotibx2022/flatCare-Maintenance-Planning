@@ -6,8 +6,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import LoadingComponent from '../../../../ui/LoadingComponent';
 import { calculateTurnAroundTime, findNotifications, truncate_title, useDeleteNotification } from '../../../../hooks/useDeleteNotification';
 import { Notification } from '../../../../hooks/useDeleteNotification';
+import Search from '../../../../ui/search/Search';
+import { useState } from 'react';
 const ResponsiveNotificationLists = () => {
     const queryClient = useQueryClient();
+    const [searchText, setSearchText] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState('');
+    const [selectedPriorities, setSelectedPriorities] = useState('');
     const { data: notifications = [], isPending: isFetching } = useQuery({
         queryKey: ['notifications'],
         queryFn: findNotifications,
@@ -18,10 +23,25 @@ const ResponsiveNotificationLists = () => {
     const handleDelete = async (id: string) => {
         deleteNotification(id)
     };
+    const getSearchResults = ({ searchValue, categoryValue, priorityValue }: { searchValue: string, categoryValue: string, priorityValue: string }) => {
+        setSearchText(searchValue);
+        setSelectedCategories(categoryValue);
+        setSelectedPriorities(priorityValue);
+        console.log(searchValue, categoryValue, priorityValue);
+    };
+    const filteredNotifications = notifications.filter((notification) => {
+        return (
+            (searchText === "" || notification.notificationTitle.toLowerCase().includes(searchText.toLowerCase())) &&
+            (selectedCategories === "" || notification.notificationCategory === selectedCategories) &&
+            (selectedPriorities === "" || notification.notificationPriority === selectedPriorities)
+        );
+    })
     return (
         <>
             {isDeleting || isFetching ? <LoadingComponent /> : <div className=" flex flex-wrap w-full justify-between gap-4">
-                {notifications && notifications.map((notification: Notification, index: number) => (
+                <h1 className='subHeading'>Notifications</h1>
+                <Search searchResults={getSearchResults} />
+                {filteredNotifications && filteredNotifications.map((notification: Notification, index: number) => (
                     <div key={index} className=" min-w-[300px] justify-between">
                         <div className="">
                             <div className="flex justify-between items-center border-t-[1px] border-b-[1px] border-helper">

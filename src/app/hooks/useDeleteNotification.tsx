@@ -35,7 +35,8 @@ export const deleteNotificationRequest = async (id: string): Promise<APIResponse
     return response.data;
 };
 export const findNotifications = async (): Promise<Notification[]> => {
-    const response = await axios.get('/api/notification');
+    const response = await axios.get('/api/notification', {
+    });
     return response.data.notifications;
 };
 export const useDeleteNotification = () => {

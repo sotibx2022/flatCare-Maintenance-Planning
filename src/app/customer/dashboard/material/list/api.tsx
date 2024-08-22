@@ -23,6 +23,5 @@ export const getSingleMaterialData = async (materialId: string) => {
 }
 export const postMaterialReview = async (combinedData: CombinedData): Promise<APIResponse> => {
     const response = await axios.post("/api/material/orderReview", combinedData);
-    console.log(response);
     return response.data;
 }
