@@ -54,7 +54,7 @@ const Search: React.FC<SearchProps> = ({ searchResults }) => {
     };
     const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: findCategories })
     return (
-        <div className='flex  flex-col  -mt-[1rem] justify-start lg:justify-between lg:gap-4 lg:items-center lg:flex-row'>
+        <div className='flex  flex-col  -mt-[1rem] justify-start lg:justify-between lg:gap-4 lg:items-center lg:flex-row lg:mt-4'>
             <div className="form_Item">
                 <input type='search' placeholder='Search Notification' value={state.search}
                     onChange={(e) => searchNotifications(e.target.value)}

@@ -12,6 +12,7 @@ import { Notification } from '../../../../hooks/useDeleteNotification';
 import { truncate_title } from '../../../../hooks/useDeleteNotification';
 import { calculateTurnAroundTime } from '../../../../hooks/useDeleteNotification';
 import Search from '../../../../ui/search/Search';
+import Pagination from './Pagination';
 const page = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
@@ -22,6 +23,10 @@ const page = () => {
     queryKey: ['notifications'],
     queryFn: findNotifications,
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalNumberofPages = notifications.length / 5
+  const startIndex = (currentPage - 1) * 5;
+  const endIndex = startIndex + 5;
   const handleDelete = (id: string) => {
   };
   const [width, setWidth] = useState(0);
@@ -48,6 +53,9 @@ const page = () => {
       window.removeEventListener('resize', findScreenSize);
     };
   }, []);
+  const receiveCurrentIndex = (value: number) => {
+    setCurrentPage(value);
+  }
   return (
     <div className="notificationTableContainer">
       {isDeleting || isFetching ? (
@@ -63,9 +71,9 @@ const page = () => {
               {width < 1000 ? (
                 <ResponsiveNotificationLists />
               ) : (
-                <>
+                <div className='flex flex-col'>
                   <h1 className='subHeading'>Notifications</h1>
-                  <Search searchResults={getSearchResults} />
+                  {notifications.length > 5 && <Search searchResults={getSearchResults} />}
                   <table className="notification-table">
                     <thead>
                       <tr>
@@ -78,9 +86,9 @@ const page = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredNotifications.map((notification: Notification, index: number) => (
+                      {filteredNotifications.slice(startIndex, endIndex).map((notification: Notification, index: number) => (
                         <tr key={notification._id} className="notificationSingleList">
-                          <td>{index + 1}</td>
+                          <td>{startIndex + index + 1}</td>
                           <td className='large_content'>{truncate_title(notification.notificationTitle)}</td>
                           <td>{notification.notificationCategory}</td>
                           {notification.notificationPriority === 'Emergency' && (
@@ -129,7 +137,8 @@ const page = () => {
                       ))}
                     </tbody>
                   </table>
-                </>
+                  {notifications && notifications.length > 5 && <Pagination length={notifications.length} findCurrentIndex={receiveCurrentIndex} />}
+                </div>
               )}
             </>
           )}
