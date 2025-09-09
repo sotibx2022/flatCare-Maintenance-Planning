@@ -1,22 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
-import { isTokenExpired } from '../../../../helper/isTokenExpired';
-
-export async function POST(request: NextRequest, response: NextResponse) {
-  ConnectToDb();
-  isTokenExpired(request, response);
+export const dynamic = "force-dynamic"; // ensures dynamic server rendering
+export async function POST(request: NextRequest) {
   try {
-    const response = NextResponse.json({
+    // Ensure DB connection (optional for logout)
+    await ConnectToDb();
+    // Create response
+    const res = NextResponse.json({
       message: 'User Logout Successfully',
       status: 200,
       success: true,
     });
-    response.cookies.set('token', '', {
+    // Clear the 'token' cookie
+    res.cookies.set('token', '', {
       httpOnly: true,
-      expires: new Date(0),
-      path: '/',
+      expires: new Date(0), // Set expiry to past date
+      path: '/',            // Ensure cookie is cleared site-wide
     });
-
-    return response;
-  } catch (error) {}
+    return res;
+  } catch (error) {
+    console.error('Logout Error:', error);
+    return NextResponse.json({
+      message: 'Internal Server Error',
+      status: 500,
+      success: false,
+    });
+  }
 }
