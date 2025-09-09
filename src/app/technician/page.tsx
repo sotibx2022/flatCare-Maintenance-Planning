@@ -9,7 +9,7 @@ import rajitpathak from '../../assets/images/rajitpathak.jpg';
 import anitasharma from '../../assets/images/anitasharma.jpg';
 import sanjayakumar from '../../assets/images/sanjayakumar.jpg';
 import mayasingh from '../../assets/images/mayasingh.jpg';
-import ravijoshi from '../../assets/images/ravijoshi.jpg';
+import ravijoshi from '../../assets/images/ravijosi.jpg';
 const technicians = [
     {
         title: "Senior Electrician",
