@@ -11,7 +11,7 @@ const features = [
     description: "24/7 emergency maintenance support when you need it most"
   },
   {
-    title: "Material Planning",
+    title: "Material Order Planning",
     icon: Package,
     description: "Strategic material management and procurement planning"
   },
