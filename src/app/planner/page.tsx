@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
