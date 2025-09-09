@@ -8,6 +8,7 @@ export async function PUT(request: NextRequest) {
   try {
     // Connect to DB
     await ConnectToDb();
+    // Get token from cookies
     const tokenCookie = request.cookies.get('token');
     if (!tokenCookie) {
       return NextResponse.json({
@@ -55,10 +56,11 @@ export async function PUT(request: NextRequest) {
         'customerImages',
         originalCustomer.imageUniqueName.toString()
       );
+      // Guard against null
       fileName = file.name;
       fileType = file.type;
       fileSize = file.size;
-      imageUrl = result.downloadUrl;
+      imageUrl = result.downloadUrl || originalCustomer.imageUrl; // fallback to original
     }
     // Check if there are any changes
     const isSame =
@@ -68,7 +70,8 @@ export async function PUT(request: NextRequest) {
       originalCustomer.roomNumber === roomNumber &&
       originalCustomer.fileName === fileName &&
       originalCustomer.fileType === fileType &&
-      originalCustomer.fileSize === fileSize;
+      originalCustomer.fileSize === fileSize &&
+      originalCustomer.imageUrl === imageUrl;
     if (isSame) {
       return NextResponse.json({
         message: 'There is nothing to update.',
