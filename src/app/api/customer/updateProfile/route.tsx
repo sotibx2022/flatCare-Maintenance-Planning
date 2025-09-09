@@ -19,8 +19,7 @@ export async function PUT(request: NextRequest) {
     const token = tokenCookie.value;
     // Check if token is expired
     const expired = await isTokenExpired(token);
-    const tokenExpired = await isTokenExpired(request);
-    if (tokenExpired) {
+    if (expired) {
       return NextResponse.json({
         message: 'JWT Token Expired',
         status: 401,
