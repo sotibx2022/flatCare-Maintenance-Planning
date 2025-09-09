@@ -1,36 +1,32 @@
+export const dynamic = "force-dynamic"; // ✅ ensures dynamic rendering
 import { NextRequest, NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
-import jwt, {
-  JsonWebTokenError,
-  JwtPayload,
-  TokenExpiredError,
-} from 'jsonwebtoken';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import jwt, { JwtPayload, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 import { isTokenExpired } from '../../../../helper/isTokenExpired';
-
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
   await ConnectToDb();
-  isTokenExpired(request, response);
-
+  // Optional: Check token expiration (modify isTokenExpired to return boolean if needed)
+  isTokenExpired(request, NextResponse);
   try {
     // Retrieve token from cookies
-    let token;
-    const tokenCookie: RequestCookie = request.cookies.get('token')!;
-    if (tokenCookie) {
-      token = tokenCookie.value;
-    }
-
-    if (!token) {
+    const tokenCookie = request.cookies.get('token');
+    if (!tokenCookie) {
       return NextResponse.json({
         message: 'Token Not Found',
         status: 404,
         success: false,
       });
     }
-
-    let decodedToken;
+    const token = tokenCookie.value;
     try {
-      decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+      // Verify JWT token
+      const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+      return NextResponse.json({
+        message: 'Token Found Successfully',
+        status: 200,
+        success: true,
+        decodedToken,
+      });
     } catch (error) {
       console.error('Error verifying token:', error);
       if (error instanceof TokenExpiredError) {
@@ -53,13 +49,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
         });
       }
     }
-
-    return NextResponse.json({
-      message: 'Token Found Successfully',
-      status: 200,
-      success: true,
-      decodedToken,
-    });
   } catch (error) {
     console.error('Error retrieving token:', error);
     return NextResponse.json({
