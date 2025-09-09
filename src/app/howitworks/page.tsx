@@ -1,5 +1,4 @@
 import React from 'react';
-import "../howitworks/howitworks.css";
 import ProcessItem from './ProcessItem';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';

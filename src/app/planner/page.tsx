@@ -1,5 +1,4 @@
 import React from 'react';
-import "../planner/planner.css";
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';

@@ -1,6 +1,5 @@
 "use client"
 import IdeaItem from './IdeaItem';
-import "../contact/contact.css";
 import ContactForm from "./ContactForm";
 import { ideaItemDatas } from './ideaItemData';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
