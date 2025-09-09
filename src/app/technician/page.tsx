@@ -1,9 +1,16 @@
 import React from 'react';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
+// ✅ Import images from src/assets
+import rajitPhoto from '@/assets/images/rajitpathak.jpg';
+import anitaPhoto from '@/assets/images/anitasharma.jpg';
+import sanjayPhoto from '@/assets/images/sanjayakumar.jpg';
+import mayaPhoto from '@/assets/images/mayasingh.jpg';
+import raviPhoto from '@/assets/images/ravijosi.jpg';
 const technicians = [
     {
         title: "Senior Electrician",
@@ -11,7 +18,7 @@ const technicians = [
         EmployeeId: "9864823",
         status: "Certified",
         Contact: "9864893602",
-        photo: "/assets/images/rajitpathak.jpg",
+        photo: rajitPhoto,
         address: "123 Main St, Kathmandu, Nepal"
     },
     {
@@ -20,7 +27,7 @@ const technicians = [
         EmployeeId: "9864824",
         status: "Certified",
         Contact: "9864893603",
-        photo: "/assets/images/anitasharma.jpg",
+        photo: anitaPhoto,
         address: "456 Elm St, Pokhara, Nepal"
     },
     {
@@ -29,7 +36,7 @@ const technicians = [
         EmployeeId: "9864825",
         status: "In-Training",
         Contact: "9864893604",
-        photo: "/assets/images/sanjayakumar.jpg",
+        photo: sanjayPhoto,
         address: "789 Pine St, Lalitpur, Nepal"
     },
     {
@@ -38,7 +45,7 @@ const technicians = [
         EmployeeId: "9864826",
         status: "Certified",
         Contact: "9864893605",
-        photo: "/assets/images/mayasingh.jpg",
+        photo: mayaPhoto,
         address: "101 Maple St, Biratnagar, Nepal"
     },
     {
@@ -47,7 +54,7 @@ const technicians = [
         EmployeeId: "9864827",
         status: "Certified",
         Contact: "9864893606",
-        photo: "/assets/images/ravijosi.jpg",
+        photo: raviPhoto,
         address: "202 Oak St, Janakpur, Nepal"
     }
 ];
@@ -60,11 +67,19 @@ const TechnicianList = () => {
                 <p className="primary_heading">Check Our Highly Rated Technicians</p>
                 <Call2Action type="Start Now" link="/technician/login" />
                 <div className="singleTechnician">
-                    {technicians.map((tech, index) => (
+                    {technicians.map((tech) => (
                         <div className="technicianDetails" key={tech.EmployeeId}>
                             <div className="technicianDetailsLeft">
                                 <div className="technicianProfile">
-                                    <img src={tech.photo} alt={tech.name} className="technician_profile" />
+                                    {/* ✅ Next.js Image (lazy by default) */}
+                                    <Image
+                                        src={tech.photo}
+                                        alt={tech.name}
+                                        className="technician_profile"
+                                        width={120}   // adjust as needed
+                                        height={120}  // adjust as needed
+                                        placeholder="blur" // adds blur-up effect
+                                    />
                                     <p>{tech.name}</p>
                                 </div>
                                 <div className="designation">
@@ -84,9 +99,7 @@ const TechnicianList = () => {
                             </div>
                             <div className="technicianStatus">
                                 <p className="statusButton">{tech.status}</p>
-                                <p>
-                                    Employee ID: {tech.EmployeeId}
-                                </p>
+                                <p>Employee ID: {tech.EmployeeId}</p>
                             </div>
                         </div>
                     ))}
