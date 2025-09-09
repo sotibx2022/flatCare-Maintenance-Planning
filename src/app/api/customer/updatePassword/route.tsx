@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Customer, CustomerDocument } from '../../../../models/customer.models';
 import { ConnectToDb } from '../../../../helper/connectToDb';
 import bcrypt from 'bcryptjs';
-import { isTokenExpired } from '../../../../helper/isTokenExpired';
 export async function POST(request: NextRequest, response: NextResponse) {
   ConnectToDb();
   try {
