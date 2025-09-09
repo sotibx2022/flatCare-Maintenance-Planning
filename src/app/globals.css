@@ -799,6 +799,7 @@ ul li {
   width: 60px;
   height: 60px;
   box-shadow: var(--primaryDarkBoxShadow);
+  object-fit: cover;
 }
 .technicianDetails {
   display: grid;

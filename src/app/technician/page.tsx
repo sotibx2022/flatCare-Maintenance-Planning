@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
-import Rating from '../landingpage/homeNavigation/Rating';
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
@@ -88,7 +87,6 @@ const TechnicianList = () => {
                                 <p>
                                     Employee ID: {tech.EmployeeId}
                                 </p>
-                                <Rating />
                             </div>
                         </div>
                     ))}
