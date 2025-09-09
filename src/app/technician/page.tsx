@@ -6,11 +6,11 @@ import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
 // ✅ Import images from src/assets
-import rajitPhoto from '@/assets/images/rajitpathak.jpg';
-import anitaPhoto from '@/assets/images/anitasharma.jpg';
-import sanjayPhoto from '@/assets/images/sanjayakumar.jpg';
-import mayaPhoto from '@/assets/images/mayasingh.jpg';
-import raviPhoto from '@/assets/images/ravijosi.jpg';
+import rajitPhoto from '../../../public/assets/images/rajitpathak.jpg';
+import anitaPhoto from '../../../public/assets/images/anitasharma.jpg';
+import sanjayPhoto from '../../../public/assets/images/sanjayakumar.jpg';
+import mayaPhoto from '../../../public/assets/images/mayasingh.jpg';
+import raviPhoto from '../../../public/assets/images/ravijosi.jpg';
 const technicians = [
     {
         title: "Senior Electrician",
