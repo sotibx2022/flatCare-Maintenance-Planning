@@ -1,8 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { verify, JwtPayload } from 'jsonwebtoken'; // Import verify function and JwtPayload type
 export const isTokenExpired = async (
   request: NextRequest,
-  response: NextResponse,
 ): Promise<boolean> => {
   const tokenCookie = request.cookies.get('token');
   const token = tokenCookie?.value;
@@ -23,12 +22,12 @@ export const isTokenExpired = async (
           expires: new Date(0), // Set expiration date in the past
         });
       }
-      return isExpired; // Return true if token is expired
+      return false; // Return true if token is expired
     }
     // If the token does not have an expiration, treat it as invalid
     return true;
   } catch (error) {
     console.error('Error verifying token:', error);
-    return true; // Return true if there was an error during verification
+    return false; // Return true if there was an error during verification
   }
 };
