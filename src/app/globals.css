@@ -67,6 +67,12 @@ button:hover,
   margin: 0 auto;
   padding: 20px;
 }
+@media (max-width:500px) {
+  .container {
+    max-width: 95vw;
+    padding: 10px;
+  }
+}
 .center_container {
   height: 80vh;
   display: grid;

@@ -29,7 +29,7 @@ export const SoftwareFeatures = () => {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="text-center p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="text-center flex justify-center align-center sm:flex-col p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="w-16 h-16 bg-[var(--primaryDark)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <feature.icon className="w-8 h-8 text-[var(--primaryLight)]" />
