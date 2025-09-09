@@ -8,7 +8,17 @@ export async function PUT(request: NextRequest) {
   try {
     // Connect to DB
     await ConnectToDb();
-    // Check token expiration (assuming it returns a boolean)
+    const tokenCookie = request.cookies.get('token');
+    if (!tokenCookie) {
+      return NextResponse.json({
+        message: 'Token Not Found',
+        status: 401,
+        success: false,
+      });
+    }
+    const token = tokenCookie.value;
+    // Check if token is expired
+    const expired = await isTokenExpired(token);
     const tokenExpired = await isTokenExpired(request);
     if (tokenExpired) {
       return NextResponse.json({
