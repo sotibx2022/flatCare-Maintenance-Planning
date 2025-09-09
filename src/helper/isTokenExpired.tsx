@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { verify, JwtPayload } from 'jsonwebtoken'; // Import verify function and JwtPayload type
 export const isTokenExpired = async (
-  token: string,
+  token: string | null,
 ): Promise<boolean> => {
   if (!token) {
     // Token not found, so it's considered invalid
