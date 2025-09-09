@@ -5,11 +5,11 @@ import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-i
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
-import rajitpathak from '../../assets/images/rajitpathak.jpeg';
-import anitasharma from '../../assets/images/anitasharma.jpeg';
-import sanjayakumar from '../../assets/images/sanjayakumar.jpeg';
-import mayasingh from '../../assets/images/mayasingh.jpeg';
-import ravijoshi from '../../assets/images/ravijoshi.jpeg';
+import rajitpathak from '../../assets/images/rajitpathak.jpg';
+import anitasharma from '../../assets/images/anitasharma.jpg';
+import sanjayakumar from '../../assets/images/sanjayakumar.jpg';
+import mayasingh from '../../assets/images/mayasingh.jpg';
+import ravijoshi from '../../assets/images/ravijoshi.jpg';
 const technicians = [
     {
         title: "Senior Electrician",
