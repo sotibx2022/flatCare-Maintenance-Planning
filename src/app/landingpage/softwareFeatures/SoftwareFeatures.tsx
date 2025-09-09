@@ -1,38 +1,46 @@
-import React from 'react';
-import '../softwareFeatures/softwareFeatures.css';
-import '../../landingpage/homeNavigation/landingPage.css';
+import { Wrench, AlertTriangle, Package, Clipboard } from "lucide-react";
 const features = [
   {
-    featureTitle: 'Defect Maintenance',
-    featureIcon: '🛠️',
+    title: "Defect Maintenance",
+    icon: Wrench,
+    description: "Quick and efficient defect resolution for all building systems"
   },
   {
-    featureTitle: 'Emergency Response',
-    featureIcon: '🚒',
+    title: "Emergency Response",
+    icon: AlertTriangle,
+    description: "24/7 emergency maintenance support when you need it most"
   },
   {
-    featureTitle: 'Material Planning',
-    featureIcon: '📦',
+    title: "Material Planning",
+    icon: Package,
+    description: "Strategic material management and procurement planning"
   },
   {
-    featureTitle: 'Work Order Planning',
-    featureIcon: '📝',
-  },
+    title: "Work Order Planning",
+    icon: Clipboard,
+    description: "Streamlined work order creation and scheduling system"
+  }
 ];
-
-const SoftwareFeatures = () => {
+export const SoftwareFeatures = () => {
   return (
-    <div className="features_wrapper">
-      {features.map((feature, index) => {
-        return (
-          <div className="feature_box" key={index}>
-            <h1 className="secondary_heading">{feature.featureTitle}</h1>
-            <span className="featureIcon">{feature.featureIcon}</span>
-          </div>
-        );
-      })}
-    </div>
+    <section className="py-20 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="text-center p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="w-16 h-16 bg-[var(--primaryDark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                <feature.icon className="w-8 h-8 text-[var(--primaryLight)]" />
+              </div>
+              <h3 className="text-xl font-semibold text-primaryDark mb-3">
+                {feature.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
-
-export default SoftwareFeatures;

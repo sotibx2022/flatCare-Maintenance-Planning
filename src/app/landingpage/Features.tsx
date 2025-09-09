@@ -1,5 +1,3 @@
-import "../landingpage/homeNavigation/landingPage.css";
-import RequestDemo from "./homeNavigation/RequestDemo";
 const features = [
     "24/7 Support",
     "Industry Expertise",
@@ -13,19 +11,20 @@ const features = [
 ];
 const Features = () => {
     return (
-        <>
+        <div className="container">
             <h1 className="subHeading">
-                FEATURES
+                Features
             </h1>
-            <div className="featureItems">
+            <div className="featureItems grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {features.map((feature, index) => (
-                    <div className="featureItem" key={index}>
-                        <h1 className="primary_heading">{feature}</h1>
+                    <div className="featureItem bg-helper p-4 rounded-lg shadow-[var(--primaryLightBoxShadow)] hover:shadow-[var(--primaryDarkBoxShadow)] transition-shadow duration-300" key={index}>
+                        <h1 className="primary_heading text-lg font-semibold text-[var(--primaryDark)]">
+                            {feature}
+                        </h1>
                     </div>
                 ))}
             </div>
-            <RequestDemo />
-        </>
+        </div>
     );
 };
 export default Features;

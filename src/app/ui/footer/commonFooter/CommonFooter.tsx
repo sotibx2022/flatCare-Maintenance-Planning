@@ -43,7 +43,7 @@ const CommonFooter = () => {
             ></path>
           </svg>
         </div>
-        <div className="footerItems container responsive_flex">
+        <div className="footerItems  responsive_flex">
           <div className="identity">
             <h1 className="footer_title">Brand</h1>
             <h1 className="brandTitle">FlatCare Maintenance Planning</h1>

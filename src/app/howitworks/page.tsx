@@ -6,57 +6,57 @@ import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 const tasks = [
     {
         TaskTitle: "Create Notification",
-        TaskDescription: "Generate a detailed notification based on the specific request submitted by the customer, including all relevant details such as urgency, description of the issue, and any specific instructions provided.",
+        TaskDescription: "Generate a notification with details like urgency, issue, and instructions.",
         Role: "Customer",
     },
     {
         TaskTitle: "Approve Notification",
-        TaskDescription: "Review and approve the notification created by the customer. Ensure all details are accurate and complete, and confirm that it meets the necessary requirements before moving forward.",
+        TaskDescription: "Review and approve the customer’s notification for accuracy and completeness.",
         Role: "Planner",
     },
     {
         TaskTitle: "Site Visit",
-        TaskDescription: "Conduct an on-site visit to evaluate the current situation. Assess the scope of work required, identify any additional resources or materials needed, and document findings to facilitate further actions.",
+        TaskDescription: "Visit the site to assess work needed, note resources, and record findings.",
         Role: "Technician",
     },
     {
         TaskTitle: "Request Material",
-        TaskDescription: "Submit a request for the materials required for the job to the supplier. Include detailed specifications, quantities, and any special instructions to ensure the materials are suitable for the task at hand.",
+        TaskDescription: "Request necessary materials with specs, quantities, and special instructions.",
         Role: "Customer",
     },
     {
         TaskTitle: "Create Work Order",
-        TaskDescription: "Draft a comprehensive work order that outlines the tasks to be performed, the materials required, and any specific instructions or deadlines. Ensure the work order aligns with the customer’s request and requirements.",
+        TaskDescription: "Prepare a work order outlining tasks, materials, instructions, and deadlines.",
         Role: "Planner",
     },
     {
         TaskTitle: "Order Material",
-        TaskDescription: "Place an order for the materials specified in the work order. Verify that the order includes all necessary items and quantities, and follow up with the supplier to confirm delivery times and availability.",
+        TaskDescription: "Order required materials, confirm items and quantities, and verify delivery.",
         Role: "Planner",
     },
     {
         TaskTitle: "Approve Work Order",
-        TaskDescription: "Review the work order created by the planner for accuracy and completeness. Ensure that all aspects of the job are correctly outlined and approve the work order to proceed with the next steps.",
+        TaskDescription: "Review the planner’s work order and approve once details are correct.",
         Role: "Customer",
     },
     {
         TaskTitle: "Update Work Order Status",
-        TaskDescription: "Regularly update the status of the work order based on the progress of the tasks. Provide detailed information on completed activities, any delays or issues encountered, and any changes to the initial plan.",
+        TaskDescription: "Update work order progress, note delays, and record changes if needed.",
         Role: "Planner",
     },
     {
         TaskTitle: "Complete Job",
-        TaskDescription: "Carry out the job as specified in the work order. Ensure that all tasks are completed to the required standard, and address any issues or additional requirements that arise during the process.",
+        TaskDescription: "Perform the job as per work order and resolve issues during the process.",
         Role: "Technician",
     },
     {
         TaskTitle: "Complete Confirmation",
-        TaskDescription: "Verify and confirm the completion of the job from the customer’s perspective. Ensure that all aspects of the work meet the customer’s satisfaction and obtain formal confirmation that the job is finished.",
+        TaskDescription: "Confirm job completion, ensuring work meets customer satisfaction.",
         Role: "Customer",
     },
     {
         TaskTitle: "Close Work Order",
-        TaskDescription: "Finalize and close the work order after verifying that all tasks have been completed according to the specifications. Ensure all documentation is updated and filed appropriately, and perform any necessary follow-up tasks.",
+        TaskDescription: "Close the work order, update documents, and complete follow-up tasks.",
         Role: "Planner",
     }
 ];

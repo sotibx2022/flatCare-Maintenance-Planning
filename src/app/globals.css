@@ -26,6 +26,22 @@ p {
   font-size: 1rem;
 }
 /* Primary Button */
+.callToAction {
+  background: var(--gradient);
+  color: var(--primaryLight);
+  padding: 1rem;
+  gap: 1rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  position: relative;
+  transition: all 0.5s linear;
+  max-width: 200px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
 button,
 .button {
   background-color: var(--primaryDark);
@@ -458,23 +474,15 @@ ul li {
   }
 }
 .subHeading {
-  box-shadow: var(--primaryDarkBoxShadow);
-  position: relative;
-  font-size: 1rem;
-  padding: 1rem;
-  color: var(--primaryDark);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   margin: 1rem 0;
-  width: 100%;
-  text-transform: uppercase;
-}
-.subHeading::after {
-  position: absolute;
-  content: "";
-  top: 1rem;
-  right: 0;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--helper);
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 .materialTableContainer {
   max-width: 680px;
@@ -498,4 +506,80 @@ ul li {
 }
 .tdSmailContainer {
   max-width: 100px;
+}
+/* global.css */
+.footerItems {
+  background-color: var(--primaryDark);
+  color: white;
+  padding: 2rem;
+}
+.responsive_flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.identity,
+.categoreis_wrapper,
+.contact {
+  flex: 1;
+  min-width: 250px;
+}
+.footer_title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primaryLight);
+}
+.brandTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.brandParagraph {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+.social ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+.social li {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primaryLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.social li:hover {
+  background-color: white;
+  transform: translateY(-3px);
+}
+.linkedIn,
+.instagram,
+.facebook,
+.youtube {
+  color: var(--primaryDark);
+  font-size: 1.2rem;
+}
+.categoryItem {
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: var(--primaryLight);
+}
+.contact div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+}
+.footerIcon {
+  color: var(--primaryLight);
+  width: 1rem;
 }

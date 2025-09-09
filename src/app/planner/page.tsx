@@ -1,7 +1,6 @@
 import React from 'react';
 import "../planner/planner.css";
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
-import "../../app/landingpage/homeNavigation/landingPage.css";
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
 const cardData = [

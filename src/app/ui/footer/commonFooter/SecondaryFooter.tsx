@@ -1,5 +1,4 @@
 import React from 'react'
-import "../../../landingpage/homeNavigation/landingPage.css";
 const SecondaryFooter = () => {
     return (
         <div className='secondaryFooterContainer'>
