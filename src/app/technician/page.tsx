@@ -5,12 +5,11 @@ import { faBriefcase, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-i
 import Call2Action from '../landingpage/homeNavigation/Call2Action';
 import CommonHeader from '../ui/header/commonHeader/CommonHeader';
 import CommonFooter from '../ui/footer/commonFooter/CommonFooter';
-// ✅ Import images from src/assets
-import rajitPhoto from '../../../public/assets/images/rajitpathak.jpg';
-import anitaPhoto from '../../../public/assets/images/anitasharma.jpg';
-import sanjayPhoto from '../../../public/assets/images/sanjayakumar.jpg';
-import mayaPhoto from '../../../public/assets/images/mayasingh.jpg';
-import raviPhoto from '../../../public/assets/images/ravijosi.jpg';
+import rajitpathak from '@/assets/images/rajitpathak.jpeg';
+import anitasharma from '@/assets/images/anitasharma.jpeg';
+import sanjayakumar from '@/assets/images/sanjayakumar.jpeg';
+import mayasingh from '@/assets/images/mayasingh.jpeg';
+import ravijoshi from '@/assets/images/ravijoshi.jpeg';
 const technicians = [
     {
         title: "Senior Electrician",
@@ -18,7 +17,7 @@ const technicians = [
         EmployeeId: "9864823",
         status: "Certified",
         Contact: "9864893602",
-        photo: rajitPhoto,
+        photo: rajitpathak,
         address: "123 Main St, Kathmandu, Nepal"
     },
     {
@@ -27,7 +26,7 @@ const technicians = [
         EmployeeId: "9864824",
         status: "Certified",
         Contact: "9864893603",
-        photo: anitaPhoto,
+        photo: anitasharma,
         address: "456 Elm St, Pokhara, Nepal"
     },
     {
@@ -36,7 +35,7 @@ const technicians = [
         EmployeeId: "9864825",
         status: "In-Training",
         Contact: "9864893604",
-        photo: sanjayPhoto,
+        photo: sanjayakumar,
         address: "789 Pine St, Lalitpur, Nepal"
     },
     {
@@ -45,7 +44,7 @@ const technicians = [
         EmployeeId: "9864826",
         status: "Certified",
         Contact: "9864893605",
-        photo: mayaPhoto,
+        photo: mayasingh,
         address: "101 Maple St, Biratnagar, Nepal"
     },
     {
@@ -54,7 +53,7 @@ const technicians = [
         EmployeeId: "9864827",
         status: "Certified",
         Contact: "9864893606",
-        photo: raviPhoto,
+        photo: ravijoshi,
         address: "202 Oak St, Janakpur, Nepal"
     }
 ];
@@ -76,9 +75,9 @@ const TechnicianList = () => {
                                         src={tech.photo}
                                         alt={tech.name}
                                         className="technician_profile"
-                                        width={120}   // adjust as needed
-                                        height={120}  // adjust as needed
-                                        placeholder="blur" // adds blur-up effect
+                                        width={120}
+                                        height={120}
+                                        placeholder="blur"
                                     />
                                     <p>{tech.name}</p>
                                 </div>

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { ConnectToDb } from '../../../../helper/connectToDb';
@@ -6,7 +7,24 @@ import { isTokenExpired } from '../../../../helper/isTokenExpired';
 export async function GET(request: NextRequest, response: NextResponse) {
   try {
     ConnectToDb();
-    isTokenExpired(request, response);
+    const tokenCookie = request.cookies.get('token');
+    if (!tokenCookie) {
+      return NextResponse.json({
+        message: 'Token Not Found',
+        status: 401,
+        success: false,
+      });
+    }
+    const token = tokenCookie.value;
+    // Check if token is expired
+    const expired = await isTokenExpired(token);
+    if (expired) {
+      return NextResponse.json({
+        message: 'JWT Token Expired',
+        status: 401,
+        success: false,
+      });
+    }
     const url = new URL(request.url);
     const editId = url.pathname.split("/")[3]
     if (!editId) {

@@ -1,7 +1,7 @@
 "use client"
 import Lottie from 'lottie-react';
 import React from 'react';
-import loadingPage from "@/../../public/assets/animations/loadingPage.json"
+import loadingPage from "@/assets/animations/loadingPage.json"
 const LoadingComponent = () => {
     return (
         <div className="loadingContainer">

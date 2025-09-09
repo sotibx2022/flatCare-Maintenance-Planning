@@ -1,31 +1,35 @@
-import { NextRequest } from 'next/server';
-import { verify, JwtPayload } from 'jsonwebtoken'; // Import verify function and JwtPayload type
+import { verify, JwtPayload } from 'jsonwebtoken';
+import { NextResponse } from 'next/server';
+/**
+ * Checks if a JWT token is expired or invalid.
+ * Optionally clears the token cookie if expired.
+ * @param token JWT token string
+ * @param response Optional NextResponse object to clear cookie if token expired
+ * @returns true if token is expired/invalid, false if valid
+ */
 export const isTokenExpired = async (
   token: string | null,
+  response?: NextResponse
 ): Promise<boolean> => {
-  if (!token) {
-    // Token not found, so it's considered invalid
-    return true;
-  }
+  if (!token) return true; // No token → expired/invalid
   try {
-    // Verify and decode the token
     const decodedToken = verify(token, process.env.SECRET_KEY!) as JwtPayload;
-    if (decodedToken && decodedToken.exp) {
-      const isExpired = decodedToken.exp < Date.now() / 1000;
-      if (isExpired) {
-        // If token is expired, clear the token from cookies
+    if (decodedToken?.exp) {
+      const expired = decodedToken.exp < Date.now() / 1000;
+      // Clear cookie if expired and response is provided
+      if (expired && response) {
         response.cookies.set('token', '', {
           httpOnly: true,
           path: '/',
-          expires: new Date(0), // Set expiration date in the past
+          expires: new Date(0),
         });
       }
-      return false; // Return true if token is expired
+      return expired;
     }
-    // If the token does not have an expiration, treat it as invalid
+    // Token has no expiration → treat as expired/invalid
     return true;
   } catch (error) {
     console.error('Error verifying token:', error);
-    return false; // Return true if there was an error during verification
+    return true; // verification failed → expired/invalid
   }
 };

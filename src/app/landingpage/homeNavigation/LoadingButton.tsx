@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'lottie-react';
-import loadingButton from "@/../../public/assets/animations/loadingbutton.json"
+import loadingButton from "@/assets/animations/loadingbutton.json"
 const LoadingButton = () => {
     return (
         <div>
