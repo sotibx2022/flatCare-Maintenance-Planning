@@ -1,10 +1,8 @@
 import { NextRequest } from 'next/server';
 import { verify, JwtPayload } from 'jsonwebtoken'; // Import verify function and JwtPayload type
 export const isTokenExpired = async (
-  request: NextRequest,
+  token: string,
 ): Promise<boolean> => {
-  const tokenCookie = request.cookies.get('token');
-  const token = tokenCookie?.value;
   if (!token) {
     // Token not found, so it's considered invalid
     return true;
