@@ -40,10 +40,14 @@ export async function GET(request: NextRequest) {
 }
 export async function POST(request: NextRequest) {
   try {
-    ConnectToDb(); // Connect to MongoDB
+    console.log('Connecting to MongoDB...');
+    await ConnectToDb(); // Connect to MongoDB
+    console.log('MongoDB connection established.');
     // Extract token from cookies
     const tokenCookie: RequestCookie | undefined = request.cookies.get('token');
+    console.log('Token cookie:', tokenCookie);
     if (!tokenCookie) {
+      console.log('No token found in cookies.');
       return NextResponse.json({
         message: 'User not authenticated',
         status: 401,
@@ -51,10 +55,25 @@ export async function POST(request: NextRequest) {
       });
     }
     const token = tokenCookie.value;
-    const decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+    console.log('Token value:', token);
+    let decodedToken: JwtPayload;
+    try {
+      decodedToken = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+      console.log('Decoded token:', decodedToken);
+    } catch (err) {
+      console.error('Error verifying token:', err);
+      return NextResponse.json({
+        message: 'Invalid token',
+        status: 401,
+        success: false,
+      });
+    }
     const userId = decodedToken.userId;
+    console.log('User ID from token:', userId);
     const customer = await Customer.findOne({ _id: userId });
+    console.log('Customer found:', customer);
     if (!customer) {
+      console.log('No customer found for this user ID.');
       return NextResponse.json({
         message: 'User ID not found in token',
         status: 401,
@@ -62,7 +81,10 @@ export async function POST(request: NextRequest) {
       });
     }
     // Extract notification data from the request body
-    const { dataToSend } = await request.json();
+    const body = await request.json();
+    console.log('Request body:', body);
+    const { dataToSend } = body;
+    console.log('Data to send:', dataToSend);
     const {
       notificationTitle,
       notificationDescription,
@@ -71,7 +93,16 @@ export async function POST(request: NextRequest) {
       address,
       createdBy,
     } = dataToSend;
+    console.log('Notification details:', {
+      notificationTitle,
+      notificationDescription,
+      notificationPriority,
+      notificationCategory,
+      address,
+      createdBy,
+    });
     const { roomNumber, flatNumber, buildingNumber } = address;
+    console.log('Address details:', { buildingNumber, flatNumber, roomNumber });
     // Create a new instance of Notification model
     const newNotification = new Notification({
       notificationTitle,
@@ -86,8 +117,10 @@ export async function POST(request: NextRequest) {
         roomNumber,
       },
     });
+    console.log('New Notification instance created:', newNotification);
     // Save the new notification to the database
     const createdNotification = await newNotification.save();
+    console.log('Notification saved to DB:', createdNotification);
     // Return success response
     return NextResponse.json({
       message: 'Notification created successfully',
@@ -96,7 +129,6 @@ export async function POST(request: NextRequest) {
       notification: createdNotification,
     });
   } catch (error) {
-    // Handle any errors that occur during the operation
     console.error('Error processing request:', error);
     return NextResponse.json({
       message: 'Failed to create notification',

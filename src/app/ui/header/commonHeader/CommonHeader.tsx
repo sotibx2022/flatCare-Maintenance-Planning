@@ -6,6 +6,8 @@ import gsap from 'gsap'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import logo from '../../../../assets/images/logo.png'
+import Image from 'next/image'
 const CommonHeader = () => {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
   const router = useRouter()
@@ -30,8 +32,10 @@ const CommonHeader = () => {
     <div>
       <div className="Header_wrapper container">
         <div className="logo_area">
-          <img
-            src="/assets/images/logo.png"
+          <Image
+            src={logo}
+            width={50}
+            height={50}
             alt="Company Logo"
             className="logo"
             onClick={() => router.push("/")}
