@@ -28,6 +28,7 @@ const page = () => {
   const startIndex = (currentPage - 1) * 5;
   const endIndex = startIndex + 5;
   const handleDelete = (id: string) => {
+    deleteNotification(id)
   };
   const [width, setWidth] = useState(0);
   const findScreenSize = () => {
