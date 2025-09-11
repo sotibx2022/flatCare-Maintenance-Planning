@@ -78,7 +78,7 @@ const Page = () => {
             },
           };
           const response = await axios.post(
-            'http://localhost:3000/api/notification',
+            '/api/notification',
             { dataToSend },
           );
           const result = response.data;
