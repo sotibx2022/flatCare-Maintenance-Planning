@@ -8,7 +8,7 @@ import '../../dashboardBlock/dashboardBlock.css';
 const Page = () => {
   const [customerDataLoading, customerDatas, setCustomerDatas] = useCustomerData();
   return (
-    <section>
+    <section className='container'>
       <h1 className="primary_heading">Customer View Profile</h1>
       <div className="profileViewWrapper">
         <ProfileImage imageUrl={customerDatas.imageUrl} readOnly={true} />
